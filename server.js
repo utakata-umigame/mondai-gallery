@@ -15,9 +15,13 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'client')));
 app.use('/api', router);
+app.get('/add', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/add_list.html'));
+});
 app.get('/myList/show', (req, res) => {
   res.sendFile(path.resolve(__dirname + "/client/mondai_list.html"));
 });
 let port = process.env.PORT||8000;
-app.listen(port);
+let host = process.env.HOST||'0.0.0.0';
+app.listen(port, host);
 console.log('listen on port ' + port);
