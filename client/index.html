@@ -9,6 +9,20 @@
   <body>
     <div class="container-fluid">
       <h1><a href="/">問題集</a></h1>
+      <p style="white-space: pre-wrap;">
+      <strong>機能テスト期間中</strong>
+      
+      <strong>要件</strong>
+      ・ユーザー登録制（未実装）
+      ・お気に入りの問題を集めたマイリストを作成できる
+      ・サイトを横断してリンクのリストを作れる
+      ・対象のサイトは、規約に「サイト管理者に利用の再許諾が認められている」かつ「サイト管理者が問題の引用を許諾している」もの(著作権的には公開されたwebページにリンクを貼ることは問題ないはず)
+      ・リストおよび問題にはコメントを入れることができる。ただしコメント内で問題文等を引用する場合は各サイトの規約に従う
+
+      <strong>用途</strong>
+      ・自作過去問の紹介
+      ・テーマに沿った問題集の作成、共有 
+      </p>
       <a href="add_list.html">問題リストを追加</a>
       <div id="all-list">
         <ul class="list-group" v-for="item in myList">
