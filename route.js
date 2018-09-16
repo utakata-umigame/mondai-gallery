@@ -17,13 +17,8 @@ router.get("/", (req, res) => {
 });
 router.get("/mylist", (req, res) => {
     db.MyList.find({}).toArray((error, docs) => {
-        res.json(docs.map(x => {
-            return {
-                id: x.id,
-                name: x.name,
-                editor: x.editor
-            }; 
-        }));
+        console.log(docs);
+        res.json(docs);
     });
 });
 router.get("/myList/show/:id", (req, res) => {
