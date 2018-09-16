@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1><a href="/">問題集</a></h1>
+      <a href="add_list.html">問題リストを追加</a>
+      <div id="all-list">
+        <ul class="list-group" v-for="item in myList">
+          <a target='_blank' v-on:click="setId(item.id)" href='/myList/show' class="list-group-item list-group-item-action">
+            <small class="text-secondary">{{item.editor}}</small>
+            <span>{{ item.name }}</span>
+          </a>
+        </ul>
+      </div>  
+    </div>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/all_list.js"></script>
+  </body>
+</html>
