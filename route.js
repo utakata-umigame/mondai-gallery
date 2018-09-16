@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
   res.json(obj);
 });
 router.get("/mylist", (req, res) => {
-    db.MyList.find().toArray((error, docs) => {
+    db.MyList.find({}).toArray((error, docs) => {
         res.json(docs.map(x => {
             return {
                 id: x.id,
