@@ -55,7 +55,7 @@ export default {
   mounted: function () {
     var vm = this
     var id = this.$route.params.id
-    axios.get((process.env.HOST || 'http://localhost') + ':' + (process.env.PORT || 8000) + '/api/myList/show/' + id)
+    axios.get('/api/myList/show/' + id)
       .then(function (response) {
         vm.myList = response.data
         var list = response.data.mondai

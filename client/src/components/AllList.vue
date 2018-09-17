@@ -32,7 +32,7 @@ export default {
   },
   mounted: function () {
     var vm = this
-    axios.get((process.env.HOST || 'http://localhost') + ':' + (process.env.PORT || 8000) + '/api/myList')
+    axios.get('/api/myList')
       .then(function (response) {
         vm.myList = response.data
       })

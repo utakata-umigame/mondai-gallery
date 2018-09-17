@@ -85,7 +85,7 @@ export default {
     },
     submit: function () {
       let obj = Object.assign({}, this.myList)
-      axios.post((process.env.HOST || 'http://localhost') + ':' + (process.env.PORT || 8000) + '/api/add', obj)
+      axios.post('/api/add', obj)
     }
   }
 }
