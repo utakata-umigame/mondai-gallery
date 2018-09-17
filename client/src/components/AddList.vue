@@ -32,12 +32,15 @@
     </div>
     <button v-on:click="submit()" class="form-control btn btn-primary">リスト作成</button>
     <ul class="list-group" v-for="item in myList.mondai" v-bind:key="item.id">
-      <a target='_blank' v-bind:href='url(item.site,item.id)' v-bind:title='item.description' class="list-group-item list-group-item-action">
-        <small class="text-secondary">{{item.author}}</small>
-        <span>{{ item.title }}</span>
-        <span class="badge badge-primary">{{site[item.site].name}}</span>
-        <span class="badge badge-info">{{genre[item.genre]}}</span>
-      </a>
+      <li v-bind:title='item.description' class="list-group-item list-group-item-action">
+        <a target='_blank' v-bind:href='url(item.site,item.id)'>
+          <small class="text-secondary">{{item.author}}</small>
+          <span>{{ item.title }}</span>
+          <span class="badge badge-primary">{{site[item.site].name}}</span>
+          <span class="badge badge-info">{{genre[item.genre]}}</span>
+        </a>
+        <button class="btn btn-danger" v-on:click="remove(item)">削除</button>
+      </li>
     </ul>
   </div>
 </template>
@@ -81,6 +84,9 @@ export default {
   methods: {
     url: function (siteName, id) {
       return this.site[siteName].showUrl + id
+    },
+    remove: function (item) {
+      this.myList.mondai = this.myList.mondai.filter(x => x != item)
     },
     addMondai: function () {
       let obj = Object.assign({}, this.newMondai)
