@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{myList.name}}</h1>
+    <h2>{{myList.name}}</h2>
     <p>作成者:{{myList.editor.nickname}}</p>
     <div class="form-inline mb-2">
       <label>サイト</label>
