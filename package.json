@@ -15,7 +15,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "mongodb": "^3.1.6"
+    "mongodb": "^3.1.6",
+    "shelljs": "^0.7.6"
   },
   "devDependencies": {
     "vue-cli": "^2.9.6"
