@@ -18,7 +18,16 @@ app.use(express.static(path.resolve(__dirname, 'client/dist/static/css')));
 app.use(express.static(path.resolve(__dirname, 'client/dist/static/js')));
 app.use('/api', router);
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname + "/vue/client/dist/index.html"));
+  res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
+});
+app.get('/add', (req, res) => {
+  res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
+});
+app.get('/list', (req, res) => {
+  res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
+});
+app.get('/myList/show/:id', (req, res) => {
+  res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
 });
 let port = process.env.PORT||8000;
 let host = process.env.HOST||'0.0.0.0';

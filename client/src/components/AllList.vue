@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     url: function (id) {
-      return '/#/myList/show/' + id
+      return '/myList/show/' + id
     }
   }
 }
