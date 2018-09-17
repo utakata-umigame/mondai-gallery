@@ -86,7 +86,7 @@ export default {
       return this.site[siteName].showUrl + id
     },
     remove: function (item) {
-      this.myList.mondai = this.myList.mondai.filter(x => x != item)
+      this.myList.mondai = this.myList.mondai.filter(x => x !== item)
     },
     addMondai: function () {
       let obj = Object.assign({}, this.newMondai)
