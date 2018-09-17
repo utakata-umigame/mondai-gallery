@@ -23,16 +23,14 @@ var allList = new Vue({
   },
   mounted: function() {
     var vm = this
-    axios.get("/api/myList")
+    axios.get('/api/myList')
       .then(function(response) {
         vm.myList = response.data
       })
       .catch(function(error) {
         console.log(error)
       })
-      .then(function(){
-        
-      })
+      .then(function(){})
   },
   methods: {
     setId: function(id) {

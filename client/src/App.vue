@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div id="app" class="container-fluid">
+    <h1><a href="/#/">問題集</a></h1>
     <router-view/>
   </div>
 </template>
