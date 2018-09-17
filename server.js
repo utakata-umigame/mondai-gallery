@@ -5,6 +5,7 @@ const session = require('express-session');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const history = require('connect-history-api-fallback');
 const router = require('./route');
 const passport = require('./passport');
 const signup = require('./signup');
@@ -18,6 +19,7 @@ app.use(function(req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(history());
 app.use(
   session({
     secret: 'gwgwagwawhwa',
@@ -37,7 +39,11 @@ app.use(express.static(path.resolve(__dirname, 'client/dist/static/js')));
 app.use('/api', router);
 app.use('/signup', signup);
 app.use('/login', login);
-app.get('/', (req, res) => {
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/login');
+});
+/*app.get('/', (req, res) => {
   res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
 });
 app.get('/add', isAuthenticated, (req, res) => {
@@ -45,11 +51,7 @@ app.get('/add', isAuthenticated, (req, res) => {
 });
 app.get('/myList/show/:id', (req, res) => {
   res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
-});
-app.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/login');
-});
+});*/
 let port = process.env.PORT||8000;
 let host = process.env.HOST||'0.0.0.0';
 app.listen(port, host);
