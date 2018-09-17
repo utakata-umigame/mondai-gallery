@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{myList.name}}</h1>
-    <p>作成者:{{myList.editor}}</p>
+    <p>作成者:{{myList.editor.nickname}}</p>
     <div class="form-inline mb-2">
       <label>サイト</label>
       <select v-model='siteFilter' class="form-control">

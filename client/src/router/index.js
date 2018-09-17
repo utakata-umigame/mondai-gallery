@@ -4,6 +4,8 @@ import Router from 'vue-router'
 import AllList from '@/components/AllList'
 import AddList from '@/components/AddList'
 import MondaiList from '@/components/MondaiList'
+import SignUp from '@/components/SignUp'
+import LogIn from '@/components/LogIn'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -28,6 +30,16 @@ export default new Router({
       path: '/myList/show/:id',
       name: 'MondaiList',
       component: MondaiList
+    },
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: SignUp
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LogIn
     }
   ]
 })

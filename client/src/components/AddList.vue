@@ -67,7 +67,10 @@ export default {
       },
       myList: {
         'name': '',
-        'editor': '',
+        'editor': {
+          'nickname': '',
+          'username': ''
+        },
         'description': '',
         'mondai': []
       }

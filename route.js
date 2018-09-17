@@ -15,6 +15,11 @@ router.get("/", (req, res) => {
   }
   res.json(obj);
 });
+router.get("/user", (req, res) => {
+  if (req.user)
+    res.json(req.user);
+  else res.json({});
+});
 router.get("/mylist", (req, res) => {
     db.MyList.find({}).toArray((error, docs) => {
         console.log(docs);
@@ -27,16 +32,24 @@ router.get("/myList/show/:id", (req, res) => {
        res.json(doc);
    });
 });
-router.post("/add", (req, res) => {
+router.post("/add", isAuthenticated,(req, res) => {
   db.Counter.findOneAndUpdate({id:"list_id"},{$inc: {seq: 1}}, {new: true}, (err, res) => {
       console.log(res.value);
       let id = res.value.seq||1;
       req.body.id = id;
+      req.body.editor = req.user;
       db.MyList.insertOne(req.body, (err, result) => {
           console.log("inserted");
       });
   })
 });
-
+function isAuthenticated(req, res, next) {
+  // 認証チェック
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/login');
+  }
+}
 
 module.exports = router;
