@@ -23,9 +23,6 @@ app.get('/', (req, res) => {
 app.get('/add', (req, res) => {
   res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
 });
-app.get('/list', (req, res) => {
-  res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
-});
 app.get('/myList/show/:id', (req, res) => {
   res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
 });
