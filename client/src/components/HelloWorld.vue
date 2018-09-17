@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
-    <a href="/#/add">追加</a>
-    <a href="/#/list">リスト</a>
+    <a href="/add">追加</a>
+    <a href="/list">リスト</a>
   </div>
 </template>
 
