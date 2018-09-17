@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="container-fluid">
     <h1><a href="/">問題集</a></h1>
+    <a href="/add">追加</a>
+    <a href="/list">リスト</a>
     <router-view/>
   </div>
 </template>

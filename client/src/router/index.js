@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import AllList from '@/components/AllList'
 import AddList from '@/components/AddList'
 import MondaiList from '@/components/MondaiList'
@@ -17,11 +16,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
-    {
-      path: '/list',
       name: 'AllList',
       component: AllList
     },
