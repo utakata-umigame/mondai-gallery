@@ -35,7 +35,12 @@ router.post('/', function(req, res) {
       if (doc) {
         res.redirect('/signup');
       } else {
-        db.User.insert(data);
+        db.Counter.findOneAndUpdate({id:"user_id"},{$inc: {seq: 1}}, {new: true}, (err, res) => {
+          console.log(res.value);
+          let id = res.value.seq||1;
+          data.id = id;
+          db.User.insertOne(data, (err, result) => {});
+        })
         res.redirect('/login');
       }
     });

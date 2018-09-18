@@ -41,11 +41,11 @@ router.post("/myList/edit/:id", isAuthenticated, (req, res) => {
 });
 router.post("/add", isAuthenticated, (req, res) => {
   db.Counter.findOneAndUpdate({id:"list_id"},{$inc: {seq: 1}}, {new: true}, (err, res) => {
-      console.log(res.value);
-      let id = res.value.seq||1;
-      req.body.id = id;
-      req.body.editor = req.user;
-      db.MyList.insertOne(req.body, (err, result) => {});
+    console.log(res.value);
+    let id = res.value.seq||1;
+    req.body.id = id;
+    req.body.editor = req.user;
+    db.MyList.insertOne(req.body, (err, result) => {});
   })
   res.json({"message": "Success"});
 });

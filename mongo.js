@@ -12,6 +12,7 @@ MongoClient.connect(url, function(err, client) {
   db.MyList = client.db(process.env.MONGODB_NAME||"gallery").collection("myList");
   db.Counter = client.db(process.env.MONGODB_NAME||"gallery").collection("counter");
   db.Counter.insertOne({id: "list_id", seq: 1});
+  db.Counter.insertOne({id: "user_id", seq: 1});
   console.log("connected");
 });
 
