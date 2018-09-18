@@ -64,16 +64,17 @@ export default {
       .catch(function (error) {
         console.log(error)
       })
-      .then(function () {})
-    axios.get('/api/user')
-      .then((res) => {
-        if (res) {
-          if (res.data) {
-            if (res.data.username === this.myList.editor.username) {
-              this.isMine = true
+      .then(function () {
+        axios.get('/api/user')
+          .then((res) => {
+            if (res) {
+              if (res.data) {
+                if (res.data.username === vm.myList.editor.username) {
+                  vm.isMine = true
+                }
+              }
             }
-          }
-        }
+          })
       })
   },
   methods: {
