@@ -51,7 +51,11 @@ export default {
         'cindy': {name: 'Cindy', showUrl: 'https://www.cindythink.com/puzzle/show/'},
         'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'}
       },
-      myList: {}
+      myList: {
+        'editor': {
+          'nickname': ''
+        }
+      }
     }
   },
   mounted: function () {
