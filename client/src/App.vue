@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container-fluid">
-    <h1><a href="/">問題集</a></h1>
-    <a href="/add">追加</a>
+    <h1><router-link to="/">問題集</router-link></h1>
+    <router-link to="/add">追加</router-link>
     <a href="/login">ログイン</a>
     <a href="/logout">ログアウト</a>
     <a href="/signup">登録</a>

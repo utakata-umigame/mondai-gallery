@@ -43,25 +43,7 @@ app.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/login');
 });
-/*app.get('/', (req, res) => {
-  res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
-});
-app.get('/add', isAuthenticated, (req, res) => {
-  res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
-});
-app.get('/myList/show/:id', (req, res) => {
-  res.sendFile(path.resolve(path.resolve(__dirname, "client/dist/index.html")));
-});*/
 let port = process.env.PORT||8000;
 let host = process.env.HOST||'0.0.0.0';
 app.listen(port, host);
 console.log('listen on port ' + port);
-
-function isAuthenticated(req, res, next) {
-  // 認証チェック
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    res.redirect('/login');
-  }
-}

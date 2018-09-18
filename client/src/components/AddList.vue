@@ -142,6 +142,7 @@ export default {
       console.log(this.myList.mondai)
     },
     submit: function () {
+      let vm = this
       let obj = Object.assign({}, this.myList)
       axios.post('/api/add', obj)
         .then(function (response) {
@@ -150,7 +151,7 @@ export default {
             alert('ログインしてください')
             location.href = '/login'
           } else if (data.message) {
-            alert('送信しました')
+            vm.$router.push('/')
           } else {}
         })
     },

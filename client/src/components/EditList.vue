@@ -152,6 +152,7 @@ export default {
       console.log(this.myList.mondai)
     },
     submit: function () {
+      let vm = this
       axios.post('/api/myList/edit/' + this.myList.id, this.myList)
         .then(function (response) {
           let data = response.data
@@ -159,7 +160,7 @@ export default {
             alert('ログインしてください')
             location.href = '/login'
           } else if (data.message) {
-            alert('送信しました')
+            vm.$router.push('/')
           } else {}
         })
     },
