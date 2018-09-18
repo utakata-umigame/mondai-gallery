@@ -32,6 +32,13 @@ router.get("/myList/show/:id", (req, res) => {
        res.json(doc);
    });
 });
+router.post("/myList/edit/:id", isAuthenticated, (req, res) => {
+  let obj = req.body
+   db.MyList.updateOne({"id": req.body.id}, {$set: {"name": obj.name, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
+       if(err) console.log(err);
+   });
+   res.json({"message": "success"});
+});
 router.post("/add", isAuthenticated, (req, res) => {
   db.Counter.findOneAndUpdate({id:"list_id"},{$inc: {seq: 1}}, {new: true}, (err, res) => {
       console.log(res.value);

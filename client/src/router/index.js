@@ -6,6 +6,7 @@ import AddList from '@/components/AddList'
 import MondaiList from '@/components/MondaiList'
 import SignUp from '@/components/SignUp'
 import LogIn from '@/components/LogIn'
+import EditList from '@/components/EditList'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -25,6 +26,11 @@ export default new Router({
       path: '/add',
       name: 'AddList',
       component: AddList
+    },
+    {
+      path: '/myList/edit/:id',
+      name: 'EditList',
+      component: EditList
     },
     {
       path: '/myList/show/:id',

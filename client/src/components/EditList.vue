@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-2">
-      <h2>リストを追加</h2>
+      <h2>リストを編集</h2>
       <label>リスト名</label>
       <input v-model="myList.name" class="form-control" type="text" placeholder="リスト名">
       <label>リストの説明</label>
@@ -113,6 +113,16 @@ export default {
     }
   },
   mounted: function () {
+    let id = this.$route.params.id
+    let vm = this
+    axios.get('/api/myList/show/' + id)
+      .then(function (response) {
+        console.log(response)
+        vm.myList = response.data
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   },
   methods: {
     url: function (siteName, id) {
@@ -142,8 +152,7 @@ export default {
       console.log(this.myList.mondai)
     },
     submit: function () {
-      let obj = Object.assign({}, this.myList)
-      axios.post('/api/add', obj)
+      axios.post('/api/myList/edit/' + this.myList.id, this.myList)
         .then(function (response) {
           let data = response.data
           if (data.error) {

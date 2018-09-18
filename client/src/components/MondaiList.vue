@@ -2,6 +2,7 @@
   <div>
     <h2>{{myList.name}}</h2>
     <p>作成者:{{myList.editor.nickname}}</p>
+    <a class="btn btn-default" v-bind:href="editUrl()" v-if = "isMine">編集</a>
     <div class="form-inline mb-2">
       <label>サイト</label>
       <select v-model='siteFilter' class="form-control">
@@ -38,6 +39,7 @@ export default {
       name: '',
       genreFilter: 'all',
       siteFilter: 'all',
+      isMine: false,
       genre: {
         'umigame': 'ウミガメのスープ',
         'tobira': '20の扉',
@@ -49,7 +51,7 @@ export default {
         'cindy': {name: 'Cindy', showUrl: 'https://www.cindythink.com/puzzle/show/'},
         'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'}
       },
-      myList: []
+      myList: {}
     }
   },
   mounted: function () {
@@ -58,19 +60,28 @@ export default {
     axios.get('/api/myList/show/' + id)
       .then(function (response) {
         vm.myList = response.data
-        var list = response.data.mondai
-        for (var i = 0; i < list.length; i++) {
-          vm.mondai.push(list[i])
-        }
       })
       .catch(function (error) {
         console.log(error)
       })
       .then(function () {})
+    axios.get('/api/user')
+      .then((res) => {
+        if (res) {
+          if (res.data) {
+            if (res.data.username === this.myList.editor.username) {
+              this.isMine = true
+            }
+          }
+        }
+      })
   },
   methods: {
     url: function (siteName, id) {
       return this.site[siteName].showUrl + id
+    },
+    editUrl: function () {
+      return '/myList/edit/' + this.myList.id
     },
     filter: function () {
       var filtered = this.myList.mondai
