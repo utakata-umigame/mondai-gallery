@@ -6,20 +6,21 @@
       <label>リストの説明</label>
       <textarea v-model="myList.description" class="form-control" type="text" placeholder="説明"></textarea>
     </div>
-    <button v-on:click="submit()" class="form-control btn btn-primary">リスト作成</button>
+    <button v-on:click="submit()" class="form-control btn btn-primary mb-2">リスト作成</button>
     <b-btn v-b-modal.myModal class="form-control">問題を追加</b-btn>
     <!-- 問題リスト -->
     <ul class="list-group" v-for="item in myList.mondai" v-bind:key="item._id">
-      <li v-bind:title='item.description' class="list-group-item list-group-item-action">
-        <a target='_blank' v-bind:href='url(item.site,item.id)'>
+      <div class="form-inline">
+        <a v-bind:title='item.description' class="list-group-item list-group-item-action" target='_blank' v-bind:href='url(item.site,item.id)'>
           <small class="text-secondary">{{item.author}}</small>
           <span>{{ item.title }}</span>
           <span class="badge badge-primary">{{site[item.site].name}}</span>
           <span class="badge badge-info">{{genre[item.genre]}}</span>
+          <span>コメント：{{item.description}}</span>
         </a>
         <b-btn v-b-modal.editModal @click="set(item)">編集</b-btn>
         <button class="btn btn-danger" v-on:click="remove(item)">削除</button>
-      </li>
+      </div>
     </ul>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" title="問題を追加" @ok="handleOk">
