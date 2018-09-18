@@ -1,6 +1,6 @@
 <template>
   <div id="all-list">
-    <ul class="list-group" v-for="item in myList" v-bind:key="item.id">
+    <ul class="list-group" v-for="item in myList" v-bind:key="item._id">
       <a v-bind:href="url(item.id)" class="list-group-item list-group-item-action">
         <small class="text-secondary">{{item.editor.nickname}}</small>
         <span>{{ item.name }}</span>
