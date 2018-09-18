@@ -143,6 +143,15 @@ export default {
     submit: function () {
       let obj = Object.assign({}, this.myList)
       axios.post('/api/add', obj)
+        .then(function (response) {
+          let data = response.data
+          if (data.error) {
+            alert('ログインしてください')
+            location.href = '/login'
+          } else if (data.message) {
+            alert('送信しました')
+          } else {}
+        })
     },
     handleOk: function (evt) {
       this.addMondai()
