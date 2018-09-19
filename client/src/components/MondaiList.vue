@@ -2,7 +2,7 @@
   <div>
     <h2>{{myList.name}}</h2>
     <p>作成者:{{myList.editor.nickname}}</p>
-    <router-link variant="secondary" class="mb-2" v-bind:to="editUrl()" v-if = "isMine">編集</router-link>
+    <router-link variant="outline-secondary" class="mb-2" v-bind:to="editUrl()" v-if = "isMine">編集</router-link>
     <div class="form-inline mb-2">
       <label>サイト</label>
       <select v-model='siteFilter' class="form-control">
