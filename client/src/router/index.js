@@ -7,6 +7,7 @@ import MondaiList from '@/components/MondaiList'
 import SignUp from '@/components/SignUp'
 import LogIn from '@/components/LogIn'
 import EditList from '@/components/EditList'
+import MyPage from '@/components/MyPage'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -46,6 +47,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: LogIn
+    },
+    {
+      path: '/mypage',
+      name: 'MyPage',
+      component: MyPage
     }
   ]
 })

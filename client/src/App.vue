@@ -1,18 +1,20 @@
 <template>
   <div id="app" class="container-fluid">
     <h1><router-link to="/">問題集</router-link></h1>
-    <router-link to="/add">追加</router-link>
+    <router-link to="/mypage">マイページ</router-link>
+    <router-link to="/add">リストを追加</router-link>
     <router-link to="/login">ログイン</router-link>
     <router-link to="/signup">登録</router-link>
     <span>ようこそ、{{user.nickname}}さん</span>
     <router-view/>
   </div>
 </template>
-
 <script>
 import axios from 'axios'
 export default {
-  data () {},
+  data () {
+    return {}
+  },
   name: 'App',
   computed: {
     user: function () {

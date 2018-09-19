@@ -23,11 +23,31 @@ router.get("/user", (req, res) => {
     res.json(req.user);
   else res.json({});
 });
-router.get("/mylist", (req, res) => {
-    db.MyList.find({}).toArray((error, docs) => {
-        console.log(docs);
-        res.json(docs);
-    });
+router.get("/mypage", (req, res) => {
+  if (!req.user) {
+    res.json({'error': 'error'});
+    return;
+  }
+  db.User.findOne({username: req.user.username}, (err, doc) => {
+    if (doc) {
+      console.log(doc);
+      if (doc.username) {
+        res.json({
+          "username": doc.username,
+          "nickname": doc.nickname,
+          "signup_date": doc.signup_date
+        });
+        return;
+      }
+    }
+    res.json({'error':'error'});
+  });
+});
+router.get("/myList", (req, res) => {
+  db.MyList.find({}).toArray((error, docs) => {
+      console.log(docs);
+      res.json(docs);
+  });
 });
 router.get("/myList/show/:id", (req, res) => {
    db.MyList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
