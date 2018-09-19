@@ -7,8 +7,11 @@
       <label>リストの説明</label>
       <textarea v-model="myList.description" class="form-control" type="text" placeholder="説明"></textarea>
     </div>
-    <button v-on:click="submit()" class="form-control btn btn-primary mb-2">リストを保存</button>
-    <b-btn v-b-modal.myModal class="">問題を追加</b-btn>
+    <b-btn v-b-modal.myModal variant="outline-secondary" class="mx-1">問題を追加</b-btn>
+    <b-button-group class="mx-1">
+      <b-btn v-on:click="submit()" variant="outline-primary" class="form-control">保存</b-btn>
+      <b-btn v-on:click="cancel()" variant="outline-secondary" class="form-control">キャンセル</b-btn>
+    </b-button-group>
     <!-- 問題リスト -->
     <ul class="list-group" v-for="item in myList.mondai" v-bind:key="item._id">
       <div class="form-inline">
@@ -154,6 +157,9 @@ export default {
             vm.$router.push('/')
           } else {}
         })
+    },
+    cancel: function () {
+      this.$router.push('/')
     },
     handleOk: function (evt) {
       this.addMondai()
