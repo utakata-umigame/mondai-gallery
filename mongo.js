@@ -11,8 +11,22 @@ MongoClient.connect(url, function(err, client) {
   db.User = client.db(process.env.MONGODB_NAME||"gallery").collection("user");
   db.MyList = client.db(process.env.MONGODB_NAME||"gallery").collection("myList");
   db.Counter = client.db(process.env.MONGODB_NAME||"gallery").collection("counter");
-  db.Counter.insertOne({id: "list_id", seq: 1});
-  db.Counter.insertOne({id: "user_id", seq: 1});
+  db.Counter.countDocuments(
+    {id: "list_id"},
+    {},
+    function (err, res) {
+      if (res == 0) {
+        db.Counter.insertOne({id: "list_id", seq: 1});
+      }
+    });
+  db.Counter.countDocuments(
+    {id: "user_id"},
+    {},
+    function (err, res) {
+      if (res == 0) {
+        db.Counter.insertOne({id: "user_id", seq: 1});
+      }
+    });
   console.log("connected");
 });
 
