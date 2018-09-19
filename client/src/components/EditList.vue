@@ -117,7 +117,6 @@ export default {
     let vm = this
     axios.get('/api/myList/show/' + id)
       .then(function (response) {
-        console.log(response)
         vm.myList = response.data
       })
       .catch(function (error) {

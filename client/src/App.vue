@@ -2,9 +2,8 @@
   <div id="app" class="container-fluid">
     <h1><router-link to="/">問題集</router-link></h1>
     <router-link to="/add">追加</router-link>
-    <a href="/login">ログイン</a>
-    <a href="/logout">ログアウト</a>
-    <a href="/signup">登録</a>
+    <router-link to="/login">ログイン</router-link>
+    <router-link to="/signup">登録</router-link>
     <span>ようこそ、{{user.nickname}}さん</span>
     <router-view/>
   </div>
@@ -13,21 +12,19 @@
 <script>
 import axios from 'axios'
 export default {
-  data () {
-    return {
-      user: {
-        'nickname': 'Guest',
-        'username': ''
-      }
+  data () {},
+  name: 'App',
+  computed: {
+    user: function () {
+      return this.$store.state.user
     }
   },
-  name: 'App',
   mounted: function () {
     let vm = this
     axios.get('/api/user')
       .then((res) => {
-        if (res.data) {
-          vm.user = res.data
+        if (res.data.username) {
+          vm.$store.commit('setUser', res.data)
         }
       })
   }
