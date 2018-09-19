@@ -38,7 +38,7 @@ export default {
       .then(function () {})
     axios.get('/api/myList')
       .then(function (res) {
-        vm.myList = res.data.filter(x => x.editor.username === vm.profile.username)
+        vm.myList = res.data.filter(x => x.editor.username === vm.$store.state.user.username)
       })
       .catch(function (error) {
         console.log(error)
