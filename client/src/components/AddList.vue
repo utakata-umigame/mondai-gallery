@@ -149,7 +149,7 @@ export default {
           let data = response.data
           if (data.error) {
             alert('ログインしてください')
-            location.href = '/login'
+            vm.$router.push('/login')
           } else if (data.message) {
             vm.$router.push('/')
           } else {}
