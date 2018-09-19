@@ -22,8 +22,10 @@
           <span class="badge badge-info">{{genre[item.genre]}}</span>
           <span>コメント：{{item.description}}</span>
         </a>
-        <b-btn v-b-modal.editModal @click="set(item)">編集</b-btn>
-        <button class="btn btn-danger" v-on:click="remove(item)">削除</button>
+        <b-button-group>
+          <b-btn v-b-modal.editModal variant="outline-secondary" @click="set(item)">編集</b-btn>
+          <b-btn variant="outline-danger" v-on:click="remove(item)">削除</b-btn>
+        </b-button-group>
       </div>
     </ul>
     <!--モーダルダイアログ-->
