@@ -8,7 +8,7 @@
       <textarea v-model="myList.description" class="form-control" type="text" placeholder="説明"></textarea>
     </div>
     <b-btn v-b-modal.myModal variant="outline-secondary" class="mx-1">問題を追加</b-btn>
-    <b-button-group class="mx-1">
+    <b-button-group class="mx-1 mb-1">
       <b-btn v-on:click="submit()" variant="outline-primary" class="form-control">保存</b-btn>
       <b-btn v-on:click="cancel()" variant="outline-secondary" class="form-control">キャンセル</b-btn>
     </b-button-group>
@@ -22,7 +22,7 @@
           <span class="badge badge-info">{{genre[item.genre]}}</span>
           <span>コメント：{{item.description}}</span>
         </a>
-        <b-button-group>
+        <b-button-group class="mb-1">
           <b-btn v-b-modal.editModal variant="outline-secondary" @click="set(item)">編集</b-btn>
           <b-btn variant="outline-danger" v-on:click="remove(item)">削除</b-btn>
         </b-button-group>
