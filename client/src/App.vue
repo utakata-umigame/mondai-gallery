@@ -1,11 +1,13 @@
 <template>
   <div id="app" class="container-fluid">
-    <h1><router-link to="/">問題集</router-link></h1>
-    <router-link to="/mypage">マイページ</router-link>
-    <router-link to="/add">リストを追加</router-link>
-    <router-link to="/login">ログイン</router-link>
-    <router-link to="/signup">登録</router-link>
-    <span>ようこそ、{{user.nickname}}さん</span>
+    <div id="heading">
+      <h1><router-link to="/">問題集</router-link></h1>
+      <router-link to="/mypage">マイページ</router-link>
+      <router-link to="/add">リストを追加</router-link>
+      <router-link to="/login">ログイン</router-link>
+      <router-link to="/signup">登録</router-link>
+      <span>ようこそ、{{user.nickname}}さん</span>
+    </div>
     <router-view/>
   </div>
 </template>
@@ -38,8 +40,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#heading {
+  text-align: center;
 }
 </style>

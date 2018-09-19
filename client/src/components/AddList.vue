@@ -8,7 +8,7 @@
       <textarea v-model="myList.description" class="form-control" type="text" placeholder="説明"></textarea>
     </div>
     <button v-on:click="submit()" class="form-control btn btn-primary mb-2">リストを保存</button>
-    <b-btn v-b-modal.myModal class="form-control">問題を追加</b-btn>
+    <b-btn v-b-modal.myModal class="">問題を追加</b-btn>
     <!-- 問題リスト -->
     <ul class="list-group" v-for="item in myList.mondai" v-bind:key="item._id">
       <div class="form-inline">
