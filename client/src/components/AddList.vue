@@ -12,11 +12,11 @@
       </b-form-checkbox>
     </div>
     <b-btn-group class="mb-1">
-      <b-btn v-b-modal.myModal variant="outline-secondary">問題を追加</b-btn>
-      <b-btn v-b-modal.stringEditModal v-on:click="stringify()" variant="outline-success" class="form-control">JSONモード</b-btn>
+      <b-btn v-b-modal.myModal variant="outline-primary">問題を追加</b-btn>
+      <b-btn v-b-modal.stringEditModal v-on:click="stringify()" variant="outline-primary" class="form-control">JSONモード</b-btn>
     </b-btn-group>
     <b-button-group class="mx-1 mb-1">
-      <b-btn v-on:click="submit()" variant="outline-primary" class="form-control">保存</b-btn>
+      <b-btn v-on:click="submit()" variant="outline-success" class="form-control">保存</b-btn>
       <b-btn v-on:click="cancel()" variant="outline-secondary" class="form-control">キャンセル</b-btn>
     </b-button-group>
     <!-- 問題リスト -->
