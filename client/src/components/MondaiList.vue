@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2 class="text-center">{{myList.name}}</h2>
-    <p>リスト作成者:{{myList.editor.nickname}}</p>
-    <p class="multiline">{{myList.description}}</p>
+    <h2 class="text-center">{{mondaiList.name}}</h2>
+    <p>リスト作成者:{{mondaiList.editor.nickname}}</p>
+    <p class="multiline">{{mondaiList.description}}</p>
     <router-link class="btn btn-outline-secondary mb-2" v-bind:to="editUrl()" v-if="isMine">編集</router-link>
     <div class="form-inline mb-2">
       <label>サイト</label>
@@ -41,18 +41,7 @@ export default {
       genreFilter: 'all',
       siteFilter: 'all',
       isMine: false,
-      genre: {
-        'umigame': 'ウミガメのスープ',
-        'tobira': '20の扉',
-        'kameo': '亀夫君問題',
-        'other': 'その他'
-      },
-      site: {
-        'latethink': {name: 'ラテシン', showUrl: 'http://sui-hei.net/mondai/show/'},
-        'cindy': {name: 'Cindy', showUrl: 'https://www.cindythink.com/puzzle/show/'},
-        'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'}
-      },
-      myList: {
+      mondaiList: {
         'name': '-',
         'description': '-',
         'editor': {
@@ -69,12 +58,20 @@ export default {
       }
     }
   },
+  computed: {
+    site: function () {
+      return this.$store.state.site
+    },
+    genre: function () {
+      return this.$store.state.genre
+    }
+  },
   mounted: function () {
     var vm = this
     var id = this.$route.params.id
-    axios.get('/api/myList/show/' + id)
+    axios.get('/api/mondaiList/show/' + id)
       .then(function (response) {
-        vm.myList = response.data
+        vm.mondaiList = response.data
       })
       .catch(function (error) {
         console.log(error)
@@ -84,7 +81,7 @@ export default {
           .then((res) => {
             if (res) {
               if (res.data) {
-                if (res.data.username === vm.myList.editor.username) {
+                if (res.data.username === vm.mondaiList.editor.username) {
                   vm.isMine = true
                 }
               }
@@ -97,10 +94,10 @@ export default {
       return this.site[siteName].showUrl + id
     },
     editUrl: function () {
-      return '/myList/edit/' + this.myList.id
+      return '/mondaiList/edit/' + this.mondaiList.id
     },
     filter: function () {
-      var filtered = this.myList.mondai
+      var filtered = this.mondaiList.mondai
       // ジャンル
       if (this.genreFilter !== 'all') filtered = filtered.filter(x => x.genre === this.genreFilter)
       // サイト

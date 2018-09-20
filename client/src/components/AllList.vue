@@ -1,7 +1,7 @@
 <template>
   <div id='all-list'>
     <h2 class="text-center">リスト一覧</h2>
-    <ul class='list-group' v-for='item in myList' v-bind:key='item._id'>
+    <ul class='list-group' v-for='item in mondaiList' v-bind:key='item._id'>
       <router-link v-bind:to='url(item.id)' class='list-group-item list-group-item-action'>
         <span>{{ item.name }}</span>
         <small class='text-secondary'>リスト作成者：{{item.editor.nickname}}</small>
@@ -18,18 +18,7 @@ export default {
       name: 'abab',
       genreFilter: 'all',
       siteFilter: 'all',
-      genre: {
-        'umigame': 'ウミガメのスープ',
-        'tobira': '20の扉',
-        'kameo': '亀夫君問題',
-        'other': 'その他'
-      },
-      site: {
-        'latethink': {name: 'ラテシン', showUrl: 'http://sui-hei.net/mondai/show/'},
-        'cindy': {name: 'Cindy', showUrl: 'https://www.cindythink.com/puzzle/show/'},
-        'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'}
-      },
-      myList: [
+      mondaiList: [
         {
           'id': 0,
           'name': '-',
@@ -43,9 +32,9 @@ export default {
   },
   mounted: function () {
     var vm = this
-    axios.get('/api/myList')
+    axios.get('/api/mondaiList')
       .then(function (response) {
-        vm.myList = response.data
+        vm.mondaiList = response.data
       })
       .catch(function (error) {
         console.log(error)
@@ -54,7 +43,7 @@ export default {
   },
   methods: {
     url: function (id) {
-      return '/myList/show/' + id
+      return '/mondaiList/show/' + id
     }
   }
 }

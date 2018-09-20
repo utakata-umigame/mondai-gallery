@@ -3,11 +3,11 @@
     <div class="mb-2">
       <h2 class="text-center">リストを追加</h2>
       <label>リスト名</label>
-      <input v-model="myList.name" class="form-control" type="text" placeholder="リスト名">
+      <input v-model="mondaiList.name" class="form-control" type="text" placeholder="リスト名">
       <label>リストの説明</label>
-      <textarea v-model="myList.description" class="form-control" type="text" placeholder="説明"></textarea>
+      <textarea v-model="mondaiList.description" class="form-control" type="text" placeholder="説明"></textarea>
       <b-form-checkbox id="checkbox1"
-                       v-model="myList.fromMyMondais">
+                       v-model="mondaiList.fromMyMondais">
          自作問題のみのリストの場合はチェック
       </b-form-checkbox>
     </div>
@@ -20,7 +20,7 @@
       <b-btn v-on:click="cancel()" variant="outline-secondary" class="form-control">キャンセル</b-btn>
     </b-button-group>
     <!-- 問題リスト -->
-    <ul class="list-group" v-for="item in myList.mondai" v-bind:key="item._id">
+    <ul class="list-group" v-for="item in mondaiList.mondai" v-bind:key="item._id">
       <div class="form-inline">
         <a v-bind:title='item.description' class="list-group-item list-group-item-action" target='_blank' v-bind:href='url(item.site,item.id)'>
           <small class="text-secondary">{{item.author}}</small>
@@ -114,18 +114,7 @@ export default {
         'genre': 'umigame'
       },
       tmpMondai: {},
-      genre: {
-        'umigame': 'ウミガメのスープ',
-        'tobira': '20の扉',
-        'kameo': '亀夫君問題',
-        'other': 'その他'
-      },
-      site: {
-        'latethink': {name: 'ラテシン', showUrl: 'http://sui-hei.net/mondai/show/'},
-        'cindy': {name: 'Cindy', showUrl: 'https://www.cindythink.com/puzzle/show/'},
-        'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'}
-      },
-      myList: {
+      mondaiList: {
         'name': '',
         'fromMyMondais': false,
         'editor': {
@@ -136,6 +125,14 @@ export default {
         'mondai': []
       },
       mondaiJSON: '[]'
+    }
+  },
+  computed: {
+    site: function () {
+      return this.$store.state.site
+    },
+    genre: function () {
+      return this.$store.state.genre
     }
   },
   mounted: function () {
@@ -150,7 +147,7 @@ export default {
       else return false
     },
     remove: function (item) {
-      this.myList.mondai = this.myList.mondai.filter(x => x !== item)
+      this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== item)
     },
     addMondai: function () {
       let id = 0
@@ -158,8 +155,8 @@ export default {
       while (!end) {
         end = true
         id++
-        for (var key in this.myList.mondai) {
-          var item = this.myList.mondai[key]
+        for (var key in this.mondaiList.mondai) {
+          var item = this.mondaiList.mondai[key]
           if (item._id) {
             if (item._id === id) {
               end = false
@@ -169,12 +166,12 @@ export default {
       }
       this.newMondai._id = id
       let obj = Object.assign({}, this.newMondai)
-      this.myList.mondai.push(obj)
-      console.log(this.myList.mondai)
+      this.mondaiList.mondai.push(obj)
+      console.log(this.mondaiList.mondai)
     },
     submit: function () {
       let vm = this
-      let obj = Object.assign({}, this.myList)
+      let obj = Object.assign({}, this.mondaiList)
       axios.post('/api/add', obj)
         .then(function (response) {
           let data = response.data
@@ -194,12 +191,12 @@ export default {
     },
     handleEditOk: function (evt) {
       this.addMondai()
-      this.myList.mondai = this.myList.mondai.filter(x => x !== this.tmpMondai)
+      this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== this.tmpMondai)
       this.tmpMondai = {}
     },
     stringify: function () {
       try {
-        let res = JSON.stringify(this.myList.mondai)
+        let res = JSON.stringify(this.mondaiList.mondai)
         this.mondaiJSON = res
       } catch (err) {
       }
@@ -207,7 +204,7 @@ export default {
     handleStringEditOk: function (evt) {
       try {
         let obj = JSON.parse(this.mondaiJSON)
-        this.myList.mondai = obj.filter(x => this.isValidUrl(x.site))
+        this.mondaiList.mondai = obj.filter(x => this.isValidUrl(x.site))
       } catch (err) {
         console.log(err)
       }

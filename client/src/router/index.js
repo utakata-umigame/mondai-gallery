@@ -30,12 +30,12 @@ export default new Router({
       component: AddList
     },
     {
-      path: '/myList/edit/:id',
+      path: '/mondaiList/edit/:id',
       name: 'EditList',
       component: EditList
     },
     {
-      path: '/myList/show/:id',
+      path: '/mondaiList/show/:id',
       name: 'MondaiList',
       component: MondaiList
     },

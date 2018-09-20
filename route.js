@@ -42,29 +42,34 @@ router.get("/mypage", (req, res) => {
     res.json({'error':'error'});
   });
 });
-router.get("/myList", (req, res) => {
-  db.MyList.find({}).toArray((error, docs) => {
-      res.json(docs.map(function (x) {
-        return {
-          id: x.id,
-          name: x.name,
-          fromMyMondais: x.fromMyMondais,
-          editor: x.editor,
-          description: x.description
-        };
-      }));
+router.get("/mondaiList", (req, res) => {
+  db.MondaiList.find({}).toArray((error, docs) => {
+      if (docs) {
+        res.json(docs.map(function (x) {
+          return {
+            id: x.id,
+            name: x.name,
+            fromMyMondais: x.fromMyMondais,
+            editor: x.editor,
+            description: x.description
+          };
+        }));
+      }
+      else {
+        res.json({'error': 'error'});
+      }
   });
 });
-router.get("/myList/show/:id", (req, res) => {
-   db.MyList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
+router.get("/mondaiList/show/:id", (req, res) => {
+   db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
        if(err) console.log(err);
        res.json(doc);
    });
 });
 /* リスト編集 */
-router.post("/myList/edit/:id", isAuthenticated, (req, res) => {
+router.post("/mondaiList/edit/:id", isAuthenticated, (req, res) => {
   let obj = req.body
-  db.MyList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, "fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
+  db.MondaiList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, "fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
      if(err) console.log(err);
   });
   res.json({"message": "success"});
@@ -76,7 +81,7 @@ router.post("/add", isAuthenticated, (req, res) => {
     let id = res.value.seq||1;
     req.body.id = id;
     req.body.editor = req.user;
-    db.MyList.insertOne(req.body, (err, result) => {});
+    db.MondaiList.insertOne(req.body, (err, result) => {});
   })
   res.json({"message": "Success"});
 });

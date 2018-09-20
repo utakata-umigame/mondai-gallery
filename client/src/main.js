@@ -14,6 +14,17 @@ const store = new Vuex.Store({
     user: {
       nickname: 'Guest',
       username: ''
+    },
+    genre: {
+      'umigame': 'ウミガメのスープ',
+      'tobira': '20の扉',
+      'kameo': '亀夫君問題',
+      'other': 'その他'
+    },
+    site: {
+      'latethink': {name: 'ラテシン', showUrl: 'http://sui-hei.net/mondai/show/'},
+      'cindy': {name: 'Cindy', showUrl: 'https://www.cindythink.com/puzzle/show/'},
+      'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'}
     }
   },
   mutations: {
@@ -22,7 +33,9 @@ const store = new Vuex.Store({
     }
   },
   getters: {
-    user (state) { return state.user }
+    user (state) { return state.user },
+    genre (state) { return state.genre },
+    site (state) { return state.site }
   }
 })
 

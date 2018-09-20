@@ -9,7 +9,7 @@ const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
 let db = {};
 MongoClient.connect(url, function(err, client) {
   db.User = client.db(process.env.MONGODB_NAME||"gallery").collection("user");
-  db.MyList = client.db(process.env.MONGODB_NAME||"gallery").collection("myList");
+  db.MondaiList = client.db(process.env.MONGODB_NAME||"gallery").collection("mondaiList");
   db.Counter = client.db(process.env.MONGODB_NAME||"gallery").collection("counter");
   db.Counter.countDocuments(
     {id: "list_id"},
