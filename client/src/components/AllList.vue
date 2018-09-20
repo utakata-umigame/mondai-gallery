@@ -15,7 +15,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      name: 'abab',
+      name: '-',
       genreFilter: 'all',
       siteFilter: 'all',
       mondaiList: [

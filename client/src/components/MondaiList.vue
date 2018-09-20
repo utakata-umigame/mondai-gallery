@@ -22,22 +22,22 @@
       </select>
       <button class="btn btn-danger" v-on:click='clearFilter()'>クリア</button>
     </div>
-    <ul class="list-group" v-for="item in filter()" v-bind:key="item.id">
-      <a target='_blank' v-bind:href='url(item.site,item.id)' v-bind:title='item.description' class="list-group-item list-group-item-action">
-        <small class="text-secondary">{{item.author}}</small>
-        <span>{{ item.title }}</span>
-        <span class="badge badge-primary">{{site[item.site].name}}</span>
-        <span class="badge badge-info">{{genre[item.genre]}}</span>
-      </a>
-    </ul>
+    <div class="row">
+      <div class="col-xs-12 col-md-4" v-for="item in filter()" v-bind:key="item.id">
+        <mondai-view v-bind:item="item"></mondai-view>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import axios from 'axios'
+import MondaiView from './MondaiView.vue'
+Vue.component('mondai-view', MondaiView)
 export default {
   data () {
     return {
-      name: '-',
+      name: 'MondaiList',
       genreFilter: 'all',
       siteFilter: 'all',
       isMine: false,
@@ -90,9 +90,6 @@ export default {
       })
   },
   methods: {
-    url: function (siteName, id) {
-      return this.site[siteName].showUrl + id
-    },
     editUrl: function () {
       return '/mondaiList/edit/' + this.mondaiList.id
     },

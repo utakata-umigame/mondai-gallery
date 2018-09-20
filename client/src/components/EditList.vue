@@ -20,21 +20,15 @@
       <b-btn v-on:click="cancel()" variant="outline-secondary" class="form-control">キャンセル</b-btn>
     </b-button-group>
     <!-- 問題リスト -->
-    <ul class="list-group" v-for="item in mondaiList.mondai" v-bind:key="item._id">
-      <div class="form-inline">
-        <a v-bind:title='item.description' class="list-group-item list-group-item-action" target='_blank' v-bind:href='url(item.site,item.id)'>
-          <small class="text-secondary">{{item.author}}</small>
-          <span>{{ item.title }}</span>
-          <span class="badge badge-primary">{{site[item.site].name}}</span>
-          <span class="badge badge-info">{{genre[item.genre]}}</span>
-          <span>コメント：{{item.description}}</span>
-        </a>
+    <div class="row">
+      <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="col-xs-12 col-md-4">
+        <mondai-view v-bind:item="item"></mondai-view>
         <b-button-group class="mb-1">
           <b-btn v-b-modal.editModal variant="outline-secondary" @click="set(item)">編集</b-btn>
           <b-btn variant="outline-danger" v-on:click="remove(item)">削除</b-btn>
         </b-button-group>
       </div>
-    </ul>
+    </div>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" title="問題を追加" @ok="handleOk">
       <div class="form">
@@ -101,7 +95,10 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import axios from 'axios'
+import MondaiView from './MondaiView.vue'
+Vue.component('mondai-view', MondaiView)
 export default {
   data () {
     return {

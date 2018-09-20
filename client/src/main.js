@@ -38,7 +38,6 @@ const store = new Vuex.Store({
     site (state) { return state.site }
   }
 })
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
