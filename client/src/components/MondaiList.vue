@@ -54,7 +54,15 @@ export default {
       myList: {
         'editor': {
           'nickname': ''
-        }
+        },
+        'mondai': [{
+          'id': 0,
+          'title': '-',
+          'author': '-',
+          'site': 'latethink',
+          'description': '-',
+          'genre': 'umigame'
+        }]
       }
     }
   },
