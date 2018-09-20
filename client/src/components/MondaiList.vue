@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-center">{{myList.name}}</h2>
-    <p>作成者:{{myList.editor.nickname}}</p>
+    <p>リスト作成者:{{myList.editor.nickname}}</p>
     <p class="multiline">{{myList.description}}</p>
     <router-link class="btn btn-outline-secondary mb-2" v-bind:to="editUrl()" v-if="isMine">編集</router-link>
     <div class="form-inline mb-2">

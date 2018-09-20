@@ -133,14 +133,7 @@ export default {
           'username': ''
         },
         'description': '',
-        'mondai': [{
-          'id': 0,
-          'title': '',
-          'author': '',
-          'site': 'latethink',
-          'description': '',
-          'genre': 'umigame'
-        }]
+        'mondai': []
       },
       mondaiJSON: ''
     }
