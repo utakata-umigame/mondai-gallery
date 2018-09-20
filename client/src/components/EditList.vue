@@ -6,6 +6,10 @@
       <input v-model="myList.name" class="form-control" type="text" placeholder="リスト名">
       <label>リストの説明</label>
       <textarea v-model="myList.description" class="form-control" type="text" placeholder="説明"></textarea>
+      <b-form-checkbox id="checkbox1"
+                       v-model="myList.fromMyMondais">
+         自作問題のみのリストの場合はチェック
+      </b-form-checkbox>
     </div>
     <b-btn-group class="mb-1">
       <b-btn v-b-modal.myModal variant="outline-secondary">問題を追加</b-btn>
@@ -123,6 +127,7 @@ export default {
       },
       myList: {
         'name': '',
+        'fromMyMondais': false,
         'editor': {
           'nickname': '',
           'username': ''

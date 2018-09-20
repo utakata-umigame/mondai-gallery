@@ -48,6 +48,7 @@ router.get("/myList", (req, res) => {
         return {
           id: x.id,
           name: x.name,
+          fromMyMondais: x.fromMyMondais,
           editor: x.editor,
           description: x.description
         };
@@ -63,7 +64,7 @@ router.get("/myList/show/:id", (req, res) => {
 /* リスト編集 */
 router.post("/myList/edit/:id", isAuthenticated, (req, res) => {
   let obj = req.body
-  db.MyList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
+  db.MyList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, "fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
      if(err) console.log(err);
   });
   res.json({"message": "success"});

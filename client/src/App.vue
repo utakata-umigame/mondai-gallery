@@ -6,7 +6,6 @@
       <router-link to="/add">リストを追加</router-link>
       <router-link to="/login">ログイン</router-link>
       <router-link to="/signup">登録</router-link>
-      <b-btn variant="link" v-on:click="logout()">ログアウト</b-btn>
       <span>ようこそ、{{user.nickname}}さん</span>
     </div>
     <router-view/>
@@ -32,11 +31,6 @@ export default {
           vm.$store.commit('setUser', res.data)
         }
       })
-  },
-  methods: {
-    logout: function () {
-      axios.get('/api/logout')
-    }
   }
 }
 </script>
