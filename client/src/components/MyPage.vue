@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>マイページ</h2>
+    <h2 class="text-center">マイページ</h2>
     <b-card v-bind:title="profile.nickname"
       v-bind:sub-title=profile.username>
       <p class="card-text">
