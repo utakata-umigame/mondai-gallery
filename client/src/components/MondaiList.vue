@@ -54,7 +54,7 @@ export default {
       },
       myList: {
         'name': '-',
-        'description': '1\n2',
+        'description': '-',
         'editor': {
           'nickname': '-'
         },
