@@ -31,7 +31,6 @@ export default {
     }
   },
   mounted: function () {
-    console.log('running')
     let vm = this
     vm.getUser()
   },
