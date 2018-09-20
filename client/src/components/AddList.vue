@@ -7,7 +7,10 @@
       <label>リストの説明</label>
       <textarea v-model="myList.description" class="form-control" type="text" placeholder="説明"></textarea>
     </div>
-    <b-btn v-b-modal.myModal variant="outline-secondary" class="mx-1 mb-1">問題を追加</b-btn>
+    <b-btn-group class="mb-1">
+      <b-btn v-b-modal.myModal variant="outline-secondary">問題を追加</b-btn>
+      <b-btn v-b-modal.stringEditModal v-on:click="stringify()" variant="outline-success" class="form-control">JSONモード</b-btn>
+    </b-btn-group>
     <b-button-group class="mx-1 mb-1">
       <b-btn v-on:click="submit()" variant="outline-primary" class="form-control">保存</b-btn>
       <b-btn v-on:click="cancel()" variant="outline-secondary" class="form-control">キャンセル</b-btn>
@@ -79,6 +82,18 @@
         <textarea v-model="newMondai.description" class="form-control" type="text" placeholder="コメント"></textarea>
       </div>
     </b-modal>
+    <!-- JSONを読み込み -->
+    <b-modal id="stringEditModal" title="JSONを読み込み" @ok="handleStringEditOk">
+      <p>コピーしたJSON文字列からリストを生成できます</p>
+      <div class="form">
+        <b-form-textarea
+          v-model="mondaiJSON"
+          class="form-control"
+          placeholder="JSON"
+          :rows="5">
+        </b-form-textarea>
+      </div>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -114,14 +129,20 @@ export default {
         },
         'description': '',
         'mondai': []
-      }
+      },
+      mondaiJSON: '[]'
     }
   },
   mounted: function () {
   },
   methods: {
     url: function (siteName, id) {
-      return this.site[siteName].showUrl + id
+      let res = this.site[siteName].showUrl + id
+      return res
+    },
+    isValidUrl: function (siteName) {
+      if (this.site[siteName]) return true
+      else return false
     },
     remove: function (item) {
       this.myList.mondai = this.myList.mondai.filter(x => x !== item)
@@ -161,7 +182,7 @@ export default {
         })
     },
     cancel: function () {
-      this.$router.push('/')
+      this.$router.go(-1)
     },
     handleOk: function (evt) {
       this.addMondai()
@@ -170,6 +191,21 @@ export default {
       this.addMondai()
       this.myList.mondai = this.myList.mondai.filter(x => x !== this.tmpMondai)
       this.tmpMondai = {}
+    },
+    stringify: function () {
+      try {
+        let res = JSON.stringify(this.myList.mondai)
+        this.mondaiJSON = res
+      } catch (err) {
+      }
+    },
+    handleStringEditOk: function (evt) {
+      try {
+        let obj = JSON.parse(this.mondaiJSON)
+        this.myList.mondai = obj.filter(x => this.isValidUrl(x.site))
+      } catch (err) {
+        console.log(err)
+      }
     },
     set: function (item) {
       this.newMondai = Object.assign({}, item)

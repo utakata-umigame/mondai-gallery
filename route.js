@@ -30,7 +30,6 @@ router.get("/mypage", (req, res) => {
   }
   db.User.findOne({username: req.user.username}, (err, doc) => {
     if (doc) {
-      console.log(doc);
       if (doc.username) {
         res.json({
           "username": doc.username,
@@ -45,7 +44,6 @@ router.get("/mypage", (req, res) => {
 });
 router.get("/myList", (req, res) => {
   db.MyList.find({}).toArray((error, docs) => {
-      console.log(docs);
       res.json(docs.map(function (x) {
         return {
           id: x.id,
@@ -65,10 +63,10 @@ router.get("/myList/show/:id", (req, res) => {
 /* リスト編集 */
 router.post("/myList/edit/:id", isAuthenticated, (req, res) => {
   let obj = req.body
-   db.MyList.updateOne({"id": req.body.id}, {$set: {"name": obj.name, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
-       if(err) console.log(err);
-   });
-   res.json({"message": "success"});
+  db.MyList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
+     if(err) console.log(err);
+  });
+  res.json({"message": "success"});
 });
 /* リスト追加 */
 router.post("/add", isAuthenticated, (req, res) => {
@@ -90,6 +88,10 @@ router.post(
       res.json({'message': 'Logged in', 'user': doc});
     });
   });
+/* ログアウト */
+router.get('/logout', function (req, res) {
+  req.logout();
+});
 /* 登録 */
 router.post('/signup', function(req, res) {
   console.log();

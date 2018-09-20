@@ -9,7 +9,7 @@
       <input v-model="credential.username" class="form-control mb-2" type="text" name="username" placeholder='User Name' required="required">
       <label>パスワード(英数、必須)</label>
       <input v-model="credential.password" class="form-control mb-2" type="password" name="password" placeholder='Password' required="required">
-      <b-btn v-on:click="signup()" class="btn btn-primary mb-2">新規登録</b-btn>
+      <b-btn v-on:click="signup()" variant="outline-primary" class="mb-2">新規登録</b-btn>
     </div>
   </div>
 </template>

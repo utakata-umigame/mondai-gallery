@@ -7,7 +7,7 @@
       <input v-model="credential.username" class="form-control mb-2" type="text" name="username" placeholder='User Name' required="required">
       <label>パスワード</label>
       <input v-model="credential.password" class="form-control mb-2" type="password" name="password" placeholder='Password' required="required">
-      <b-btn v-on:click="login()" class="btn btn-primary mb-2">ログイン</b-btn>
+      <b-btn v-on:click="login()" variant="outline-primary" class="mb-2">ログイン</b-btn>
     </div>
   </div>
 </template>
