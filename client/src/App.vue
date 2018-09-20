@@ -8,6 +8,7 @@
         <b-nav-item to="/contact">連絡先</b-nav-item>
         <b-nav-item-dropdown v-bind:text="user.nickname" right>
           <b-dropdown-item to="/mypage" v-if="user.username">マイページ</b-dropdown-item>
+          <b-dropdown-item v-on:click="logout()" v-if="user.username">ログアウト</b-dropdown-item>
           <b-dropdown-item to="/login" v-else>ログイン</b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
           <b-dropdown-item to="/signup">新規登録</b-dropdown-item>
@@ -30,13 +31,29 @@ export default {
     }
   },
   mounted: function () {
+    console.log('running')
     let vm = this
-    axios.get('/api/user')
-      .then((res) => {
-        if (res.data.username) {
-          vm.$store.commit('setUser', res.data)
-        }
-      })
+    vm.getUser()
+  },
+  methods: {
+    getUser: function () {
+      let vm = this
+      axios.get('/api/user')
+        .then((res) => {
+          if (res.data.username) {
+            vm.$store.commit('setUser', res.data)
+          } else {
+            vm.$store.commit('setUser', {'nickname': 'Guest'})
+          }
+        })
+    },
+    logout: function () {
+      let vm = this
+      axios.get('/api/logout')
+        .then((res) => {
+          vm.getUser()
+        })
+    }
   }
 }
 </script>

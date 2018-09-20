@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
   }
   res.json(obj);
 });
-router.get("/user", (req, res) => {
+router.get("/user", isAuthenticated, (req, res) => {
   if (req.user)
     res.json(req.user);
   else res.json({});
@@ -97,6 +97,7 @@ router.post(
 /* ログアウト */
 router.get('/logout', function (req, res) {
   req.logout();
+  res.json({});
 });
 /* 登録 */
 router.post('/signup', function(req, res) {

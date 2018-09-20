@@ -2,7 +2,7 @@
   <div>
     <h2 class="text-center">ログイン</h2>
     <p class="text-danger">{{error}}</p>
-    <div :class="input-group" method="post" class="mb-2">
+    <div class="mb-2" method="post">
       <label>ユーザー名</label>
       <input v-model="credential.username" class="form-control mb-2" type="text" name="username" placeholder='User Name' required="required">
       <label>パスワード</label>

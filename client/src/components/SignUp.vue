@@ -2,7 +2,7 @@
   <div>
     <h2 class="text-center">ユーザー登録</h2>
     <p class="text-danger">{{error}}</p>
-    <div :class="input-group" method="post" class="mb-2">
+    <div method="post" class="mb-2">
       <label>ニックネーム</label>
       <input v-model="credential.nickname" class="form-control mb-2" type="text" name="nickname" placeholder="Nickname" required="required">
       <label>ユーザー名(英数、必須)</label>
