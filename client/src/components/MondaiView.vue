@@ -1,5 +1,5 @@
 <template>
-  <div id='all-list'>
+  <div id='all-list' class="mb-1">
     <a target='_blank' v-bind:href='url(item.site,item.id)' v-bind:title='item.description' class="list-group-item list-group-item-action">
       <small class="text-secondary">{{item.author}}</small>
       <span>{{ item.title }}</span>
