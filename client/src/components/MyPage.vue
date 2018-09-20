@@ -14,6 +14,7 @@
       <router-link v-bind:to="url(item.id)" class="list-group-item list-group-item-action">
         <small class="text-secondary">{{item.editor.nickname}}</small>
         <span>{{ item.name }}</span>
+        <span class='badge badge-success' v-if='item.fromMyMondais'>自作問題のみ</span>
       </router-link>
     </ul>
   </div>
