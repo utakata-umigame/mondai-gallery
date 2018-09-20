@@ -1,6 +1,6 @@
 <template>
   <div id='all-list'>
-    <h2>リスト一覧</h2>
+    <h2 class="text-center">リスト一覧</h2>
     <ul class='list-group' v-for='item in myList' v-bind:key='item._id'>
       <router-link v-bind:to='url(item.id)' class='list-group-item list-group-item-action'>
         <small class='text-secondary'>{{item.editor.nickname}}</small>

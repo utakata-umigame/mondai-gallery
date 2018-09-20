@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>ユーザー登録</h2>
+    <h2 class="text-center">ユーザー登録</h2>
     <p class="text-danger">{{error}}</p>
     <div :class="input-group" method="post" class="mb-2">
       <label>ニックネーム</label>

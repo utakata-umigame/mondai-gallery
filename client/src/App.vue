@@ -1,12 +1,18 @@
 <template>
   <div id="app" class="container-fluid">
     <div id="heading">
-      <h1><router-link to="/">水平思考問題リンク集</router-link></h1>
-      <router-link to="/mypage">マイページ</router-link>
-      <router-link to="/add">リストを追加</router-link>
-      <router-link to="/login">ログイン</router-link>
-      <router-link to="/signup">登録</router-link>
-      <span>ようこそ、{{user.nickname}}さん</span>
+      <h1>水平思考問題リンク集</h1>
+      <b-nav class="mb-2">
+        <b-nav-item to="/">ホーム</b-nav-item>
+        <b-nav-item to="/add">リストを追加</b-nav-item>
+        <b-nav-item to="/contact">連絡先</b-nav-item>
+        <b-nav-item-dropdown v-bind:text="user.nickname" right>
+          <b-dropdown-item to="/mypage" v-if="user.username">マイページ</b-dropdown-item>
+          <b-dropdown-item to="/login" v-else>ログイン</b-dropdown-item>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item to="/signup">新規登録</b-dropdown-item>
+        </b-nav-item-dropdown>
+      </b-nav>
     </div>
     <router-view/>
   </div>
@@ -45,5 +51,8 @@ export default {
 }
 #heading {
   text-align: center;
+}
+.multiline {
+  white-space: pre-wrap;
 }
 </style>

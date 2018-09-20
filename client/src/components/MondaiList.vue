@@ -1,8 +1,9 @@
 <template>
   <div>
-    <h2>{{myList.name}}</h2>
+    <h2 class="text-center">{{myList.name}}</h2>
     <p>作成者:{{myList.editor.nickname}}</p>
-    <router-link class="btn btn-outline-secondary mb-2" v-bind:to="editUrl()" v-if = "isMine">編集</router-link>
+    <p class="multiline">{{myList.description}}</p>
+    <router-link class="btn btn-outline-secondary mb-2" v-bind:to="editUrl()" v-if="isMine">編集</router-link>
     <div class="form-inline mb-2">
       <label>サイト</label>
       <select v-model='siteFilter' class="form-control">
@@ -36,7 +37,7 @@ import axios from 'axios'
 export default {
   data () {
     return {
-      name: '',
+      name: '-',
       genreFilter: 'all',
       siteFilter: 'all',
       isMine: false,
@@ -52,8 +53,10 @@ export default {
         'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'}
       },
       myList: {
+        'name': '-',
+        'description': '1\n2',
         'editor': {
-          'nickname': ''
+          'nickname': '-'
         },
         'mondai': [{
           'id': 0,
