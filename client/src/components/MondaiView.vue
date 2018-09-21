@@ -1,15 +1,17 @@
 <template>
-  <div id='all-list' class="mb-1">
-    <a target='_blank' v-bind:href='url(item.site,item.id)' v-bind:title='item.description' class="list-group-item list-group-item-action">
-      <small class="text-secondary">{{item.author}}</small>
-      <span>{{ item.title }}</span>
+  <div>
+    <div>
+      <b-link target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</b-link>
+      <br>
       <span class="badge badge-primary">{{site[item.site].name}}</span>
       <span class="badge badge-info">{{genre[item.genre]}}</span>
-    </a>
+      <br>
+    </div>
   </div>
 </template>
 <script>
 export default {
+  parent: {},
   props: {
     item: {
       id: Number,
