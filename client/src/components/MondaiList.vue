@@ -28,7 +28,7 @@
       </select>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-md-4" v-for="item in filter()" v-bind:key="item.id">
+      <div class="col-xs-12 col-md-4 mb-2" v-for="item in filter()" v-bind:key="item.id">
         <b-card :title="item.title" :sub-title="item.author" v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
         </b-card>

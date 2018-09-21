@@ -21,7 +21,7 @@
     </b-button-group>
     <!-- 問題リスト -->
     <div class="row">
-      <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="col-xs-12 col-md-4">
+      <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="col-xs-12 col-md-4 mb-2">
         <b-card :title="item.title" :sub-title="item.author">
           <mondai-view v-bind:item="item"></mondai-view>
           <b-button-group class="mb-1">
