@@ -24,7 +24,7 @@
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="col-xs-12 col-md-4 mb-2">
         <b-card :title="item.title" :sub-title="item.author">
           <mondai-view v-bind:item="item"></mondai-view>
-          <b-button-group class="mb-1">
+          <b-button-group class="mt-2">
             <b-btn v-b-modal.editModal variant="outline-secondary" @click="set(item)">編集</b-btn>
             <b-btn variant="outline-danger" v-on:click="remove(item)">削除</b-btn>
           </b-button-group>
