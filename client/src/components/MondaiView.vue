@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <p class="multiline">{{item.description}}</p>
       <b-link target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</b-link>
       <br>
       <span class="badge badge-primary">{{site[item.site].name}}</span>
@@ -18,7 +19,8 @@ export default {
       title: String,
       site: String,
       author: String,
-      genre: String
+      genre: String,
+      description: String
     }
   },
   computed: {
