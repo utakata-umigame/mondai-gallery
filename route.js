@@ -62,8 +62,15 @@ router.get("/mondaiList", (req, res) => {
 });
 router.get("/mondaiList/show/:id", (req, res) => {
    db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
-       if(err) console.log(err);
+     if (doc) {
        res.json(doc);
+       return;
+     }
+     if (err) {
+       console.log(err);
+     }
+     res.json({'error': 'error'});
+     
    });
 });
 /* リスト編集 */
@@ -91,9 +98,10 @@ router.post(
   passport.authenticate('local'), 
   function(req, res) {
     db.User.findOne({username: req.body.username}, (err, doc) => {
-      res.json({'message': 'Logged in', 'user': doc});
-    });
+    res.json({'message': 'Logged in', 'user': doc});
   });
+  res.json({'error':'error'});
+});
 /* ログアウト */
 router.get('/logout', function (req, res) {
   req.logout();
