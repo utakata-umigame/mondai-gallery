@@ -6,8 +6,13 @@ const assert = require("assert");
 const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectId;
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
-let db = {};
+let db = {
+  User: {},
+  MondaiList: {},
+  Counter: {}
+};
 MongoClient.connect(url, function(err, client) {
+  if (err) return;
   db.User = client.db(process.env.MONGODB_NAME||"gallery").collection("user");
   db.MondaiList = client.db(process.env.MONGODB_NAME||"gallery").collection("mondaiList");
   db.Counter = client.db(process.env.MONGODB_NAME||"gallery").collection("counter");
@@ -15,6 +20,7 @@ MongoClient.connect(url, function(err, client) {
     {id: "list_id"},
     {},
     function (err, res) {
+      if (err) return;
       if (res == 0) {
         db.Counter.insertOne({id: "list_id", seq: 1});
       }
@@ -23,6 +29,7 @@ MongoClient.connect(url, function(err, client) {
     {id: "user_id"},
     {},
     function (err, res) {
+      if (err) return;
       if (res == 0) {
         db.Counter.insertOne({id: "user_id", seq: 1});
       }

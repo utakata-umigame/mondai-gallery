@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
 import Router from 'vue-router'
 import AllList from '@/components/AllList'
 import AddList from '@/components/AddList'
@@ -10,11 +9,15 @@ import EditList from '@/components/EditList'
 import MyPage from '@/components/MyPage'
 import Contact from '@/components/Contact'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+// Webpack CSS import
+import 'onsenui/css/onsenui.css'
+import 'onsenui/css/onsen-css-components.css'
 
+// JS import
+import VueOnsen from 'vue-onsenui' // This already imports 'onsenui'
+
+Vue.use(VueOnsen)
 Vue.use(Router)
-Vue.use(BootstrapVue)
 
 export default new Router({
   mode: 'history',

@@ -1,6 +1,27 @@
 <template>
   <div id="app" class="container-fluid">
     <div id="heading">
+  <v-ons-splitter>
+    <v-ons-splitter-side
+      swipeable width="150px" collapse="" side="left"
+      :open.sync="openSide"
+    >
+      <v-ons-page>
+        <v-ons-list>
+          <v-ons-list-item
+            tappable modifier="chevron"
+            @click="currentPage = page; openSide = false"
+          >
+            <div class="center">a</div>
+          </v-ons-list-item>
+        </v-ons-list>
+      </v-ons-page>
+    </v-ons-splitter-side>
+
+    <v-ons-splitter-content>
+      <component :is="currentPage" :toggle-menu="() => openSide = !openSide"></component>
+    </v-ons-splitter-content>
+  </v-ons-splitter>
       <h1>水平思考問題リンク集</h1>
       <b-nav class="mb-2">
         <b-nav-item to="/">ホーム</b-nav-item>
