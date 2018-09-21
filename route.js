@@ -98,9 +98,9 @@ router.post(
   passport.authenticate('local'), 
   function(req, res) {
     db.User.findOne({username: req.body.username}, (err, doc) => {
-    res.json({'message': 'Logged in', 'user': doc});
+    if (doc) res.json({'message': 'Logged in', 'user': doc});
+    else res.json({'error':'error'});
   });
-  res.json({'error':'error'});
 });
 /* ログアウト */
 router.get('/logout', function (req, res) {
