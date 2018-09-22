@@ -9,14 +9,6 @@ import EditList from '@/components/EditList'
 import MyPage from '@/components/MyPage'
 import Contact from '@/components/Contact'
 
-// Webpack CSS import
-import 'onsenui/css/onsenui.css'
-import 'onsenui/css/onsen-css-components.css'
-
-// JS import
-import VueOnsen from 'vue-onsenui' // This already imports 'onsenui'
-
-Vue.use(VueOnsen)
 Vue.use(Router)
 
 export default new Router({

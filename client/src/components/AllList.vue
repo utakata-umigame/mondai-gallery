@@ -1,19 +1,16 @@
 <template>
-  <div id='all-list'>
-    <h2 class="text-center">リスト一覧</h2>
-    <div class="row">
-      <div class='col-xs-12 col-md-4 mb-1' v-for='item in mondaiList' v-bind:key='item._id'>
-        <router-link v-bind:to='url(item.id)' class='list-group-item list-group-item-action'>
+  <v-ons-page>
+    <v-ons-list>
+      <v-ons-list-header>問題集一覧</v-ons-list-header>
+        <v-ons-list-item v-on:click='to(item.id)' v-for='item in mondaiList' v-bind:key='item._id' modifier="chevron" tappable>
           <span>{{ item.name }}</span>
           <small class='text-secondary'>リスト作成者：{{item.editor.nickname}}</small>
-          <span class='badge badge-success' v-if='item.fromMyMondais'>自作問題のみ</span>
-        </router-link>
-      </div>
-    </div>
-  </div>
+          <span class='notification' v-if='item.fromMyMondais'>自作問題のみ</span>
+        </v-ons-list-item>
+    </v-ons-list>
+  </v-ons-page>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -34,7 +31,7 @@ export default {
   },
   mounted: function () {
     var vm = this
-    axios.get('/api/mondaiList')
+    this.$http.get('/api/mondaiList')
       .then(function (response) {
         vm.mondaiList = response.data
       })
@@ -44,8 +41,9 @@ export default {
       .then(function () {})
   },
   methods: {
-    url: function (id) {
-      return '/mondaiList/show/' + id
+    to: function (id) {
+      let url = '/mondaiList/show/' + id
+      this.$router.push(url)
     }
   }
 }

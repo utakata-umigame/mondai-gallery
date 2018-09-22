@@ -1,49 +1,40 @@
 <template>
   <div id="app" class="container-fluid">
-    <div id="heading">
-  <v-ons-splitter>
-    <v-ons-splitter-side
-      swipeable width="150px" collapse="" side="left"
-      :open.sync="openSide"
-    >
-      <v-ons-page>
-        <v-ons-list>
-          <v-ons-list-item
-            tappable modifier="chevron"
-            @click="currentPage = page; openSide = false"
-          >
-            <div class="center">a</div>
-          </v-ons-list-item>
-        </v-ons-list>
-      </v-ons-page>
-    </v-ons-splitter-side>
-
-    <v-ons-splitter-content>
-      <component :is="currentPage" :toggle-menu="() => openSide = !openSide"></component>
-    </v-ons-splitter-content>
-  </v-ons-splitter>
-      <h1>水平思考問題リンク集</h1>
-      <b-nav class="mb-2">
-        <b-nav-item to="/">ホーム</b-nav-item>
-        <b-nav-item to="/add">リストを追加</b-nav-item>
-        <b-nav-item to="/contact">連絡先</b-nav-item>
-        <b-nav-item-dropdown v-bind:text="user.nickname" right>
-          <b-dropdown-item to="/mypage" v-if="user.username">マイページ</b-dropdown-item>
-          <b-dropdown-item v-on:click="logout()" v-if="user.username">ログアウト</b-dropdown-item>
-          <b-dropdown-item to="/login" v-else>ログイン</b-dropdown-item>
-          <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item to="/signup">新規登録</b-dropdown-item>
-        </b-nav-item-dropdown>
-      </b-nav>
-    </div>
-    <router-view/>
+    <v-ons-splitter>
+      <v-ons-splitter-side
+        swipeable width="150px" collapse="" side="left"
+        :open.sync="openSide"
+      >
+        <v-ons-page>
+          <v-ons-list>
+            <v-ons-list-item @click="go('/')" tappable modifier="chevron">ホーム</v-ons-list-item>
+            <v-ons-list-item @click="go('/add')" tappable modifier="chevron">リストを追加</v-ons-list-item>
+            <v-ons-list-item @click="go('/contact')" tappable modifier="chevron">連絡先</v-ons-list-item>
+            <v-ons-list-item @click="go('/login')" tappable modifier="chevron">ログイン</v-ons-list-item>
+            <v-ons-list-item @click="go('/login')" tappable modifier="chevron">新規登録</v-ons-list-item>
+          </v-ons-list>
+        </v-ons-page>
+      </v-ons-splitter-side>
+      <v-ons-splitter-content>
+        <v-ons-toolbar>
+          <div class="left">
+            <v-ons-toolbar-button @click="() => openSide = !openSide">
+              <v-ons-icon icon="ion-navicon, material:md-menu"></v-ons-icon>
+            </v-ons-toolbar-button>
+          </div>
+          <div class="center">水平思考問題リンク集</div>
+        </v-ons-toolbar>
+        <router-view class="page-body"/>
+      </v-ons-splitter-content>
+    </v-ons-splitter>
   </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
-    return {}
+    return {
+      openSide: false
+    }
   },
   name: 'App',
   computed: {
@@ -58,7 +49,7 @@ export default {
   methods: {
     getUser: function () {
       let vm = this
-      axios.get('/api/user')
+      this.$http.get('/api/user')
         .then((res) => {
           if (res.data.username) {
             vm.$store.commit('setUser', res.data)
@@ -69,16 +60,19 @@ export default {
     },
     logout: function () {
       let vm = this
-      axios.get('/api/logout')
+      this.$http.get('/api/logout')
         .then((res) => {
           vm.getUser()
         })
+    },
+    go: function (url) {
+      this.$router.push(url)
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -91,5 +85,8 @@ export default {
 }
 .multiline {
   white-space: pre-wrap;
+}
+.page-body {
+  margin-top: 45px;
 }
 </style>

@@ -97,10 +97,6 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-import MondaiView from './MondaiView.vue'
-Vue.component('mondai-view', MondaiView)
 export default {
   data () {
     return {
@@ -137,7 +133,7 @@ export default {
   mounted: function () {
     let id = this.$route.params.id
     let vm = this
-    axios.get('/api/mondaiList/show/' + id)
+    this.$http.get('/api/mondaiList/show/' + id)
       .then(function (response) {
         vm.mondaiList = response.data
       })
@@ -178,7 +174,7 @@ export default {
     },
     submit: function () {
       let vm = this
-      axios.post('/api/mondaiList/edit/' + this.mondaiList.id, this.mondaiList)
+      this.$http.post('/api/mondaiList/edit/' + this.mondaiList.id, this.mondaiList)
         .then(function (response) {
           let data = response.data
           if (data.error) {

@@ -14,7 +14,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -29,7 +28,7 @@ export default {
   methods: {
     signup: function () {
       let vm = this
-      axios.post('/api/signup', vm.credential)
+      this.$http.post('/api/signup', vm.credential)
         .then(function (res) {
           if (!res.data.error) {
             vm.$router.push('/login')

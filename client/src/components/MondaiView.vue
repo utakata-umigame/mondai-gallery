@@ -4,8 +4,8 @@
       <p class="multiline">{{item.description}}</p>
       <b-link target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</b-link>
       <br>
-      <span class="badge badge-primary">{{site[item.site].name}}</span>
-      <span class="badge badge-info">{{genre[item.genre]}}</span>
+      <span class="notification">{{site[item.site].name}}</span>
+      <span class="notification">{{genre[item.genre]}}</span>
       <br>
     </div>
   </div>

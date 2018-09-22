@@ -12,7 +12,7 @@
       </b-form-checkbox>
     </div>
     <b-btn-group class="mb-1">
-      <b-btn v-b-modal.myModal variant="outline-primary">問題を追加</b-btn>
+      <v-ons-button @click="showAddModal" modifier="outline">問題を追加</v-ons-button>
       <b-btn v-b-modal.stringEditModal v-on:click="stringify()" variant="outline-primary" class="form-control">JSONモード</b-btn>
     </b-btn-group>
     <b-button-group class="mx-1 mb-1">
@@ -32,7 +32,7 @@
       </div>
     </div>
     <!--モーダルダイアログ-->
-    <b-modal id="myModal" title="問題を追加" @ok="handleOk">
+    <v-ons-dialog id="myModal" :visible="addModalVisible" title="問題を追加" @ok="handleOk">
       <div class="form">
         <label>サイト</label>
         <select v-model='newMondai.site' class="form-control">
@@ -56,8 +56,9 @@
         <label>コメント</label>
         <textarea v-model="newMondai.description" class="form-control" type="text" placeholder="コメント"></textarea>
       </div>
-    </b-modal>
-    <b-modal id="editModal" title="問題を編集" @ok="handleEditOk">
+      <v-ons-button modifier="outline" @click="addModalVisible = false">キャンセル</v-ons-button>
+    </v-ons-dialog>
+    <v-ons-modal id="editModal" title="問題を編集" @ok="handleEditOk">
       <div class="form">
         <label>サイト</label>
         <select v-model='newMondai.site' class="form-control">
@@ -81,9 +82,9 @@
         <label>コメント</label>
         <textarea v-model="newMondai.description" class="form-control" type="text" placeholder="コメント"></textarea>
       </div>
-    </b-modal>
+    </v-ons-modal>
     <!-- JSONを読み込み -->
-    <b-modal id="stringEditModal" title="JSONを読み込み" @ok="handleStringEditOk">
+    <v-ons-modal id="stringEditModal" title="JSONを読み込み" @ok="handleStringEditOk">
       <p>コピーしたJSON文字列からリストを生成できます</p>
       <div class="form">
         <b-form-textarea
@@ -93,14 +94,10 @@
           :rows="5">
         </b-form-textarea>
       </div>
-    </b-modal>
+    </v-ons-modal>
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-import MondaiView from './MondaiView.vue'
-Vue.component('mondai-view', MondaiView)
 export default {
   data () {
     return {
@@ -123,7 +120,8 @@ export default {
         'description': '',
         'mondai': []
       },
-      mondaiJSON: '[]'
+      mondaiJSON: '[]',
+      addModalVisible: false
     }
   },
   computed: {
@@ -171,7 +169,7 @@ export default {
     submit: function () {
       let vm = this
       let obj = Object.assign({}, this.mondaiList)
-      axios.post('/api/add', obj)
+      this.$http.post('/api/add', obj)
         .then(function (response) {
           let data = response.data
           if (data.error) {
@@ -184,6 +182,9 @@ export default {
     },
     cancel: function () {
       this.$router.go(-1)
+    },
+    showAddModal: function () {
+      this.addModalVisible = true
     },
     handleOk: function (evt) {
       this.addMondai()
