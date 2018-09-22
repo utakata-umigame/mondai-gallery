@@ -28,6 +28,7 @@ export default {
     return {
       show: true,
       profile: {
+        id: 0,
         nickname: '-',
         bio: '-',
         signup_date: '-'
@@ -55,7 +56,7 @@ export default {
       .then(function () {})
     this.$http.get('/api/mondaiList')
       .then(function (res) {
-        vm.mondaiList = res.data.filter(x => x.editor.username === vm.profile.username)
+        vm.mondaiList = res.data.filter(x => x.editor.id === vm.profile.id)
       })
       .catch(function (error) {
         console.log(error)
