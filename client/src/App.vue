@@ -1,7 +1,6 @@
 <template>
   <div id="app" class="container-fluid">
     <div id="heading">
-      <h1>水平思考問題リンク集</h1>
       <b-nav class="mb-2">
         <b-nav-item to="/">ホーム</b-nav-item>
         <b-nav-item to="/add">リストを追加</b-nav-item>
@@ -19,7 +18,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {}
@@ -37,7 +35,7 @@ export default {
   methods: {
     getUser: function () {
       let vm = this
-      axios.get('/api/user')
+      this.$http.get('/api/user')
         .then((res) => {
           if (res.data.username) {
             vm.$store.commit('setUser', res.data)
@@ -48,7 +46,7 @@ export default {
     },
     logout: function () {
       let vm = this
-      axios.get('/api/logout')
+      this.$http.get('/api/logout')
         .then((res) => {
           vm.getUser()
         })

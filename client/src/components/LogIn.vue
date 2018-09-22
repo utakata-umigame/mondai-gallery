@@ -1,7 +1,13 @@
 <template>
   <div>
     <h2 class="text-center">ログイン</h2>
-    <p class="text-danger">{{error}}</p>
+    <b-alert variant="danger"
+             dismissible
+             :show="showError"
+             @dismissed="showError=false"
+    >
+      {{error}}
+    </b-alert>
     <div class="mb-2" method="post">
       <label>ユーザー名</label>
       <input v-model="credential.username" class="form-control mb-2" type="text" name="username" placeholder='User Name' required="required">
@@ -12,7 +18,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -20,19 +25,21 @@ export default {
         username: '',
         password: ''
       },
+      showError: false,
       error: ''
     }
   },
   methods: {
     login: function () {
       let vm = this
-      axios.post('/api/login', vm.credential)
+      this.$http.post('/api/login', vm.credential)
         .then(function (res) {
           vm.$router.push('/')
           vm.$store.commit('setUser', res.data.user)
         })
         .catch(function (err) {
           if (err) {
+            vm.showError = true
             vm.error = '認証に失敗しました。ユーザー名およびパスワードを確認してください。'
           }
         })

@@ -1,7 +1,13 @@
 <template>
   <div>
     <h2 class="text-center">ユーザー登録</h2>
-    <p class="text-danger">{{error}}</p>
+    <b-alert variant="danger"
+             dismissible
+             :show="showError"
+             @dismissed="showError=false"
+    >
+      {{error}}
+    </b-alert>
     <div method="post" class="mb-2">
       <label>ニックネーム</label>
       <input v-model="credential.nickname" class="form-control mb-2" type="text" name="nickname" placeholder="Nickname" required="required">
@@ -14,7 +20,6 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -23,23 +28,27 @@ export default {
         username: '',
         password: ''
       },
+      showError: false,
       error: ''
     }
   },
   methods: {
     signup: function () {
       let vm = this
-      axios.post('/api/signup', vm.credential)
+      this.$http.post('/api/signup', vm.credential)
         .then(function (res) {
           if (!res.data.error) {
             vm.$router.push('/login')
           } else {
+            vm.showError = true
             vm.error = res.data.error
           }
         })
         .catch(function (err) {
           if (err) {
             console.log(err)
+            vm.error = 'サーバーのエラーです。'
+            vm.showError = true
           }
         })
     }

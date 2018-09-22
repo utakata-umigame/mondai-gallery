@@ -19,13 +19,16 @@
         </router-link>
       </div>
     </div>
+    <div class="row">
+      <loading :show="show"></loading>
+    </div>
   </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
+      show: true,
       profile: {
         nickname: '-',
         username: '-',
@@ -43,7 +46,7 @@ export default {
   },
   mounted: function () {
     var vm = this
-    axios.get('/api/mypage')
+    this.$http.get('/api/mypage')
       .then(function (res) {
         vm.profile = res.data
       })
@@ -51,12 +54,15 @@ export default {
         console.log(error)
       })
       .then(function () {})
-    axios.get('/api/mondaiList')
+    this.$http.get('/api/mondaiList')
       .then(function (res) {
         vm.mondaiList = res.data.filter(x => x.editor.username === vm.$store.state.user.username)
       })
       .catch(function (error) {
         console.log(error)
+      })
+      .then(function () {
+        vm.show = false
       })
   },
   methods: {

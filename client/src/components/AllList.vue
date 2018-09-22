@@ -1,5 +1,5 @@
 <template>
-  <div id='all-list'>
+  <div>
     <h2 class="text-center">リスト一覧</h2>
     <div class="row">
       <div class='col-xs-12 col-md-4 mb-1' v-for='item in mondaiList' v-bind:key='item._id'>
@@ -10,16 +10,19 @@
         </router-link>
       </div>
     </div>
+    <div class="row">
+      <loading :show="show"></loading>
+    </div>
   </div>
 </template>
 <script>
-import axios from 'axios'
 export default {
   data () {
     return {
       name: '-',
       genreFilter: 'all',
       siteFilter: 'all',
+      show: true,
       mondaiList: [
         {
           'id': 0,
@@ -34,14 +37,16 @@ export default {
   },
   mounted: function () {
     var vm = this
-    axios.get('/api/mondaiList')
+    this.$http.get('/api/mondaiList')
       .then(function (response) {
         vm.mondaiList = response.data
       })
       .catch(function (error) {
         console.log(error)
       })
-      .then(function () {})
+      .then(function () {
+        vm.show = false
+      })
   },
   methods: {
     url: function (id) {

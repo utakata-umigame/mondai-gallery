@@ -33,74 +33,18 @@
     </div>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" title="問題を追加" @ok="handleOk">
-      <div class="form">
-        <label>サイト</label>
-        <select v-model='newMondai.site' class="form-control">
-          <option value="latethink">ラテシン</option>
-          <option value="cindy">Cindy</option>
-          <option value="R">R鯖</option>
-        </select>
-        <label>ジャンル</label>
-        <select v-model='newMondai.genre' class="form-control">
-          <option value="umigame">ウミガメ</option>
-          <option value="tobira">20の扉</option>
-          <option value="kameo">亀夫君問題</option>
-          <option value="other">その他</option>
-        </select>
-        <label>問題ID</label>
-        <input v-model ="newMondai.id" class="form-control" type="number" placeholder="ID">
-        <label>タイトル</label>
-        <input v-model ="newMondai.title" class="form-control" type="text" placeholder="タイトル">
-        <label>問題の作者</label>
-        <input v-model = "newMondai.author" class="form-control" type="text" placeholder="作者">
-        <label>コメント</label>
-        <textarea v-model="newMondai.description" class="form-control" type="text" placeholder="コメント"></textarea>
-      </div>
+      <mondai-dialog :mondai="newMondai"></mondai-dialog>
     </b-modal>
     <b-modal id="editModal" title="問題を編集" @ok="handleEditOk">
-      <div class="form">
-        <label>サイト</label>
-        <select v-model='newMondai.site' class="form-control">
-          <option value="latethink">ラテシン</option>
-          <option value="cindy">Cindy</option>
-          <option value="R">R鯖</option>
-        </select>
-        <label>ジャンル</label>
-        <select v-model='newMondai.genre' class="form-control">
-          <option value="umigame">ウミガメ</option>
-          <option value="tobira">20の扉</option>
-          <option value="kameo">亀夫君問題</option>
-          <option value="other">その他</option>
-        </select>
-        <label>問題ID</label>
-        <input v-model ="newMondai.id" class="form-control" type="number" placeholder="ID">
-        <label>タイトル</label>
-        <input v-model ="newMondai.title" class="form-control" type="text" placeholder="タイトル">
-        <label>問題の作者</label>
-        <input v-model = "newMondai.author" class="form-control" type="text" placeholder="作者">
-        <label>コメント</label>
-        <textarea v-model="newMondai.description" class="form-control" type="text" placeholder="コメント"></textarea>
-      </div>
+      <mondai-dialog :mondai="newMondai"></mondai-dialog>
     </b-modal>
     <!-- JSONを読み込み -->
     <b-modal id="stringEditModal" title="JSONを読み込み" @ok="handleStringEditOk">
-      <p>コピーしたJSON文字列からリストを生成できます</p>
-      <div class="form">
-        <b-form-textarea
-          v-model="mondaiJSON"
-          class="form-control"
-          placeholder="JSON"
-          :rows="5">
-        </b-form-textarea>
-      </div>
+      <json-dialog :mondaiJSON="mondaiJSON"></json-dialog>
     </b-modal>
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-import MondaiView from './MondaiView.vue'
-Vue.component('mondai-view', MondaiView)
 export default {
   data () {
     return {
@@ -171,7 +115,7 @@ export default {
     submit: function () {
       let vm = this
       let obj = Object.assign({}, this.mondaiList)
-      axios.post('/api/add', obj)
+      this.$http.post('/api/add', obj)
         .then(function (response) {
           let data = response.data
           if (data.error) {
