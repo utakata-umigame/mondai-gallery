@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="container-fluid">
     <div id="heading">
-      <b-nav class="mb-2">
+      <b-nav variant="success" class="mb-2">
         <b-nav-item to="/">ホーム</b-nav-item>
         <b-nav-item to="/add">リストを追加</b-nav-item>
-        <b-nav-item to="/contact">連絡先</b-nav-item>
+        <b-nav-item to="/contact">お問い合わせ</b-nav-item>
         <b-nav-item-dropdown v-bind:text="user.nickname" right>
           <b-dropdown-item to="/mypage" v-if="user.username">マイページ</b-dropdown-item>
           <b-dropdown-item v-on:click="logout()" v-if="user.username">ログアウト</b-dropdown-item>
