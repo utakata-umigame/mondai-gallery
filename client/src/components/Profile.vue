@@ -53,16 +53,17 @@ export default {
       .catch(function (error) {
         console.log(error)
       })
-      .then(function () {})
-    this.$http.get('/api/mondaiList')
-      .then(function (res) {
-        vm.mondaiList = res.data.filter(x => x.editor.id === vm.profile.id)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
       .then(function () {
-        vm.show = false
+        vm.$http.get('/api/mondaiList')
+          .then(function (res) {
+            vm.mondaiList = res.data.filter(x => x.editor.id === vm.profile.id)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+          .then(function () {
+            vm.show = false
+          })
       })
   },
   methods: {
