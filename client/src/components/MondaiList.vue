@@ -1,7 +1,12 @@
 <template>
   <div>
     <h2 class="text-center">{{mondaiList.name}}</h2>
-    <p>リスト作成者:{{mondaiList.editor.nickname}}</p>
+    <p>
+      リスト作成者:
+      <router-link :to="profileUrl()">
+        {{mondaiList.editor.nickname}}
+      </router-link>
+    </p>
     <p class="multiline">{{mondaiList.description}}</p>
     <router-link class="btn btn-outline-secondary mb-2" v-bind:to="editUrl()" v-if="isMine">編集</router-link>
     <div class="form-inline mb-2">
@@ -65,6 +70,7 @@ export default {
         'name': '-',
         'description': '-',
         'editor': {
+          'id': 0,
           'nickname': '-'
         },
         'mondai': [{
@@ -116,6 +122,9 @@ export default {
     },
     editUrl: function () {
       return '/mondaiList/edit/' + this.mondaiList.id
+    },
+    profileUrl: function () {
+      return '/profile/show/' + this.mondaiList.editor.id
     },
     filter: function () {
       var filtered = this.mondaiList.mondai

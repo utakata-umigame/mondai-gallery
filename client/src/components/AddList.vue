@@ -61,6 +61,7 @@ export default {
         'name': '',
         'fromMyMondais': false,
         'editor': {
+          'id': 0,
           'nickname': '',
           'username': ''
         },

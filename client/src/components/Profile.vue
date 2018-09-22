@@ -1,14 +1,11 @@
 <template>
   <div>
-    <h2 class="text-center">マイページ</h2>
-    <b-card class="mb-2" v-bind:title="profile.nickname"
-      v-bind:sub-title=profile.username>
+    <h2 class="text-center">プロフィール</h2>
+    <b-card class="mb-2" v-bind:title="profile.nickname">
       <div class="card-text">
         <p class="multiline">{{ profile.bio }}</p>
         <p>登録日時：{{profile.signup_date}}</p>
       </div>
-      <router-link to="#"
-         class="card-link">編集</router-link>
     </b-card>
     <h3>作成したリスト</h3>
     <div class="row">
@@ -32,7 +29,7 @@ export default {
       show: true,
       profile: {
         nickname: '-',
-        username: '-',
+        bio: '-',
         signup_date: '-'
       },
       mondaiList: [{
@@ -46,8 +43,9 @@ export default {
     }
   },
   mounted: function () {
-    var vm = this
-    this.$http.get('/api/mypage')
+    let vm = this
+    let id = this.$route.params.id
+    this.$http.get('/api/profile/show/' + id)
       .then(function (res) {
         vm.profile = res.data
       })
@@ -57,7 +55,7 @@ export default {
       .then(function () {})
     this.$http.get('/api/mondaiList')
       .then(function (res) {
-        vm.mondaiList = res.data.filter(x => x.editor.username === vm.$store.state.user.username)
+        vm.mondaiList = res.data.filter(x => x.editor.username === vm.profile.username)
       })
       .catch(function (error) {
         console.log(error)

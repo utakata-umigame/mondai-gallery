@@ -23,6 +23,7 @@ router.get("/user", isAuthenticated, (req, res) => {
     res.json(req.user);
   else res.json({});
 });
+/* マイページ */
 router.get("/mypage", (req, res) => {
   if (!req.user) {
     res.json({'error': 'error'});
@@ -32,6 +33,7 @@ router.get("/mypage", (req, res) => {
     if (doc) {
       if (doc.username) {
         res.json({
+          "id": doc.id,
           "username": doc.username,
           "nickname": doc.nickname,
           "signup_date": doc.signup_date
@@ -42,6 +44,22 @@ router.get("/mypage", (req, res) => {
     res.json({'error':'error'});
   });
 });
+/* プロフィール */
+router.get("/profile/show/:id", (req, res) => {
+  db.User.findOne({id: parseInt(req.params.id)}, (err, doc) => {
+    if (doc) {
+      res.json({
+        "id": doc.id,
+        "nickname": doc.nickname,
+        "bio": doc.bio,
+        "signup_date": doc.signup_date
+      });
+      return;
+    }
+    res.json({'error':'error'});
+  });
+});
+/* 問題リスト全部 */
 router.get("/mondaiList", (req, res) => {
   db.MondaiList.find({}).toArray((error, docs) => {
       if (docs) {
@@ -60,6 +78,7 @@ router.get("/mondaiList", (req, res) => {
       }
   });
 });
+/* 問題リスト1つ */
 router.get("/mondaiList/show/:id", (req, res) => {
    db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
      if (doc) {
@@ -76,7 +95,7 @@ router.get("/mondaiList/show/:id", (req, res) => {
 /* リスト編集 */
 router.post("/mondaiList/edit/:id", isAuthenticated, (req, res) => {
   let obj = req.body
-  db.MondaiList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, "fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
+  db.MondaiList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, editor: req.user,"fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
      if(err) console.log(err);
   });
   res.json({"message": "success"});

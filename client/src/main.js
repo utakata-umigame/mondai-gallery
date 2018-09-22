@@ -27,6 +27,7 @@ Vue.config.productionTip = false
 const store = new Vuex.Store({
   state: {
     user: {
+      id: 0,
       nickname: 'Guest',
       username: ''
     },

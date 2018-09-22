@@ -28,6 +28,7 @@ export default {
           'id': 0,
           'name': '-',
           'editor': {
+            'id': 0,
             'nickname': '-'
           },
           'fromMyMondais': true

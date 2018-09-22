@@ -7,6 +7,7 @@ import SignUp from '@/components/SignUp'
 import LogIn from '@/components/LogIn'
 import EditList from '@/components/EditList'
 import MyPage from '@/components/MyPage'
+import Profile from '@/components/Profile'
 import Contact from '@/components/Contact'
 
 Vue.use(Router)
@@ -48,6 +49,11 @@ export default new Router({
       path: '/mypage',
       name: 'MyPage',
       component: MyPage
+    },
+    {
+      path: '/profile/show/:id',
+      name: 'Profile',
+      component: Profile
     },
     {
       path: '/contact',

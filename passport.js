@@ -14,7 +14,7 @@ passport.use(
         shasum.update(password);
         var hash = shasum.digest('hex');
         if (doc.password === hash) {
-          return done(null, {username: username, nickname: doc.nickname});
+          return done(null, {id: doc.id, username: username, nickname: doc.nickname});
         } else {
           // パスワード不一致
           return done(null, false);
