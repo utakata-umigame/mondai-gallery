@@ -25,7 +25,7 @@
         <option value="kameo">亀夫君問題</option>
         <option value="other">その他</option>
       </select>
-      <button class="btn btn-danger mx-1" v-on:click='clearFilter()'>クリア</button>
+      <b-btn variant="outline-danger" class="mx-1" v-on:click='clearFilter()'>クリア</b-btn>
       <label class="text-right mx-1">表示</label>
       <select v-model='detail' class="form-control">
         <option :value="false">リスト</option>
