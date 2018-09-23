@@ -31,9 +31,6 @@
         </b-card>
       </div>
     </div>
-    <div class="row">
-      <loading :show="show"></loading>
-    </div>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" title="問題を追加" @ok="handleOk">
       <mondai-dialog :mondai="newMondai"></mondai-dialog>
@@ -70,8 +67,7 @@ export default {
         'description': '',
         'mondai': []
       },
-      mondaiJSON: '',
-      show: true
+      mondaiJSON: ''
     }
   },
   computed: {
@@ -91,9 +87,6 @@ export default {
       })
       .catch(function (error) {
         console.log(error)
-      })
-      .then(function () {
-        vm.show = false
       })
   },
   methods: {

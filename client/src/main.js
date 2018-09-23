@@ -12,14 +12,14 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import MondaiView from '@/components/MondaiView'
 import MondaiDialog from '@/components/MondaiDialog'
 import JSONDialog from '@/components/JSONDialog'
-import Progress from '@/components/Progress'
+import ProfileDialog from '@/components/ProfileDialog'
 
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
 Vue.component('mondai-view', MondaiView)
 Vue.component('mondai-dialog', MondaiDialog)
+Vue.component('profile-dialog', ProfileDialog)
 Vue.component('json-dialog', JSONDialog)
-Vue.component('loading', Progress)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false

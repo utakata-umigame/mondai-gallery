@@ -10,9 +10,6 @@
         </router-link>
       </div>
     </div>
-    <div class="row">
-      <loading :show="show"></loading>
-    </div>
   </div>
 </template>
 <script>
@@ -22,7 +19,6 @@ export default {
       name: '-',
       genreFilter: 'all',
       siteFilter: 'all',
-      show: true,
       mondaiList: [
         {
           'id': 0,
@@ -44,9 +40,6 @@ export default {
       })
       .catch(function (error) {
         console.log(error)
-      })
-      .then(function () {
-        vm.show = false
       })
   },
   methods: {

@@ -59,6 +59,12 @@ router.get("/profile/show/:id", (req, res) => {
     res.json({'error':'error'});
   });
 });
+router.post("/profile/edit", isAuthenticated, (req, res) => {
+  let obj = req.body;
+  console.log(obj);
+  db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj}}, (err, doc) => {})
+  res.json({"message": "success"})
+});
 /* 問題リスト全部 */
 router.get("/mondaiList", (req, res) => {
   db.MondaiList.find({}).toArray((error, docs) => {

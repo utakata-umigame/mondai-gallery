@@ -6,7 +6,7 @@
         v-model="mondaiJSON"
         class="form-control"
         placeholder="JSON"
-        :rows="5">
+        :rows="6">
       </b-form-textarea>
     </div>
   </div>

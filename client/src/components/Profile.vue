@@ -17,16 +17,12 @@
         </router-link>
       </div>
     </div>
-    <div class="row">
-      <loading :show="show"></loading>
-    </div>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      show: true,
       profile: {
         id: 0,
         nickname: '-',
@@ -60,9 +56,6 @@ export default {
           })
           .catch(function (error) {
             console.log(error)
-          })
-          .then(function () {
-            vm.show = false
           })
       })
   },

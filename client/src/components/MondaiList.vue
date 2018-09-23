@@ -47,9 +47,6 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <loading :show="show"></loading>
-    </div>
   </div>
 </template>
 <script>
@@ -61,7 +58,6 @@ export default {
   data () {
     return {
       name: 'MondaiList',
-      show: true,
       genreFilter: 'all',
       siteFilter: 'all',
       detail: false,
@@ -113,7 +109,6 @@ export default {
               }
             }
           })
-        vm.show = false
       })
   },
   methods: {

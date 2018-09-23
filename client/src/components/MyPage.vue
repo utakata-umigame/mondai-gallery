@@ -7,9 +7,12 @@
         <p class="multiline">{{ profile.bio }}</p>
         <p>登録日時：{{profile.signup_date}}</p>
       </div>
-      <router-link to="#"
-         class="card-link">編集</router-link>
+      <b-btn v-b-modal.myModal variant="link">編集</b-btn>
     </b-card>
+    <!--モーダルダイアログ-->
+    <b-modal id="myModal" title="プロフィールを編集" @ok="handleOk">
+      <profile-dialog :bio="profile.bio"></profile-dialog>
+    </b-modal>
     <h3>作成したリスト</h3>
     <div class="row">
       <div class="col-xs-12 col-md-4 mb-1" v-for="item in mondaiList" v-bind:key="item._id">
@@ -20,20 +23,17 @@
         </router-link>
       </div>
     </div>
-    <div class="row">
-      <loading :show="show"></loading>
-    </div>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
-      show: true,
       profile: {
         nickname: '-',
         username: '-',
-        signup_date: '-'
+        signup_date: '-',
+        bio: '-'
       },
       mondaiList: [{
         'id': 0,
@@ -62,13 +62,13 @@ export default {
       .catch(function (error) {
         console.log(error)
       })
-      .then(function () {
-        vm.show = false
-      })
   },
   methods: {
     url: function (id) {
       return '/mondaiList/show/' + id
+    },
+    handleOk: function (evt) {
+      this.$http.post('/api/profile/edit', this.profile.bio)
     }
   }
 }
