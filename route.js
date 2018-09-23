@@ -36,6 +36,7 @@ router.get("/mypage", (req, res) => {
           "id": doc.id,
           "username": doc.username,
           "nickname": doc.nickname,
+          "bio": doc.bio,
           "signup_date": doc.signup_date
         });
         return;
@@ -60,7 +61,7 @@ router.get("/profile/show/:id", (req, res) => {
   });
 });
 router.post("/profile/edit", isAuthenticated, (req, res) => {
-  let obj = req.body;
+  let obj = req.body.bio;
   console.log(obj);
   db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj}}, (err, doc) => {})
   res.json({"message": "success"})

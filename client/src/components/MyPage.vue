@@ -11,7 +11,13 @@
     </b-card>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" title="プロフィールを編集" @ok="handleOk">
-      <profile-dialog :bio="profile.bio"></profile-dialog>
+      <div class="form">
+        <b-form-textarea
+          v-model="profile.bio"
+          placeholder="自己紹介"
+          :rows="6">
+        </b-form-textarea>
+      </div>
     </b-modal>
     <h3>作成したリスト</h3>
     <div class="row">
@@ -68,7 +74,7 @@ export default {
       return '/mondaiList/show/' + id
     },
     handleOk: function (evt) {
-      this.$http.post('/api/profile/edit', this.profile.bio)
+      this.$http.post('/api/profile/edit', {bio: this.profile.bio})
     }
   }
 }
