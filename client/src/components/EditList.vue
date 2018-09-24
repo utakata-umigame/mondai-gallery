@@ -40,7 +40,15 @@
     </b-modal>
     <!-- JSONを読み込み -->
     <b-modal id="stringEditModal" title="JSONを読み込み" @ok="handleStringEditOk">
-      <json-dialog :mondaiJSON="mondaiJSON"></json-dialog>
+      <p>コピーしたJSON文字列からリストを生成できます</p>
+      <div class="form">
+        <b-form-textarea
+          v-model="mondaiJSON"
+          class="form-control"
+          placeholder="JSON"
+          :rows="6">
+        </b-form-textarea>
+      </div>
     </b-modal>
   </div>
 </template>
