@@ -11,13 +11,11 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import MondaiView from '@/components/MondaiView'
 import MondaiDialog from '@/components/MondaiDialog'
-import JSONDialog from '@/components/JSONDialog'
 
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
 Vue.component('mondai-view', MondaiView)
 Vue.component('mondai-dialog', MondaiDialog)
-Vue.component('json-dialog', JSONDialog)
 
 Vue.prototype.$http = axios
 Vue.config.productionTip = false
