@@ -163,6 +163,17 @@ export default {
       try {
         let obj = JSON.parse(this.mondaiJSON)
         this.mondaiList.mondai = obj.filter(x => this.isValidUrl(x.site))
+          .map(x => {
+            return {
+              id: x.id,
+              title: x.title,
+              author: x.author,
+              site: x.site,
+              description: x.description,
+              genre: x.genre,
+              _id: x._id
+            }
+          })
       } catch (err) {
         console.log(err)
       }
