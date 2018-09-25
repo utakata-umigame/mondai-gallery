@@ -98,7 +98,7 @@ export default {
         console.log(error)
       })
       .then(function () {
-        this.$http.get('/api/user')
+        vm.$http.get('/api/user')
           .then((res) => {
             if (res) {
               if (res.data) {
