@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2 class="text-center">リスト一覧</h2>
-    <div class="row">
-      <div class='col-xs-12 col-md-4 mb-1' v-for='item in mondaiList' v-bind:key='item._id'>
-        <router-link v-bind:to='url(item.id)' class='list-group-item list-group-item-action'>
+    <h2 class="title">リスト一覧</h2>
+    <div class="panel">
+      <div v-for='item in mondaiList' v-bind:key='item._id'>
+        <a class="panel-block" @click='to(item.id)'>
           <span>{{ item.name }}</span>
-          <small class='text-secondary'>リスト作成者：{{item.editor.nickname}}</small>
-          <span class='badge badge-success' v-if='item.fromMyMondais'>自作問題のみ</span>
-        </router-link>
+          <span>リスト作成者：{{item.editor.nickname}}</span>
+          <b-tag class="is-primary" v-if='item.fromMyMondais'>自作問題のみ</b-tag>
+        </a>
       </div>
     </div>
   </div>
@@ -45,6 +45,9 @@ export default {
   methods: {
     url: function (id) {
       return '/mondaiList/show/' + id
+    },
+    to: function (id) {
+      this.$router.push(this.url(id))
     }
   }
 }

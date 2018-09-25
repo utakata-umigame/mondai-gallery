@@ -2,10 +2,10 @@
   <div>
     <div>
       <p class="multiline">{{item.description}}</p>
-      <b-link target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</b-link>
+      <a target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</a>
       <br>
-      <span class="badge badge-primary">{{site[item.site].name}}</span>
-      <span class="badge badge-info">{{genre[item.genre]}}</span>
+      <b-tag class="is-primary">{{site[item.site].name}}</b-tag>
+      <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
       <br>
     </div>
   </div>

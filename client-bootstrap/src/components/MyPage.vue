@@ -1,39 +1,33 @@
 <template>
   <div>
-    <h2 class="title">マイページ</h2>
+    <h2 class="text-center">マイページ</h2>
     <b-card class="mb-2" v-bind:title="profile.nickname"
       v-bind:sub-title=profile.username>
       <div class="card-text">
         <p class="multiline">{{ profile.bio }}</p>
         <p>登録日時：{{profile.signup_date}}</p>
       </div>
-      <button class="button is-link" @click="isEditProfileModalActive=true">編集</button>
+      <b-btn v-b-modal.myModal variant="link">編集</b-btn>
     </b-card>
     <!--モーダルダイアログ-->
-    <b-modal id="myModal" :active.sync="isEditProfileModalActive" title="プロフィールを編集">
-      <header class="modal-card-head">
-        <p class="modal-card-title">プロフィールを編集</p>
-      </header>
-      <section class="modal-card-body">
-        <b-input
-          type="textarea"
+    <b-modal id="myModal" title="プロフィールを編集" @ok="handleOk">
+      <div class="form">
+        <b-form-textarea
           v-model="profile.bio"
           placeholder="自己紹介"
           :rows="6">
-        </b-input>
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button" type="button" @click="isEditProfileModalActive = false">キャンセル</button>
-        <button class="button is-primary" @click="handleOk">編集</button>
-      </footer>
+        </b-form-textarea>
+      </div>
     </b-modal>
     <h3>作成したリスト</h3>
-    <div class="panel">
-      <a class="panel-block" v-bind:to="url(item.id)" v-for="item in mondaiList" v-bind:key="item._id">
-        <span>{{ item.name }}</span>
-        <small class="text-secondary">リスト作成者：{{item.editor.nickname}}</small>
-        <span class='badge badge-success' v-if='item.fromMyMondais'>自作問題のみ</span>
-      </a>
+    <div class="row">
+      <div class="col-xs-12 col-md-4 mb-1" v-for="item in mondaiList" v-bind:key="item._id">
+        <router-link v-bind:to="url(item.id)" class="list-group-item list-group-item-action">
+          <span>{{ item.name }}</span>
+          <small class="text-secondary">リスト作成者：{{item.editor.nickname}}</small>
+          <span class='badge badge-success' v-if='item.fromMyMondais'>自作問題のみ</span>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -54,8 +48,7 @@ export default {
           'nickname': '-'
         },
         'fromMyMondais': true
-      }],
-      isEditProfileModalActive: false
+      }]
     }
   },
   mounted: function () {

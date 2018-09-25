@@ -1,0 +1,49 @@
+<template>
+  <div>
+    <h2 class="text-center">ログイン</h2>
+    <b-alert variant="danger"
+             dismissible
+             :show="showError"
+             @dismissed="showError=false"
+    >
+      {{error}}
+    </b-alert>
+    <div class="mb-2" method="post">
+      <label>ユーザー名</label>
+      <input v-model="credential.username" class="form-control mb-2" type="text" name="username" placeholder='User Name' required="required">
+      <label>パスワード</label>
+      <input v-model="credential.password" class="form-control mb-2" type="password" name="password" placeholder='Password' required="required">
+      <b-btn v-on:click="login()" variant="outline-primary" class="mb-2">ログイン</b-btn>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data () {
+    return {
+      credential: {
+        username: '',
+        password: ''
+      },
+      showError: false,
+      error: ''
+    }
+  },
+  methods: {
+    login: function () {
+      let vm = this
+      this.$http.post('/api/login', vm.credential)
+        .then(function (res) {
+          vm.$router.push('/')
+          vm.$store.commit('setUser', res.data.user)
+        })
+        .catch(function (err) {
+          if (err) {
+            vm.showError = true
+            vm.error = '認証に失敗しました。ユーザー名およびパスワードを確認してください。'
+          }
+        })
+    }
+  }
+}
+</script>
