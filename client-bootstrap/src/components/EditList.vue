@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-2">
-      <h2 class="title">リストを追加</h2>
+      <h2 class="text-center">リストを編集</h2>
       <label>リスト名</label>
       <input v-model="mondaiList.name" class="form-control" type="text" placeholder="リスト名">
       <label>リストの説明</label>
@@ -69,14 +69,13 @@ export default {
         'name': '',
         'fromMyMondais': false,
         'editor': {
-          'id': 0,
           'nickname': '',
           'username': ''
         },
         'description': '',
         'mondai': []
       },
-      mondaiJSON: '[]'
+      mondaiJSON: ''
     }
   },
   computed: {
@@ -88,11 +87,19 @@ export default {
     }
   },
   mounted: function () {
+    let id = this.$route.params.id
+    let vm = this
+    this.$http.get('/api/mondaiList/show/' + id)
+      .then(function (response) {
+        vm.mondaiList = response.data
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   },
   methods: {
     url: function (siteName, id) {
-      let res = this.site[siteName].showUrl + id
-      return res
+      return this.site[siteName].showUrl + id
     },
     isValidUrl: function (siteName) {
       if (this.site[siteName]) return true
@@ -123,8 +130,7 @@ export default {
     },
     submit: function () {
       let vm = this
-      let obj = Object.assign({}, this.mondaiList)
-      this.$http.post('/api/add', obj)
+      this.$http.post('/api/mondaiList/edit/' + this.mondaiList.id, this.mondaiList)
         .then(function (response) {
           let data = response.data
           if (data.error) {

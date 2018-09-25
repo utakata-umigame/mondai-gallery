@@ -1,12 +1,24 @@
 <template>
   <div>
-    <h2 class="title">プロフィール</h2>
-    <b-card class="mb-2" v-bind:title="profile.nickname">
+    <h2 class="text-center">マイページ</h2>
+    <b-card class="mb-2" v-bind:title="profile.nickname"
+      v-bind:sub-title=profile.username>
       <div class="card-text">
         <p class="multiline">{{ profile.bio }}</p>
         <p>登録日時：{{profile.signup_date}}</p>
       </div>
+      <b-btn v-b-modal.myModal variant="link">編集</b-btn>
     </b-card>
+    <!--モーダルダイアログ-->
+    <b-modal id="myModal" title="プロフィールを編集" @ok="handleOk">
+      <div class="form">
+        <b-form-textarea
+          v-model="profile.bio"
+          placeholder="自己紹介"
+          :rows="6">
+        </b-form-textarea>
+      </div>
+    </b-modal>
     <h3>作成したリスト</h3>
     <div class="row">
       <div class="col-xs-12 col-md-4 mb-1" v-for="item in mondaiList" v-bind:key="item._id">
@@ -24,10 +36,10 @@ export default {
   data () {
     return {
       profile: {
-        id: 0,
         nickname: '-',
-        bio: '-',
-        signup_date: '-'
+        username: '-',
+        signup_date: '-',
+        bio: '-'
       },
       mondaiList: [{
         'id': 0,
@@ -40,28 +52,29 @@ export default {
     }
   },
   mounted: function () {
-    let vm = this
-    let id = this.$route.params.id
-    this.$http.get('/api/profile/show/' + id)
+    var vm = this
+    this.$http.get('/api/mypage')
       .then(function (res) {
         vm.profile = res.data
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-      .then(function () {
         vm.$http.get('/api/mondaiList')
           .then(function (res) {
-            vm.mondaiList = res.data.filter(x => x.editor.id === vm.profile.id)
+            vm.mondaiList = res.data.filter(x => x.editor.username === vm.$store.state.user.username)
           })
           .catch(function (error) {
             console.log(error)
           })
       })
+      .catch(function (error) {
+        console.log(error)
+      })
+      .then(function () {})
   },
   methods: {
     url: function (id) {
       return '/mondaiList/show/' + id
+    },
+    handleOk: function (evt) {
+      this.$http.post('/api/profile/edit', {bio: this.profile.bio})
     }
   }
 }
