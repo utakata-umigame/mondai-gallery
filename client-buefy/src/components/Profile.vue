@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-center">プロフィール</h2>
+    <h2 class="title">プロフィール</h2>
     <b-card class="mb-2" v-bind:title="profile.nickname">
       <div class="card-text">
         <p class="multiline">{{ profile.bio }}</p>

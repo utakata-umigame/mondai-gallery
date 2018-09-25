@@ -1,14 +1,19 @@
 <template>
   <div>
-    <h2 class="title">ログイン</h2>
+    <h2 class="text-center">ログイン</h2>
+    <b-alert variant="danger"
+             dismissible
+             :show="showError"
+             @dismissed="showError=false"
+    >
+      {{error}}
+    </b-alert>
     <div class="mb-2" method="post">
-      <b-field label="ユーザー名">
-        <b-input v-model="credential.username" class="form-control mb-2" type="text" name="username" placeholder='User Name'></b-input>
-      </b-field>
-      <b-field label="パスワード">
-        <b-input v-model="credential.password" class="form-control mb-2" type="password" name="password" placeholder='Password'></b-input>
-      </b-field>
-      <button v-on:click="login()" class="button is-primary is-outlined mb-2">ログイン</button>
+      <label>ユーザー名</label>
+      <input v-model="credential.username" class="form-control mb-2" type="text" name="username" placeholder='User Name' required="required">
+      <label>パスワード</label>
+      <input v-model="credential.password" class="form-control mb-2" type="password" name="password" placeholder='Password' required="required">
+      <b-btn v-on:click="login()" variant="outline-primary" class="mb-2">ログイン</b-btn>
     </div>
   </div>
 </template>
@@ -20,7 +25,8 @@ export default {
         username: '',
         password: ''
       },
-      showError: false
+      showError: false,
+      error: ''
     }
   },
   methods: {
@@ -34,10 +40,7 @@ export default {
         .catch(function (err) {
           if (err) {
             vm.showError = true
-            vm.$toast.open({
-              message: '認証に失敗しました。ユーザー名およびパスワードを確認してください。',
-              type: 'is-danger'
-            })
+            vm.error = '認証に失敗しました。ユーザー名およびパスワードを確認してください。'
           }
         })
     }

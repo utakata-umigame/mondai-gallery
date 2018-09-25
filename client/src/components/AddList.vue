@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-2">
-      <h2 class="title">リストを追加</h2>
+      <h2 class="text-center">リストを追加</h2>
       <label>リスト名</label>
       <input v-model="mondaiList.name" class="form-control" type="text" placeholder="リスト名">
       <label>リストの説明</label>

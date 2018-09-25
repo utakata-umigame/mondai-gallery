@@ -6,17 +6,14 @@ import App from './App'
 import router from './router'
 // ajax client
 import axios from 'axios'
-import Buefy from 'buefy'
-import 'buefy/dist/buefy.css'
-/* import BootstrapVue from 'bootstrap-vue'
+import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css' */
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import MondaiView from '@/components/MondaiView'
 import MondaiDialog from '@/components/MondaiDialog'
 
 Vue.use(Vuex)
-Vue.use(Buefy)
-// Vue.use(BootstrapVue)
+Vue.use(BootstrapVue)
 Vue.component('mondai-view', MondaiView)
 Vue.component('mondai-dialog', MondaiDialog)
 

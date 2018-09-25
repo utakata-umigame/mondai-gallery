@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="text-center">ユーザー登録</h2>
+    <h2 class="title">ユーザー登録</h2>
     <b-alert variant="danger"
              dismissible
              :show="showError"
@@ -9,13 +9,16 @@
       {{error}}
     </b-alert>
     <div method="post" class="mb-2">
-      <label>ニックネーム</label>
-      <input v-model="credential.nickname" class="form-control mb-2" type="text" name="nickname" placeholder="Nickname" required="required">
-      <label>ユーザー名(英数、必須)</label>
-      <input v-model="credential.username" class="form-control mb-2" type="text" name="username" placeholder='User Name' required="required">
-      <label>パスワード(英数、必須)</label>
-      <input v-model="credential.password" class="form-control mb-2" type="password" name="password" placeholder='Password' required="required">
-      <b-btn v-on:click="signup()" variant="outline-primary" class="mb-2">新規登録</b-btn>
+      <b-field label="ニックネーム">
+        <b-input v-model="credential.nickname" type="text" name="nickname" placeholder='NickName'></b-input>
+      </b-field>
+      <b-field label="ユーザー名">
+        <b-input v-model="credential.username" type="text" name="username" placeholder='User Name'></b-input>
+      </b-field>
+      <b-field label="パスワード">
+        <b-input v-model="credential.username" type="password" name="password" placeholder='Password'></b-input>
+      </b-field>
+      <button v-on:click="signup()" class="button is-primary is-outlined">新規登録</button>
     </div>
   </div>
 </template>
@@ -47,7 +50,10 @@ export default {
         .catch(function (err) {
           if (err) {
             console.log(err)
-            vm.error = 'サーバーのエラーです。'
+            vm.$toast.open({
+              message: 'サーバーのエラーです。',
+              type: 'is-danger'
+            })
             vm.showError = true
           }
         })

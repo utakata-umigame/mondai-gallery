@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 class="text-center">{{mondaiList.name}}</h2>
-    <p>
+    <h2 class="title">{{mondaiList.name}}</h2>
+    <p class="subtitle">
       リスト作成者:
       <router-link :to="profileUrl()">
         {{mondaiList.editor.nickname}}
@@ -32,8 +32,8 @@
         <option :value="true">詳細</option>
       </select>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-md-4 mb-2" v-for="item in filter()" v-bind:key="item.id">
+    <div class="panel">
+      <div class="panel-block" v-for="item in filter()" v-bind:key="item.id">
         <b-card :title="item.title" :sub-title="item.author" v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
         </b-card>
