@@ -9,42 +9,45 @@
     </p>
     <p class="multiline">{{mondaiList.description}}</p>
     <router-link class="btn btn-outline-secondary mb-2" v-bind:to="editUrl()" v-if="isMine">編集</router-link>
-    <div class="form-inline mb-2">
-      <label class="mx-1">サイト</label>
-      <select v-model='siteFilter' class="form-control">
-        <option value="all">すべて</option>
-        <option value="latethink">ラテシン</option>
-        <option value="cindy">Cindy</option>
-        <option value="R">R鯖</option>
-      </select>
-      <label class="mx-1">ジャンル</label>
-      <select v-model='genreFilter' class="form-control">
-        <option value="all">すべて</option>
-        <option value="umigame">ウミガメ</option>
-        <option value="tobira">20の扉</option>
-        <option value="kameo">亀夫君問題</option>
-        <option value="other">その他</option>
-      </select>
-      <b-btn variant="outline-danger" class="mx-1" v-on:click='clearFilter()'>クリア</b-btn>
-      <label class="text-right mx-1">表示</label>
-      <select v-model='detail' class="form-control">
-        <option :value="false">リスト</option>
-        <option :value="true">詳細</option>
-      </select>
+    <div class="">
+      <b-field label="サイト">
+        <b-select placeholder="Select a name" v-model="siteFilter">
+          <option value="all">すべて</option>
+          <option value="latethink">ラテシン</option>
+          <option value="cindy">Cindy</option>
+          <option value="R">R鯖</option>
+        </b-select>
+      </b-field>
+      <b-field label="ジャンル">
+        <b-select placeholder="Select a genre" v-model="genreFilter">
+          <option value="all">すべて</option>
+          <option value="umigame">ウミガメ</option>
+          <option value="tobira">20の扉</option>
+          <option value="kameo">亀夫君問題</option>
+          <option value="other">その他</option>
+        </b-select>
+      </b-field>
+      <button class="button is-outlined is-danger" v-on:click='clearFilter()'>クリア</button>
+      <b-field label="表示">
+        <b-select v-model='detail'>
+          <option :value="false">リスト</option>
+          <option :value="true">詳細</option>
+        </b-select>
+      </b-field>
     </div>
     <div class="panel">
-      <div class="panel-block" v-for="item in filter()" v-bind:key="item.id">
+      <a class="panel-block" v-for="item in filter()" v-bind:key="item.id" target='_blank' v-bind:href='url(item.site,item.id)'>
         <b-card :title="item.title" :sub-title="item.author" v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
         </b-card>
-        <a target='_blank' v-bind:href='url(item.site,item.id)' v-bind:title='item.description' v-else>
+        <div v-bind:title='item.description' v-else>
           <span>{{item.description}}</span>
           <small class="text-secondary">{{item.author}}</small>
           <span>{{ item.title }}</span>
           <b-tag class="is-primary">{{site[item.site].name}}</b-tag>
           <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
-        </a>
-      </div>
+        </div>
+      </a>
     </div>
   </div>
 </template>
