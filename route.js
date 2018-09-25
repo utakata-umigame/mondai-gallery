@@ -18,33 +18,6 @@ router.get("/", (req, res) => {
   }
   res.json(obj);
 });
-router.get("/user", isAuthenticated, (req, res) => {
-  if (req.user)
-    res.json(req.user);
-  else res.json({});
-});
-/* マイページ */
-router.get("/mypage", (req, res) => {
-  if (!req.user) {
-    res.json({'error': 'error'});
-    return;
-  }
-  db.User.findOne({username: req.user.username}, (err, doc) => {
-    if (doc) {
-      if (doc.username) {
-        res.json({
-          "id": doc.id,
-          "username": doc.username,
-          "nickname": doc.nickname,
-          "bio": doc.bio,
-          "signup_date": doc.signup_date
-        });
-        return;
-      }
-    }
-    res.json({'error':'error'});
-  });
-});
 /* プロフィール */
 router.get("/profile/show/:id", (req, res) => {
   db.User.findOne({id: parseInt(req.params.id)}, (err, doc) => {
@@ -59,12 +32,6 @@ router.get("/profile/show/:id", (req, res) => {
     }
     res.json({'error':'error'});
   });
-});
-router.post("/profile/edit", isAuthenticated, (req, res) => {
-  let obj = req.body.bio;
-  console.log(obj);
-  db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj}}, (err, doc) => {})
-  res.json({"message": "success"})
 });
 /* 問題リスト全部 */
 router.get("/mondaiList", (req, res) => {
@@ -99,25 +66,6 @@ router.get("/mondaiList/show/:id", (req, res) => {
      
    });
 });
-/* リスト編集 */
-router.post("/mondaiList/edit/:id", isAuthenticated, (req, res) => {
-  let obj = req.body
-  db.MondaiList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, editor: req.user,"fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
-     if(err) console.log(err);
-  });
-  res.json({"message": "success"});
-});
-/* リスト追加 */
-router.post("/add", isAuthenticated, (req, res) => {
-  db.Counter.findOneAndUpdate({id:"list_id"},{$inc: {seq: 1}}, {new: true}, (err, res) => {
-    console.log(res.value);
-    let id = res.value.seq||1;
-    req.body.id = id;
-    req.body.editor = req.user;
-    db.MondaiList.insertOne(req.body, (err, result) => {});
-  })
-  res.json({"message": "Success"});
-});
 /* ログイン */
 router.post(
   '/login',
@@ -127,11 +75,6 @@ router.post(
     if (doc) res.json({'message': 'Logged in', 'user': doc});
     else res.json({'error':'error'});
   });
-});
-/* ログアウト */
-router.get('/logout', function (req, res) {
-  req.logout();
-  res.json({});
 });
 /* 登録 */
 router.post('/signup', function(req, res) {
@@ -180,5 +123,112 @@ function isAuthenticated (req, res, next) {
     res.json({"error": "Authentication failed"});
   }
 }
+/*
+var crypto = require('crypto');
+// jwt
+router.post('/authenticate', function (req, res) {
+  db.User.findOne({username: req.body.username}, (err, doc) => {
+    if(!doc) {
+      res.json({'error': 'error1'});
+      return;
+    }
+    var shasum = crypto.createHash('sha1');
+    shasum.update(req.body.password);
+    var hash = shasum.digest('hex');
+    if(doc.password !== hash) {
+      res.json({'error': 'error'});
+      return;
+    }
+    let token = jwt.sign(doc, router.get('superSecret'), {
+      expiresIn: '24h'
+    });
+    res.json({'message': 'Logged in', 'user': doc, 'token': token});
+  });
+});
+
+// Authentification Filter
+router.use(function(req, res, next) {
+  var token = req.query.token;
+
+  // validate token
+  if (!token) {
+    return res.status(403).send({
+      success: false,
+      message: 'No token provided.'
+    });
+  }
+  jwt.verify(token, router.get('superSecret'), function(err, decoded) {
+    if (err) {
+      return res.json({
+        success: false,
+        message: 'Invalid token'
+      });
+    }
+    // if token valid -> save token to request for use in other routes
+    req.user = decoded;
+    next();
+  });
+});*/
+
+router.get("/user", isAuthenticated,(req, res) => {
+  if (req.user)
+    res.json(req.user);
+  else res.status(403).send({
+    "success": "false",
+    "message": "Not authenticated"
+  });
+});
+/* マイページ */
+router.get("/mypage", isAuthenticated,(req, res) => {
+  if (!req.user) {
+    res.json({'error': 'error1'});
+    return;
+  }
+  db.User.findOne({username: req.user.username}, (err, doc) => {
+    if (doc) {
+      if (doc.username) {
+        res.json({
+          "id": doc.id,
+          "username": doc.username,
+          "nickname": doc.nickname,
+          "bio": doc.bio,
+          "signup_date": doc.signup_date
+        });
+        return;
+      }
+    }
+    res.json({'error':'error'});
+  });
+});
+router.post("/profile/edit", isAuthenticated,(req, res) => {
+  let obj = req.body.bio;
+  console.log(obj);
+  db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj}}, (err, doc) => {})
+  res.json({"message": "success"})
+});
+/* リスト編集 */
+router.post("/mondaiList/edit/:id", isAuthenticated,(req, res) => {
+  let obj = req.body
+  db.MondaiList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, editor: req.user,"fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
+     if(err) console.log(err);
+  });
+  res.json({"message": "success"});
+});
+/* リスト追加 */
+router.post("/add", isAuthenticated,(req, res) => {
+  db.Counter.findOneAndUpdate({id:"list_id"},{$inc: {seq: 1}}, {new: true}, (err, res) => {
+    console.log(res.value);
+    let id = res.value.seq||1;
+    req.body.id = id;
+    req.body.editor = req.user;
+    db.MondaiList.insertOne(req.body, (err, result) => {});
+  })
+  res.json({"message": "Success"});
+});
+/* ログアウト */
+router.get('/logout', isAuthenticated, function (req, res) {
+  req.logout();
+  res.json({});
+});
 
 module.exports = router;

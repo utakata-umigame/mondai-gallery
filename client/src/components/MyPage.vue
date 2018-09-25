@@ -56,18 +56,18 @@ export default {
     this.$http.get('/api/mypage')
       .then(function (res) {
         vm.profile = res.data
+        vm.$http.get('/api/mondaiList')
+          .then(function (res) {
+            vm.mondaiList = res.data.filter(x => x.editor.username === vm.$store.state.user.username)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
       })
       .catch(function (error) {
         console.log(error)
       })
       .then(function () {})
-    this.$http.get('/api/mondaiList')
-      .then(function (res) {
-        vm.mondaiList = res.data.filter(x => x.editor.username === vm.$store.state.user.username)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
   },
   methods: {
     url: function (id) {
