@@ -1,53 +1,85 @@
 <template>
   <div>
     <div class="mb-2">
-      <h2 class="text-center">リストを編集</h2>
-      <label>リスト名</label>
-      <input v-model="mondaiList.name" class="form-control" type="text" placeholder="リスト名">
-      <label>リストの説明</label>
-      <textarea v-model="mondaiList.description" class="form-control" type="text" placeholder="説明"></textarea>
-      <b-form-checkbox id="checkbox1"
-                       v-model="mondaiList.fromMyMondais">
-         自作問題のみのリストの場合はチェック
-      </b-form-checkbox>
+      <h2 class="title">リストを追加</h2>
+      <b-field label="リスト名">
+        <b-input v-model="mondaiList.name" type="text" placeholder="リスト名">
+        </b-input>
+      </b-field>
+      <b-field label="リストの説明">
+        <b-input v-model="mondaiList.description" placeholder="説明" type="textarea" maxlength="200">
+        </b-input>
+      </b-field>
+      <div class="field">
+          <b-checkbox v-model="mondaiList.fromMyMondais">
+            自作問題のみのリストの場合はチェック
+          </b-checkbox>
+      </div>
     </div>
-    <b-btn-group class="mb-1">
-      <b-btn v-b-modal.myModal variant="outline-primary">問題を追加</b-btn>
-      <b-btn v-b-modal.stringEditModal v-on:click="stringify()" variant="outline-primary" class="form-control">JSONモード</b-btn>
-    </b-btn-group>
-    <b-button-group class="mx-1 mb-1">
-      <b-btn v-on:click="submit()" variant="outline-success" class="form-control">保存</b-btn>
-      <b-btn v-on:click="cancel()" variant="outline-secondary" class="form-control">キャンセル</b-btn>
-    </b-button-group>
+    <div class="buttons has-addons">
+      <span class="button" @click="isAddMondaiModalActive = true">問題を追加</span>
+      <span class="button" @click="activateJSONModal">JSONモード</span>
+    </div>
+    <div class="buttons has-addons">
+      <span @click="submit()" class="button">保存</span>
+      <span @click="cancel()" class="button">キャンセル</span>
+    </div>
     <!-- 問題リスト -->
-    <div class="row">
-      <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="col-xs-12 col-md-4 mb-2">
-        <b-card :title="item.title" :sub-title="item.author">
+    <div class="panel">
+      <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block">
+        <div :title="item.title" :sub-title="item.author">
+          <p class="title is-4">{{item.title}}</p>
+          <p class="subtitle is-6">{{item.author}}</p>
           <mondai-view v-bind:item="item"></mondai-view>
-          <b-button-group class="mt-2">
-            <b-btn v-b-modal.editModal variant="outline-secondary" @click="set(item)">編集</b-btn>
-            <b-btn variant="outline-danger" v-on:click="remove(item)">削除</b-btn>
-          </b-button-group>
-        </b-card>
+          <div class="buttons has-addons">
+            <button class="button is-outlined" @click="set(item)">編集</button>
+            <button class="button is-outlined is-danger" v-on:click="remove(item)">削除</button>
+          </div>
+        </div>
       </div>
     </div>
     <!--モーダルダイアログ-->
-    <b-modal id="myModal" title="問題を追加" @ok="handleOk">
+    <b-modal id="myModal" :active.sync="isAddMondaiModalActive" has-modal-card>
+      <header class="modal-card-head">
+        <p class="modal-card-title">問題を追加</p>
+      </header>
       <mondai-dialog :mondai="newMondai"></mondai-dialog>
+      <footer class="modal-card-foot">
+        <button class="button" type="button" @click="isAddMondaiModalActive = false">キャンセル</button>
+        <button class="button is-primary" @click="handleOk">追加</button>
+      </footer>
     </b-modal>
-    <b-modal id="editModal" title="問題を編集" @ok="handleEditOk">
+    <b-modal id="editModal" :active.sync="isEditMondaiModalActive" has-modal-card>
+      <header class="modal-card-head">
+        <p class="modal-card-title">問題を編集</p>
+      </header>
       <mondai-dialog :mondai="newMondai"></mondai-dialog>
+      <footer class="modal-card-foot">
+        <button class="button" type="button" @click="isEditMondaiModalActive = false">キャンセル</button>
+        <button class="button is-primary" @click="handleEditOk">編集</button>
+      </footer>
     </b-modal>
     <!-- JSONを読み込み -->
-    <b-modal id="stringEditModal" title="JSONを読み込み" @ok="handleStringEditOk">
-      <p>コピーしたJSON文字列からリストを生成できます</p>
-      <div class="form">
-        <b-form-textarea
-          v-model="mondaiJSON"
-          class="form-control"
-          placeholder="JSON"
-          :rows="6">
-        </b-form-textarea>
+    <b-modal id="stringEditModal" :active.sync="isJSONModalActive" @ok="handleStringEditOk">
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">JSONを読み込み</p>
+        </header>
+        <section class="modal-card-body">
+          <b-field label="コピーしたJSON文字列からリストを生成できます">
+            <b-input
+              type="textarea"
+              v-model="mondaiJSON"
+              class="form-control"
+              placeholder="JSON"
+              :rows="6">
+            </b-input>
+          </b-field>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button" type="button" @click="isJSONModalActive = false">キャンセル</button>
+          <button class="button is-primary" @click="handleStringEditOk">読み込み</button>
+        </footer>
       </div>
     </b-modal>
   </div>
@@ -134,7 +166,10 @@ export default {
         .then(function (response) {
           let data = response.data
           if (data.error) {
-            alert('ログインしてください')
+            vm.$toast.open({
+              'message': 'ログインしてください',
+              'type': 'is-danger'
+            })
             vm.$router.push('/login')
           } else if (data.message) {
             vm.$router.push('/')
@@ -146,18 +181,29 @@ export default {
     },
     handleOk: function (evt) {
       this.addMondai()
+      this.newMondai = {
+        'id': 0,
+        'title': '',
+        'author': '',
+        'site': 'latethink',
+        'description': '',
+        'genre': 'umigame'
+      }
+      this.isAddMondaiModalActive = false
     },
     handleEditOk: function (evt) {
       this.addMondai()
       this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== this.tmpMondai)
       this.tmpMondai = {}
+      this.isEditMondaiModalActive = false
     },
-    stringify: function () {
+    activateJSONModal: function () {
       try {
         let res = JSON.stringify(this.mondaiList.mondai)
         this.mondaiJSON = res
       } catch (err) {
       }
+      this.isJSONModalActive = true
     },
     handleStringEditOk: function (evt) {
       try {
@@ -177,10 +223,12 @@ export default {
       } catch (err) {
         console.log(err)
       }
+      this.isJSONModalActive = false
     },
     set: function (item) {
       this.newMondai = Object.assign({}, item)
       this.tmpMondai = item
+      this.isEditMondaiModalActive = true
     }
   }
 }

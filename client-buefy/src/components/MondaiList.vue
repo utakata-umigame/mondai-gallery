@@ -3,9 +3,9 @@
     <h2 class="title">{{mondaiList.name}}</h2>
     <p class="subtitle">
       リスト作成者:
-      <router-link :to="profileUrl()">
+      <a @click="toProfile()">
         {{mondaiList.editor.nickname}}
-      </router-link>
+      </a>
     </p>
     <p class="multiline">{{mondaiList.description}}</p>
     <router-link class="btn btn-outline-secondary mb-2" v-bind:to="editUrl()" v-if="isMine">編集</router-link>
@@ -120,8 +120,9 @@ export default {
     editUrl: function () {
       return '/mondaiList/edit/' + this.mondaiList.id
     },
-    profileUrl: function () {
-      return '/profile/show/' + this.mondaiList.editor.id
+    toProfile: function () {
+      let url = '/profile/show/' + this.mondaiList.editor.id
+      this.$router.push(url)
     },
     filter: function () {
       var filtered = this.mondaiList.mondai
