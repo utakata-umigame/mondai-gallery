@@ -28,6 +28,8 @@
     <div class="panel">
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block">
         <div :title="item.title" :sub-title="item.author">
+          <p class="title is-4">{{item.title}}</p>
+          <p class="subtitle is-6">{{item.author}}</p>
           <mondai-view v-bind:item="item"></mondai-view>
           <div class="buttons has-addons">
             <button class="button is-outlined" @click="set(item)">編集</button>

@@ -37,15 +37,13 @@
         <b-card :title="item.title" :sub-title="item.author" v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
         </b-card>
-        <div id="all-list" class="mb-1" v-else>
-          <a target='_blank' v-bind:href='url(item.site,item.id)' v-bind:title='item.description' class="list-group-item list-group-item-action">
-            <span>{{item.description}}</span>
-            <small class="text-secondary">{{item.author}}</small>
-            <span>{{ item.title }}</span><br>
-            <b-tag class="is-primary">{{site[item.site].name}}</b-tag>
-            <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
-          </a>
-        </div>
+        <a target='_blank' v-bind:href='url(item.site,item.id)' v-bind:title='item.description' v-else>
+          <span>{{item.description}}</span>
+          <small class="text-secondary">{{item.author}}</small>
+          <span>{{ item.title }}</span>
+          <b-tag class="is-primary">{{site[item.site].name}}</b-tag>
+          <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
+        </a>
       </div>
     </div>
   </div>
