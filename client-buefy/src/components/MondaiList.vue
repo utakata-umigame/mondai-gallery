@@ -39,10 +39,11 @@
         </b-card>
         <div id="all-list" class="mb-1" v-else>
           <a target='_blank' v-bind:href='url(item.site,item.id)' v-bind:title='item.description' class="list-group-item list-group-item-action">
+            <span>{{item.description}}</span>
             <small class="text-secondary">{{item.author}}</small>
             <span>{{ item.title }}</span><br>
-            <span class="badge badge-primary">{{site[item.site].name}}</span>
-            <span class="badge badge-info">{{genre[item.genre]}}</span>
+            <b-tag class="is-primary">{{site[item.site].name}}</b-tag>
+            <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
           </a>
         </div>
       </div>

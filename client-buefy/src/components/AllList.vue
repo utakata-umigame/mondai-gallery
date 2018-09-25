@@ -6,7 +6,7 @@
         <a class="panel-block" @click='to(item.id)'>
           <span>{{ item.name }}</span>
           <span>リスト作成者：{{item.editor.nickname}}</span>
-          <b-tag v-if='item.fromMyMondais'>自作問題のみ</b-tag>
+          <b-tag class="is-primary" v-if='item.fromMyMondais'>自作問題のみ</b-tag>
         </a>
       </div>
     </div>

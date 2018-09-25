@@ -3,7 +3,7 @@
     <div id="heading">
       <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <a class="navbar-item">a</a>
+          <a class="navbar-item"></a>
           <div class="navbar-burger burger" @click="showNav = !showNav" data-target="navbar1">
             <span></span>
             <span></span>
