@@ -3,7 +3,7 @@
     <h2 class="title">{{mondaiList.name}}</h2>
     <p class="subtitle">
       リスト作成者:
-      <a @click="toProfile()">
+      <a @click="to(profileUrl())">
         {{mondaiList.editor.nickname}}
       </a>
     </p>
@@ -52,10 +52,6 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import axios from 'axios'
-import MondaiView from './MondaiView.vue'
-Vue.component('mondai-view', MondaiView)
 export default {
   data () {
     return {
@@ -69,6 +65,7 @@ export default {
         'description': '-',
         'editor': {
           'id': 0,
+          'username': '-',
           'nickname': '-'
         },
         'mondai': [{
@@ -93,7 +90,7 @@ export default {
   mounted: function () {
     var vm = this
     var id = this.$route.params.id
-    axios.get('/api/mondaiList/show/' + id)
+    this.$http.get('/api/mondaiList/show/' + id)
       .then(function (response) {
         vm.mondaiList = response.data
       })
@@ -101,7 +98,7 @@ export default {
         console.log(error)
       })
       .then(function () {
-        axios.get('/api/user')
+        this.$http.get('/api/user')
           .then((res) => {
             if (res) {
               if (res.data) {
@@ -120,8 +117,10 @@ export default {
     editUrl: function () {
       return '/mondaiList/edit/' + this.mondaiList.id
     },
-    toProfile: function () {
-      let url = '/profile/show/' + this.mondaiList.editor.id
+    profileUrl: function () {
+      return '/profile/show/' + this.mondaiList.editor.id
+    },
+    to: function (url) {
       this.$router.push(url)
     },
     filter: function () {

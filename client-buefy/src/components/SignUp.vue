@@ -1,13 +1,6 @@
 <template>
   <div>
     <h2 class="title">ユーザー登録</h2>
-    <b-alert variant="danger"
-             dismissible
-             :show="showError"
-             @dismissed="showError=false"
-    >
-      {{error}}
-    </b-alert>
     <div method="post" class="mb-2">
       <b-field label="ニックネーム">
         <b-input v-model="credential.nickname" type="text" name="nickname" placeholder='NickName'></b-input>
@@ -30,9 +23,7 @@ export default {
         nickname: '',
         username: '',
         password: ''
-      },
-      showError: false,
-      error: ''
+      }
     }
   },
   methods: {
@@ -43,8 +34,6 @@ export default {
           if (!res.data.error) {
             vm.$router.push('/login')
           } else {
-            vm.showError = true
-            vm.error = res.data.error
           }
         })
         .catch(function (err) {
