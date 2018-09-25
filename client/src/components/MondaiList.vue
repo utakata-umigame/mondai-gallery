@@ -8,7 +8,7 @@
       </a>
     </p>
     <p class="multiline">{{mondaiList.description}}</p>
-    <router-link class="btn btn-outline-secondary mb-2" v-bind:to="editUrl()" v-if="isMine">編集</router-link>
+    <button class="button is-outlined is-secondary" @click="$router.push(editUrl())" v-if="isMine">編集</button>
     <div class="">
       <b-field label="サイト">
         <b-select placeholder="Select a name" v-model="siteFilter">
