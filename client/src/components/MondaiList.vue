@@ -49,7 +49,7 @@
         <div v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
         </div>
-        <div v-bind:title='item.description' v-else>
+        <div v-else>
           <small class="text-secondary">{{item.author}}</small>
           <span>{{ item.title }}</span>
           <b-tag class="is-primary">{{site[item.site].name}}</b-tag>
