@@ -40,26 +40,18 @@
     </div>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" :active.sync="isAddMondaiModalActive" has-modal-card>
-      <header class="modal-card-head">
-        <p class="modal-card-title">問題を追加</p>
-      </header>
-      <section>
+      <div class="modal-card-body">
         <mondai-dialog :mondai="newMondai"></mondai-dialog>
-      </section>
-      <footer class="modal-card-foot">
         <button class="button" type="button" @click="isAddMondaiModalActive = false">キャンセル</button>
         <button class="button is-primary" @click="handleOk">追加</button>
-      </footer>
+      </div>
     </b-modal>
     <b-modal id="editModal" :active.sync="isEditMondaiModalActive" has-modal-card>
-      <header class="modal-card-head">
-        <p class="modal-card-title">問題を編集</p>
-      </header>
-      <mondai-dialog :mondai="newMondai"></mondai-dialog>
-      <footer class="modal-card-foot">
+      <div class="modal-card-body">
+        <mondai-dialog :mondai="newMondai"></mondai-dialog>
         <button class="button" type="button" @click="isEditMondaiModalActive = false">キャンセル</button>
         <button class="button is-primary" @click="handleEditOk">編集</button>
-      </footer>
+      </div>
     </b-modal>
     <!-- JSONを読み込み -->
     <b-modal id="stringEditModal" :active.sync="isJSONModalActive" @ok="handleStringEditOk">
