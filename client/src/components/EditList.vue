@@ -40,21 +40,25 @@
     </div>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" :active.sync="isAddMondaiModalActive" has-modal-card>
-      <div class="modal-card-body">
-        <mondai-dialog :mondai="newMondai"></mondai-dialog>
-        <button class="button" type="button" @click="isAddMondaiModalActive = false">キャンセル</button>
-        <button class="button is-primary" @click="handleOk">追加</button>
+      <div class="modal-card">
+        <div class="modal-card-body">
+          <mondai-dialog :mondai="newMondai"></mondai-dialog>
+          <button class="button" type="button" @click="isAddMondaiModalActive = false">キャンセル</button>
+          <button class="button is-primary" @click="handleOk">追加</button>
+        </div>
       </div>
     </b-modal>
     <b-modal id="editModal" :active.sync="isEditMondaiModalActive" has-modal-card>
-      <div class="modal-card-body">
-        <mondai-dialog :mondai="newMondai"></mondai-dialog>
-        <button class="button" type="button" @click="isEditMondaiModalActive = false">キャンセル</button>
-        <button class="button is-primary" @click="handleEditOk">編集</button>
+      <div class="modal-card">
+        <div class="modal-card-body">
+          <mondai-dialog :mondai="newMondai"></mondai-dialog>
+          <button class="button" type="button" @click="isEditMondaiModalActive = false">キャンセル</button>
+          <button class="button is-primary" @click="handleEditOk">編集</button>
+        </div>
       </div>
     </b-modal>
     <!-- JSONを読み込み -->
-    <b-modal id="stringEditModal" :active.sync="isJSONModalActive" @ok="handleStringEditOk">
+    <b-modal id="stringEditModal" :active.sync="isJSONModalActive">
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">JSONを読み込み</p>
