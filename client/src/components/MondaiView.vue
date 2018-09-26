@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p class="title">{{item.title}}</p>
-    <p class="subtitle">{{item.author}}</p>
+    <p class="title is-4">{{item.title}}</p>
+    <p class="subtitle is-6">{{item.author}}</p>
     <p class="multiline">{{item.description}}</p>
     <a target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</a>
     <br>
