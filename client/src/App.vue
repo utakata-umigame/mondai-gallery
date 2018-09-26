@@ -12,9 +12,9 @@
         </div>
         <div id="navbar1" class="navbar-menu" :class="{'is-active': showNav}">
           <div class="navbar-start">
-            <a class="navbar-item"  @click="$router.push('/')">ホーム</a>
-            <a class="navbar-item" @click="$router.push('/add')">リストを追加</a>
-            <a class="navbar-item"  @click="$router.push('/contact')">お問い合わせ</a>
+            <router-link class="navbar-item"  to="/">ホーム</router-link>
+            <router-link class="navbar-item" to="/add">リストを追加</router-link>
+            <router-link class="navbar-item"  to="/contact">お問い合わせ</router-link>
           </div>
           <div class="navbar-end">
             <div class="navbar-item has-dropdown is-hoverable">
@@ -22,10 +22,10 @@
               ようこそ、{{user.nickname}}さん
               </a>
               <div class="navbar-dropdown">
-                <a class="navbar-item" @click="$router.push('/mypage')" v-if="user.username">マイページ</a>
+                <router-link class="navbar-item" to="/mypage" v-if="user.username">マイページ</router-link>
                 <a class="navbar-item" @click="logout()" v-if="user.username">ログアウト</a>
-                <a class="navbar-item" @click="$router.push('/login')" v-else>ログイン</a>
-                <a class="navbar-item" @click="$router.push('/signup')">新規登録</a>
+                <router-link class="navbar-item" to="/login" v-else>ログイン</router-link>
+                <router-link class="navbar-item" to="/signup">新規登録</router-link>
               </div>
             </div>
           </div>

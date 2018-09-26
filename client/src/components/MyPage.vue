@@ -1,14 +1,15 @@
 <template>
   <div>
     <h2 class="title">マイページ</h2>
-    <b-card class="mb-2" v-bind:title="profile.nickname"
-      v-bind:sub-title=profile.username>
+    <div id="profile" class="card">
+      <p class="title is-3">{{profile.nickname}}</p>
+      <p class="subtitle is-5">{{profile.username}}</p>
       <div class="card-text">
         <p class="multiline">{{ profile.bio }}</p>
         <p>登録日時：{{profile.signup_date}}</p>
       </div>
       <a class="" @click="isEditProfileModalActive=true">編集</a>
-    </b-card>
+    </div>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" :active.sync="isEditProfileModalActive" title="プロフィールを編集">
       <header class="modal-card-head">
@@ -74,7 +75,6 @@ export default {
       .catch(function (error) {
         console.log(error)
       })
-      .then(function () {})
   },
   methods: {
     url: function (id) {
@@ -87,3 +87,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+#profile {
+  padding: 5px;
+  margin-bottom: 2em;
+}
+</style>
