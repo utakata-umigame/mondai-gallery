@@ -18,7 +18,7 @@
       <section class="modal-card-body">
         <b-input
           type="textarea"
-          v-model="profile.bio"
+          v-model.trim="profile.bio"
           placeholder="自己紹介"
           :rows="6">
         </b-input>
