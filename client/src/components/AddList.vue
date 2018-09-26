@@ -16,20 +16,20 @@
           </b-checkbox>
       </div>
     </div>
-    <div class="buttons has-addons">
-      <span class="button" @click="isAddMondaiModalActive = true">問題を追加</span>
-      <span class="button" @click="activateJSONModal">JSONモード</span>
-    </div>
-    <div class="buttons has-addons">
-      <span @click="submit()" class="button">保存</span>
-      <span @click="cancel()" class="button">キャンセル</span>
+    <div class="level">
+      <div class="buttons has-addons">
+        <span class="button" @click="isAddMondaiModalActive = true">問題を追加</span>
+        <span class="button" @click="activateJSONModal">JSONモード</span>
+      </div>
+      <div class="buttons has-addons">
+        <span @click="submit()" class="button">保存</span>
+        <span @click="cancel()" class="button">キャンセル</span>
+      </div>
     </div>
     <!-- 問題リスト -->
     <div class="panel">
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block">
         <div :title="item.title" :sub-title="item.author">
-          <p class="title is-4">{{item.title}}</p>
-          <p class="subtitle is-6">{{item.author}}</p>
           <mondai-view v-bind:item="item"></mondai-view>
           <div class="buttons has-addons">
             <button class="button is-outlined" @click="set(item)">編集</button>
@@ -40,24 +40,22 @@
     </div>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" :active.sync="isAddMondaiModalActive" has-modal-card>
-      <header class="modal-card-head">
-        <p class="modal-card-title">問題を追加</p>
-      </header>
-      <mondai-dialog :mondai="newMondai"></mondai-dialog>
-      <footer class="modal-card-foot">
-        <button class="button" type="button" @click="isAddMondaiModalActive = false">キャンセル</button>
-        <button class="button is-primary" @click="handleOk">追加</button>
-      </footer>
+      <div class="modal-card">
+        <div class="modal-card-body">
+          <mondai-dialog :mondai="newMondai"></mondai-dialog>
+          <button class="button" type="button" @click="isAddMondaiModalActive = false">キャンセル</button>
+          <button class="button is-primary" @click="handleOk">追加</button>
+        </div>
+      </div>
     </b-modal>
     <b-modal id="editModal" :active.sync="isEditMondaiModalActive" has-modal-card>
-      <header class="modal-card-head">
-        <p class="modal-card-title">問題を編集</p>
-      </header>
-      <mondai-dialog :mondai="newMondai"></mondai-dialog>
-      <footer class="modal-card-foot">
-        <button class="button" type="button" @click="isEditMondaiModalActive = false">キャンセル</button>
-        <button class="button is-primary" @click="handleEditOk">編集</button>
-      </footer>
+      <div class="modal-card">
+        <div class="modal-card-body">
+          <mondai-dialog :mondai="newMondai"></mondai-dialog>
+          <button class="button" type="button" @click="isEditMondaiModalActive = false">キャンセル</button>
+          <button class="button is-primary" @click="handleEditOk">編集</button>
+        </div>
+      </div>
     </b-modal>
     <!-- JSONを読み込み -->
     <b-modal id="stringEditModal" :active.sync="isJSONModalActive" @ok="handleStringEditOk">

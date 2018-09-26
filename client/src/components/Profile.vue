@@ -7,8 +7,8 @@
         <p>登録日時：{{profile.signup_date}}</p>
       </div>
     </div>
-    <h3>作成したリスト</h3>
     <div class="panel">
+      <p class="panel-heading">作成したリスト</p>
       <a class="panel-block" v-for="item in mondaiList" v-bind:key="item._id" @click="$router.push(url(item.id))">
         <span>{{ item.name }}</span>
         <small class="is-secondary">リスト作成者：{{item.editor.nickname}}</small>

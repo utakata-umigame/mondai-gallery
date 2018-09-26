@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mb-2">
-      <h2 class="title">リストを追加</h2>
+      <h2 class="title">リストを編集</h2>
       <b-field label="リスト名">
         <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
         </b-input>
@@ -16,20 +16,20 @@
           </b-checkbox>
       </div>
     </div>
-    <div class="buttons has-addons">
-      <span class="button" @click="isAddMondaiModalActive = true">問題を追加</span>
-      <span class="button" @click="activateJSONModal">JSONモード</span>
-    </div>
-    <div class="buttons has-addons">
-      <span @click="submit()" class="button">保存</span>
-      <span @click="cancel()" class="button">キャンセル</span>
+    <div class="level">
+      <div class="buttons has-addons">
+        <span class="button" @click="isAddMondaiModalActive = true">問題を追加</span>
+        <span class="button" @click="activateJSONModal">JSONモード</span>
+      </div>
+      <div class="buttons has-addons">
+        <span @click="submit()" class="button">保存</span>
+        <span @click="cancel()" class="button">キャンセル</span>
+      </div>
     </div>
     <!-- 問題リスト -->
     <div class="panel">
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block">
         <div :title="item.title" :sub-title="item.author">
-          <p class="title is-4">{{item.title}}</p>
-          <p class="subtitle is-6">{{item.author}}</p>
           <mondai-view v-bind:item="item"></mondai-view>
           <div class="buttons has-addons">
             <button class="button is-outlined" @click="set(item)">編集</button>
@@ -43,7 +43,9 @@
       <header class="modal-card-head">
         <p class="modal-card-title">問題を追加</p>
       </header>
-      <mondai-dialog :mondai="newMondai"></mondai-dialog>
+      <section>
+        <mondai-dialog :mondai="newMondai"></mondai-dialog>
+      </section>
       <footer class="modal-card-foot">
         <button class="button" type="button" @click="isAddMondaiModalActive = false">キャンセル</button>
         <button class="button is-primary" @click="handleOk">追加</button>

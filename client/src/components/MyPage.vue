@@ -27,8 +27,8 @@
         <button class="button is-primary" @click="handleOk">編集</button>
       </footer>
     </b-modal>
-    <h3>作成したリスト</h3>
     <div class="panel">
+      <p class="panel-heading">作成したリスト</p>
       <a class="panel-block" @click="$router.push(url(item.id))" v-for="item in mondaiList" v-bind:key="item._id">
         <span>{{ item.name }}</span>
         <small class="text-secondary">リスト作成者：{{item.editor.nickname}}</small>
@@ -82,6 +82,7 @@ export default {
     },
     handleOk: function (evt) {
       this.$http.post('/api/profile/edit', {bio: this.profile.bio})
+      this.isEditProfileModalActive = false
     }
   }
 }

@@ -2,6 +2,7 @@
   <div>
     <h2 class="title">リスト一覧</h2>
     <div class="panel">
+      <div class="panel-heading">すべてのリスト</div>
       <div v-for='item in mondaiList' v-bind:key='item._id'>
         <a class="panel-block" @click='to(item.id)'>
           <span>{{ item.name }}</span>
