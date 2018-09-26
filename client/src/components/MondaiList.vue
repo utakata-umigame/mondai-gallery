@@ -1,45 +1,54 @@
 <template>
   <div>
-    <h2 class="title">{{mondaiList.name}}</h2>
-    <p class="subtitle">
-      リスト作成者:
-      <a @click="to(profileUrl())">
-        {{mondaiList.editor.nickname}}
-      </a>
-    </p>
-    <p class="multiline">{{mondaiList.description}}</p>
-    <button class="button is-outlined is-secondary" @click="$router.push(editUrl())" v-if="isMine">編集</button>
-    <div class="">
-      <b-field label="サイト">
-        <b-select placeholder="Select a name" v-model="siteFilter">
-          <option value="all">すべて</option>
-          <option value="latethink">ラテシン</option>
-          <option value="cindy">Cindy</option>
-          <option value="R">R鯖</option>
-        </b-select>
-      </b-field>
-      <b-field label="ジャンル">
-        <b-select placeholder="Select a genre" v-model="genreFilter">
-          <option value="all">すべて</option>
-          <option value="umigame">ウミガメ</option>
-          <option value="tobira">20の扉</option>
-          <option value="kameo">亀夫君問題</option>
-          <option value="other">その他</option>
-        </b-select>
-      </b-field>
-      <button class="button is-outlined is-danger" v-on:click='clearFilter()'>クリア</button>
-      <b-field label="表示">
-        <b-select v-model='detail'>
-          <option :value="false">リスト</option>
-          <option :value="true">詳細</option>
-        </b-select>
-      </b-field>
+    <h2 class="title">問題リスト</h2>
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <span>サイト</span>
+          <b-select placeholder="Select a name" v-model="siteFilter">
+            <option value="all">すべて</option>
+            <option value="latethink">ラテシン</option>
+            <option value="cindy">Cindy</option>
+            <option value="R">R鯖</option>
+          </b-select>
+        </div>
+        <div class="level-item">
+          <span>ジャンル</span>
+          <b-select placeholder="Select a genre" v-model="genreFilter">
+            <option value="all">すべて</option>
+            <option value="umigame">ウミガメ</option>
+            <option value="tobira">20の扉</option>
+            <option value="kameo">亀夫君問題</option>
+            <option value="other">その他</option>
+          </b-select>
+        </div>
+        <div class="level-item">
+          <a class="button is-outlined is-danger" v-on:click='clearFilter()'>クリア</a>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <span>表示</span>
+          <b-select v-model='detail'>
+            <option :value="false">リスト</option>
+            <option :value="true">詳細</option>
+          </b-select>
+        </div>
+        <div class="level-item">
+          <button class="button is-outlined is-secondary" @click="$router.push(editUrl())" v-if="isMine">編集</button>
+        </div>
+      </div>
     </div>
     <div class="panel">
+      <div class="panel-heading">
+        <span class="title">{{mondaiList.name}}</span>
+        <span class="subtitle">リスト作成者:<a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></span>
+        <p class="multiline">{{mondaiList.description}}</p>
+      </div>
       <a class="panel-block" v-for="item in filter()" v-bind:key="item.id" target='_blank' v-bind:href='url(item.site,item.id)'>
-        <b-card :title="item.title" :sub-title="item.author" v-if="detail">
+        <div v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
-        </b-card>
+        </div>
         <div v-bind:title='item.description' v-else>
           <span>{{item.description}}</span>
           <small class="text-secondary">{{item.author}}</small>

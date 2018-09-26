@@ -1,15 +1,15 @@
 <template>
   <div>
     <h2 class="title">ユーザー登録</h2>
-    <div method="post" class="mb-2">
+    <div>
       <b-field label="ニックネーム">
-        <b-input v-model="credential.nickname" type="text" name="nickname" placeholder='NickName'></b-input>
+        <b-input v-model="credential.nickname" maxlength="10" type="text" placeholder='NickName'></b-input>
       </b-field>
       <b-field label="ユーザー名">
-        <b-input v-model="credential.username" type="text" name="username" placeholder='User Name'></b-input>
+        <b-input v-model="credential.username" maxlength="10" type="text" placeholder='User Name'></b-input>
       </b-field>
       <b-field label="パスワード">
-        <b-input v-model="credential.username" type="password" name="password" placeholder='Password'></b-input>
+        <b-input v-model="credential.password" type="password" maxlength="20" placeholder='Password' password-reveal></b-input>
       </b-field>
       <button v-on:click="signup()" class="button is-primary is-outlined">新規登録</button>
     </div>

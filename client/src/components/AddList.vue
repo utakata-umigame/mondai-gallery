@@ -3,7 +3,7 @@
     <div class="mb-2">
       <h2 class="title">リストを追加</h2>
       <b-field label="リスト名">
-        <b-input v-model="mondaiList.name" type="text" placeholder="リスト名">
+        <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
         </b-input>
       </b-field>
       <b-field label="リストの説明">

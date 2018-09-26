@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div>
-      <p class="multiline">{{item.description}}</p>
-      <a target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</a>
-      <br>
-      <b-tag class="is-primary">{{site[item.site].name}}</b-tag>
-      <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
-      <br>
-    </div>
+    <p class="title">{{item.title}}</p>
+    <p class="subtitle">{{item.author}}</p>
+    <p class="multiline">{{item.description}}</p>
+    <a target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</a>
+    <br>
+    <b-tag class="is-primary">{{site[item.site].name}}</b-tag>
+    <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
+    <br>
   </div>
 </template>
 <script>
