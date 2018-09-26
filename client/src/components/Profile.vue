@@ -1,7 +1,8 @@
 <template>
   <div>
     <h2 class="title">プロフィール</h2>
-    <div class="mb-2" v-bind:title="profile.nickname">
+    <div id="profile" class="card">
+      <p class="title is-4">{{profile.nickname}}</p>
       <div class="card-text">
         <p class="multiline">{{ profile.bio }}</p>
         <p>登録日時：{{profile.signup_date}}</p>
@@ -66,3 +67,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+#profile {
+  margin-bottom: 2em;
+  padding: 5px;
+}
+</style>
