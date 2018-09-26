@@ -58,7 +58,7 @@
       </div>
     </b-modal>
     <!-- JSONを読み込み -->
-    <b-modal id="stringEditModal" :active.sync="isJSONModalActive" @ok="handleStringEditOk">
+    <b-modal id="stringEditModal" :active.sync="isJSONModalActive">
       <div class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">JSONを読み込み</p>

@@ -105,7 +105,10 @@ export default {
         'description': '',
         'mondai': []
       },
-      mondaiJSON: ''
+      mondaiJSON: '',
+      isAddMondaiModalActive: false,
+      isEditMondaiModalActive: false,
+      isJSONModalActive: false
     }
   },
   computed: {
