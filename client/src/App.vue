@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container is-fluid">
     <div id="heading">
-      <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+      <nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item"></a>
           <div class="navbar-burger burger" @click="showNav = !showNav" data-target="navbar1">
