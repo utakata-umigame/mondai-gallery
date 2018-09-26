@@ -106,9 +106,6 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-#heading {
-  text-align: center;
-}
 .multiline {
   white-space: pre-wrap;
 }
