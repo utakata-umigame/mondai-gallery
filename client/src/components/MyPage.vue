@@ -2,8 +2,8 @@
   <div>
     <h2 class="title">マイページ</h2>
     <div id="profile" class="card">
-      <p class="title is-3">{{profile.nickname}}</p>
-      <p class="subtitle is-5">{{profile.username}}</p>
+      <p class="title is-4">{{profile.nickname}}</p>
+      <p class="subtitle is-6">{{profile.username}}</p>
       <div class="card-text">
         <p class="multiline">{{ profile.bio }}</p>
         <p>登録日時：{{profile.signup_date}}</p>
