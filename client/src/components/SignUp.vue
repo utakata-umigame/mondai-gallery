@@ -34,6 +34,10 @@ export default {
           if (!res.data.error) {
             vm.$router.push('/login')
           } else {
+            vm.$toast.open({
+              message: res.data.error,
+              type: 'is-danger'
+            })
           }
         })
         .catch(function (err) {
@@ -43,7 +47,6 @@ export default {
               message: 'サーバーのエラーです。',
               type: 'is-danger'
             })
-            vm.showError = true
           }
         })
     }
