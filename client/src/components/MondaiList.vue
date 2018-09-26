@@ -49,11 +49,15 @@
         <div v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
         </div>
-        <div v-else>
-          <small class="text-secondary">{{item.author}}</small>
-          <span>{{ item.title }}</span>
-          <b-tag class="is-primary">{{site[item.site].name}}</b-tag>
-          <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
+        <div class="level" v-else>
+          <div class="level-left">
+            <small class="text-secondary level-item">{{item.author}}</small>
+            <span class="level-item">{{ item.title }}</span>
+          </div>
+          <div class="level-right">
+            <b-tag class="is-primary level-item">{{site[item.site].name}}</b-tag>
+            <b-tag class="is-info level-item">{{genre[item.genre]}}</b-tag>
+          </div>
         </div>
       </a>
     </div>
@@ -147,3 +151,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.level {
+  width: 100%;
+}
+</style>

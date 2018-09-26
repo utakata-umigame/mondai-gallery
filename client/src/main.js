@@ -12,12 +12,14 @@ import 'buefy/dist/buefy.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css' */
 import MondaiView from '@/components/MondaiView'
+import ListLinkView from '@/components/ListLinkView'
 import MondaiDialog from '@/components/MondaiDialog'
 
 Vue.use(Vuex)
 Vue.use(Buefy)
 // Vue.use(BootstrapVue)
 Vue.component('mondai-view', MondaiView)
+Vue.component('list-link', ListLinkView)
 Vue.component('mondai-dialog', MondaiDialog)
 
 Vue.prototype.$http = axios
