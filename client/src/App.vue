@@ -81,7 +81,6 @@ export default {
         .catch((err) => {
           console.log(err)
           vm.$store.commit('setUser', {'nickname': 'Guest'})
-          vm.$router.push('/login')
         })
     },
     logout: function () {

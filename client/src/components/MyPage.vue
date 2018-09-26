@@ -7,7 +7,7 @@
         <p class="multiline">{{ profile.bio }}</p>
         <p>登録日時：{{profile.signup_date}}</p>
       </div>
-      <button class="button is-link" @click="isEditProfileModalActive=true">編集</button>
+      <a class="" @click="isEditProfileModalActive=true">編集</a>
     </b-card>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" :active.sync="isEditProfileModalActive" title="プロフィールを編集">
