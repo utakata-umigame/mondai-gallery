@@ -51,8 +51,10 @@
         </div>
         <div class="level" v-else>
           <div class="level-left">
-            <small class="text-secondary level-item">{{item.author}}</small>
-            <span class="level-item">{{ item.title }}</span>
+            <div class="level-item">
+            <small>{{item.author}}</small>
+            <span>{{ item.title }}</span>
+            </div>
           </div>
           <div class="level-right">
             <b-tag class="is-primary level-item">{{site[item.site].name}}</b-tag>
