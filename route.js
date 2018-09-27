@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-var crypto = require('crypto');
+const crypto = require('crypto');
 var moment = require('moment');
 const db = require('./mongo');
 const passport = require('./passport');
@@ -83,9 +83,11 @@ router.post('/signup', function(req, res) {
     res.json({'error': 'Credentials are missing'});
     return;
   }
-  let shasum = crypto.createHash('sha1');
-  shasum.update(req.body['password']);
-  let hash = shasum.digest('hex');
+  //ハッシュ値を計算して照合
+  let shasum = crypto.pbkdf2Sync(req.body['password'], process.env.SALT||'yoursalthere', 10000, 64, 'sha512');
+  /* let shasum = crypto.createHash('sha1');
+  shasum.update(req.body['password']); */
+  let hash = shasum.toString('hex'); 
   let data = {
     nickname: req.body['nickname'],
     username: req.body['username'],

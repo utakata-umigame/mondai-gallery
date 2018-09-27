@@ -10,9 +10,8 @@ passport.use(
       }
       if (doc) {
         //ハッシュ値を計算して照合
-        var shasum = crypto.createHash('sha1');
-        shasum.update(password);
-        var hash = shasum.digest('hex');
+        var shasum = crypto.pbkdf2Sync(password, process.env.SALT||'yoursalthere', 10000, 64, 'sha512');
+        var hash = shasum.toString('hex');
         if (doc.password === hash) {
           return done(null, {id: doc.id, username: username, nickname: doc.nickname});
         } else {
