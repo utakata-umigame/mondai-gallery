@@ -4,7 +4,7 @@
       <div class="level-left">
         <div class="level-item">
           <strong>{{ item.name }}&emsp;</strong>
-          <small class="is-6">リスト作成者：&emsp;{{item.editor.nickname}}</small>
+          <small class="is-6">リスト作成者：&nbsp;{{item.editor.nickname}}</small>
         </div>
       </div>
       <div class="level-right">
