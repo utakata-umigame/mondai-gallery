@@ -210,9 +210,14 @@ router.post("/profile/edit", isAuthenticated,(req, res) => {
 router.post("/mondaiList/edit/:id", isAuthenticated,(req, res) => {
   let obj = req.body
   db.MondaiList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, editor: req.user,"fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
-     if(err) console.log(err);
+     if(err) res.status(403).send({
+      'success': 'false',
+      'message': 'Cannot edit'
+     });
+     else {
+      res.json({"message": "success"});
+     }
   });
-  res.json({"message": "success"});
 });
 /* リスト追加 */
 router.post("/add", isAuthenticated,(req, res) => {
