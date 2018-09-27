@@ -2,10 +2,10 @@
   <router-link class="panel-block" :to="url(item.id)">
     <div class="level">
       <div class="level-left">
-        <span class="level-item">
-          {{ item.name }}
-          <small>リスト作成者：{{item.editor.nickname}}</small>
-        </span>
+        <div class="level-item">
+          <strong>{{ item.name }}&emsp;</strong>
+          <small class="is-6">リスト作成者：&emsp;{{item.editor.nickname}}</small>
+        </div>
       </div>
       <div class="level-right">
         <b-tag class='is-primary level-item' v-if='item.fromMyMondais'>自作問題のみ</b-tag>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mb-2">
+    <div>
       <h2 class="title">リストを追加</h2>
       <b-field label="リスト名">
         <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
@@ -17,23 +17,27 @@
       </div>
     </div>
     <div class="level">
-      <div class="buttons has-addons">
-        <span class="button" @click="isAddMondaiModalActive = true">問題を追加</span>
-        <span class="button" @click="activateJSONModal">JSONモード</span>
+      <div class="level-left">
+        <div class="buttons has-addons level-item">
+          <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
+          <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
+        </div>
       </div>
-      <div class="buttons has-addons">
-        <span @click="submit()" class="button">保存</span>
-        <span @click="cancel()" class="button">キャンセル</span>
+      <div class="level-right">
+        <div class="buttons has-addons level-item">
+          <span @click="submit()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存</span>
+          <span @click="cancel()" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
+        </div>
       </div>
     </div>
     <!-- 問題リスト -->
     <div class="panel">
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block">
         <div :title="item.title" :sub-title="item.author">
-          <mondai-view v-bind:item="item"></mondai-view>
+          <mondai-view class="block" v-bind:item="item"></mondai-view>
           <div class="buttons has-addons">
-            <button class="button is-outlined" @click="set(item)">編集</button>
-            <button class="button is-outlined is-danger" v-on:click="remove(item)">削除</button>
+            <button class="button is-outlined is-primary" @click="set(item)"><b-icon icon="pencil"></b-icon><span>編集</span></button>
+            <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle"></b-icon><span>削除</span></button>
           </div>
         </div>
       </div>

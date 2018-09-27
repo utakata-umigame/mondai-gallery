@@ -8,7 +8,7 @@
       <b-field label="パスワード">
         <b-input v-model="credential.password" class="form-control mb-2" type="password" name="password" placeholder='Password'></b-input>
       </b-field>
-      <button v-on:click="login()" class="button is-primary is-outlined mb-2">ログイン</button>
+      <button v-on:click="login()" class="button is-primary is-outlined mb-2"><b-icon icon="login"></b-icon><span>ログイン</span></button>
     </div>
   </div>
 </template>

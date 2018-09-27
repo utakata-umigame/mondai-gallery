@@ -11,7 +11,7 @@
       <b-field label="パスワード">
         <b-input v-model="credential.password" type="password" maxlength="20" placeholder='Password' password-reveal></b-input>
       </b-field>
-      <button v-on:click="signup()" class="button is-primary is-outlined">新規登録</button>
+      <button v-on:click="signup()" class="button is-primary is-outlined"><b-icon icon="account-plus"></b-icon><span>新規登録</span></button>
     </div>
   </div>
 </template>

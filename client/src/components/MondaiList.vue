@@ -41,8 +41,8 @@
     </div>
     <div class="panel">
       <div class="panel-heading">
-        <span class="title is-4">{{mondaiList.name}}</span>
-        <span class="subtitle is-6">リスト作成者:<a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></span>
+        <span class="title is-4">{{mondaiList.name}}&emsp;</span>
+        <span class="subtitle is-6">リスト作成者:&emsp;<a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></span>
         <p class="multiline">{{mondaiList.description}}</p>
       </div>
       <a class="panel-block" v-for="item in filter()" v-bind:key="item.id" target='_blank' v-bind:href='url(item.site,item.id)'>
@@ -52,7 +52,7 @@
         <div class="level" v-else>
           <div class="level-left">
             <div class="level-item">
-            <small>{{item.author}}</small>
+            <small>{{item.author}}&emsp;</small>
             <span>{{ item.title }}</span>
             </div>
           </div>
