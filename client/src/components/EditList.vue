@@ -172,13 +172,20 @@ export default {
           let data = response.data
           if (data.error) {
             vm.$toast.open({
-              'message': 'ログインしてください',
+              'message': '編集権限がありません。',
               'type': 'is-danger'
             })
-            vm.$router.push('/login')
           } else if (data.message) {
             vm.$router.push('/')
           } else {}
+        })
+        .catch(function (error) {
+          if (!error) return
+          vm.$toast.open({
+            'message': 'ログインしてください。',
+            'type': 'is-danger'
+          })
+          vm.$router.push('/login')
         })
     },
     cancel: function () {

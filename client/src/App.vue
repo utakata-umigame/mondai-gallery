@@ -85,11 +85,6 @@ export default {
             vm.$store.commit('setUser', res.data)
           } else {
             vm.$store.commit('setUser', {'nickname': 'Guest'})
-            vm.$toast.open({
-              'message': 'ログインしてください',
-              'type': 'is-danger'
-            })
-            vm.$router.push('/login')
           }
         })
         .catch((err) => {
@@ -102,6 +97,7 @@ export default {
       this.$http.get('/api/logout')
         .then((res) => {
           vm.getUser()
+          vm.$router.push('/login')
         })
     }
   }
