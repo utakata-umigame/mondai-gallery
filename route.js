@@ -43,7 +43,8 @@ router.get("/mondaiList", (req, res) => {
             name: x.name,
             fromMyMondais: x.fromMyMondais,
             editor: x.editor,
-            description: x.description
+            description: x.description,
+            updateDate: x.updateDate
           };
         }));
       }
@@ -211,7 +212,10 @@ router.post("/profile/edit", isAuthenticated,(req, res) => {
 /* リスト編集 */
 router.post("/mondaiList/edit/:id", isAuthenticated,(req, res) => {
   let obj = req.body
-  db.MondaiList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, editor: req.user,"fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai}}, (err, doc) => {
+  let updateDate = moment()
+    .utcOffset('+09:00')
+    .format('YYYY/MM/DD HH:mm')
+  db.MondaiList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, editor: req.user,"fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai, "updateDate": updateDate}}, (err, doc) => {
      if(err) res.status(403).send({
       'success': 'false',
       'message': 'Cannot edit'
@@ -228,6 +232,9 @@ router.post("/add", isAuthenticated,(req, res) => {
     let id = res.value.seq||1;
     req.body.id = id;
     req.body.editor = req.user;
+    req.body.updateDate = moment()
+      .utcOffset('+09:00')
+      .format('YYYY/MM/DD HH:mm')
     db.MondaiList.insertOne(req.body, (err, result) => {});
   })
   res.json({"message": "Success"});
