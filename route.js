@@ -204,7 +204,7 @@ router.get("/mypage", isAuthenticated,(req, res) => {
           "cindy": doc.cindy,
           "R": doc.R,
           "twitter": doc.twitter,
-          "githug": doc.github,
+          "github": doc.github,
           "signup_date": doc.signup_date
         });
         return;
