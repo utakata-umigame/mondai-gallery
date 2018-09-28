@@ -9,6 +9,13 @@
         <p>登録日時：{{profile.signup_date}}</p>
       </div>
       <a class="" @click="isEditProfileModalActive=true">編集</a>
+      <footer class="card-footer">
+        <a class="card-footer-item" target="_blank" v-bind:href="profileUrl('http://sui-hei.net/mondai/profile/', profile.latethink)" v-if="profile.latethink">ラテシン<b-icon icon="open-in-new"></b-icon></a>
+        <a class="card-footer-item" target="_blank" v-bind:href="profileUrl('https://www.cindythink.com/profile/show/', profile.cindy)" v-if="profile.cindy">Cindy<b-icon icon="open-in-new"></b-icon></a>
+        <a class="card-footer-item" target="_blank" v-bind:href="profileUrl('http://openumigame.sakura.ne.jp/openumi/Mmail/userpage/', profile.R)" v-if="profile.R">R鯖<b-icon icon="open-in-new"></b-icon></a>
+        <a class="card-footer-item" target="_blank" v-bind:href="profileUrl('https://twitter.com/', profile.twitter)" v-if="profile.twitter"><b-icon icon="twitter"></b-icon>Twitter<b-icon icon="open-in-new"></b-icon></a>
+        <a class="card-footer-item" target="_blank" v-bind:href="profileUrl('https://github.com/', profile.github)" v-if="profile.github"><b-icon icon="github-circle"></b-icon>GitHub<b-icon icon="open-in-new"></b-icon></a>
+      </footer>
     </div>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" :active.sync="isEditProfileModalActive" title="プロフィールを編集">
@@ -22,6 +29,47 @@
           placeholder="自己紹介"
           :rows="6">
         </b-input>
+        <label>アカウントID(任意記入)</label>
+        <b-field
+          label="ラテシンのID">
+          <b-input
+            type="number"
+            v-model = "profile.latethink"
+            placeholder=".../mondai/profile/[ID]">
+          </b-input>
+        </b-field>
+        <b-field
+          label="CindyのID">
+          <b-input
+            type="number"
+            v-model = "profile.cindy"
+            placeholder=".../profile/show/[ID]">
+          </b-input>
+        </b-field>
+        <b-field
+          label="R鯖のID">
+          <b-input
+            type="number"
+            v-model = "profile.R"
+            placeholder=".../Mmail/userpage/[ID]">
+          </b-input>
+        </b-field>
+        <b-field
+          label="TwitterのID">
+          <b-input
+            type="text"
+            v-model = "profile.twitter"
+            placeholder=".../twitter.com/[ID]">
+          </b-input>          
+        </b-field>
+        <b-field 
+          label="GitHubのID">
+          <b-input
+            type="text"
+            v-model = "profile.github"
+            placeholder=".../github.com/[ID]">
+          </b-input>
+        </b-field>
       </section>
       <footer class="modal-card-foot">
         <button class="button" type="button" @click="isEditProfileModalActive = false">キャンセル</button>
@@ -42,7 +90,12 @@ export default {
         nickname: '-',
         username: '-',
         signup_date: '-',
-        bio: '-'
+        bio: '-',
+        latethink: '',
+        cindy: '',
+        R: '',
+        twitter: '',
+        github: ''
       },
       mondaiList: [{
         'id': 0,
@@ -76,8 +129,11 @@ export default {
     url: function (id) {
       return '/mondaiList/show/' + id
     },
+    profileUrl: function (site, id) {
+      return site + id
+    },
     handleOk: function (evt) {
-      this.$http.post('/api/profile/edit', {bio: this.profile.bio})
+      this.$http.post('/api/profile/edit', this.profile)
       this.isEditProfileModalActive = false
     }
   }

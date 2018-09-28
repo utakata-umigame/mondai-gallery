@@ -26,6 +26,11 @@ router.get("/profile/show/:id", (req, res) => {
         "id": doc.id,
         "nickname": doc.nickname,
         "bio": doc.bio,
+        "latethink": doc.latethink,
+        "cindy": doc.cindy,
+        "R": doc.R,
+        "twitter": doc.twitter,
+        "githug": doc.github,
         "signup_date": doc.signup_date
       });
       return;
@@ -195,6 +200,11 @@ router.get("/mypage", isAuthenticated,(req, res) => {
           "username": doc.username,
           "nickname": doc.nickname,
           "bio": doc.bio,
+          "latethink": doc.latethink,
+          "cindy": doc.cindy,
+          "R": doc.R,
+          "twitter": doc.twitter,
+          "githug": doc.github,
           "signup_date": doc.signup_date
         });
         return;
@@ -204,9 +214,9 @@ router.get("/mypage", isAuthenticated,(req, res) => {
   });
 });
 router.post("/profile/edit", isAuthenticated,(req, res) => {
-  let obj = req.body.bio;
+  let obj = req.body;
   console.log(obj);
-  db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj}}, (err, doc) => {})
+  db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj.bio, "latethink": obj.latethink, "cindy": obj.cindy, "R": obj.R, "twitter": obj.twitter, "github": obj.github}}, (err, doc) => {})
   res.json({"message": "success"})
 });
 /* リスト編集 */
