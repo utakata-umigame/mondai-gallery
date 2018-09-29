@@ -6,10 +6,10 @@
         <b-input v-model="credential.nickname" maxlength="10" type="text" placeholder='NickName'></b-input>
       </b-field>
       <b-field label="ユーザー名">
-        <b-input v-model="credential.username" maxlength="10" type="text" placeholder='User Name'></b-input>
+        <b-input v-model="credential.username" maxlength="10" type="text" name="username" placeholder='User Name'></b-input>
       </b-field>
       <b-field label="パスワード">
-        <b-input v-model="credential.password" type="password" maxlength="20" placeholder='Password' password-reveal></b-input>
+        <b-input v-model="credential.password" type="password" maxlength="20" name="password" placeholder='Password' password-reveal></b-input>
       </b-field>
       <button v-on:click="signup()" class="button is-primary is-outlined"><b-icon icon="account-plus"></b-icon><span>新規登録</span></button>
     </div>
