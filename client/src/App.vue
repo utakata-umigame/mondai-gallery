@@ -88,14 +88,15 @@ export default {
           }
         })
         .catch((err) => {
-          console.log(err)
-          vm.$store.commit('setUser', {'nickname': 'Guest'})
+          if (err) {
+            vm.$store.commit('setUser', {'nickname': 'Guest'})
+          }
         })
     },
     logout: function () {
       let vm = this
       this.$http.get('/api/logout')
-        .then((res) => {
+        .then(() => {
           vm.getUser()
           vm.$router.push('/login')
         })
@@ -117,6 +118,7 @@ h2.title {
 }
 .container {
   min-height: 80vh;
+  padding-bottom: 10px;
 }
 .multiline {
   white-space: pre-wrap;
