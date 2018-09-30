@@ -10,6 +10,7 @@ import 'buefy/dist/buefy.css'
 import MondaiView from '@/components/MondaiView'
 import ListLinkView from '@/components/ListLinkView'
 import MondaiDialog from '@/components/MondaiDialog'
+import MondaiEditor from '@/components/MondaiEditor'
 import AccountLink from '@/components/AccountLink'
 
 Vue.use(Buefy)
@@ -18,6 +19,7 @@ Vue.prototype.$http = axios
 Vue.component('mondai-view', MondaiView)
 Vue.component('list-link', ListLinkView)
 Vue.component('mondai-dialog', MondaiDialog)
+Vue.component('mondai-editor', MondaiEditor)
 Vue.component('account-link', AccountLink)
 
 Vue.config.productionTip = false

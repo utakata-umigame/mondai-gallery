@@ -22,6 +22,11 @@
           <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
           <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
         </div>
+        <div class="level-item">
+          <b-switch v-model="isSwitched" trueValue="一括編集モード"　falseValue="個別編集モード">
+              {{ isSwitched }}
+          </b-switch>
+        </div>
       </div>
       <div class="level-right">
         <div class="buttons has-addons level-item">
@@ -32,8 +37,9 @@
     </div>
     <!-- 問題リスト -->
     <div class="panel">
-      <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block">
-        <div :title="item.title" :sub-title="item.author">
+      <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block" >
+        <mondai-editor :mondai="item" v-if="isSwitched　=== '一括編集モード'"></mondai-editor>
+        <div :title="item.title" :sub-title="item.author" v-else>
           <mondai-view class="block" v-bind:item="item"></mondai-view>
           <div class="buttons has-addons">
             <button class="button is-outlined is-primary" @click="set(item)"><b-icon icon="pencil"></b-icon><span>編集</span></button>
@@ -113,7 +119,8 @@ export default {
       mondaiJSON: '[]',
       isAddMondaiModalActive: false,
       isEditMondaiModalActive: false,
-      isJSONModalActive: false
+      isJSONModalActive: false,
+      isSwitched: '個別編集モード'
     }
   },
   computed: {
