@@ -157,4 +157,7 @@ export default {
 .level {
   width: 100%;
 }
+.tag {
+  min-width: 100px;
+}
 </style>

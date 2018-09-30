@@ -4,7 +4,7 @@
       <div id="heading">
         <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
-            <router-link class="is-light navbar-item" to="/">問題集</router-link>
+            <router-link class="is-light navbar-item" to="/"><span>問題集</span><b-tag class="is-danger">BETA</b-tag></router-link>
             <div class="navbar-burger burger" @click="showNav = !showNav" data-target="navbar1">
               <span></span>
               <span></span>
@@ -52,7 +52,7 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
-          <strong>[未定]</strong> by <router-link to="/contact">人参</router-link>. The source code is licensed
+          <strong>問題集(ベータ版)</strong> by <router-link to="/contact">人参</router-link>. The source code is licensed
           <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
         </p>
       </div>
@@ -111,6 +111,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 70px;
+}
+h2.title { 
+  text-align: center;
 }
 .container {
   min-height: 80vh;

@@ -38,3 +38,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.tag {
+  min-width: 100px;
+}
+</style>
