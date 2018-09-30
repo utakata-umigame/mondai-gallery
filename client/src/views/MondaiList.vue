@@ -52,7 +52,7 @@
         <div class="level" v-else>
           <div class="level-left">
             <div class="level-item">
-            <small>{{item.author}}&emsp;</small>
+            <small>{{item.author}}</small>
             <span>{{ item.title }}</span>
             </div>
           </div>
@@ -159,5 +159,8 @@ export default {
 }
 .tag {
   min-width: 100px;
+}
+small {
+  margin-right: 5px;
 }
 </style>

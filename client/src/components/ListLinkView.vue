@@ -3,8 +3,8 @@
     <div class="level">
       <div class="level-left">
         <div class="level-item">
-          <strong>{{ item.name }}&emsp;</strong>
-          <small class="is-6">リスト作成者：&nbsp;{{item.editor.nickname}}</small>
+          <strong>{{ item.name }}</strong>
+          <small class="is-6">リスト作成者：&ensp;{{item.editor.nickname}}</small>
         </div>
       </div>
       <div class="level-right">
@@ -36,5 +36,8 @@ export default {
 <style scoped>
 .level {
   width: 100%;
+}
+strong {
+  margin-right: 5px;
 }
 </style>
