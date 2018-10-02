@@ -29,7 +29,7 @@ export default {
   },
   mounted: function () {
     var vm = this
-    this.$http.get('/api/mondaiList')
+    this.$http.get(this.$endPoint('/api/mondaiList'))
       .then(function (response) {
         vm.mondaiList = response.data
       })

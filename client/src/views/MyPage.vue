@@ -104,10 +104,10 @@ export default {
   },
   mounted: function () {
     var vm = this
-    this.$http.get('/api/mypage')
+    this.$http.get(this.$endPoint('/api/mypage'))
       .then(function (res) {
         vm.profile = res.data
-        vm.$http.get('/api/mondaiList')
+        vm.$http.get(vm.$endPoint('/api/mondaiList'))
           .then(function (res) {
             vm.mondaiList = res.data.filter(x => x.editor.username === vm.$store.state.user.username)
           })
@@ -124,7 +124,7 @@ export default {
       return '/mondaiList/show/' + id
     },
     handleOk: function (evt) {
-      this.$http.post('/api/profile/edit', this.profile)
+      this.$http.post(this.$endPoint('/api/profile/edit'), this.profile)
       this.isEditProfileModalActive = false
     }
   }

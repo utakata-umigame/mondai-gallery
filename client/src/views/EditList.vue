@@ -133,7 +133,7 @@ export default {
   mounted: function () {
     let id = this.$route.params.id
     let vm = this
-    this.$http.get('/api/mondaiList/show/' + id)
+    this.$http.get(this.$endPoint('/api/mondaiList/show/' + id))
       .then(function (response) {
         vm.mondaiList = response.data
       })
@@ -174,7 +174,7 @@ export default {
     },
     submit: function () {
       let vm = this
-      this.$http.post('/api/mondaiList/edit/' + this.mondaiList.id, this.mondaiList)
+      this.$http.post(this.$endPoint('/api/mondaiList/edit/' + this.mondaiList.id), this.mondaiList)
         .then(function (response) {
           let data = response.data
           if (data.error) {

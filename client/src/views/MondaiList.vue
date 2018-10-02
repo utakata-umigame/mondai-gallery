@@ -104,7 +104,7 @@ export default {
   mounted: function () {
     var vm = this
     var id = this.$route.params.id
-    this.$http.get('/api/mondaiList/show/' + id)
+    this.$http.get(this.$endPoint('/api/mondaiList/show/' + id))
       .then(function (response) {
         vm.mondaiList = response.data
       })
@@ -112,7 +112,7 @@ export default {
         console.log(error)
       })
       .then(function () {
-        vm.$http.get('/api/user')
+        vm.$http.get(vm.$endPoint('/api/user'))
           .then((res) => {
             if (res) {
               if (res.data) {

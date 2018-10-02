@@ -23,7 +23,7 @@
           <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
         </div>
         <div class="level-item">
-          <b-switch v-model="isSwitched" trueValue="一括編集モード"　falseValue="個別編集モード">
+          <b-switch v-model="isSwitched" trueValue="一括編集モード" falseValue="個別編集モード">
               {{ isSwitched }}
           </b-switch>
         </div>
@@ -168,7 +168,7 @@ export default {
     submit: function () {
       let vm = this
       let obj = Object.assign({}, this.mondaiList)
-      this.$http.post('/api/add', obj)
+      this.$http.post(this.$endPoint('/api/add'), obj)
         .then(function (response) {
           let data = response.data
           if (data.error) {

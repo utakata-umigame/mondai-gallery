@@ -79,8 +79,9 @@ export default {
   methods: {
     getUser: function () {
       let vm = this
-      this.$http.get('/api/user')
+      this.$http.get(this.$endPoint('/api/user'))
         .then((res) => {
+          console.log(res.data)
           if (res.data.username) {
             vm.$store.commit('setUser', res.data)
           } else {
@@ -95,7 +96,7 @@ export default {
     },
     logout: function () {
       let vm = this
-      this.$http.get('/api/logout')
+      this.$http.get(this.$endPoint('/api/logout'))
         .then(() => {
           vm.getUser()
           vm.$router.push('/login')

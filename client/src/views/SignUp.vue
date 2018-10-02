@@ -29,7 +29,7 @@ export default {
   methods: {
     signup: function () {
       let vm = this
-      this.$http.post('/api/signup', vm.credential)
+      this.$http.post(this.$endPoint('/api/signup'), vm.credential)
         .then(function (res) {
           if (!res.data.error) {
             vm.$router.push('/login')

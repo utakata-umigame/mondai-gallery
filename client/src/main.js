@@ -15,6 +15,11 @@ import AccountLink from '@/components/AccountLink'
 
 Vue.use(Buefy)
 Vue.prototype.$http = axios
+Vue.prototype.$endPoint = function (uri) {
+  // 開発用APIエンドポイント
+  if (process.env.NODE_ENV === 'development') return 'http://localhost:3000' + uri
+  else return uri
+}
 
 Vue.component('mondai-view', MondaiView)
 Vue.component('list-link', ListLinkView)

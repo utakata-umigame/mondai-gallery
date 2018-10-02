@@ -43,11 +43,11 @@ export default {
   mounted: function () {
     let vm = this
     let id = this.$route.params.id
-    this.$http.get('/api/profile/show/' + id)
+    this.$http.get(this.$endPoint('/api/profile/show/' + id))
       .then(function (res) {
         if (res) {
           vm.profile = res.data
-          vm.$http.get('/api/mondaiList')
+          vm.$http.get(vm.$endPoint('/api/mondaiList'))
             .then(function (res) {
               if (res) {
                 vm.mondaiList = res.data.filter(x => x.editor.id === vm.profile.id)
