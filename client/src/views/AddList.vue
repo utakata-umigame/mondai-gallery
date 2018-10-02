@@ -30,7 +30,7 @@
       </div>
       <div class="level-right">
         <div class="buttons has-addons level-item">
-          <span @click="submit()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存</span>
+          <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存</span>
           <span @click="cancel()" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
         </div>
       </div>
@@ -164,6 +164,12 @@ export default {
       let obj = Object.assign({}, this.newMondai)
       this.mondaiList.mondai.push(obj)
       console.log(this.mondaiList.mondai)
+    },
+    confirm: function () {
+      this.$dialog.confirm({
+        message: 'リストを追加します。続行しますか?',
+        onConfirm: this.submit
+      })
     },
     submit: function () {
       let vm = this
