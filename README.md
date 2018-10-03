@@ -17,6 +17,8 @@ npm install
 ```bash
 npm install -g node-dev
 ```
+## MongoDBの起動
+ポートは27017
 ## 開発用サーバ(バックエンド)
 ```bash
 npm run dev
