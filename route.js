@@ -1,9 +1,6 @@
 'use strict';
 
 const express = require('express');
-const crypto = require('crypto');
-const moment = require('moment');
-const db = require('./mongo');
 const passport = require('./passport');
 const apis = require('./api');
 const router = express();

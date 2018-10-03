@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2 class="title">問題リスト</h2>
+    <h2 class="title">{{mondaiList.name}}</h2>
+    <p class="subtitle is-6">リスト作成者:&nbsp;<a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></p>
+    <p class="multiline">{{mondaiList.description}}</p>
     <div class="level">
       <div class="level-left">
         <div class="level-item">
@@ -40,11 +42,6 @@
       </div>
     </div>
     <div class="panel">
-      <div class="panel-heading">
-        <span class="title is-4">{{mondaiList.name}}&emsp;</span>
-        <span class="subtitle is-6">リスト作成者:&nbsp;<a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></span>
-        <p class="multiline">{{mondaiList.description}}</p>
-      </div>
       <a class="panel-block" v-for="item in filter()" v-bind:key="item.id" target='_blank' v-bind:href='url(item.site,item.id)'>
         <div v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>

@@ -31,7 +31,7 @@
       <div class="level-right">
         <div class="buttons has-addons level-item">
           <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存</span>
-          <span @click="cancel()" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
+          <span @click="confirmCancel()" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
         </div>
       </div>
     </div>
@@ -200,6 +200,12 @@ export default {
           })
           vm.$router.push('/login')
         })
+    },
+    confirmCancel: function () {
+      this.$dialog.confirm({
+        message: '編集は失われます。続行しますか?',
+        onConfirm: this.cancel
+      })
     },
     cancel: function () {
       this.$router.go(-1)

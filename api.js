@@ -145,7 +145,7 @@ module.exports = {
   editProfile: (req, res) => {
     let obj = req.body;
     console.log(obj);
-    db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj.bio, "latethink": obj.latethink, "cindy": obj.cindy, "R": obj.R, "twitter": obj.twitter, "github": obj.github}}, (err, doc) => {})
+    db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj.bio, "latethink": obj.latethink, "cindy": obj.cindy, "R": obj.R, "twitter": obj.twitter, "github": obj.github}}, (err, doc) => {});
     res.json({"message": "success"})
   },
   editList: (req, res) => {
