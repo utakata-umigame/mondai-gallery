@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="title">{{mondaiList.name}}</h2>
-    <p class="subtitle is-6">リスト作成者:&nbsp;<a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></p>
+    <p>リスト作成者:&nbsp;<a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></p>
     <p class="multiline">{{mondaiList.description}}</p>
     <div class="level">
       <div class="level-left">
