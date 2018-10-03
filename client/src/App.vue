@@ -121,6 +121,9 @@ h2.title {
   min-height: 80vh;
   padding-bottom: 10px;
 }
+.fill {
+  width: 100%;
+}
 .multiline {
   white-space: pre-wrap;
 }
