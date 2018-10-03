@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="panel">
-      <a class="panel-block" v-for="item in mondaiList.mondai" v-bind:key="item._id" target='_blank' v-bind:href='url(item.site,item.id)'>
+      <a class="panel-block" v-for="item in filter(mondaiList.mondai)" v-bind:key="item._id" target='_blank' v-bind:href='url(item.site,item.id)'>
         <div v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
         </div>
