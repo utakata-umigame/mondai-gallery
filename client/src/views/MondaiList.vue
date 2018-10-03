@@ -42,7 +42,7 @@
       </div>
     </div>
     <div class="panel">
-      <a class="panel-block" v-for="item in filter()" v-bind:key="item.id" target='_blank' v-bind:href='url(item.site,item.id)'>
+      <a class="panel-block" v-for="item in mondaiList.mondai" v-bind:key="item._id" target='_blank' v-bind:href='url(item.site,item.id)'>
         <div v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
         </div>
@@ -104,6 +104,7 @@ export default {
     this.$http.get(this.$endPoint('/api/mondaiList/show/' + id))
       .then(function (response) {
         vm.mondaiList = response.data
+        vm.mondaiList.mondai = vm.sort(vm.filter(vm.mondaiList.mondai))
       })
       .catch(function (error) {
         console.log(error)
@@ -134,14 +135,20 @@ export default {
     to: function (url) {
       this.$router.push(url)
     },
-    filter: function () {
-      var filtered = this.mondaiList.mondai
+    filter: function (mondai) {
+      let filtered = mondai
       // ジャンル
       if (this.genreFilter !== 'all') filtered = filtered.filter(x => x.genre === this.genreFilter)
       // サイト
       if (this.siteFilter !== 'all') filtered = filtered.filter(x => x.site === this.siteFilter)
-
+      
       return filtered
+    },
+    sort: function (mondai) {
+      let sorted = mondai.sort((x,y)=> {
+        return x._id - y._id
+      })
+      return sorted
     },
     clearFilter: function () {
       this.genreFilter = 'all'

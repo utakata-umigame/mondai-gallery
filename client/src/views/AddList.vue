@@ -43,6 +43,8 @@
           <mondai-view class="block" v-bind:item="item"></mondai-view>
           <div class="buttons has-addons">
             <button class="button is-outlined is-primary" @click="set(item)"><b-icon icon="pencil"></b-icon><span>編集</span></button>
+            <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up-bold"></b-icon><span>上に移動</span></button>
+            <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down-bold"></b-icon><span>下に移動</span></button>
             <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle"></b-icon><span>削除</span></button>
           </div>
         </div>
@@ -145,6 +147,29 @@ export default {
     remove: function (item) {
       this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== item)
     },
+    sort: function () {
+      this.mondaiList.mondai =  this.mondaiList.mondai.sort((x, y) => x._id - y._id)
+    },
+    moveUp: function (item) {
+      for (let i = 0; i < this.mondaiList.mondai.length -1; i++){
+        if (this.mondaiList.mondai[i+1] === item) {
+          let tmp = this.mondaiList.mondai[i]._id
+          this.mondaiList.mondai[i]._id = item._id
+          item._id = tmp
+        }
+      }
+      this.sort()
+    },
+    moveDown: function (item) {
+      for (let i = 1; i <= this.mondaiList.mondai.length; i++){
+        if (this.mondaiList.mondai[i-1] === item) {
+          let tmp = this.mondaiList.mondai[i]._id
+          this.mondaiList.mondai[i]._id = item._id
+          item._id = tmp
+        }
+      }
+      this.sort()
+    },
     addMondai: function () {
       let id = 0
       let end = false
@@ -163,6 +188,7 @@ export default {
       this.newMondai._id = id
       let obj = Object.assign({}, this.newMondai)
       this.mondaiList.mondai.push(obj)
+      this.sort()
       console.log(this.mondaiList.mondai)
     },
     confirm: function () {
@@ -217,9 +243,9 @@ export default {
       this.isAddMondaiModalActive = false
     },
     handleEditOk: function (evt) {
-      this.addMondai()
       this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== this.tmpMondai)
-      this.tmpMondai = {}
+      this.mondaiList.mondai.push(this.newMondai)
+      this.sort()
       this.isEditMondaiModalActive = false
     },
     activateJSONModal: function () {
