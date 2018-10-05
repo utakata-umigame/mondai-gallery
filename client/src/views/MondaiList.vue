@@ -53,6 +53,13 @@
         </div>
       </a>
     </div>
+    <!-- 次に見る -->
+    <div class="panel">
+      <div class="panel-heading">
+        次に見る
+      </div>
+      <list-link :item="item" v-for="item in otherList" v-bind:key="item.id"></list-link>
+    </div>
   </div>
 </template>
 <script>
@@ -64,6 +71,7 @@ export default {
       siteFilter: 'all',
       detail: false,
       isMine: false,
+      otherList: [],
       mondaiList: {
         'name': '-',
         'description': '-',
@@ -105,34 +113,13 @@ export default {
       return list
     }
   },
+  watch: {
+    '$route' (to, from) {
+      this.fetchList()
+    }
+  },
   mounted: function () {
-    var vm = this
-    var id = this.$route.params.id
-    this.$http.get(this.$endPoint('/api/mondaiList/show/' + id))
-      .then(function (response) {
-        vm.mondaiList = response.data
-        vm.mondaiList.mondai = vm.sort(vm.filter(vm.mondaiList.mondai))
-      })
-      .catch(function (err) {
-        if (err) {
-          this.$toast.open({
-            'message': 'エラー',
-            'type': 'is-danger'
-          })
-        }
-      })
-      .then(function () {
-        vm.$http.get(vm.$endPoint('/api/user'))
-          .then((res) => {
-            if (res) {
-              if (res.data) {
-                if (res.data.username === vm.mondaiList.editor.username) {
-                  vm.isMine = true
-                }
-              }
-            }
-          })
-      })
+    this.fetchList()
   },
   methods: {
     url: function (siteName, id) {
@@ -165,6 +152,39 @@ export default {
     clearFilter: function () {
       this.genreFilter = 'all'
       this.siteFilter = 'all'
+    },
+    fetchList: function () {
+      var vm = this
+      var id = this.$route.params.id
+      this.$http.get(this.$endPoint('/api/mondaiList/show/' + id))
+        .then(function (response) {
+          vm.mondaiList = response.data
+          vm.mondaiList.mondai = vm.sort(vm.filter(vm.mondaiList.mondai))
+          vm.$http.get(vm.$endPoint('/api/mondaiList'))
+            .then(function (res) {
+              vm.otherList = res.data.filter(x => x.editor.id === vm.mondaiList.editor.id && x.id !== vm.mondaiList.id)
+            })
+        })
+        .catch(function (err) {
+          if (err) {
+            this.$toast.open({
+              'message': 'エラー',
+              'type': 'is-danger'
+            })
+          }
+        })
+        .then(function () {
+          vm.$http.get(vm.$endPoint('/api/user'))
+            .then((res) => {
+              if (res) {
+                if (res.data) {
+                  if (res.data.username === vm.mondaiList.editor.username) {
+                    vm.isMine = true
+                  }
+                }
+              }
+            })
+        })
     }
   }
 }
