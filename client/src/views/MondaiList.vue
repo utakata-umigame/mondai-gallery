@@ -56,7 +56,7 @@
     <!-- 次に見る -->
     <div class="panel">
       <div class="panel-heading">
-        次に見る
+        <b-icon icon="arrow-right-drop-circle-outline"></b-icon><span>次に見る</span>
       </div>
       <list-link :item="item" v-for="item in otherList" v-bind:key="item.id"></list-link>
     </div>
