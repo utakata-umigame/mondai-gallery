@@ -2,15 +2,10 @@
   <div class="fill">
     <div class="columns">
       <b-select class="column" placeholder="Select a name" v-model="mondai.site">
-          <option value="latethink">ラテシン</option>
-          <option value="cindy">Cindy</option>
-          <option value="R">R鯖</option>
+        <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
       </b-select>
       <b-select class="column" placeholder="Select a genre" v-model="mondai.genre">
-        <option value="umigame">ウミガメ</option>
-        <option value="tobira">20の扉</option>
-        <option value="kameo">亀夫君問題</option>
-        <option value="other">その他</option>
+        <option v-for="item in genre" :value="item.key" :key="item.key">{{item.value}}</option>
       </b-select>
       <b-input class="column" v-model ="mondai.id" type="number" placeholder="ID">
       </b-input>
@@ -36,6 +31,22 @@ export default {
       'description': String,
       'genre': String
     }
+  },
+  computed: {
+    site: function () {
+      let list = []
+      for(let key in this.$store.state.site) {
+        list.push({key: key, value: this.$store.state.site[key]})
+      }
+      return list
+    },
+    genre: function () {
+      let list = []
+      for(let key in this.$store.state.genre) {
+        list.push({key: key, value: this.$store.state.genre[key]})
+      }
+      return list
+    }
   }
 }
 </script>
@@ -43,7 +54,7 @@ export default {
 .fill {
   width: 100%;
 }
-.columns { 
+.columns {
   width: 100%;
 }
 .level-item {

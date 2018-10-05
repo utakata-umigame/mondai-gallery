@@ -3,8 +3,9 @@
     <div class="level">
       <div class="level-left">
         <div class="level-item">
+          <b-icon icon="format-list-bulleted"></b-icon>
           <strong>{{ item.name }}</strong>
-          <small class="is-6">リスト作成者：&ensp;{{item.editor.nickname}}</small>
+          <small>リスト作成者：&ensp;{{item.editor.nickname}}</small>
         </div>
       </div>
       <div class="level-right">
@@ -38,6 +39,6 @@ export default {
   width: 100%;
 }
 strong {
-  margin-right: 5px;
+  margin:auto 5px;
 }
 </style>

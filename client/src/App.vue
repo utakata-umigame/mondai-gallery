@@ -32,20 +32,6 @@
             </div>
           </div>
         </nav>
-        <!--
-        <b-nav variant="success" class="mb-2">
-          <b-nav-item to="/">ホーム</b-nav-item>
-          <b-nav-item to="/add">リストを追加</b-nav-item>
-          <b-nav-item to="/contact">お問い合わせ</b-nav-item>
-          <b-nav-item-dropdown v-bind:text="user.nickname" right>
-            <b-dropdown-item to="/mypage" v-if="user.username">マイページ</b-dropdown-item>
-            <b-dropdown-item v-on:click="logout()" v-if="user.username">ログアウト</b-dropdown-item>
-            <b-dropdown-item to="/login" v-else>ログイン</b-dropdown-item>
-            <b-dropdown-divider></b-dropdown-divider>
-            <b-dropdown-item to="/signup">新規登録</b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-nav>
-        -->
       </div>
       <router-view/>
     </div>
@@ -81,7 +67,6 @@ export default {
       let vm = this
       this.$http.get(this.$endPoint('/api/user'))
         .then((res) => {
-          console.log(res.data)
           if (res.data.username) {
             vm.$store.commit('setUser', res.data)
           } else {
@@ -114,7 +99,7 @@ export default {
   color: #2c3e50;
   margin-top: 70px;
 }
-h2.title { 
+h2.title {
   text-align: center;
 }
 .container {

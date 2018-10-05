@@ -94,6 +94,13 @@ export default {
     site: function () {
       return this.$store.state.site
     },
+    siteList: function () {
+      let list = []
+      for (let key in this.$store.state.site) {
+        list.push({key: key, value: this.$store.state.site[key]})
+      }
+      return list
+    },
     genre: function () {
       return this.$store.state.genre
     }
@@ -141,7 +148,7 @@ export default {
       if (this.genreFilter !== 'all') filtered = filtered.filter(x => x.genre === this.genreFilter)
       // サイト
       if (this.siteFilter !== 'all') filtered = filtered.filter(x => x.site === this.siteFilter)
-      
+
       return filtered
     },
     sort: function (mondai) {

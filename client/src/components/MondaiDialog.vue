@@ -48,6 +48,22 @@ export default {
       'description': String,
       'genre': String
     }
+  },
+  computed: {
+    site: function () {
+      let list = []
+      for(let key in this.$store.state.site) {
+        list.push({key: key, value: this.$store.state.site[key]})
+      }
+      return list
+    },
+    genre: function () {
+      let list = []
+      for(let key in this.$store.state.genre) {
+        list.push({key: key, value: this.$store.state.genre[key]})
+      }
+      return list
+    }
   }
 }
 </script>

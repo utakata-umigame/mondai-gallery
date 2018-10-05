@@ -38,7 +38,7 @@
     <!-- 問題リスト -->
     <div class="panel">
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block" >
-        <mondai-editor :mondai="item" v-if="isSwitched　=== '一括編集モード'"></mondai-editor>
+        <mondai-editor :mondai="item" v-if="isSwitched === '一括編集モード'"></mondai-editor>
         <div :title="item.title" :sub-title="item.author" v-else>
           <mondai-view class="block" v-bind:item="item"></mondai-view>
           <div class="buttons has-addons">
@@ -189,7 +189,6 @@ export default {
       let obj = Object.assign({}, this.newMondai)
       this.mondaiList.mondai.push(obj)
       this.sort()
-      console.log(this.mondaiList.mondai)
     },
     confirm: function () {
       this.$dialog.confirm({
@@ -211,7 +210,7 @@ export default {
             vm.$router.push('/login')
           } else if (data.message) {
             vm.$router.push('/')
-          } else {}
+          }
         })
         .catch(function (err) {
           if (!err) return
@@ -230,6 +229,7 @@ export default {
     cancel: function () {
       this.$router.go(-1)
     },
+    // eslint-disable-next-line
     handleOk: function (evt) {
       this.addMondai()
       this.newMondai = {
@@ -242,6 +242,7 @@ export default {
       }
       this.isAddMondaiModalActive = false
     },
+    // eslint-disable-next-line
     handleEditOk: function (evt) {
       this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== this.tmpMondai)
       this.mondaiList.mondai.push(this.newMondai)
@@ -253,9 +254,14 @@ export default {
         let res = JSON.stringify(this.mondaiList.mondai)
         this.mondaiJSON = res
       } catch (err) {
+        this.$toast.open({
+          'message': 'エラー',
+          'type': 'is-danger'
+        })
       }
       this.isJSONModalActive = true
     },
+    // eslint-disable-next-line
     handleStringEditOk: function (evt) {
       try {
         let obj = JSON.parse(this.mondaiJSON)
@@ -272,7 +278,10 @@ export default {
             }
           })
       } catch (err) {
-        console.log(err)
+        this.$toast.open({
+          'message': 'エラー',
+          'type': 'is-danger'
+        })
       }
       this.isJSONModalActive = false
     },
