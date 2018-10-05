@@ -22,8 +22,10 @@ npm install -g node-dev
 ## 開発用サーバ(バックエンド)
 ```bash
 npm run dev
+# localhost:3000にアクセス
 ```
 ## Vue CLI UI(フロントエンド)
 ```bash
+cd client
 vue ui
 ```
