@@ -38,7 +38,14 @@
     <!-- 問題リスト -->
     <div class="panel">
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block" >
-        <mondai-editor :mondai="item" v-if="isSwitched === '一括編集モード'"></mondai-editor>
+        <div class="fill" v-if="isSwitched === '一括編集モード'">
+          <mondai-editor :mondai="item"></mondai-editor>
+          <div class="buttons has-addons">
+            <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up-bold"></b-icon><span>上に移動</span></button>
+            <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down-bold"></b-icon><span>下に移動</span></button>
+            <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle"></b-icon><span>削除</span></button>
+          </div>
+        </div>
         <div :title="item.title" :sub-title="item.author" v-else>
           <mondai-view class="block" v-bind:item="item"></mondai-view>
           <div class="buttons has-addons">

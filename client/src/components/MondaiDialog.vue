@@ -4,18 +4,13 @@
       <div class="level-item">
         <label>サイト</label>
         <b-select placeholder="Select a name" v-model="mondai.site">
-            <option value="latethink">ラテシン</option>
-            <option value="cindy">Cindy</option>
-            <option value="R">R鯖</option>
+          <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
         </b-select>
       </div>
       <div class="level-item">
         <label>ジャンル</label>
         <b-select placeholder="Select a genre" v-model="mondai.genre">
-          <option value="umigame">ウミガメ</option>
-          <option value="tobira">20の扉</option>
-          <option value="kameo">亀夫君問題</option>
-          <option value="other">その他</option>
+          <option v-for="item in genre" :value="item.key" :key="item.key">{{item.value}}</option>
         </b-select>
       </div>
     </div>

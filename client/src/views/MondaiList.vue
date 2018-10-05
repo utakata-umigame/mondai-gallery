@@ -8,20 +8,13 @@
         <div class="level-item">
           <span>サイト</span>
           <b-select placeholder="Select a name" v-model="siteFilter">
-            <option value="all">すべて</option>
-            <option value="latethink">ラテシン</option>
-            <option value="cindy">Cindy</option>
-            <option value="R">R鯖</option>
+            <option v-for="item in siteList" :value="item.key" :key="item.key">{{item.value.name}}</option>
           </b-select>
         </div>
         <div class="level-item">
           <span>ジャンル</span>
           <b-select placeholder="Select a genre" v-model="genreFilter">
-            <option value="all">すべて</option>
-            <option value="umigame">ウミガメ</option>
-            <option value="tobira">20の扉</option>
-            <option value="kameo">亀夫君問題</option>
-            <option value="other">その他</option>
+            <option v-for="item in genreList" :value="item.key" :key="item.key">{{item.value}}</option>
           </b-select>
         </div>
         <div class="level-item">
@@ -95,7 +88,7 @@ export default {
       return this.$store.state.site
     },
     siteList: function () {
-      let list = []
+      let list = [{key: 'all', value: {'name': 'すべて'}}]
       for (let key in this.$store.state.site) {
         list.push({key: key, value: this.$store.state.site[key]})
       }
@@ -103,6 +96,13 @@ export default {
     },
     genre: function () {
       return this.$store.state.genre
+    },
+    genreList: function () {
+      let list = [{key: 'all', value: 'すべて'}]
+      for (let key in this.$store.state.genre) {
+        list.push({key: key, value: this.$store.state.genre[key]})
+      }
+      return list
     }
   },
   mounted: function () {
@@ -113,8 +113,13 @@ export default {
         vm.mondaiList = response.data
         vm.mondaiList.mondai = vm.sort(vm.filter(vm.mondaiList.mondai))
       })
-      .catch(function (error) {
-        console.log(error)
+      .catch(function (err) {
+        if (err) {
+          this.$toast.open({
+            'message': 'エラー',
+            'type': 'is-danger'
+          })
+        }
       })
       .then(function () {
         vm.$http.get(vm.$endPoint('/api/user'))

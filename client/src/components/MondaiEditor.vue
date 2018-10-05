@@ -1,22 +1,26 @@
 <template>
   <div class="fill">
     <div class="columns">
-      <b-select class="column" placeholder="Select a name" v-model="mondai.site">
-        <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
-      </b-select>
-      <b-select class="column" placeholder="Select a genre" v-model="mondai.genre">
-        <option v-for="item in genre" :value="item.key" :key="item.key">{{item.value}}</option>
-      </b-select>
-      <b-input class="column" v-model ="mondai.id" type="number" placeholder="ID">
-      </b-input>
-    </div>
-    <div class="columns">
-      <b-input class="column" v-model ="mondai.title" type="text" placeholder="タイトル" maxlength="100">
-      </b-input>
-      <b-input class="column" v-model ="mondai.author" type="text" placeholder="作者" maxlength="20">
-      </b-input>
-      <b-input class="column" v-model ="mondai.description" type="textarea" maxlength="200" :rows="1" placeholder="コメント">
-      </b-input>
+      <div class="column">
+        <b-select class="mb" placeholder="Select a name" v-model="mondai.site">
+          <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
+        </b-select>
+        <b-select class="mb" placeholder="Select a genre" v-model="mondai.genre">
+          <option v-for="item in genre" :value="item.key" :key="item.key">{{item.value}}</option>
+        </b-select>
+        <b-input class="mb" v-model ="mondai.id" type="number" placeholder="ID">
+        </b-input>
+      </div>
+      <div class="column">
+        <b-input v-model ="mondai.title" type="text" placeholder="タイトル" maxlength="100">
+        </b-input>
+        <b-input  v-model ="mondai.author" type="text" placeholder="作者" maxlength="20">
+        </b-input>
+      </div>
+      <div class="column">
+        <b-input v-model ="mondai.description" type="textarea" maxlength="200" :rows="3" placeholder="コメント">
+        </b-input>
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +60,9 @@ export default {
 }
 .columns {
   width: 100%;
+}
+.mb {
+  margin-bottom: 10px;
 }
 .level-item {
   margin: 0 auto;
