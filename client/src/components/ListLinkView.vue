@@ -5,12 +5,16 @@
         <div class="level-item">
           <b-icon icon="format-list-bulleted"></b-icon>
           <strong>{{ item.name }}</strong>
+        </div>
+        <div class="level-item">
           <small>リスト作成者：&ensp;{{item.editor.nickname}}</small>
         </div>
       </div>
       <div class="level-right">
-        <b-tag class='is-primary level-item' v-if='item.fromMyMondais'>自作問題のみ</b-tag>
-        <span class="level-item">{{item.updateDate}}</span>
+        <div class="level-item">
+          <b-tag class='is-primary mr' v-if='item.fromMyMondais'>自作問題のみ</b-tag>
+          <span>{{item.updateDate}}</span>
+        </div>
       </div>
     </div>
   </router-link>
@@ -40,5 +44,8 @@ export default {
 }
 strong {
   margin:auto 5px;
+}
+.mr {
+  margin-right: 5px;
 }
 </style>
