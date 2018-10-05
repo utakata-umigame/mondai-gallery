@@ -31,7 +31,10 @@ export default {
     var vm = this
     this.$http.get(this.$endPoint('/api/mondaiList'))
       .then(function (response) {
-        vm.mondaiList = response.data
+        vm.mondaiList = response.data.sort((x, y) => {
+          // Descending sort
+          return y.id - x.id
+        })
       })
       .catch(function (error) {
         console.log(error)
