@@ -40,11 +40,13 @@
     <div class="panel">
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block" >
         <div class="fill" v-if="isSwitched === '一括編集'">
-          <mondai-editor :mondai="item"></mondai-editor>
-          <div class="buttons has-addons">
-            <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up-bold"></b-icon><span>上に移動</span></button>
-            <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down-bold"></b-icon><span>下に移動</span></button>
-            <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle"></b-icon><span>削除</span></button>
+          <div class="columns">
+            <mondai-editor :mondai="item"></mondai-editor>
+            <div class="column buttons has-addons">
+              <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up-bold"></b-icon><span>上に移動</span></button>
+              <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down-bold"></b-icon><span>下に移動</span></button>
+              <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle"></b-icon><span>削除</span></button>
+            </div>
           </div>
         </div>
         <div :title="item.title" :sub-title="item.author" v-else>
@@ -179,15 +181,30 @@ export default {
       this.sort()
     },
     addEmpty: function () {
-        this.mondaiList.mondai.push({
-          'id': 0,
-          'title': '',
-          'author': '',
-          'site': 'latethink',
-          'description': '',
-          'genre': 'umigame'
-        })
-        this.sort()
+      let id = 0
+      let end = false
+      while (!end) {
+        end = true
+        id++
+        for (var key in this.mondaiList.mondai) {
+          var item = this.mondaiList.mondai[key]
+          if (item._id) {
+            if (item._id === id) {
+              end = false
+            }
+          }
+        }
+      }
+      this.mondaiList.mondai.push({
+        'id': 0,
+        'title': '',
+        'author': '',
+        'site': 'latethink',
+        'description': '',
+        'genre': 'umigame',
+        '_id': id
+      })
+      this.sort()
     },
     addMondai: function () {
       let id = 0
