@@ -8,7 +8,7 @@
     </div>
   </div>
     <div class="panel">
-      <div class="panel-block">
+      <div class="panel-heading">
         <div class="level">
           <div class="level-left">
             <div class="level-item">
