@@ -229,7 +229,7 @@ export default {
     },
     confirmCancel: function () {
       this.$dialog.confirm({
-        message: '編集は失われます。続行しますか?',
+        message: '未保存の編集は失われます。続行しますか?',
         onConfirm: this.cancel
       })
     },
