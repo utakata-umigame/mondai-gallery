@@ -38,7 +38,7 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
-          <strong>問題集(ベータ版)</strong> by <router-link to="/contact">人参</router-link>. The source code is licensed
+          <strong>問題集(ベータ版)</strong> by <router-link to="/contact">人参</router-link>. The source code is licensed under 
           <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
         </p>
       </div>

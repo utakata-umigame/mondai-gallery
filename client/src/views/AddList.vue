@@ -19,12 +19,13 @@
     <div class="level">
       <div class="level-left">
         <div class="buttons has-addons level-item">
-          <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
+          <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
+          <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
           <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
         </div>
         <div class="level-item">
-          <b-switch v-model="isSwitched" trueValue="一括編集モード" falseValue="個別編集モード">
-              {{ isSwitched }}
+          <b-switch v-model="isSwitched" trueValue="一括編集" falseValue="個別編集">
+              {{ isSwitched }}モード
           </b-switch>
         </div>
       </div>
@@ -38,7 +39,7 @@
     <!-- 問題リスト -->
     <div class="panel">
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block" >
-        <div class="fill" v-if="isSwitched === '一括編集モード'">
+        <div class="fill" v-if="isSwitched === '一括編集'">
           <mondai-editor :mondai="item"></mondai-editor>
           <div class="buttons has-addons">
             <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up-bold"></b-icon><span>上に移動</span></button>
@@ -129,7 +130,7 @@ export default {
       isAddMondaiModalActive: false,
       isEditMondaiModalActive: false,
       isJSONModalActive: false,
-      isSwitched: '個別編集モード'
+      isSwitched: '個別編集'
     }
   },
   computed: {
@@ -176,6 +177,17 @@ export default {
         }
       }
       this.sort()
+    },
+    addEmpty: function () {
+        this.mondaiList.mondai.push({
+          'id': 0,
+          'title': '',
+          'author': '',
+          'site': 'latethink',
+          'description': '',
+          'genre': 'umigame'
+        })
+        this.sort()
     },
     addMondai: function () {
       let id = 0
