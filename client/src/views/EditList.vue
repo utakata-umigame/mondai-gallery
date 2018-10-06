@@ -30,7 +30,8 @@
       </div>
       <div class="level-right">
         <div class="buttons has-addons level-item">
-          <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存</span>
+          <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存して戻る</span>
+          <span @click="tmpSave()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;一時保存</span>
           <span @click="confirmCancel()" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
         </div>
       </div>
@@ -209,6 +210,32 @@ export default {
         message: '元のバージョンは失われます。続行しますか?',
         onConfirm: this.submit
       })
+    },
+    tmpSave: function () {
+      let vm = this
+      this.$http.post(this.$endPoint('/api/mondaiList/edit/' + this.mondaiList.id), this.mondaiList)
+        .then(function (response) {
+          let data = response.data
+          if (data.error) {
+            vm.$toast.open({
+              'message': '編集権限がありません。',
+              'type': 'is-danger'
+            })
+          } else if (data.message) {
+            vm.$toast.open({
+              'message': '保存しました',
+              'type': 'is-success'
+            })
+          }
+        })
+        .catch(function (error) {
+          if (!error) return
+          vm.$toast.open({
+            'message': 'ログインしてください。',
+            'type': 'is-danger'
+          })
+          vm.$router.push('/login')
+        })
     },
     submit: function () {
       let vm = this

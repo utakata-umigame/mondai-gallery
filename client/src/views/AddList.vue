@@ -30,7 +30,7 @@
       </div>
       <div class="level-right">
         <div class="buttons has-addons level-item">
-          <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存</span>
+          <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;リストを作成</span>
           <span @click="confirmCancel()" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
         </div>
       </div>

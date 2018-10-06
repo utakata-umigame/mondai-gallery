@@ -3,7 +3,7 @@
     <div class="level">
       <div class="level-left">
         <div class="level-item">
-          <b-icon icon="format-list-bulleted"></b-icon>
+          <b-icon type="is-primary" icon="format-list-bulleted"></b-icon>
           <strong>{{ item.name }}</strong>
         </div>
         <div class="level-item">
