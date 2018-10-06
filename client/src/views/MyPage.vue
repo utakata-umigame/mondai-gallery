@@ -1,15 +1,16 @@
 <template>
   <div>
-    <h2 class="title">マイページ</h2>
     <div id="profile" class="card">
-      <p class="title is-4">{{profile.nickname}}</p>
-      <p class="subtitle is-6">{{profile.username}}</p>
-      <div class="card-text">
-        <p class="multiline">{{ profile.bio }}</p>
-        <p>登録日時：{{profile.signup_date}}</p>
+      <div class="card-content">
+        <p class="title is-4">{{profile.nickname}}</p>
+        <p class="subtitle is-6">{{profile.username}}</p>
+        <div class="card-text">
+          <p class="multiline">{{ profile.bio }}</p>
+          <p>登録日時：{{profile.signup_date}}</p>
+        </div>
+        <a class="" @click="isEditProfileModalActive=true">編集</a>
+        <account-link :profile="profile"></account-link>
       </div>
-      <a class="" @click="isEditProfileModalActive=true">編集</a>
-      <account-link :profile="profile"></account-link>
     </div>
     <!--モーダルダイアログ-->
     <b-modal id="myModal" :active.sync="isEditProfileModalActive" title="プロフィールを編集">
@@ -54,9 +55,9 @@
             type="text"
             v-model = "profile.twitter"
             placeholder=".../twitter.com/[ID]">
-          </b-input>          
+          </b-input>
         </b-field>
-        <b-field 
+        <b-field
           label="GitHubのID">
           <b-input
             type="text"

@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h2 class="title">お問い合わせ</h2>
     <div class="card">
-      <div class="card-header-title">
-      管理人
+      <div class="card-content">
+        <div class="card-header-title">
+        管理人
+        </div>
+        <account-link :profile="profile"></account-link>
       </div>
-      <account-link :profile="profile"></account-link>
     </div>
   </div>
 </template>

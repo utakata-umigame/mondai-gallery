@@ -1,40 +1,46 @@
 <template>
   <div>
-    <h2 class="title">{{mondaiList.name}}</h2>
-    <p>リスト作成者:&nbsp;<a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></p>
-    <p class="multiline">{{mondaiList.description}}</p>
-    <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <span>サイト</span>
-          <b-select placeholder="Select a name" v-model="siteFilter">
-            <option v-for="item in siteList" :value="item.key" :key="item.key">{{item.value.name}}</option>
-          </b-select>
-        </div>
-        <div class="level-item">
-          <span>ジャンル</span>
-          <b-select placeholder="Select a genre" v-model="genreFilter">
-            <option v-for="item in genreList" :value="item.key" :key="item.key">{{item.value}}</option>
-          </b-select>
-        </div>
-        <div class="level-item">
-          <a class="button is-outlined is-danger" v-on:click='clearFilter()'>クリア</a>
-        </div>
-      </div>
-      <div class="level-right">
-        <div class="level-item">
-          <span>表示</span>
-          <b-select v-model='detail'>
-            <option :value="false">リスト</option>
-            <option :value="true">詳細</option>
-          </b-select>
-        </div>
-        <div class="level-item">
-          <button class="button is-outlined is-secondary" @click="$router.push(editUrl())" v-if="isMine">編集</button>
-        </div>
-      </div>
+  <div class="card mb">
+    <div class="card-content">
+      <p class="title">{{mondaiList.name}}</p>
+      <p class="subtitle"><a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></p>
+      <p class="multiline card-body">{{mondaiList.description}}</p>
     </div>
+  </div>
     <div class="panel">
+      <div class="panel-block">
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <span class="mr">サイト</span>
+              <b-select placeholder="Select a name" v-model="siteFilter">
+                <option v-for="item in siteList" :value="item.key" :key="item.key">{{item.value.name}}</option>
+              </b-select>
+            </div>
+            <div class="level-item">
+              <span class="mr">ジャンル</span>
+              <b-select placeholder="Select a genre" v-model="genreFilter">
+                <option v-for="item in genreList" :value="item.key" :key="item.key">{{item.value}}</option>
+              </b-select>
+            </div>
+            <div class="level-item">
+              <a class="button is-outlined is-danger" v-on:click='clearFilter()'>クリア</a>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <span class="mr">表示</span>
+              <b-select v-model='detail'>
+                <option :value="false">リスト</option>
+                <option :value="true">詳細</option>
+              </b-select>
+            </div>
+            <div class="level-item">
+              <button class="button is-outlined is-secondary" @click="$router.push(editUrl())" v-if="isMine">編集</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <a class="panel-block" v-for="item in filter(mondaiList.mondai)" v-bind:key="item._id" target='_blank' v-bind:href='url(item.site,item.id)'>
         <div v-if="detail">
           <mondai-view v-bind:item="item"></mondai-view>
@@ -195,6 +201,12 @@ export default {
 }
 .tag {
   min-width: 100px;
+}
+.mr {
+  margin-right: 5px;
+}
+.mb {
+  margin-bottom: 10px;
 }
 small {
   margin-right: 5px;

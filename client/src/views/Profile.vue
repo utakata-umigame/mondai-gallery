@@ -1,13 +1,14 @@
 <template>
   <div>
-    <h2 class="title">プロフィール</h2>
     <div id="profile" class="card">
-      <p class="title is-4">{{profile.nickname}}</p>
-      <div class="card-text">
-        <p class="multiline">{{ profile.bio }}</p>
-        <p>登録日時：{{profile.signup_date}}</p>
+      <div class="card-content">
+        <p class="title is-4">{{profile.nickname}}</p>
+        <div class="card-text">
+          <p class="multiline">{{ profile.bio }}</p>
+          <p>登録日時：{{profile.signup_date}}</p>
+        </div>
+        <account-link :profile="profile"></account-link>
       </div>
-      <account-link :profile="profile"></account-link>
     </div>
     <div class="panel">
       <p class="panel-heading">作成したリスト</p>
@@ -54,12 +55,22 @@ export default {
               }
             })
             .catch(function (error) {
-              console.log(error)
+              if (error) {
+                this.$toast.open({
+                  'message': 'error',
+                  'type': 'is-danger'
+                })
+              }
             })
         }
       })
       .catch(function (error) {
-        console.log(error)
+        if (error) {
+          this.$toast.open({
+            'message': 'error',
+            'type': 'is-danger'
+          })
+        }
       })
   },
   methods: {
