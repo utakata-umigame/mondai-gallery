@@ -20,8 +20,8 @@ export default new Vuex.Store({
       'latethink': {name: 'ラテシン', showUrl: 'http://sui-hei.net/mondai/show/'},
       'cindy': {name: 'Cindy', showUrl: 'https://www.cindythink.com/puzzle/show/'},
       'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'},
-      'latelate': {name: 'Openウミガメ らてらて鯖', showUrl: 'https://late-late.jp/mondai/show/',
-      'latePro': {name: 'らてしんPRO', showUrl: 'https://sui-hei-pro.net/mondai/show/'
+      'latelate': {name: 'Openウミガメ らてらて鯖', showUrl: 'https://late-late.jp/mondai/show/'},
+      'latePro': {name: 'らてしんPRO', showUrl: 'https://sui-hei-pro.net/mondai/show/'}
     }
   },
   mutations: {
