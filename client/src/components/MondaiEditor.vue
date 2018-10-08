@@ -1,6 +1,5 @@
 <template>
-  <div class="fill">
-    <div class="columns">
+  <div class="columns">
       <div class="column">
         <b-select class="mb" placeholder="Select a name" v-model="mondai.site">
           <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
@@ -21,7 +20,6 @@
         <b-input v-model ="mondai.description" type="textarea" maxlength="200" :rows="3" placeholder="コメント">
         </b-input>
       </div>
-    </div>
   </div>
 </template>
 <script>
@@ -60,6 +58,7 @@ export default {
 }
 .columns {
   width: 100%;
+  margin: auto;
 }
 .mb {
   margin-bottom: 10px;

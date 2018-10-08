@@ -6,6 +6,7 @@ import store from './store'
 import axios from 'axios'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
+import '@mdi/font/css/materialdesignicons.min.css'
 
 import MondaiView from '@/components/MondaiView'
 import ListLinkView from '@/components/ListLinkView'
