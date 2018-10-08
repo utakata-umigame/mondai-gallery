@@ -12,7 +12,7 @@ module.exports = {
       "mondai":[
         {"id":1, "site": "cindy", "title": "", "author": "", "description": "", "genre": "umigame"}
       ]
-    });  
+    });
   },
   profileFromID: (req, res) => {
     db.User.findOne({id: parseInt(req.params.id)}, (err, doc) => {
@@ -24,6 +24,8 @@ module.exports = {
           "latethink": doc.latethink,
           "cindy": doc.cindy,
           "R": doc.R,
+          "latelate": doc.latelate,
+          "latePro": doc.latePro,
           "twitter": doc.twitter,
           "github": doc.github,
           "signup_date": doc.signup_date
@@ -77,7 +79,7 @@ module.exports = {
     }
     //ハッシュ値を計算して照合
     let shasum = crypto.pbkdf2Sync(req.body['password'], process.env.SALT||'yoursalthere', 10000, 64, 'sha512');
-    let hash = shasum.toString('hex'); 
+    let hash = shasum.toString('hex');
     let data = {
       nickname: req.body['nickname'],
       username: req.body['username'],
@@ -132,6 +134,8 @@ module.exports = {
             "latethink": doc.latethink,
             "cindy": doc.cindy,
             "R": doc.R,
+            "latelate": doc.latelate,
+            "latePro": doc.latePro,
             "twitter": doc.twitter,
             "github": doc.github,
             "signup_date": doc.signup_date
@@ -145,7 +149,7 @@ module.exports = {
   editProfile: (req, res) => {
     let obj = req.body;
     console.log(obj);
-    db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj.bio, "latethink": obj.latethink, "cindy": obj.cindy, "R": obj.R, "twitter": obj.twitter, "github": obj.github}}, (err, doc) => {});
+    db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj.bio, "latethink": obj.latethink, "cindy": obj.cindy, "R": obj.R, "latelate": obj.latelate, "latePro": obj.latePro,"twitter": obj.twitter, "github": obj.github}}, (err, doc) => {});
     res.json({"message": "success"})
   },
   editList: (req, res) => {

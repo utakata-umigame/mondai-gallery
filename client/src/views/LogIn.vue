@@ -26,7 +26,7 @@ export default {
   methods: {
     login: function () {
       let vm = this
-      this.$http.post(this.$endPoint('/api/login'), vm.credential)
+      this.$http.post(this.$endPoint('/api/login'), this.credential)
         .then(function (res) {
           vm.$router.push('/')
           vm.$store.commit('setUser', res.data.user)

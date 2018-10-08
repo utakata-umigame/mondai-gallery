@@ -9,6 +9,7 @@ import EditList from './views/EditList'
 import MyPage from './views/MyPage'
 import Profile from './views/Profile'
 import Contact from './views/Contact'
+import EditProfile from './views/EditProfile'
 
 Vue.use(Router)
 
@@ -49,6 +50,11 @@ export default new Router({
       path: '/mypage',
       name: 'MyPage',
       component: MyPage
+    },
+    {
+      path: '/mypage/edit',
+      name: 'EditProfile',
+      component: EditProfile
     },
     {
       path: '/profile/show/:id',

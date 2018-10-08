@@ -28,6 +28,8 @@ export default {
         latethink: '',
         cindy: '',
         R: '',
+        latelate: '',
+        latePro: '',
         twitter: '',
         github: ''
       },

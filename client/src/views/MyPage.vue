@@ -8,11 +8,12 @@
           <p class="multiline">{{ profile.bio }}</p>
           <p>登録日時：{{profile.signup_date}}</p>
         </div>
-        <a class="" @click="isEditProfileModalActive=true">編集</a>
+        <a class="" @click="$router.push('/mypage/edit')">編集</a>
         <account-link :profile="profile"></account-link>
       </div>
     </div>
-    <!--モーダルダイアログ-->
+    <!--モーダルダイアログ(deprecated)-->
+    <!--
     <b-modal id="myModal" :active.sync="isEditProfileModalActive" title="プロフィールを編集">
       <header class="modal-card-head">
         <p class="modal-card-title">プロフィールを編集</p>
@@ -71,6 +72,7 @@
         <button class="button is-primary" @click="handleOk">編集</button>
       </footer>
     </b-modal>
+    -->
     <div class="panel">
       <p class="panel-heading">作成したリスト</p>
       <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
@@ -89,6 +91,8 @@ export default {
         latethink: '',
         cindy: '',
         R: '',
+        latelate: '',
+        latePro: '',
         twitter: '',
         github: ''
       },
