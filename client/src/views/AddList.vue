@@ -15,6 +15,11 @@
             自作問題のみのリストの場合はチェック
           </b-checkbox>
       </div>
+      <div class="field">
+          <b-checkbox v-model="mondaiList.private">
+            非公開にする場合はチェック
+          </b-checkbox>
+      </div>
     </div>
     <div class="level">
       <div class="level-left">
@@ -126,6 +131,7 @@ export default {
           'username': ''
         },
         'description': '',
+        'private': false,
         'mondai': []
       },
       mondaiJSON: '[]',

@@ -173,8 +173,8 @@ export default {
         })
         .catch(function (err) {
           if (err) {
-            this.$toast.open({
-              'message': 'エラー',
+            vm.$toast.open({
+              'message': err.message,
               'type': 'is-danger'
             })
           }

@@ -12,6 +12,7 @@
       </div>
       <div class="level-right">
         <div class="level-item">
+          <b-icon icon="lock" v-if="item.private"></b-icon>
           <b-tag class='is-primary mr' v-if='item.fromMyMondais'>自作問題のみ</b-tag>
           <span>{{item.updateDate}}</span>
         </div>
@@ -26,6 +27,7 @@ export default {
       id: Number,
       name: String,
       fromMyMondais: Boolean,
+      private: Boolean,
       editor: {
         nickname: String
       }

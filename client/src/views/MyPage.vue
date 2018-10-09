@@ -12,67 +12,6 @@
         <account-link :profile="profile"></account-link>
       </div>
     </div>
-    <!--モーダルダイアログ(deprecated)-->
-    <!--
-    <b-modal id="myModal" :active.sync="isEditProfileModalActive" title="プロフィールを編集">
-      <header class="modal-card-head">
-        <p class="modal-card-title">プロフィールを編集</p>
-      </header>
-      <section class="modal-card-body">
-        <b-input
-          type="textarea"
-          v-model.trim="profile.bio"
-          placeholder="自己紹介"
-          :rows="6">
-        </b-input>
-        <label>アカウントID(任意記入)</label>
-        <b-field
-          label="ラテシンのID">
-          <b-input
-            type="number"
-            v-model = "profile.latethink"
-            placeholder=".../mondai/profile/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="CindyのID">
-          <b-input
-            type="number"
-            v-model = "profile.cindy"
-            placeholder=".../profile/show/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="R鯖のID">
-          <b-input
-            type="number"
-            v-model = "profile.R"
-            placeholder=".../Mmail/userpage/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="TwitterのID">
-          <b-input
-            type="text"
-            v-model = "profile.twitter"
-            placeholder=".../twitter.com/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="GitHubのID">
-          <b-input
-            type="text"
-            v-model = "profile.github"
-            placeholder=".../github.com/[ID]">
-          </b-input>
-        </b-field>
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button" type="button" @click="isEditProfileModalActive = false">キャンセル</button>
-        <button class="button is-primary" @click="handleOk">編集</button>
-      </footer>
-    </b-modal>
-    -->
     <div class="panel">
       <p class="panel-heading">作成したリスト</p>
       <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
@@ -112,12 +51,15 @@ export default {
     this.$http.get(this.$endPoint('/api/mypage'))
       .then(function (res) {
         vm.profile = res.data
-        vm.$http.get(vm.$endPoint('/api/mondaiList'))
+        vm.$http.get(vm.$endPoint('/api/mylist'))
           .then(function (res) {
-            vm.mondaiList = res.data.filter(x => x.editor.username === vm.$store.state.user.username)
+            vm.mondaiList = res.data
           })
           .catch(function (error) {
-            console.log(error)
+            vm.$toast.open({
+              'message': error.message,
+              'type': 'is-danger'
+            })
           })
       })
       .catch(function (error) {

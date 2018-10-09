@@ -18,6 +18,7 @@ router.post("/login", passport.authenticate('local'), apis.login);
 // Routes that require authentication
 router.get("/user", isAuthenticated, apis.user);
 router.get("/mypage", isAuthenticated, apis.myPage);
+router.get("/mylist", isAuthenticated, apis.myList);
 router.get("/logout", isAuthenticated, apis.logout);
 router.post("/profile/edit", isAuthenticated, apis.editProfile);
 router.post("/mondaiList/edit/:id", isAuthenticated, apis.editList);

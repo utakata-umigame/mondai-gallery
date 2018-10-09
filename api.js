@@ -36,13 +36,14 @@ module.exports = {
     });
   },
   allList: (req, res) => {
-    db.MondaiList.find({}).toArray((error, docs) => {
+    db.MondaiList.find({"private": false}).toArray((error, docs) => {
         if (docs) {
           res.json(docs.map(function (x) {
             return {
               id: x.id,
               name: x.name,
               fromMyMondais: x.fromMyMondais,
+              private: x.private,
               editor: x.editor,
               description: x.description,
               updateDate: x.updateDate
@@ -57,8 +58,26 @@ module.exports = {
   listFromID: (req, res) => {
    db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
      if (doc) {
-       res.json(doc);
-       return;
+       if (!doc.private) {
+         res.json(doc);
+         return;
+       }
+       else if (!req.user) {
+         res.status(403).send({
+           "success": "false",
+           "message": "Not logged in"
+         });
+         return;
+       } else if (doc.editor.username === req.user.username){
+         res.json(doc);
+         return;
+       } else {
+         res.status(403).send({
+           "success": "false",
+           "message": "Private list"
+         });
+         return;
+       }
      }
      if (err) {
        console.log(err);
@@ -146,18 +165,68 @@ module.exports = {
       res.json({'error':'error'});
     });
   },
+  myList: (req, res) => {
+    db.MondaiList.find({editor: req.user}).toArray((err, docs) => {
+      if (docs) {
+        res.json(docs.map(x => {
+          return {
+            id: x.id,
+            name: x.name,
+            fromMyMondais: x.fromMyMondais,
+            private: x.private,
+            editor: x.editor,
+            description: x.description,
+            updateDate: x.updateDate
+          };
+        }));
+      }
+      else {
+        res.json({'error': 'error'});
+      }
+    });
+  },
   editProfile: (req, res) => {
     let obj = req.body;
     console.log(obj);
-    db.User.updateOne({"username": req.user.username}, {$set: {"bio": obj.bio, "latethink": obj.latethink, "cindy": obj.cindy, "R": obj.R, "latelate": obj.latelate, "latePro": obj.latePro,"twitter": obj.twitter, "github": obj.github}}, (err, doc) => {});
-    res.json({"message": "success"})
+    db.User.updateOne(
+      {
+        "username": req.user.username
+      },
+      {
+        $set: {
+          "bio": obj.bio,
+          "latethink": obj.latethink,
+          "cindy": obj.cindy,
+          "R": obj.R,
+          "latelate": obj.latelate,
+          "latePro": obj.latePro,
+          "twitter": obj.twitter,
+          "github": obj.github
+        }
+      }, (err, doc) => {});
+    res.json({"message": "success"});
   },
   editList: (req, res) => {
     let obj = req.body
     let updateDate = moment()
       .utcOffset('+09:00')
       .format('YYYY/MM/DD HH:mm')
-    db.MondaiList.updateOne({"id": req.body.id, "editor.username": req.user.username}, {$set: {"name": obj.name, editor: req.user,"fromMyMondais": obj.fromMyMondais, "description": obj.description, "mondai": obj.mondai, "updateDate": updateDate}}, (err, doc) => {
+    db.MondaiList.updateOne(
+      {
+        "id": req.body.id,
+        "editor.username": req.user.username
+      },
+      {
+        $set: {
+          "name": obj.name,
+          "editor": req.user,
+          "fromMyMondais": obj.fromMyMondais,
+          "private": obj.private,
+          "description": obj.description,
+          "mondai": obj.mondai,
+          "updateDate": updateDate
+        }
+      }, (err, doc) => {
        if(err) res.status(403).send({
         'success': 'false',
         'message': 'Cannot edit'
