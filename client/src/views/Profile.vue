@@ -7,9 +7,9 @@
           <p class="multiline">{{ profile.bio }}</p>
           <p>登録日時：{{profile.signup_date}}</p>
         </div>
-        <account-link :profile="profile"></account-link>
       </div>
     </div>
+    <account-link :profile="profile"></account-link>
     <div class="panel">
       <p class="panel-heading">作成したリスト</p>
       <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>

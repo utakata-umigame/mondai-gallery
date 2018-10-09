@@ -22,7 +22,16 @@ export default new Vuex.Store({
       'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'},
       'latelate': {name: 'Openウミガメ らてらて鯖', showUrl: 'https://late-late.jp/mondai/show/'},
       'latePro': {name: 'らてしんPRO', showUrl: 'https://sui-hei-pro.net/mondai/show/'}
-    }
+    },
+    account: [
+      { key: 'latethink', name: 'ラテシン', profileUrl: 'http://sui-hei.net/mondai/profile/'},
+      { key: 'cindy', name: 'Cindy', profileUrl: 'https://www.cindythink.com/profile/show/'},
+      { key: 'R', name: 'Openウミガメ R鯖', profileUrl: 'http://openumigame.sakura.ne.jp/openumi/Mmail/userpage/'},
+      { key: 'latelate', name: 'Openウミガメ らてらて鯖', profileUrl: 'https://late-late.jp/mondai/profile/'},
+      { key: 'latePro', name: 'らてしんPRO', profileUrl: 'https://sui-hei-pro.net/users/profile/'},
+      { key: 'twitter', name: 'Twitter', profileUrl: 'https://twitter.com/'},
+      { key: 'github', name: 'GitHub', profileUrl: 'https://github.com/'}
+    ]
   },
   mutations: {
     setUser (state, value) {
@@ -32,6 +41,7 @@ export default new Vuex.Store({
   getters: {
     user (state) { return state.user },
     genre (state) { return state.genre },
-    site (state) { return state.site }
+    site (state) { return state.site },
+    account (state) { return state.account }
   }
 })
