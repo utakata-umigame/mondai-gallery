@@ -2,6 +2,7 @@ version: "2"
 services:
   app:
     container_name: app
+    image: pb10005/mondai-gallery
     environment:
       - MONGODB_URI=mongodb://mongo:27017
     restart: always
