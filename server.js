@@ -31,8 +31,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/api', router);
-const migrate = require('./migrate');
-app.use('/migrate', migrate);
 app.use(express.json());
 app.use(history());
 app.use(express.static(path.resolve(__dirname, 'client/dist')));

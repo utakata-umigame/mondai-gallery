@@ -16,13 +16,14 @@ let db = {
 let callback = function(err, client) {
   if (err) {
     failureCount++;
-    if (failureCount >= 10) {
-      console.log("Connection failed 10 times", err)
+    if (failureCount >= 20) {
+      console.log("Connection failed 20 times", err)
       return;
     }
-    setTimeout(() =>{}, 5000);
-    MongoClient.connect(url, callback);
-    console.log("Redirect to Database");
+    setTimeout(() =>{
+      MongoClient.connect(url, callback);
+      console.log("Redirect to Database");
+    }, 10000);
     return;
   }
   db.User = client.db(process.env.MONGODB_NAME||"gallery").collection("user");
