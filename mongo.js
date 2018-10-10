@@ -7,15 +7,23 @@ const MongoClient = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectId;
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
 
+let failureCount = 0;
 let db = {
   User: {},
   MondaiList: {},
   Counter: {}
 };
-MongoClient.connect(url, function(err, client) {
+let callback = function(err, client) {
   if (err) {
-    console.log(err)
-    return
+    failureCount++;
+    if (failureCount >= 10) {
+      console.log("Connection failed 10 times", err)
+      return;
+    }
+    setTimeout(() =>{}, 5000);
+    MongoClient.connect(url, callback);
+    console.log("Redirect to Database");
+    return;
   }
   db.User = client.db(process.env.MONGODB_NAME||"gallery").collection("user");
   db.MondaiList = client.db(process.env.MONGODB_NAME||"gallery").collection("mondaiList");
@@ -43,6 +51,7 @@ MongoClient.connect(url, function(err, client) {
       }
     });
   console.log("connected");
-});
+}
+MongoClient.connect(url, callback);
 
 module.exports = db;

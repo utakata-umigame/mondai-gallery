@@ -1,12 +1,13 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "description": "",
+  "repository": "https://github.com/pb10001/mondai-gallery.git",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "postinstall": "npm run build"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@mdi/font": "^2.8.94",

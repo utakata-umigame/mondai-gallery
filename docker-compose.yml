@@ -3,7 +3,7 @@ services:
   app:
     container_name: app
     environment:
-      - MONGODB_URI=mongodb://192.168.99.100:27017
+      - MONGODB_URI=mongodb://mongo:27017
     restart: always
     build: .
     ports:
