@@ -29,3 +29,10 @@ npm run dev
 cd client
 vue ui
 ```
+## ※Dockerで手軽に試す
+```bash
+#現在のディレクトリにdocker-compose.ymlがあることを確認
+docker-compose pull
+docker-compose up
+#192.168.99.100:49160にアクセス
+```
