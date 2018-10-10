@@ -2,11 +2,13 @@
 
 ## 一般
 - git
-## クローン
+### クローン
 ```bash
 git clone https://github.com/pb10001/mondai-gallery.git
 ```
 ## Dockerを使う場合
+### 用意するもの
+Docker
 ### ビルド済みのイメージを試す
 ```bash
 cd mondai-gallery
