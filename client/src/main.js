@@ -13,6 +13,7 @@ import ListLinkView from '@/components/ListLinkView'
 import MondaiDialog from '@/components/MondaiDialog'
 import MondaiEditor from '@/components/MondaiEditor'
 import AccountLink from '@/components/AccountLink'
+import AllList from '@/views/AllList'
 
 Vue.use(Buefy)
 Vue.prototype.$http = axios
@@ -27,6 +28,7 @@ Vue.component('list-link', ListLinkView)
 Vue.component('mondai-dialog', MondaiDialog)
 Vue.component('mondai-editor', MondaiEditor)
 Vue.component('account-link', AccountLink)
+Vue.component('all-list', AllList)
 
 Vue.config.productionTip = false
 

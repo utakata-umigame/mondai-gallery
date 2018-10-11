@@ -31,6 +31,13 @@ export default new Vuex.Store({
       { key: 'latePro', name: 'らてしんPRO', profileUrl: 'https://sui-hei-pro.net/users/profile/'},
       { key: 'twitter', name: 'Twitter', profileUrl: 'https://twitter.com/'},
       { key: 'github', name: 'GitHub', profileUrl: 'https://github.com/'}
+    ],
+    updateLog: [
+      "10/11 トップページを追加しました。",
+      "10/10 Docker上で実行できるようにしました。",
+      "10/9 プロフィールのアカウントリンクの表示を更新しました。",
+      "10/9 リストの非公開を実装しました。",
+      "10/8 プロフィール編集フォームを更新しました。"
     ]
   },
   mutations: {
@@ -42,6 +49,7 @@ export default new Vuex.Store({
     user (state) { return state.user },
     genre (state) { return state.genre },
     site (state) { return state.site },
-    account (state) { return state.account }
+    account (state) { return state.account },
+    updateLog (state) { return state.updateLog }
   }
 })

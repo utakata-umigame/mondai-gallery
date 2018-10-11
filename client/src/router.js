@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Top from './views/Top'
 import AllList from './views/AllList'
 import AddList from './views/AddList'
 import MondaiList from './views/MondaiList'
@@ -17,9 +18,14 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/mondailist',
       name: 'AllList',
       component: AllList
+    },
+    {
+      path: '/',
+      name: 'Top',
+      component: Top
     },
     {
       path: '/add',

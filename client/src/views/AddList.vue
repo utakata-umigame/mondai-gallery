@@ -253,7 +253,7 @@ export default {
             })
             vm.$router.push('/login')
           } else if (data.message) {
-            vm.$router.push('/')
+            vm.$router.push('/mondailist')
           }
         })
         .catch(function (err) {

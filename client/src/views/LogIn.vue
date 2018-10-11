@@ -28,7 +28,7 @@ export default {
       let vm = this
       this.$http.post(this.$endPoint('/api/login'), this.credential)
         .then(function (res) {
-          vm.$router.push('/')
+          vm.$router.push('/mondailist')
           vm.$store.commit('setUser', res.data.user)
         })
         .catch(function (err) {

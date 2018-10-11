@@ -285,7 +285,7 @@ export default {
               'type': 'is-danger'
             })
           } else if (data.message) {
-            vm.$router.push('/')
+            vm.$router.push('/mondailist')
           }
         })
         .catch(function (error) {
