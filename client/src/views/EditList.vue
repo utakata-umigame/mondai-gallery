@@ -23,22 +23,17 @@
     </div>
     <div class="level">
       <div class="level-left">
-        <div class="buttons has-addons level-item">
+        <div class="level-item">
+        <div class="buttons has-addons">
           <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
           <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
           <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
         </div>
+      </div>
         <div class="level-item">
           <b-switch v-model="isSwitched" trueValue="一括編集" falseValue="個別編集">
-              {{ isSwitched }}モード
+              {{ isSwitched }}
           </b-switch>
-        </div>
-      </div>
-      <div class="level-right">
-        <div class="buttons has-addons level-item">
-          <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存して戻る</span>
-          <span @click="tmpSave()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;一時保存</span>
-          <span @click="confirmCancel()" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
         </div>
       </div>
     </div>
@@ -64,6 +59,13 @@
             <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle"></b-icon><span>削除</span></button>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="">
+      <div class="buttons has-addons">
+        <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存して戻る</span>
+        <span @click="tmpSave()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;一時保存</span>
+        <span @click="confirmCancel()" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
       </div>
     </div>
     <!--モーダルダイアログ-->

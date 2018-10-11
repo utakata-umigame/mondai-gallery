@@ -88,7 +88,10 @@ module.exports = {
   login: (req, res) => {
     db.User.findOne({username: req.body.username}, (err, doc) => {
       if (doc) res.json({'message': 'Logged in', 'user': doc});
-      else res.json({'error':'error'});
+      else res.status(403).send({
+        'success': 'false',
+        'message': 'Failed to log in'
+      });
     });
   },
   signUp: (req, res) => {
