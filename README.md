@@ -9,7 +9,8 @@ git clone https://github.com/pb10001/mondai-gallery.git
 ```
 ## Dockerを使う場合
 ### 用意するもの
-Docker
+- docker
+- docker-compose
 ### ビルド済みのイメージを試す
 ```bash
 cd mondai-gallery
