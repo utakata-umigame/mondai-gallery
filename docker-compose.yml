@@ -1,4 +1,7 @@
 version: "2"
+volumes:
+  mongodb-volume:
+    driver: 'local'
 services:
   app:
     container_name: app
@@ -14,5 +17,7 @@ services:
   mongo:
     container_name: mongo
     image: mongo
+    volumes:
+      - mongodb-volume:/data/db
     ports:
       - "27017:27017"
