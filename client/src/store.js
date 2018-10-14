@@ -33,11 +33,11 @@ export default new Vuex.Store({
       { key: 'github', name: 'GitHub', profileUrl: 'https://github.com/'}
     ],
     updateLog: [
+      "10/14 URLを独自ドメインにしました。→ gallery.utakata-umigame.com",
       "10/11 トップページを追加しました。",
       "10/10 Docker上で実行できるようにしました。",
       "10/9 プロフィールのアカウントリンクの表示を更新しました。",
-      "10/9 リストの非公開を実装しました。",
-      "10/8 プロフィール編集フォームを更新しました。"
+      "10/9 リストの非公開を実装しました。"
     ]
   },
   mutations: {
