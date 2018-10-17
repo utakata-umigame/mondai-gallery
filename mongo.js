@@ -26,9 +26,10 @@ let callback = function(err, client) {
     }, 10000);
     return;
   }
-  db.User = client.db(process.env.MONGODB_NAME||"gallery").collection("user");
-  db.MondaiList = client.db(process.env.MONGODB_NAME||"gallery").collection("mondaiList");
-  db.Counter = client.db(process.env.MONGODB_NAME||"gallery").collection("counter");
+  let gallery = client.db(process.env.MONGODB_NAME||"gallery");
+  db.User = gallery.collection("user");
+  db.MondaiList = gallery.collection("mondaiList");
+  db.Counter = gallery.collection("counter");
   db.Counter.countDocuments(
     {id: "list_id"},
     {},

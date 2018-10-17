@@ -2,12 +2,14 @@
 
 const express = require('express');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const history = require('connect-history-api-fallback');
 const router = require('./route');
 const passport = require('./passport');
+const db = require('./mongo');
 const app = express();
 
 app.use(function (req, res, next) {
@@ -24,8 +26,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000
-    }
+      maxAge: 7 * 24 * 60 * 60 * 1000 //7 days
+    },
+    store: new MongoStore({url: (process.env.MONGODB_URI || "mongodb://localhost:27017")})
   })
 );
 app.use(passport.initialize());
