@@ -44,19 +44,23 @@
           <div class="columns">
             <mondai-editor :mondai="item"></mondai-editor>
             <div class="column buttons has-addons">
-              <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up-bold"></b-icon><span>上に移動</span></button>
-              <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down-bold"></b-icon><span>下に移動</span></button>
-              <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle"></b-icon><span>削除</span></button>
+              <button class="button is-outlined is-primary" @click="moveTop(item)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up">上へ</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down">下へ</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveBottom(item)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
+              <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle">削除</b-icon></button>
             </div>
           </div>
         </div>
         <div :title="item.title" :sub-title="item.author" v-else>
           <mondai-view class="block" v-bind:item="item"></mondai-view>
           <div class="buttons has-addons">
-            <button class="button is-outlined is-primary" @click="set(item)"><b-icon icon="pencil"></b-icon><span>編集</span></button>
-            <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up-bold"></b-icon><span>上に移動</span></button>
-            <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down-bold"></b-icon><span>下に移動</span></button>
-            <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle"></b-icon><span>削除</span></button>
+            <button class="button is-outlined is-primary" @click="set(item)"><b-icon icon="pencil">編集</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveTop(item)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up">上へ</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down">下へ</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveBottom(item)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
+            <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle">削除</b-icon></button>
           </div>
         </div>
       </div>
@@ -166,7 +170,21 @@ export default {
       this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== item)
     },
     sort: function () {
-      this.mondaiList.mondai =  this.mondaiList.mondai.sort((x, y) => x._id - y._id)
+      this.mondaiList.mondai.sort((x, y) => x._id - y._id)
+    },
+    moveTop: function (item) {
+      item._id = -1
+      this.sort()
+      for (let i = 0; i < this.mondaiList.mondai.length; i++){
+        this.mondaiList.mondai[i]._id = i
+      }
+    },
+    moveBottom: function (item) {
+      item._id = 9999
+      this.sort()
+      for (let i = 0; i < this.mondaiList.mondai.length; i++){
+        this.mondaiList.mondai[i]._id = i
+      }
     },
     moveUp: function (item) {
       for (let i = 0; i < this.mondaiList.mondai.length -1; i++){
