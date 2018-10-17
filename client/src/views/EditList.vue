@@ -181,14 +181,14 @@ export default {
       item._id = -1
       this.sort()
       for (let i = 0; i < this.mondaiList.mondai.length; i++){
-        this.mondaiList.mondai[i]._id = i
+        this.mondaiList.mondai[i]._id = i + 1
       }
     },
     moveBottom: function (item) {
       item._id = 9999
       this.sort()
       for (let i = 0; i < this.mondaiList.mondai.length; i++){
-        this.mondaiList.mondai[i]._id = i
+        this.mondaiList.mondai[i]._id = i + 1
       }
     },
     moveUp: function (item) {
