@@ -1,6 +1,26 @@
 <template>
   <div>
-  <div class="card mb">
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li>
+          <router-link to="/mondailist">
+            <span class="icon is-small is-primary">
+              <b-icon icon="home"/>
+            </span>
+            <span>ホーム</span>
+          </router-link>
+        </li>
+        <li class="is-active">
+          <a href="#">
+            <span class="icon is-small is-primary">
+              <b-icon icon="format-list-bulleted"/>
+            </span>
+            <span>{{mondaiList.name}}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="card mb">
     <div class="card-content">
       <p class="title">{{mondaiList.name}}</p>
       <p class="subtitle"><a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></p>

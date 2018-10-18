@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Top from './views/Top'
-import AllList from './views/AllList'
 import AddList from './views/AddList'
-import MondaiList from './views/MondaiList'
+import Home from './views/Home'
 import SignUp from './views/SignUp'
 import LogIn from './views/LogIn'
 import EditList from './views/EditList'
@@ -11,6 +10,7 @@ import MyPage from './views/MyPage'
 import Profile from './views/Profile'
 import Contact from './views/Contact'
 import EditProfile from './views/EditProfile'
+import MondaiList from './views/MondaiList'
 
 Vue.use(Router)
 
@@ -19,8 +19,8 @@ export default new Router({
   routes: [
     {
       path: '/mondailist',
-      name: 'AllList',
-      component: AllList
+      name: 'Home',
+      component: Home
     },
     {
       path: '/',

@@ -1,9 +1,18 @@
 <template>
   <div>
-    <div class="panel">
-      <div class="panel-heading">すべてのリスト</div>
-      <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
-    </div>
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li class="is-active">
+          <router-link to="/mondailist">
+            <span class="icon is-small is-primary">
+              <b-icon icon="home"/>
+            </span>
+            <span>ホーム</span>
+          </router-link>
+        </li>
+      </ul>
+    </nav>
+    <all-list/>
   </div>
 </template>
 <script>
