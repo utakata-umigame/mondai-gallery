@@ -17,7 +17,6 @@
             <all-list></all-list>
           </div>
           <div class="column">
-            <h2 class="title">お知らせ</h2>
             <div class="panel">
               <div class="panel-heading">更新履歴</div>
               <div class="panel-block" v-for="item in messages" :key="item">{{item}}</div>

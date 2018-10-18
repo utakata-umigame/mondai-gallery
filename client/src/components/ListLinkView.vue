@@ -6,11 +6,11 @@
           <b-icon type="is-info" icon="format-list-bulleted"></b-icon>
           <strong>{{ item.name }}</strong>
         </div>
-        <div class="level-item">
-          <small>リスト作成者：&ensp;{{item.editor.nickname}}</small>
-        </div>
       </div>
       <div class="level-right">
+        <div class="level-item">
+          <span>{{item.editor.nickname}}</span>
+        </div>
         <div class="level-item">
           <b-icon icon="lock" v-if="item.private"></b-icon>
           <b-tag class='is-primary mr' v-if='item.fromMyMondais'>自作問題のみ</b-tag>

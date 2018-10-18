@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2 class="title">リスト一覧</h2>
     <div class="panel">
       <div class="panel-heading">すべてのリスト</div>
       <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>

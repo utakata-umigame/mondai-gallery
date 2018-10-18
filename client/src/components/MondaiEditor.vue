@@ -9,15 +9,13 @@
         </b-select>
         <b-input class="mb" v-model ="mondai.id" type="number" placeholder="ID">
         </b-input>
-      </div>
-      <div class="column">
         <b-input v-model ="mondai.title" type="text" placeholder="タイトル" maxlength="100">
         </b-input>
-        <b-input  v-model ="mondai.author" type="text" placeholder="作者" maxlength="20">
-        </b-input>
       </div>
       <div class="column">
-        <b-input v-model ="mondai.description" type="textarea" maxlength="200" :rows="3" placeholder="コメント">
+        <b-input  v-model ="mondai.author" type="text" placeholder="作者" maxlength="20">
+        </b-input>
+        <b-input v-model ="mondai.description" type="textarea" maxlength="200" :rows="4" placeholder="コメント">
         </b-input>
       </div>
   </div>

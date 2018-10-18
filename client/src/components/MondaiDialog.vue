@@ -1,19 +1,15 @@
 <template>
   <div>
-    <div class="level">
-      <div class="level-item">
-        <label>サイト</label>
+      <b-field label="サイト">
         <b-select placeholder="Select a name" v-model="mondai.site">
           <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
         </b-select>
-      </div>
-      <div class="level-item">
-        <label>ジャンル</label>
+      </b-field>
+      <b-field label="ジャンル">
         <b-select placeholder="Select a genre" v-model="mondai.genre">
           <option v-for="item in genre" :value="item.key" :key="item.key">{{item.value}}</option>
         </b-select>
-      </div>
-    </div>
+      </b-field>
     <b-field label="問題ID">
       <b-input v-model ="mondai.id" type="number" placeholder="ID">
       </b-input>

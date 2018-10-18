@@ -12,13 +12,11 @@
         <div class="level">
           <div class="level-left">
             <div class="level-item">
-              <span class="mr">サイト</span>
               <b-select placeholder="Select a name" v-model="siteFilter">
                 <option v-for="item in siteList" :value="item.key" :key="item.key">{{item.value.name}}</option>
               </b-select>
             </div>
             <div class="level-item">
-              <span class="mr">ジャンル</span>
               <b-select placeholder="Select a genre" v-model="genreFilter">
                 <option v-for="item in genreList" :value="item.key" :key="item.key">{{item.value}}</option>
               </b-select>
@@ -29,7 +27,6 @@
           </div>
           <div class="level-right">
             <div class="level-item">
-              <span class="mr">表示</span>
               <b-select v-model='detail'>
                 <option :value="false">リスト</option>
                 <option :value="true">詳細</option>
@@ -42,21 +39,8 @@
         </div>
       </div>
       <a class="panel-block" v-for="item in filter(mondaiList.mondai)" v-bind:key="item._id" target='_blank' v-bind:href='url(item.site,item.id)'>
-        <div v-if="detail">
-          <mondai-view v-bind:item="item"></mondai-view>
-        </div>
-        <div class="level" v-else>
-          <div class="level-left">
-            <div class="level-item">
-            <small>{{item.author}}</small>
-            <span>{{ item.title }}</span>
-            </div>
-          </div>
-          <div class="level-right">
-            <b-tag class="is-primary level-item">{{site[item.site].name}}</b-tag>
-            <b-tag class="is-info level-item">{{genre[item.genre]}}</b-tag>
-          </div>
-        </div>
+        <mondai-view :item="item" v-if="detail"/>
+        <simple-mondai :item="item" v-else/>
       </a>
     </div>
     <!-- 次に見る -->
@@ -69,7 +53,11 @@
   </div>
 </template>
 <script>
+import SimpleMondaiView from '@/components/SimpleMondaiView'
 export default {
+  components: {
+    'simple-mondai': SimpleMondaiView
+  },
   data () {
     return {
       name: 'MondaiList',
@@ -102,7 +90,7 @@ export default {
       return this.$store.state.site
     },
     siteList: function () {
-      let list = [{key: 'all', value: {'name': 'すべて'}}]
+      let list = [{key: 'all', value: {'name': 'すべてのサイト'}}]
       for (let key in this.$store.state.site) {
         list.push({key: key, value: this.$store.state.site[key]})
       }
@@ -112,7 +100,7 @@ export default {
       return this.$store.state.genre
     },
     genreList: function () {
-      let list = [{key: 'all', value: 'すべて'}]
+      let list = [{key: 'all', value: 'すべてのジャンル'}]
       for (let key in this.$store.state.genre) {
         list.push({key: key, value: this.$store.state.genre[key]})
       }
