@@ -22,9 +22,9 @@ export default {
     return {
       profile: {
         id: 0,
-        nickname: '-',
-        bio: '-',
-        signup_date: '-',
+        nickname: '',
+        bio: '',
+        signup_date: '',
         latethink: '',
         cindy: '',
         R: '',
@@ -33,14 +33,7 @@ export default {
         twitter: '',
         github: ''
       },
-      mondaiList: [{
-        'id': 0,
-        'name': '-',
-        'editor': {
-          'nickname': '-'
-        },
-        'fromMyMondais': true
-      }]
+      mondaiList: []
     }
   },
   mounted: function () {

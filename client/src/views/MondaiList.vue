@@ -44,7 +44,7 @@
       </a>
     </div>
     <!-- 次に見る -->
-    <div class="panel">
+    <div class="panel" v-if="otherList.length > 0">
       <div class="panel-heading">
         <b-icon icon="arrow-right-drop-circle-outline"></b-icon><span>次に見る</span>
       </div>
@@ -67,21 +67,14 @@ export default {
       isMine: false,
       otherList: [],
       mondaiList: {
-        'name': '-',
-        'description': '-',
+        'name': '',
+        'description': '',
         'editor': {
           'id': 0,
-          'username': '-',
-          'nickname': '-'
+          'username': '',
+          'nickname': ''
         },
-        'mondai': [{
-          'id': 0,
-          'title': '-',
-          'author': '-',
-          'site': 'latethink',
-          'description': '-',
-          'genre': 'umigame'
-        }]
+        'mondai': []
       }
     }
   },

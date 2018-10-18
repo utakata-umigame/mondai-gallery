@@ -13,17 +13,7 @@ export default {
       name: '-',
       genreFilter: 'all',
       siteFilter: 'all',
-      mondaiList: [
-        {
-          'id': 0,
-          'name': '-',
-          'editor': {
-            'id': 0,
-            'nickname': '-'
-          },
-          'fromMyMondais': true
-        }
-      ]
+      mondaiList: []
     }
   },
   mounted: function () {

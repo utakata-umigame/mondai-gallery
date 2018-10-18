@@ -92,10 +92,10 @@ export default{
   data () {
     return {
       profile: {
-        nickname: '-',
-        username: '-',
-        signup_date: '-',
-        bio: '-',
+        nickname: '',
+        username: '',
+        signup_date: '',
+        bio: '',
         latethink: '',
         cindy: '',
         R: '',

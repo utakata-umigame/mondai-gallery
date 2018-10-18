@@ -23,10 +23,10 @@ export default {
   data () {
     return {
       profile: {
-        nickname: '-',
-        username: '-',
-        signup_date: '-',
-        bio: '-',
+        nickname: '',
+        username: '',
+        signup_date: '',
+        bio: '',
         latethink: '',
         cindy: '',
         R: '',
@@ -35,14 +35,7 @@ export default {
         twitter: '',
         github: ''
       },
-      mondaiList: [{
-        'id': 0,
-        'name': '-',
-        'editor': {
-          'nickname': '-'
-        },
-        'fromMyMondais': true
-      }],
+      mondaiList: [],
       isEditProfileModalActive: false
     }
   },
