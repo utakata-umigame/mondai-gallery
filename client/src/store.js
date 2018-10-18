@@ -11,7 +11,7 @@ export default new Vuex.Store({
       username: ''
     },
     genre: {
-      'umigame': 'ウミガメのスープ',
+      'umigame': 'ウミガメ',
       'tobira': '20の扉',
       'kameo': '亀夫君問題',
       'other': 'その他'
@@ -19,15 +19,15 @@ export default new Vuex.Store({
     site: {
       'latethink': {name: 'ラテシン', showUrl: 'http://sui-hei.net/mondai/show/'},
       'cindy': {name: 'Cindy', showUrl: 'https://www.cindythink.com/puzzle/show/'},
-      'R': {name: 'Openウミガメ R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'},
-      'latelate': {name: 'Openウミガメ らてらて鯖', showUrl: 'https://late-late.jp/mondai/show/'},
+      'R': {name: 'R鯖', showUrl: 'http://openumigame.sakura.ne.jp/openumi/mondai/show/'},
+      'latelate': {name: 'らてらて鯖', showUrl: 'https://late-late.jp/mondai/show/'},
       'latePro': {name: 'らてしんPRO', showUrl: 'https://sui-hei-pro.net/mondai/show/'}
     },
     account: [
       { key: 'latethink', name: 'ラテシン', profileUrl: 'http://sui-hei.net/mondai/profile/'},
       { key: 'cindy', name: 'Cindy', profileUrl: 'https://www.cindythink.com/profile/show/'},
-      { key: 'R', name: 'Openウミガメ R鯖', profileUrl: 'http://openumigame.sakura.ne.jp/openumi/Mmail/userpage/'},
-      { key: 'latelate', name: 'Openウミガメ らてらて鯖', profileUrl: 'https://late-late.jp/mondai/profile/'},
+      { key: 'R', name: 'R鯖', profileUrl: 'http://openumigame.sakura.ne.jp/openumi/Mmail/userpage/'},
+      { key: 'latelate', name: 'らてらて鯖', profileUrl: 'https://late-late.jp/mondai/profile/'},
       { key: 'latePro', name: 'らてしんPRO', profileUrl: 'https://sui-hei-pro.net/users/profile/'},
       { key: 'twitter', name: 'Twitter', profileUrl: 'https://twitter.com/'},
       { key: 'github', name: 'GitHub', profileUrl: 'https://github.com/'}
