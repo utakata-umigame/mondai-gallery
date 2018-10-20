@@ -60,7 +60,7 @@ export default {
         vm.$http.get(vm.$endPoint('/api/mylist'))
           .then(function (res) {
             vm.mondaiList = res.data
-            this.$localStorage.set('mondaiList', res.data)
+            vm.$localStorage.set('mondaiList', res.data)
           })
           .catch(function (error) {
             vm.$toast.open({
