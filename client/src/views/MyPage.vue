@@ -20,6 +20,28 @@
 </template>
 <script>
 export default {
+  localStorage: {
+    profile: {
+      type: Object,
+      default: {
+        nickname: '',
+        username: '',
+        signup_date: '',
+        bio: '',
+        latethink: '',
+        cindy: '',
+        R: '',
+        latelate: '',
+        latePro: '',
+        twitter: '',
+        github: ''
+      }
+    },
+    mondaiList: {
+      type: Object,
+      default: []
+    }
+  },
   data () {
     return {
       profile: {
@@ -40,10 +62,19 @@ export default {
     }
   },
   mounted: function () {
+    let data = this.$localStorage.get('profile')
+    if (data) {
+      this.profile = data
+    }
+    let mondaiList = this.$localStorage.get('mondaiList')
+    if (mondaiList.length > 0) {
+      this.mondaiList = mondaiList
+    }
     let vm = this
     this.$http.get(this.$endPoint('/api/mypage'))
       .then(function (res) {
         vm.profile = res.data
+        vm.$localStorage.set('profile', vm.profile)
         vm.$http.get(vm.$endPoint('/api/mylist'))
           .then(function (res) {
             vm.mondaiList = res.data
