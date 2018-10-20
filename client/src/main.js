@@ -14,6 +14,7 @@ import MondaiDialog from '@/components/MondaiDialog'
 import MondaiEditor from '@/components/MondaiEditor'
 import AccountLink from '@/components/AccountLink'
 import AllList from '@/components/AllList'
+import './registerServiceWorker'
 
 Vue.use(Buefy)
 Vue.prototype.$http = axios
