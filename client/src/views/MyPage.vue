@@ -21,8 +21,7 @@
 <script>
 export default {
   localStorage: {
-    profile: {},
-    mondaiList: []
+    profile: {}
   },
   data () {
     return {
@@ -44,23 +43,18 @@ export default {
     }
   },
   mounted: function () {
-    let prof = this.$localStorage.get('profile')
-    let mondaiList = this.$localStorage.get('mondaiList')
+    let prof = JSON.parse(this.$localStorage.get('profile'))
     if (prof) {
       this.profile = prof
-    }
-    if (mondaiList) {
-      this.mondaiList = mondaiList
     }
     let vm = this
     this.$http.get(this.$endPoint('/api/mypage'))
       .then(function (res) {
         vm.profile = res.data
-        vm.$localStorage.set('profile', res.data)
+        vm.$localStorage.set('profile', JSON.stringify(res.data))
         vm.$http.get(vm.$endPoint('/api/mylist'))
           .then(function (res) {
             vm.mondaiList = res.data
-            vm.$localStorage.set('mondaiList', res.data)
           })
           .catch(function (error) {
             vm.$toast.open({
