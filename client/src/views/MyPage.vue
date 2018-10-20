@@ -56,7 +56,7 @@ export default {
     this.$http.get(this.$endPoint('/api/mypage'))
       .then(function (res) {
         vm.profile = res.data
-        this.$localStorage.set('profile', res.data)
+        vm.$localStorage.set('profile', res.data)
         vm.$http.get(vm.$endPoint('/api/mylist'))
           .then(function (res) {
             vm.mondaiList = res.data
