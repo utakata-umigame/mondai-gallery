@@ -8,9 +8,6 @@
 </template>
 <script>
 export default {
-  localStorage: {
-    mondaiList: []
-  },
   data () {
     return {
       name: '-',
@@ -20,18 +17,14 @@ export default {
     }
   },
   mounted: function () {
-    let mondaiList = JSON.parse(this.$localStorage.get('mondaiList'))
-    if (mondaiList.length > 0) {
-      this.mondaiList = mondaiList
-    }
     let vm = this
     this.$http.get(this.$endPoint('/api/mondaiList'))
       .then(function (response) {
-        vm.mondaiList = response.data.sort((x, y) => {
+        let sorted = response.data.sort((x, y) => {
           // Descending sort
           return y.id - x.id
         })
-        vm.$localStorage.set('mondaiList', JSON.stringify(vm.mondaiList))
+        vm.mondaiList = sorted
       })
       .catch(function (error) {
         console.log(error)
