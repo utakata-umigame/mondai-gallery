@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import VueLocalStorage from 'vue-localstorage'
 import axios from 'axios'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
@@ -16,6 +17,7 @@ import AccountLink from '@/components/AccountLink'
 import AllList from '@/components/AllList'
 import './registerServiceWorker'
 
+Vue.use(VueLocalStorage)
 Vue.use(Buefy)
 Vue.prototype.$http = axios
 Vue.prototype.$endPoint = function (uri) {
