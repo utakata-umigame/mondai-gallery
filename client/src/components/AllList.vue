@@ -8,6 +8,12 @@
 </template>
 <script>
 export default {
+  localStorage: {
+    mondaiList: {
+      type: Object,
+      default: []
+    }
+  },
   data () {
     return {
       name: '-',
@@ -17,6 +23,10 @@ export default {
     }
   },
   mounted: function () {
+    let mondaiList = this.$localStorage.get('mondaiList')
+    if (mondaiList.length > 0) {
+      this.mondaiList = mondaiList
+    }
     let vm = this
     this.$http.get(this.$endPoint('/api/mondaiList'))
       .then(function (response) {
@@ -25,6 +35,7 @@ export default {
           return y.id - x.id
         })
         vm.mondaiList = sorted
+        vm.$localStorage.set('mondaiList', vm.mondaiList)
       })
       .catch(function (error) {
         console.log(error)

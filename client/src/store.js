@@ -10,6 +10,7 @@ export default new Vuex.Store({
       nickname: 'Guest',
       username: ''
     },
+    savedLists: {},
     genre: {
       'umigame': 'ウミガメ',
       'tobira': '20の扉',
@@ -43,6 +44,9 @@ export default new Vuex.Store({
   mutations: {
     setUser (state, value) {
       state.user = value
+    },
+    setSavedList (state, value) {
+      state.savedLists[value.id] = value
     }
   },
   getters: {
@@ -50,6 +54,7 @@ export default new Vuex.Store({
     genre (state) { return state.genre },
     site (state) { return state.site },
     account (state) { return state.account },
-    updateLog (state) { return state.updateLog }
+    updateLog (state) { return state.updateLog },
+    savedList(state) { return state.savedList }
   }
 })

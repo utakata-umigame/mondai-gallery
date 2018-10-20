@@ -161,11 +161,16 @@ export default {
       this.siteFilter = 'all'
     },
     fetchList: function () {
-      var vm = this
-      var id = this.$route.params.id
+      let vm = this
+      let id = this.$route.params.id
+      let data = this.$store.state.savedLists[id]
+      if (data) {
+        this.mondaiList = data
+      }
       this.$http.get(this.$endPoint('/api/mondaiList/show/' + id))
         .then(function (response) {
           vm.mondaiList = response.data
+          vm.$store.commit('setSavedList', response.data)
           vm.mondaiList.mondai = vm.sort(vm.filter(vm.mondaiList.mondai))
           vm.$http.get(vm.$endPoint('/api/mondaiList'))
             .then(function (res) {
