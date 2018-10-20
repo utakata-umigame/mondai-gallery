@@ -20,9 +20,6 @@
 </template>
 <script>
 export default {
-  localStorage: {
-    profile: {}
-  },
   data () {
     return {
       profile: {
@@ -43,15 +40,10 @@ export default {
     }
   },
   mounted: function () {
-    let prof = JSON.parse(this.$localStorage.get('profile'))
-    if (prof) {
-      this.profile = prof
-    }
     let vm = this
     this.$http.get(this.$endPoint('/api/mypage'))
       .then(function (res) {
         vm.profile = res.data
-        vm.$localStorage.set('profile', JSON.stringify(res.data))
         vm.$http.get(vm.$endPoint('/api/mylist'))
           .then(function (res) {
             vm.mondaiList = res.data
