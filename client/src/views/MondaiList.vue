@@ -165,7 +165,6 @@ export default {
       let id = this.$route.params.id
       let data = this.$store.state.savedLists[id]
       if (data) {
-        console.log(data)
         this.mondaiList = data.mondaiList
         this.mondaiList.mondai = this.sort(this.filter(data.mondaiList.mondai))
         this.otherList = data.otherList
