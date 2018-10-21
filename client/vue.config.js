@@ -1,5 +1,5 @@
 module.exports = {
   pwa: {
-    name: 'ワードウルフ'
+    name: 'Mondai Gallery'
   }
 }
