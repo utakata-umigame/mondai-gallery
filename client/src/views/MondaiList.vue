@@ -165,38 +165,49 @@ export default {
       let id = this.$route.params.id
       let data = this.$store.state.savedLists[id]
       if (data) {
-        this.mondaiList = data
-      }
-      this.$http.get(this.$endPoint('/api/mondaiList/show/' + id))
-        .then(function (response) {
-          vm.mondaiList = response.data
-          vm.$store.commit('setSavedList', response.data)
-          vm.mondaiList.mondai = vm.sort(vm.filter(vm.mondaiList.mondai))
-          vm.$http.get(vm.$endPoint('/api/mondaiList'))
-            .then(function (res) {
-              vm.otherList = res.data.filter(x => x.editor.id === vm.mondaiList.editor.id && x.id !== vm.mondaiList.id)
-            })
-        })
-        .catch(function (err) {
-          if (err) {
-            vm.$toast.open({
-              'message': err.message,
-              'type': 'is-danger'
-            })
-          }
-        })
-        .then(function () {
-          vm.$http.get(vm.$endPoint('/api/user'))
-            .then((res) => {
-              if (res) {
-                if (res.data) {
-                  if (res.data.username === vm.mondaiList.editor.username) {
-                    vm.isMine = true
+        console.log(data)
+        this.mondaiList = data.mondaiList
+        this.mondaiList.mondai = this.sort(this.filter(data.mondaiList.mondai))
+        this.otherList = data.otherList
+        this.isMine = data.isMine
+      } else {
+        this.$http.get(this.$endPoint('/api/mondaiList/show/' + id))
+          .then( response => {
+            vm.mondaiList = response.data
+            vm.mondaiList.mondai = vm.sort(vm.filter(vm.mondaiList.mondai))
+            vm.$http.get(vm.$endPoint('/api/mondaiList'))
+              .then( res => {
+                vm.otherList = res.data.filter(x => x.editor.id === vm.mondaiList.editor.id && x.id !== vm.mondaiList.id)
+              })
+          })
+          .catch(function (err) {
+            if (err) {
+              vm.$toast.open({
+                'message': err.message,
+                'type': 'is-danger'
+              })
+            }
+          })
+          .then(() => {
+            vm.$http.get(vm.$endPoint('/api/user'))
+              .then( res => {
+                if (res) {
+                  if (res.data) {
+                    if (res.data.username === vm.mondaiList.editor.username) {
+                      vm.isMine = true
+                    }
+                    let data = {
+                      id: vm.mondaiList.id,
+                      mondaiList: vm.mondaiList,
+                      otherList: vm.otherList,
+                      isMine: vm.isMine
+                    }
+                    vm.$store.commit('setSavedList', data)
                   }
                 }
-              }
-            })
-        })
+              })
+          })
+      }
     }
   }
 }

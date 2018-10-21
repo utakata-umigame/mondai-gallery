@@ -11,6 +11,7 @@ export default new Vuex.Store({
       username: ''
     },
     savedLists: {},
+    savedProfiles: {},
     genre: {
       'umigame': 'ウミガメ',
       'tobira': '20の扉',
@@ -47,6 +48,9 @@ export default new Vuex.Store({
     },
     setSavedList (state, value) {
       state.savedLists[value.id] = value
+    },
+    setSavedProfile (state, value) {
+      state.savedProfiles[value.id] = value
     }
   },
   getters: {
@@ -55,6 +59,7 @@ export default new Vuex.Store({
     site (state) { return state.site },
     account (state) { return state.account },
     updateLog (state) { return state.updateLog },
-    savedList(state) { return state.savedList }
+    savedLists(state) { return state.savedLists },
+    savedProfiles(state) { return state.savedProfiles }
   }
 })

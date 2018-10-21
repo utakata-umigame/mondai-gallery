@@ -39,24 +39,30 @@ export default {
   mounted: function () {
     let vm = this
     let id = this.$route.params.id
-    this.$http.get(this.$endPoint('/api/profile/show/' + id))
+    let prof = this.$store.state.savedProfiles[id]
+    if (prof) {
+      this.profile = prof
+    } else {
+      this.$http.get(this.$endPoint('/api/profile/show/' + id))
+        .then(function (res) {
+          if (res) {
+            vm.profile = res.data
+            vm.$store.commit('setSavedProfile', vm.profile)
+          }
+        })
+        .catch(function (error) {
+          if (error) {
+            this.$toast.open({
+              'message': 'error',
+              'type': 'is-danger'
+            })
+          }
+        })
+    }
+    this.$http.get(this.$endPoint('/api/mondaiList'))
       .then(function (res) {
         if (res) {
-          vm.profile = res.data
-          vm.$http.get(vm.$endPoint('/api/mondaiList'))
-            .then(function (res) {
-              if (res) {
-                vm.mondaiList = res.data.filter(x => x.editor.id === vm.profile.id)
-              }
-            })
-            .catch(function (error) {
-              if (error) {
-                this.$toast.open({
-                  'message': 'error',
-                  'type': 'is-danger'
-                })
-              }
-            })
+          vm.mondaiList = res.data.filter(x => x.editor.id.toString() === id.toString())
         }
       })
       .catch(function (error) {
