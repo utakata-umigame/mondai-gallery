@@ -31,14 +31,64 @@
         </div>
       </div>
         <div class="level-item">
-          <b-switch v-model="isSwitched" trueValue="一括編集" falseValue="個別編集">
-              {{ isSwitched }}
-          </b-switch>
+          <b-select v-model="isSwitched">
+            <option value="個別編集">個別編集</option>
+            <option value="一括編集">一括編集</option>
+            <option value="テーブル">テーブル</option>
+          </b-select>
         </div>
       </div>
     </div>
     <!-- 問題リスト -->
-    <div class="panel">
+    <table class="table is-striped is-fullwidth" v-if="isSwitched === 'テーブル'">
+      <thead>
+        <tr>
+          <th>サイト</th>
+          <th>ジャンル</th>
+          <th>ID</th>
+          <th>タイトル</th>
+          <th>作者</th>
+          <th>コメント</th>
+          <th>移動/削除</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="mondai in mondaiList.mondai">
+          <th>
+            <b-select v-model="mondai.site">
+              <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
+            </b-select>
+          </th>
+          <td>
+            <b-select v-model="mondai.genre">
+              <option v-for="item in genre" :value="item.key" :key="item.key">{{item.value}}</option>
+            </b-select>
+          </td>
+          <td>
+            <b-input class="mb" v-model ="mondai.id" type="number" placeholder="ID"/>
+          </td>
+          <td>
+            <b-input v-model ="mondai.title" type="text" placeholder="タイトル" maxlength="100"/>
+          </td>
+          <td>
+            <b-input  v-model ="mondai.author" type="text" placeholder="作者" maxlength="20"/>
+          </td>
+          <td>
+            <b-input v-model ="mondai.description" type="text" maxlength="200" placeholder="コメント"/>
+          </td>
+          <td>
+            <div class="column buttons has-addons">
+              <button class="button is-outlined is-primary" @click="moveTop(mondai)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveUp(mondai)"><b-icon icon="arrow-up">上へ</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveDown(mondai)"><b-icon icon="arrow-down">下へ</b-icon></button>
+              <button class="button is-outlined is-primary" @click="moveBottom(mondai)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
+              <button class="button is-outlined is-danger" v-on:click="remove(mondai)"><b-icon icon="minus-circle">削除</b-icon></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="panel" v-else>
       <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block">
         <div class="fill" v-if="isSwitched === '一括編集'">
           <div class="columns">
@@ -151,10 +201,18 @@ export default {
   },
   computed: {
     site: function () {
-      return this.$store.state.site
+      let list = []
+      for(let key in this.$store.state.site) {
+        list.push({key: key, value: this.$store.state.site[key]})
+      }
+      return list
     },
     genre: function () {
-      return this.$store.state.genre
+      let list = []
+      for(let key in this.$store.state.genre) {
+        list.push({key: key, value: this.$store.state.genre[key]})
+      }
+      return list
     }
   },
   mounted: function () {
