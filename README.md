@@ -13,6 +13,7 @@ git clone https://github.com/pb10001/mondai-gallery.git
 - docker-compose
 ### ビルド済みのイメージを試す
 ```bash
+wget https://raw.githubusercontent.com/pb10001/mondai-gallery/master/Dockerfile
 wget https://raw.githubusercontent.com/pb10001/mondai-gallery/master/docker-compose.yml
 docker-compose up
 # 192.168.99.100:49160にアクセス
