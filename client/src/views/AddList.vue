@@ -221,7 +221,7 @@ export default {
       return res
     },
     isValidUrl: function (siteName) {
-      if (this.site[siteName]) return true
+      if (this.$store.state.site[siteName]) return true
       else return false
     },
     remove: function (item) {

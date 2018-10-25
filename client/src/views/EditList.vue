@@ -229,7 +229,7 @@ export default {
       return this.site[siteName].showUrl + id
     },
     isValidUrl: function (siteName) {
-      if (this.site[siteName]) return true
+      if (this.$store.state.site[siteName]) return true
       else return false
     },
     sort: function () {
