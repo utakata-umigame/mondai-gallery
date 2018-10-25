@@ -11,7 +11,7 @@ router.get("/profile/show/:id", apis.profileFromID);
 router.get("/mondaiList", apis.allList);
 router.get("/mondaiList/show/:id", apis.listFromID);
 router.post("/signup", apis.signUp);
-
+router.get("/userlist/:id", apis.listById);
 // Login
 router.post("/login", passport.authenticate('local'), apis.login);
 

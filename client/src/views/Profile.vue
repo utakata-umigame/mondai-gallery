@@ -59,10 +59,10 @@ export default {
           }
         })
     }
-    this.$http.get(this.$endPoint('/api/mondaiList'))
+    this.$http.get(this.$endPoint('/api/userlist/' + id))
       .then(function (res) {
         if (res) {
-          vm.mondaiList = res.data.filter(x => x.editor.id.toString() === id.toString())
+          vm.mondaiList = res.data
         }
       })
       .catch(function (error) {

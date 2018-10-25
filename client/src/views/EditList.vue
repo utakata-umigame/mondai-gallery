@@ -53,7 +53,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="mondai in mondaiList.mondai">
+        <tr v-for="mondai in mondaiList.mondai" :key="mondai.id">
           <th>
             <b-select v-model="mondai.site">
               <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>

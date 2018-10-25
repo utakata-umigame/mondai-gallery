@@ -55,6 +55,27 @@ module.exports = {
         }
     });
   },
+  listById: (req, res) => {
+    db.MondaiList.find({"private": false}).toArray((error, docs) => {
+        if (docs) {
+          let list = docs.map(x => {
+            return {
+                id: x.id,
+                name: x.name,
+                fromMyMondais: x.fromMyMondais,
+                private: x.private,
+                editor: x.editor,
+                description: x.description,
+                updateDate: x.updateDate
+            }
+          }).filter(x => x.editor.id.toString() === req.params.id.toString());
+          res.json(list);
+        }
+        else {
+          res.json({'error': 'error'});
+        }
+    });
+  },
   listFromID: (req, res) => {
    db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
      if (doc) {
