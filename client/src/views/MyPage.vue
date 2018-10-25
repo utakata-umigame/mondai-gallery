@@ -36,10 +36,6 @@ export default {
         twitter: '',
         github: ''
       }
-    },
-    mondaiList: {
-      type: Object,
-      default: []
     }
   },
   data () {
@@ -65,10 +61,6 @@ export default {
     let data = this.$localStorage.get('profile')
     if (data) {
       this.profile = data
-    }
-    let mondaiList = this.$localStorage.get('mondaiList')
-    if (mondaiList.length > 0) {
-      this.mondaiList = mondaiList
     }
     let vm = this
     this.$http.get(this.$endPoint('/api/mypage'))
