@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="heading">
-      <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+      <nav class="navbar is-light" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <router-link class="is-light navbar-item revalia" to="/"><span>Mondai Gallery</span></router-link>
+          <router-link class="navbar-item revalia" to="/"><span>Mondai Gallery</span></router-link>
           <div class="navbar-burger burger" @click="showNav = !showNav" data-target="navbar1">
             <span></span>
             <span></span>
