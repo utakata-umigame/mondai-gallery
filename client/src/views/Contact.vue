@@ -22,7 +22,7 @@
     </div>
     <account-link :profile="profile"></account-link>
     <div class="panel">
-      <div class="panel-heading sawarabi-gothic" :style="{'background-color':'#333', 'color': '#fff'}">更新履歴</div>
+      <div class="panel-heading caption-light" :style="{'background-color':'#333', 'color': '#fff'}">更新履歴</div>
       <div class="panel-block" v-for="item in messages" :key="item">{{item}}</div>
     </div>
   </div>

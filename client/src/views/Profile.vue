@@ -11,7 +11,7 @@
     </div>
     <account-link :profile="profile"></account-link>
     <div class="panel">
-      <p class="panel-heading sawarabi-gothic" :style="{'background-color': profile.color||'#333', 'color': '#fff'}">作成したリスト</p>
+      <p class="panel-heading caption-light" :style="{'background-color': profile.color||'#333', 'color': '#fff'}">作成したリスト</p>
       <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
     </div>
   </div>

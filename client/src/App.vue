@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Revalia|Sawarabi+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Kosugi+Maru|Revalia|Sawarabi+Gothic');
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -126,6 +126,10 @@ h2.title {
 }
 .sawarabi-gothic {
   font-family: 'Sawarabi Gothic', sans-serif;
+  font-weight: lighter;
+}
+.caption-light {
+  font-family: 'Kosugi Maru', sans-serif;
   font-weight: lighter;
 }
 </style>
