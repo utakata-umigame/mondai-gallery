@@ -24,6 +24,9 @@
     <div class="card-content">
       <p class="title">{{mondaiList.name}}</p>
       <p class="subtitle"><a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></p>
+      <b-taglist>
+        <b-tag v-for="item in mondaiList.tags">{{item}}</b-tag>
+      </b-taglist>
       <p class="multiline card-body">{{mondaiList.description}}</p>
     </div>
   </div>
@@ -214,9 +217,6 @@ export default {
 <style scoped>
 .level {
   width: 100%;
-}
-.tag {
-  min-width: 100px;
 }
 .mr {
   margin-right: 5px;

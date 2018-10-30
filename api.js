@@ -245,6 +245,7 @@ module.exports = {
           "name": obj.name,
           "editor": req.user,
           "fromMyMondais": obj.fromMyMondais,
+          "tags": obj.tags,
           "private": obj.private,
           "description": obj.description,
           "mondai": obj.mondai,

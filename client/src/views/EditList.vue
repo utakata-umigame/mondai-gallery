@@ -10,6 +10,15 @@
         <b-input v-model="mondaiList.description" placeholder="説明" type="textarea" maxlength="200">
         </b-input>
       </b-field>
+      <b-field label="タグをつける(10個まで)">
+        <b-taginput
+          v-model="mondaiList.tags"
+          ellipsis
+          maxtags="10"
+          icon="label"
+          placeholder="タグを追加">
+        </b-taginput>
+      </b-field>
       <div class="field">
         <b-checkbox v-model="mondaiList.fromMyMondais">
           自作問題のみのリストの場合はチェック
@@ -18,18 +27,18 @@
       <div class="field">
         <b-checkbox v-model="mondaiList.private">
           非公開にする場合はチェック
-          </b-checkbox>
+        </b-checkbox>
       </div>
     </div>
     <div class="level">
       <div class="level-left">
         <div class="level-item">
-        <div class="buttons has-addons">
-          <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
-          <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
-          <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
+          <div class="buttons has-addons">
+            <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
+            <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
+            <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
+          </div>
         </div>
-      </div>
         <div class="level-item">
           <b-select v-model="isSwitched">
             <option value="個別編集">個別編集</option>
@@ -115,6 +124,10 @@
         </div>
       </div>
     </div>
+    <div class="mb">
+      <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
+      <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
+    </div>
     <div class="">
       <div class="buttons has-addons">
         <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存して戻る</span>
@@ -186,11 +199,10 @@ export default {
           'nickname': '',
           'username': ''
         },
+        'tags': [],
         'description': '',
         'private': false,
-        'mondai': [{
-          '_id': 0
-        }]
+        'mondai': []
       },
       mondaiJSON: '',
       isAddMondaiModalActive: false,
@@ -362,6 +374,7 @@ export default {
             })
           } else if (data.message) {
             vm.$router.push('/mondailist')
+            vm.$store.state.savedLists[vm.mondaiList.id] = null
           }
         })
         .catch(function (error) {

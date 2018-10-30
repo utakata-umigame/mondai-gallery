@@ -10,15 +10,24 @@
         <b-input v-model="mondaiList.description" placeholder="説明" type="textarea" maxlength="200">
         </b-input>
       </b-field>
+      <b-field label="タグをつける(10個まで)">
+        <b-taginput
+          v-model="mondaiList.tags"
+          ellipsis
+          maxtags="10"
+          icon="label"
+          placeholder="タグを追加">
+        </b-taginput>
+      </b-field>
       <div class="field">
-          <b-checkbox v-model="mondaiList.fromMyMondais">
-            自作問題のみのリストの場合はチェック
-          </b-checkbox>
+        <b-checkbox v-model="mondaiList.fromMyMondais">
+          自作問題のみのリストの場合はチェック
+        </b-checkbox>
       </div>
       <div class="field">
-          <b-checkbox v-model="mondaiList.private">
-            非公開にする場合はチェック
-          </b-checkbox>
+        <b-checkbox v-model="mondaiList.private">
+          非公開にする場合はチェック
+        </b-checkbox>
       </div>
     </div>
     <div class="level">
@@ -115,6 +124,10 @@
         </div>
       </div>
     </div>
+    <div class="mb">
+      <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
+      <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
+    </div>
     <div class="">
       <div class="buttons has-addons">
         <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;リストを作成</span>
@@ -186,6 +199,7 @@ export default {
           'nickname': '',
           'username': ''
         },
+        'tags': [],
         'description': '',
         'private': false,
         'mondai': []
