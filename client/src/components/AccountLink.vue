@@ -13,6 +13,8 @@ export default {
       latethink: Number,
       cindy: Number,
       R: Number,
+      latelate: Number,
+      latePro: Number,
       twitter: String,
       github: String
     }
