@@ -95,7 +95,8 @@ export default {
         'editor': {
           'id': 0,
           'username': '',
-          'nickname': ''
+          'nickname': '',
+          'color': '#000'
         },
         'mondai': []
       }

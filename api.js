@@ -83,7 +83,12 @@ module.exports = {
    db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
      if (doc) {
        if (!doc.private) {
-         res.json(doc);
+         db.User.findOne({"username": doc.editor.username}, (err, usr) => {
+            if (usr) {
+             doc.editor.color = usr.color || '#000';
+            }
+            res.json(doc);
+          })
          return;
        } else if (!req.user) {
          res.status(403).send({
@@ -92,9 +97,9 @@ module.exports = {
          });
          return;
        } else if (doc.editor.username === req.user.username){
-         db.User.findOne({"username": req.user.username}, (err, usr) => {
+         db.User.findOne({"username": doc.editor.username}, (err, usr) => {
             if (usr) {
-             if (usr.color) doc.editor.color = usr.color;
+             doc.editor.color = usr.color || '#000';
             }
             res.json(doc);
           })
