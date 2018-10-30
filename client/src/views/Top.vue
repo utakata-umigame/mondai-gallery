@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="hero is-primary is-large is-bold">
+    <section class="hero is-light is-large is-bold">
       <div class="hero-body">
         <div>
           <h1 class="title is-1 revalia">Mondai Gallery</h1>
