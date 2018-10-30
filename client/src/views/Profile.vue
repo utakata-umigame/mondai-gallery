@@ -2,7 +2,7 @@
   <div>
     <div id="profile" class="card">
       <div class="card-content">
-        <p class="title is-4">{{profile.nickname}}</p>
+        <p class="title is-4"><b-icon :style="{'color': profile.color||'#000'}" icon="account-box"/>{{profile.nickname}}</p>
         <div class="card-text">
           <p class="multiline">{{ profile.bio }}</p>
           <p>登録日時：{{profile.signup_date}}</p>
@@ -31,7 +31,8 @@ export default {
         latelate: '',
         latePro: '',
         twitter: '',
-        github: ''
+        github: '',
+        color: ''
       },
       mondaiList: []
     }

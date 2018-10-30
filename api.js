@@ -28,6 +28,7 @@ module.exports = {
           "latePro": doc.latePro,
           "twitter": doc.twitter,
           "github": doc.github,
+          "color": doc.color,
           "signup_date": doc.signup_date
         });
         return;
@@ -56,6 +57,7 @@ module.exports = {
     });
   },
   listById: (req, res) => {
+    // ユーザーIDでフィルター
     db.MondaiList.find({"private": false}).toArray((error, docs) => {
         if (docs) {
           let list = docs.map(x => {
@@ -77,20 +79,25 @@ module.exports = {
     });
   },
   listFromID: (req, res) => {
+  // リストIDを指定して表示
    db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
      if (doc) {
        if (!doc.private) {
          res.json(doc);
          return;
-       }
-       else if (!req.user) {
+       } else if (!req.user) {
          res.status(403).send({
            "success": "false",
            "message": "Not logged in"
          });
          return;
        } else if (doc.editor.username === req.user.username){
-         res.json(doc);
+         db.User.findOne({"username": req.user.username}, (err, usr) => {
+            if (usr) {
+             if (usr.color) doc.editor.color = usr.color;
+            }
+            res.json(doc);
+          })
          return;
        } else {
          res.status(403).send({
@@ -181,6 +188,7 @@ module.exports = {
             "latePro": doc.latePro,
             "twitter": doc.twitter,
             "github": doc.github,
+            "color": doc.color,
             "signup_date": doc.signup_date
           });
           return;
@@ -225,7 +233,8 @@ module.exports = {
           "latelate": obj.latelate,
           "latePro": obj.latePro,
           "twitter": obj.twitter,
-          "github": obj.github
+          "github": obj.github,
+          "color": obj.color
         }
       }, (err, doc) => {});
     res.json({"message": "success"});

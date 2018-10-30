@@ -2,6 +2,15 @@
   <div>
     <h2 class="title">プロフィールを編集</h2>
     <div class="mb">
+      <p><b-icon icon="account-box" :style="{'color': profile.color}"/>{{profile.nickname}}</p>
+      <b-field
+        label="テーマカラー(カラーコード)">
+        <b-input
+          type="text"
+          v-model = "profile.color"
+          placeholder="例)#000">
+        </b-input>
+      </b-field>
       <b-input
         type="textarea"
         v-model.trim="profile.bio"
@@ -102,7 +111,8 @@ export default{
         latelate: '',
         latePro: '',
         twitter: '',
-        github: ''
+        github: '',
+        color: ''
       }
     }
   },
