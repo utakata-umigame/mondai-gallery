@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="panel">
-      <div class="panel-heading">すべてのリスト</div>
+      <div class="panel-heading caption-light">すべてのリスト</div>
       <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
     </div>
   </div>
