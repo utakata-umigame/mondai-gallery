@@ -2,7 +2,7 @@
   <div>
     <div id="profile" class="card">
       <div class="card-content">
-        <p class="title is-4"><b-icon class="is-medium" :style="{'color': profile.color||'#333'}" icon="account-box"/>{{profile.nickname}}</p>
+        <p class="title is-4"><b-icon size="is-medium" :style="{'color': profile.color||'#333'}" icon="account-box"/>{{profile.nickname}}</p>
         <p class="subtitle is-6">{{profile.username}}</p>
         <div class="card-text">
           <p class="multiline">{{ profile.bio }}</p>
