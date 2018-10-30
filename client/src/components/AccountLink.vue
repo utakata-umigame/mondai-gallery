@@ -1,6 +1,6 @@
 <template>
   <div class="panel">
-    <div class="panel-heading">
+    <div class="panel-heading" :style="{'background-color': profile.color||'#000', 'color': '#fff'}">
       アカウント
     </div>
     <a v-for="item in account" :key="item.name" class="panel-block" target="_blank" v-if="profile[item.key]" :href="profileUrl(item.profileUrl, item.key)">{{item.name}}</a>
