@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted: function () {
-    let mondaiList = this.$localStorage.get('mondaiList')
+    let mondaiList = this.$localStorage.get('mondaiList') || []
     if (mondaiList.length > 0) {
       this.mondaiList = mondaiList
     }
