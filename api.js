@@ -99,7 +99,7 @@ module.exports = {
        } else if (doc.editor.username === req.user.username){
          db.User.findOne({"username": doc.editor.username}, (err, usr) => {
             if (usr) {
-             doc.editor.color = usr.color || '#000';
+             doc.editor.color = usr.color || '#333';
             }
             res.json(doc);
           })
