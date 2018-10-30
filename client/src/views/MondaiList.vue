@@ -96,7 +96,7 @@ export default {
           'id': 0,
           'username': '',
           'nickname': '',
-          'color': '#000'
+          'color': ''
         },
         'mondai': []
       }
