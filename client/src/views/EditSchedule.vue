@@ -35,14 +35,16 @@
       </b-field>-->
       <button class="button is-outlined is-primary"><b-icon icon="plus-circle"/><span>追加</span></button>
     </form>
-    <div v-for="item in schedule.tasks" :class="{'done': item.isDone}" class="panel-block">
-      <b-field>
-        <b-checkbox v-model="item.isDone">
-        </b-checkbox>
-        <span class="mr">{{formatDate(item.endDate)}}</span>
-        <strong>{{item.title}}</strong>
-        <button class="button is-white" @click="remove(item)"><b-icon type="is-danger" icon="minus-circle"/></button>
-      </b-field>
+    <div class="mb">
+      <div v-for="item in schedule.tasks" :class="{'done': item.isDone}" class="panel-block">
+        <b-field>
+          <b-checkbox v-model="item.isDone">
+          </b-checkbox>
+          <span class="mr">{{formatDate(item.endDate)}}</span>
+          <strong>{{item.title}}</strong>
+          <button class="button is-white" @click="remove(item)"><b-icon type="is-danger" icon="minus-circle"/></button>
+        </b-field>
+      </div>
     </div>
     <div class="buttons has-addons">
       <span @click="confirm" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存して戻る</span>
