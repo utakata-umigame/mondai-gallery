@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2 class="title"><span>スケジュール</span><b-tag type="is-danger" size="is-medium">DEV</b-tag></h2>
+    <p>※この機能は開発段階です。正常な動作を保証するものではございません。あらかじめご了承ください。</p>
     <form @submit.prevent="addTask">
       <b-field label="イベント">
         <b-input
