@@ -12,6 +12,7 @@ router.get("/mondaiList", apis.allList);
 router.get("/mondaiList/show/:id", apis.listFromID);
 router.post("/signup", apis.signUp);
 router.get("/userlist/:id", apis.listById);
+router.get("/schedule/:id", apis.schedule);
 // Login
 router.post("/login", passport.authenticate('local'), apis.login);
 
@@ -21,6 +22,7 @@ router.get("/mypage", isAuthenticated, apis.myPage);
 router.get("/mylist", isAuthenticated, apis.myList);
 router.get("/logout", isAuthenticated, apis.logout);
 router.post("/profile/edit", isAuthenticated, apis.editProfile);
+router.post("/schedule/edit/:id", isAuthenticated, apis.editSchedule);
 router.post("/mondaiList/edit/:id", isAuthenticated, apis.editList);
 router.post("/add", isAuthenticated, apis.addList);
 

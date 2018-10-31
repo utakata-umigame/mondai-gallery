@@ -118,6 +118,9 @@ h2.title {
 .multiline {
   white-space: pre-wrap;
 }
+.mr {
+  margin-right: 5px;
+}
 .mb {
   margin-bottom: 10px;
 }

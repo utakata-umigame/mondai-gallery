@@ -9,6 +9,7 @@
           <p>登録日時：{{profile.signup_date}}</p>
         </div>
         <a class="" @click="$router.push('/mypage/edit')">編集</a>
+        <a class="" @click="$router.push('/schedule/edit/' + profile.id)">スケジュール</a>
       </div>
     </div>
     <account-link :profile="profile"></account-link>

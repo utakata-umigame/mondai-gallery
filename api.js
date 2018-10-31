@@ -118,6 +118,16 @@ module.exports = {
      res.json({'error': 'error'});
    });
   },
+  schedule: (req, res) => {
+    let id = parseInt(req.params.id);
+    db.Schedule.findOne({"editor.id": id} , (err, doc) => {
+      if (doc) {
+        res.json(doc);
+      } else {
+        res.json({});
+      }
+    })
+  },
   login: (req, res) => {
     db.User.findOne({username: req.body.username}, (err, doc) => {
       if (doc) res.json({'message': 'Logged in', 'user': doc});
@@ -243,6 +253,69 @@ module.exports = {
         }
       }, (err, doc) => {});
     res.json({"message": "success"});
+  },
+  editSchedule: (req, res) => {
+    if (req.params.id.toString() !== req.user.id.toString()) {
+      res.status(403).send({
+        "success": "false",
+        "message": 'エラー'
+      })
+      return;
+    }
+    db.Schedule.findOne(
+      {"editor.username": req.user.username},
+      (err, doc) => {
+        if (doc) {
+          if (doc.editor.id !== req.user.id) {
+            res.status(403).send({
+              "success": "false",
+              "message": err
+            })
+            return;
+          }
+          db.Schedule.updateOne(
+            {"editor.username": req.user.username},
+            {
+              $set: {
+                "editor": req.user,
+                "tasks": req.body.tasks
+              }
+            }, (err, doc) => {
+              if (doc) {
+                res.status(200).send({
+                  "success": "true",
+                  "message": "success"
+                })
+              } else {
+                res.status(403).send({
+                  "success": "false",
+                  "message": err
+                })
+              }
+            }
+          )
+        } else {
+          db.Schedule.insertOne(
+            {
+              "editor": req.user,
+              "tasks": req.body.tasks
+            }, (err, doc) => {
+              if (doc) {
+                res.status(200).send({
+                  "success": true,
+                  "message": "success"
+                })
+              } else if (err) {
+                res.status(403).send({
+                  "success": false,
+                  "message": err
+                })
+              }
+            }
+          )
+        }
+      }
+    )
   },
   editList: (req, res) => {
     let obj = req.body

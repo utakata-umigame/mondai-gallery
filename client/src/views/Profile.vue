@@ -7,6 +7,7 @@
           <p class="multiline">{{ profile.bio }}</p>
           <p>登録日時：{{profile.signup_date}}</p>
         </div>
+        <a class="" @click="$router.push('/schedule/edit/' + $route.params.id)">スケジュール</a>
       </div>
     </div>
     <account-link :profile="profile"></account-link>

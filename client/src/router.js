@@ -11,6 +11,7 @@ import Profile from './views/Profile'
 import Contact from './views/Contact'
 import EditProfile from './views/EditProfile'
 import MondaiList from './views/MondaiList'
+import EditSchedule from './views/EditSchedule'
 
 Vue.use(Router)
 
@@ -71,6 +72,11 @@ export default new Router({
       path: '/contact',
       name: 'Contact',
       component: Contact
+    },
+    {
+      path: '/schedule/edit/:id',
+      name: 'EditSchedule',
+      component: EditSchedule
     }
   ]
 })

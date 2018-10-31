@@ -29,6 +29,7 @@ let callback = function(err, client) {
   let gallery = client.db(process.env.MONGODB_NAME||"gallery");
   db.User = gallery.collection("user");
   db.MondaiList = gallery.collection("mondaiList");
+  db.Schedule = gallery.collection("schedule");
   db.Counter = gallery.collection("counter");
   db.Counter.countDocuments(
     {id: "list_id"},
@@ -50,6 +51,17 @@ let callback = function(err, client) {
       }
       if (res == 0) {
         db.Counter.insertOne({id: "user_id", seq: 1});
+      }
+    });
+  db.Counter.countDocuments(
+    {id: "schedule_id"},
+    {},
+    function (err, res) {
+      if (err) {
+        console.log(err)
+      }
+      if (res == 0) {
+        db.Counter.insertOne({id: "schedule_id", seq: 1});
       }
     });
   console.log("connected");
