@@ -34,7 +34,7 @@
           hour-format="12">
         </b-timepicker>
       </b-field>-->
-      <button class="button is-outlined is-primary"><b-icon icon="plus-circle"/><span>追加</span></button>
+      <button class="button is-outlined is-primary mb"><b-icon icon="plus-circle"/><span>追加</span></button>
     </form>
     <div class="mb">
       <div v-for="item in schedule.tasks" :class="{'done': item.isDone}" class="panel-block">
