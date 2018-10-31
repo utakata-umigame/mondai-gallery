@@ -7,9 +7,9 @@
           <p class="multiline">{{ profile.bio }}</p>
           <p>登録日時：{{profile.signup_date}}</p>
         </div>
-        <a class="" @click="$router.push('/schedule/edit/' + $route.params.id)">スケジュール</a>
       </div>
     </div>
+    <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
     <account-link :profile="profile"></account-link>
     <div class="panel">
       <p class="panel-heading caption-light" :style="{'background-color': profile.color||'#555', 'color': '#fff'}">作成したリスト</p>
@@ -18,7 +18,11 @@
   </div>
 </template>
 <script>
+import ScheduleView from '@/components/ScheduleView'
 export default {
+  components: {
+    ScheduleView
+  },
   data () {
     return {
       profile: {
@@ -35,7 +39,10 @@ export default {
         github: '',
         color: ''
       },
-      mondaiList: []
+      mondaiList: [],
+      schedule: {
+        tasks: []
+      }
     }
   },
   mounted: function () {
@@ -46,7 +53,7 @@ export default {
       this.profile = prof
     } else {
       this.$http.get(this.$endPoint('/api/profile/show/' + id))
-        .then(function (res) {
+        .then(res => {
           if (res) {
             vm.profile = res.data
             vm.$store.commit('setSavedProfile', vm.profile)
@@ -74,6 +81,19 @@ export default {
             'type': 'is-danger'
           })
         }
+      })
+    this.$http.get(this.$endPoint('/api/schedule/' + id))
+      .then(doc => {
+        if (!doc.data.tasks) return
+        this.schedule.tasks = doc.data.tasks.map(t => {
+          return {
+            'title': t.title,
+            'description': t.description,
+            'createdDate': new Date(t.createdDate),
+            'endDate': new Date(t.endDate),
+            'isDone': t.isDone
+          }
+        })
       })
   },
   methods: {

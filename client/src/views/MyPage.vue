@@ -12,6 +12,7 @@
         <a class="" @click="$router.push('/schedule/edit/' + profile.id)">スケジュール</a>
       </div>
     </div>
+    <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
     <account-link :profile="profile"></account-link>
     <div class="panel">
       <p class="panel-heading caption-light" :style="{'background-color': profile.color||'#555', 'color': '#fff'}">作成したリスト</p>
@@ -20,7 +21,11 @@
   </div>
 </template>
 <script>
+import ScheduleView from '@/components/ScheduleView'
 export default {
+  components: {
+    ScheduleView
+  },
   localStorage: {
     profile: {
       type: Object,
@@ -56,6 +61,9 @@ export default {
         github: ''
       },
       mondaiList: [],
+      schedule: {
+        tasks: []
+      },
       isEditProfileModalActive: false
     }
   },
@@ -77,6 +85,18 @@ export default {
             vm.$toast.open({
               'message': error.message,
               'type': 'is-danger'
+            })
+          })
+        vm.$http.get(vm.$endPoint('/api/schedule/' + vm.profile.id))
+          .then(res => {
+            vm.schedule.tasks = res.data.tasks.map(t => {
+              return {
+                'title': t.title,
+                'description': t.description,
+                'createdDate': new Date(t.createdDate),
+                'endDate': new Date(t.endDate),
+                'isDone': t.isDone
+              }
             })
           })
       })
