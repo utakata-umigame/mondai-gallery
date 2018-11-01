@@ -95,13 +95,9 @@ export default {
       .then(doc => {
         if (!doc.data.tasks) return
         this.schedule.tasks = doc.data.tasks.map(t => {
-          return {
-            'title': t.title,
-            'description': t.description,
-            'createdDate': new Date(t.createdDate),
-            'endDate': new Date(t.endDate),
-            'isDone': t.isDone
-          }
+          t.createdDate = new Date(t.createdDate)
+          t.endDate = new Date(t.endDate)
+          return t
         })
       })
   },
