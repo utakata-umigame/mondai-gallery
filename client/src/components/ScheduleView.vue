@@ -9,6 +9,7 @@
           <div class="tile is-4 is-child box" v-for="item in schedule.tasks" :class="{'done': item.isDone}">
             <p class="title is-4">{{item.title}}</p>
             <p class="subtitle grey is-6">{{formatDate(item.endDate)}}</p>
+            <b-tag>{{item.site}}</b-tag>
             <p class="multiline">{{item.description}}</p>
           </div>
         </div>
