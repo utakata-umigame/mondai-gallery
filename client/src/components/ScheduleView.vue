@@ -4,7 +4,16 @@
       <div class="panel-heading caption-light":style="{'background-color': color||'#555', 'color': '#fff'}">
         スケジュール
       </div>
-      <div v-for="item in schedule.tasks" :class="{'done': item.isDone}" class="panel-block">
+      <div class="tile is-ancestor">
+        <div class="tile is-parent">
+          <div class="tile is-4 is-child box" v-for="item in schedule.tasks" :class="{'done': item.isDone}">
+            <p class="title is-4">{{item.title}}</p>
+            <p class="subtitle grey is-6">{{formatDate(item.endDate)}}</p>
+            <p class="multiline">{{item.description}}</p>
+          </div>
+        </div>
+      </div>
+      <!--<div v-for="item in schedule.tasks" :class="{'done': item.isDone}" class="panel-block">
         <div class="level">
           <div class="level-left">
             <div class="level-item">
@@ -13,7 +22,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -50,6 +59,9 @@ export default {
 }
 </script>
 <style scoped>
+.grey {
+  color: grey;
+}
 .done {
   text-decoration: line-through;
   color: grey;
