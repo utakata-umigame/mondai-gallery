@@ -2,78 +2,90 @@
   <div>
     <h2 class="title">プロフィールを編集</h2>
     <div class="mb">
-      <p><b-icon icon="account-box" :style="{'color': profile.color}"/>{{profile.nickname}}</p>
-      <b-field
-        label="テーマカラー(カラーコード)">
-        <b-input
-          type="text"
-          v-model = "profile.color"
-          placeholder="例)#000">
-        </b-input>
-      </b-field>
-      <b-input
-        type="textarea"
-        v-model.trim="profile.bio"
-        placeholder="自己紹介"
-        :rows="6">
-      </b-input>
-      <label>アカウントID(任意記入)</label>
-      <b-field
-        label="ラテシンのID">
-        <b-input
-          type="number"
-          v-model = "profile.latethink"
-          placeholder=".../mondai/profile/[ID]">
-        </b-input>
-      </b-field>
-      <b-field
-        label="CindyのID">
-        <b-input
-          type="number"
-          v-model = "profile.cindy"
-          placeholder=".../profile/show/[ID]">
-        </b-input>
-      </b-field>
-      <b-field
-        label="R鯖のID">
-        <b-input
-          type="number"
-          v-model = "profile.R"
-          placeholder=".../Mmail/userpage/[ID]">
-        </b-input>
-      </b-field>
-      <b-field
-        label="らてらて鯖のID">
-        <b-input
-          type="number"
-          v-model = "profile.latelate"
-          placeholder=".../mondai/profile/[ID]">
-        </b-input>
-      </b-field>
-      <b-field
-        label="らてしんPROのID">
-        <b-input
-          type="number"
-          v-model = "profile.latePro"
-          placeholder=".../users/profile/[ID]">
-        </b-input>
-      </b-field>
-      <b-field
-        label="TwitterのID">
-        <b-input
-          type="text"
-          v-model = "profile.twitter"
-          placeholder=".../twitter.com/[ID]">
-        </b-input>
-      </b-field>
-      <b-field
-        label="GitHubのID">
-        <b-input
-          type="text"
-          v-model = "profile.github"
-          placeholder=".../github.com/[ID]">
-        </b-input>
-      </b-field>
+      <section class="section">
+        <p class="subtitle"><b-icon size="is-medium" icon="account-box" :style="{'color': profile.color}"/>{{profile.nickname}}</p>
+        <b-field
+          label="テーマカラー(カラーコード)">
+          <b-input
+            type="text"
+            v-model = "profile.color"
+            placeholder="例)#000">
+          </b-input>
+        </b-field>
+        <b-field>
+          <b-input
+            type="color"
+            v-model = "profile.color">
+          </b-input>
+        </b-field>
+        <b-field label="自己紹介">
+          <b-input
+            type="textarea"
+            v-model.trim="profile.bio"
+            placeholder="自己紹介"
+            :rows="6">
+          </b-input>
+        </b-field>
+      </section>
+      <section class="section">
+        <p class="subtitle">アカウントID</p>
+        <b-field
+          label="ラテシンのID">
+          <b-input
+            type="number"
+            v-model = "profile.latethink"
+            placeholder=".../mondai/profile/[ID]">
+          </b-input>
+        </b-field>
+        <b-field
+          label="CindyのID">
+          <b-input
+            type="number"
+            v-model = "profile.cindy"
+            placeholder=".../profile/show/[ID]">
+          </b-input>
+        </b-field>
+        <b-field
+          label="R鯖のID">
+          <b-input
+            type="number"
+            v-model = "profile.R"
+            placeholder=".../Mmail/userpage/[ID]">
+          </b-input>
+        </b-field>
+        <b-field
+          label="らてらて鯖のID">
+          <b-input
+            type="number"
+            v-model = "profile.latelate"
+            placeholder=".../mondai/profile/[ID]">
+          </b-input>
+        </b-field>
+        <b-field
+          label="らてしんPROのID">
+          <b-input
+            type="number"
+            v-model = "profile.latePro"
+            placeholder=".../users/profile/[ID]">
+          </b-input>
+        </b-field>
+        <b-field
+          label="TwitterのID">
+          <b-input
+            type="text"
+            v-model = "profile.twitter"
+            placeholder=".../twitter.com/[ID]">
+          </b-input>
+        </b-field>
+        <b-field
+          label="GitHubのID">
+          <b-input
+            type="text"
+            v-model = "profile.github"
+            placeholder=".../github.com/[ID]">
+          </b-input>
+        </b-field>
+      </section>
     </div>
     <div class="buttons has-addons">
       <span class="button is-primary is-outlined" @click="submit">保存</span>
