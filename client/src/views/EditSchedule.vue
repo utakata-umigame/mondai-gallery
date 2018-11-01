@@ -10,14 +10,6 @@
           required>
         </b-input>
       </b-field>
-      <b-field label="内容">
-        <b-input
-          v-model="newTask.description"
-          type="textarea"
-          rows="3"
-          placeholder="内容">
-        </b-input>
-      </b-field>
       <b-field label="日付を指定">
           <b-datepicker
             v-model="newTask.endDate"
@@ -26,6 +18,19 @@
             icon="calendar-today"
             required>
           </b-datepicker>
+      </b-field>
+      <b-field label="サイト">
+        <b-select placeholder="Select a site" v-model="newTask.site">
+          <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
+        </b-select>
+      </b-field>
+      <b-field label="内容">
+        <b-input
+          v-model="newTask.description"
+          type="textarea"
+          rows="3"
+          placeholder="内容">
+        </b-input>
       </b-field>
       <!--<b-field label="時刻を指定">
         <b-timepicker
@@ -43,7 +48,9 @@
           </b-checkbox>
           <span class="mr">{{formatDate(item.endDate)}}</span>
           <strong>{{item.title}}</strong>
+          <b-tag v-if="siteName[item.site]">{{siteName[item.site].name}}</b-tag>
           <button class="button is-white" @click="remove(item)"><b-icon type="is-danger" icon="minus-circle"/></button>
+          <span class="multiline">{{item.description}}</span>
         </b-field>
       </div>
     </div>
@@ -87,6 +94,17 @@ export default {
     }
   },
   computed: {
+    siteName: function () {
+      return this.$store.state.site
+    },
+    site: function () {
+      let list = []
+      for(let key in this.$store.state.site) {
+        list.push({key: key, value: this.$store.state.site[key]})
+      }
+      list.push({key: 'other', value: {name: 'その他'}})
+      return list
+    }
   },
   created () {
     this.$http.get(this.$endPoint('/api/schedule/' + this.$route.params.id))
@@ -96,6 +114,7 @@ export default {
             return {
               'title': t.title,
               'description': t.description,
+              'site': t.site,
               'createdDate': new Date(t.createdDate),
               'endDate': new Date(t.endDate),
               'isDone': t.isDone
