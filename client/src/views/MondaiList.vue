@@ -174,7 +174,7 @@ export default {
         this.otherList = data.otherList
         this.isMine = data.isMine
       } else {
-        this.$http.get(this.$endPoint('/api/mondaiList/show/' + id))
+        this.$http.get(this.$endPoint('/api/mondaiList/' + id))
           .then( response => {
             vm.mondaiList = response.data
             vm.mondaiList.mondai = vm.sort(vm.filter(vm.mondaiList.mondai))

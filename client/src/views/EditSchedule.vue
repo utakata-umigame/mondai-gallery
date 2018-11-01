@@ -141,7 +141,7 @@ export default {
       })
     },
     submit () {
-      this.$http.post(this.$endPoint('/api/schedule/edit/' + this.$route.params.id), this.schedule)
+      this.$http.put(this.$endPoint('/api/schedule/' + this.$route.params.id), this.schedule)
         .then(res => {
           if (!res.data.error) {
             this.$toast.open({
