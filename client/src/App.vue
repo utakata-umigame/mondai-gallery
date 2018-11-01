@@ -23,7 +23,7 @@
               </a>
               <div class="navbar-dropdown">
                 <router-link class="navbar-item" to="/mypage" v-if="user.username"><b-icon icon="account"></b-icon><span>マイページ</span></router-link>
-                <router-link class="navbar-item" to="/config" v-if="user.username"><b-icon icon="settings"></b-icon><span>個人設定</span></router-link>
+                <router-link class="navbar-item" to="/mypage/edit" v-if="user.username"><b-icon icon="settings"></b-icon><span>個人設定</span></router-link>
                 <a class="navbar-item" @click="logout()" v-if="user.username"><b-icon icon="logout"></b-icon><span>ログアウト</span></a>
                 <router-link class="navbar-item" to="/login" v-else><b-icon icon="login"></b-icon><span>ログイン</span></router-link>
                 <router-link class="navbar-item" to="/signup"><b-icon icon="account-plus"></b-icon><span>新規登録</span></router-link>
