@@ -148,6 +148,7 @@ export default {
               'type': 'is-success',
               'message': '追加しました。'
             })
+            this.$router.go(-1)
           } else {
             this.$toast.open({
               'type': 'is-danger',
