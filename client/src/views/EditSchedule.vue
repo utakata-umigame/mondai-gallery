@@ -10,7 +10,7 @@
           required>
         </b-input>
       </b-field>
-      <b-field label="日付を指定">
+      <b-field label="日付">
           <b-datepicker
             v-model="newTask.endDate"
             :min-date="getYesterday()"
@@ -22,6 +22,14 @@
       <b-field label="サイト">
         <b-select placeholder="Select a site" v-model="newTask.site">
           <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
+        </b-select>
+      </b-field>
+      <b-field label="種類">
+        <b-select placeholder="Select a type" v-model="newTask.type">
+          <option value="出題">出題</option>
+          <option value="イベント">イベント</option>
+          <option value="開発">開発</option>
+          <option value="">その他</option>
         </b-select>
       </b-field>
       <b-field label="内容">
@@ -50,6 +58,7 @@
           <span class="mr">{{formatDate(item.endDate)}}</span>
           <strong>{{item.title}}</strong>
           <b-tag v-if="siteName[item.site]">{{siteName[item.site].name}}</b-tag>
+          <b-tag v-if="item.type">{{item.type}}</b-tag>
           <button class="button is-white" @click="remove(item)"><b-icon type="is-danger" icon="minus-circle"/></button>
           <span class="multiline">{{item.description}}</span>
         </b-field>
@@ -79,6 +88,7 @@ export default {
       newTask: {
         title: '',
         description: '',
+        type: '',
         endDate: new Date(),
         createdDate: new Date(),
         isDone: false
