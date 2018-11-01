@@ -5,7 +5,7 @@
         スケジュール
       </div>
       <div class="tile is-ancestor">
-        <div class="tile is-parent">
+        <div class="tile is-parent flex">
           <div class="tile is-4 is-child box" v-for="item in schedule.tasks" :class="{'done': item.isDone}">
             <p class="title is-4">{{item.title}}</p>
             <p class="subtitle grey is-6">{{formatDate(item.endDate)}}</p>
@@ -71,5 +71,8 @@ export default {
 .done {
   text-decoration: line-through;
   color: grey;
+}
+.flex {
+  flex-wrap: wrap;
 }
 </style>
