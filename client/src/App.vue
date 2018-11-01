@@ -104,6 +104,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  background: #fefeff;
 }
 h2.title {
   text-align: center;
@@ -135,5 +136,8 @@ h2.title {
 .caption-light {
   font-family: 'Kosugi Maru', sans-serif;
   font-weight: lighter;
+}
+.panel-block {
+  background: white;
 }
 </style>
