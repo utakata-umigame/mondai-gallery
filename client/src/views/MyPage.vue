@@ -2,8 +2,17 @@
   <div>
     <div id="profile" class="card">
       <div class="card-content">
-        <p class="title is-4"><b-icon size="is-medium" :style="{'color': profile.color||'#555'}" icon="account-box"/>{{profile.nickname}}</p>
-        <p class="subtitle is-6">{{profile.username}}</p>
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <b-icon size="is-large" :style="{'color': profile.color||'#555'}" icon="account-box"/>
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">{{profile.nickname}}</p>
+            <p class="subtitle is-6">{{profile.username}}</p>
+          </div>
+        </div>
         <div class="card-text">
           <p class="multiline">{{ profile.bio }}</p>
           <p>登録日時：{{profile.signup_date}}</p>
