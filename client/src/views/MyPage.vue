@@ -105,7 +105,7 @@ export default {
               'type': 'is-danger'
             })
           })
-        vm.$http.get(vm.$endPoint('/api/schedule/' + vm.profile.id))
+        this.$http.get(this.$endPoint('/api/schedule/' + this.profile.id))
           .then(doc => {
             this.schedule.tasks = doc.data.tasks.map(t => {
               t.createdDate = new Date(t.createdDate)
