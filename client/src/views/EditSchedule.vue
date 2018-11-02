@@ -2,7 +2,11 @@
   <div>
     <h2 class="title"><span>スケジュール</span><b-tag type="is-danger" size="is-medium">DEV</b-tag></h2>
     <p>※この機能は開発段階です。正常な動作を保証するものではございません。あらかじめご了承ください。</p>
-    <form @submit.prevent="addTask">
+    <div class="buttons has-addons">
+      <span class="button mr">{{schedule.tasks.length}}/10</span>
+      <button @click="addTask" class="button is-outlined is-primary mb" :disabled="schedule.tasks.length >= 10"><b-icon icon="plus-circle"/><span>追加</span></button>
+    </div>
+    <!--<form @submit.prevent="addTask">
       <b-field label="イベント">
         <b-input
           v-model="newTask.title"
@@ -37,21 +41,66 @@
           v-model="newTask.description"
           type="textarea"
           rows="3"
-          placeholder="内容">
+          placeholder="内容">, 'is-inverted': item.isDone
         </b-input>
       </b-field>
-      <!--<b-field label="時刻を指定">
-        <b-timepicker
-          placeholder="Click to select..."
-          icon="clock"
-          hour-format="12">
-        </b-timepicker>
-      </b-field>-->
-      <span class="mr">{{schedule.tasks.length}}/10</span>
-      <button class="button is-outlined is-primary mb" :disabled="schedule.tasks.length >= 10"><b-icon icon="plus-circle"/><span>追加</span></button>
-    </form>
+    </form>-->
     <div class="mb">
-      <div v-for="item in schedule.tasks" :class="{'done': item.isDone}" class="panel-block">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent flex">
+        <div class="tile is-4 is-child box notification" v-for="item in schedule.tasks" :class="{'is-white': !item.isDone}">
+          <b>イベント</b>
+          <b-field>
+            <b-input
+              v-model="item.title"
+              placeholder="タイトル"
+              required>
+            </b-input>
+          </b-field>
+          <b>日付</b>
+          <b-field>
+              <b-datepicker
+                v-model="item.endDate"
+                :min-date="getYesterday()"
+                placeholder="Type or select a date..."
+                icon="calendar-today"
+                required>
+              </b-datepicker>
+          </b-field>
+          <b>サイト</b>
+          <b-field>
+            <b-select placeholder="Select a site" v-model="item.site">
+              <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
+            </b-select>
+          </b-field>
+          <b>種類</b>
+          <b-field>
+            <b-select placeholder="Select a type" v-model="item.type">
+              <option value="出題">出題</option>
+              <option value="イベント">イベント</option>
+              <option value="開発">開発</option>
+              <option value="">その他</option>
+            </b-select>
+          </b-field>
+          <b>内容</b>
+          <b-field>
+            <b-input
+              v-model="item.description"
+              type="textarea"
+              rows="3"
+              placeholder="内容">
+            </b-input>
+          </b-field>
+          <b-field>
+            <b-checkbox v-model="item.isDone">
+              終了済み
+            </b-checkbox>
+          </b-field>
+          <button class="delete is-danger" @click="remove(item)"></button>
+        </div>
+      </div>
+    </div>
+      <!--<div v-for="item in schedule.tasks" :class="{'done': item.isDone}" class="panel-block">
         <b-field>
           <b-checkbox v-model="item.isDone">
           </b-checkbox>
@@ -62,23 +111,16 @@
           <button class="button is-white" @click="remove(item)"><b-icon type="is-danger" icon="minus-circle"/></button>
           <span class="multiline">{{item.description}}</span>
         </b-field>
-      </div>
+      </div>-->
     </div>
     <div class="buttons has-addons">
       <span @click="confirm" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存して戻る</span>
-      <!--<button @click="saveOffline" class="button is-outlined is-success"><b-icon icon="content-save"/><span>オフライン保存</span></button>-->
       <span @click="confirmCancel" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
     </div>
   </div>
 </template>
 <script>
 export default {
-  localStorage: {
-    schedule: {
-      type: Object,
-      default: {}
-    }
-  },
   data () {
     return {
       schedule: {
@@ -147,8 +189,15 @@ export default {
       return today
     },
     addTask () {
-      let t = Object.assign({}, this.newTask)
-      this.schedule.tasks.push(t)
+      // let t = Object.assign({}, this.newTask)
+      this.schedule.tasks.push({
+        title: '予定',
+        description: '',
+        type: '',
+        endDate: new Date(),
+        createdDate: new Date(),
+        isDone: false
+      })
       this.sort()
     },
     remove(task) {
@@ -206,8 +255,7 @@ export default {
 }
 </script>
 <style scoped>
-.done {
-  text-decoration: line-through;
-  color: grey;
+.flex {
+  flex-wrap: wrap;
 }
 </style>
