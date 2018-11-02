@@ -43,10 +43,13 @@
         </div>
       </div>
       <div class="column">
-        <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
         <div class="panel">
-          <p class="panel-heading caption-light" :style="{'background-color': profile.color||'#555', 'color': '#fff'}">作成したリスト</p>
-          <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
+          <div class="panel-heading caption-light" :style="{'background-color': profile.color||'#555'}">
+            <a class="mr"　@click="show='list'" style="color: #fff;"><span>作成したリスト</span></a>
+            <a @click="show='schedule'" style="color: #fff;"><b-icon icon="calendar-today"/><span>スケジュール</span></a>
+          </div>
+          <list-link v-if="show==='list'" :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
+          <ScheduleView v-if="show==='schedule'" :schedule="schedule" :color="profile.color"></ScheduleView>
         </div>
       </div>
     </div>
@@ -77,7 +80,8 @@ export default {
       mondaiList: [],
       schedule: {
         tasks: []
-      }
+      },
+      show: 'list'
     }
   },
   mounted: function () {

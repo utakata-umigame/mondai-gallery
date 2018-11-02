@@ -14,9 +14,6 @@
       <div class="hero-body">
         <div class="columns">
           <div class="column">
-            <all-list></all-list>
-          </div>
-          <div class="column">
             <div class="panel">
               <div class="panel-heading caption-light">更新履歴</div>
               <div class="panel-block" v-for="item in messages" :key="item">{{item}}</div>

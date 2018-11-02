@@ -1,9 +1,6 @@
 <template>
   <div>
     <div class="panel mb" v-if="sorted.length > 0">
-      <div class="panel-heading caption-light":style="{'background-color': color||'#555', 'color': '#fff'}">
-        <b-icon icon="calendar-today"/><span>スケジュール</span>
-      </div>
       <div class="tile is-ancestor">
         <div class="tile is-parent flex">
           <div class="tile is-4 is-child box notification" v-for="item in sorted" :class="{'is-white': !item.isDone}">

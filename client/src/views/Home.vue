@@ -12,8 +12,14 @@
         </li>
       </ul>
     </nav>
-    <AllSchedule />
-    <all-list/>
+    <div>
+      <div class="panel-heading caption-light">
+        <a class="mr"　@click="show='list'"><span>すべてのリスト</span></a>
+        <a @click="show='schedule'"><b-icon icon="calendar-today"/><span>スケジュール</span></a>
+      </div>
+      <AllSchedule v-if="show==='schedule'"/>
+      <all-list v-if="show==='list'"/>
+    </div>
   </div>
 </template>
 <script>
@@ -27,7 +33,8 @@ export default {
       name: '-',
       genreFilter: 'all',
       siteFilter: 'all',
-      mondaiList: []
+      mondaiList: [],
+      show: 'list'
     }
   },
   mounted: function () {
