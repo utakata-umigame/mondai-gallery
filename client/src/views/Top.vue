@@ -10,14 +10,18 @@
         </div>
       </div>
     </section>
-    <section class="hero">
+    <section class="hero is-medium is-dark is-bold">
       <div class="hero-body">
         <div class="columns">
           <div class="column">
-            <div class="panel">
-              <div class="panel-heading caption-light">更新履歴</div>
-              <div class="panel-block" v-for="item in messages" :key="item">{{item}}</div>
-            </div>
+            <b-icon icon="format-list-bulleted" size="is-large"/>
+            <p class="subtitle">問題リスト</p>
+            <p>サイト横断型の問題リンク集を作成可能</p>
+          </div>
+          <div class="column">
+            <b-icon icon="calendar-today" size="is-large"/>
+            <p class="subtitle"><span class="mr">スケジュール</span><b-tag class="is-danger">DEV</b-tag></p>
+            <p>出題予定やイベントの締め切り日を管理</p>
           </div>
         </div>
       </div>
