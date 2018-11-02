@@ -220,7 +220,7 @@ export default {
           if (!res.data.error) {
             this.$toast.open({
               'type': 'is-success',
-              'message': '追加しました。'
+              'message': '保存しました。'
             })
             this.$router.go(-1)
           } else {
