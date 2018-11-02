@@ -54,6 +54,7 @@
             <b-input
               v-model="item.title"
               placeholder="タイトル"
+              maxlength="50"
               required>
             </b-input>
           </b-field>
