@@ -8,7 +8,7 @@
         <div class="tile is-parent flex">
           <div class="tile is-4 is-child box notification" v-for="item in sorted" :class="{'is-white': !item.isDone}">
             <p class="title is-4">{{item.title}}</p>
-            <p class="subtitle is-6" v-if="item.editor"><router-link :to="{ name: 'Profile', params: {id: item.editor.id} }">{{item.editor.nickname}}</router-link></p>
+            <p class="subtitle is-6" v-if="item.editor"><b-icon icon="account-box":style="{'color': item.editor.color||'#555'}"></b-icon><router-link :to="{ name: 'Profile', params: {id: item.editor.id} }">{{item.editor.nickname}}</router-link></p>
             <p class="subtitle grey is-6">{{formatDate(item.endDate)}}</p>
             <b-tag class="mr" v-if="siteName[item.site]">{{siteName[item.site].name}}</b-tag>
             <b-tag v-if="item.type">{{item.type}}</b-tag>
