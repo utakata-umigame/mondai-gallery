@@ -14,8 +14,8 @@
     </nav>
     <div>
       <div class="panel-heading caption-light">
-        <a class="mr"　@click="show='list'"><span>すべてのリスト</span></a>
-        <a @click="show='schedule'"><b-icon icon="calendar-today"/><span>スケジュール</span></a>
+        <router-link :to="{ name: 'Home', query: { show: 'list' } }" class="mr"><span>すべてのリスト</span></router-link>
+        <router-link :to="{ name: 'Home', query: { show: 'schedule' } }"><b-icon icon="calendar-today"/><span>スケジュール</span></router-link>
       </div>
       <AllSchedule v-if="show==='schedule'"/>
       <all-list v-if="show==='list'"/>
@@ -28,6 +28,11 @@ export default {
   components: {
     AllSchedule
   },
+  watch: {
+    '$route' (to, from) {
+      this.show = this.$route.query.show || 'list'
+    }
+  },
   data () {
     return {
       name: '-',
@@ -39,6 +44,7 @@ export default {
   },
   mounted: function () {
     var vm = this
+    this.show = this.$route.query.show || 'list'
     this.$http.get(this.$endPoint('/api/mondaiList'))
       .then(function (response) {
         vm.mondaiList = response.data.sort((x, y) => {
