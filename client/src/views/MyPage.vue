@@ -97,8 +97,8 @@ export default {
         vm.profile = res.data
         vm.$localStorage.set('profile', vm.profile)
         vm.$http.get(vm.$endPoint('/api/mylist'))
-          .then(function (res) {
-            vm.mondaiList = res.data
+          .then(list => {
+            vm.mondaiList = list.data
           })
           .catch(function (error) {
             vm.$toast.open({
