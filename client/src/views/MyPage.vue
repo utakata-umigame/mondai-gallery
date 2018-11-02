@@ -94,26 +94,26 @@ export default {
     let vm = this
     this.$http.get(this.$endPoint('/api/mypage'))
       .then(res => {
-        vm.profile = res.data
-        vm.$localStorage.set('profile', vm.profile)
-        vm.$http.get(vm.$endPoint('/api/mylist'))
+        this.profile = res.data
+        this.$http.get(this.$endPoint('/api/mylist'))
           .then(list => {
-            vm.mondaiList = list.data
+            this.mondaiList = list.data
           })
-          .catch(function (error) {
-            vm.$toast.open({
-              'message': error.message,
+          .catch(err => {
+            this.$toast.open({
+              'message': err.message,
               'type': 'is-danger'
             })
           })
         vm.$http.get(vm.$endPoint('/api/schedule/' + vm.profile.id))
           .then(doc => {
-            vm.schedule.tasks = doc.data.tasks.map(t => {
+            this.schedule.tasks = doc.data.tasks.map(t => {
               t.createdDate = new Date(t.createdDate)
               t.endDate = new Date(t.endDate)
               return t
             })
           })
+        this.$localStorage.set('profile', this.profile)
       })
       .catch(function (error) {
         console.log(error)
