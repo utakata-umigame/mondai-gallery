@@ -1,5 +1,25 @@
 <template>
   <div>
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li>
+          <router-link to="/mondailist">
+            <span class="icon is-small is-primary">
+              <b-icon icon="home"/>
+            </span>
+            <span>ホーム</span>
+          </router-link>
+        </li>
+        <li class="is-active">
+          <a href="#">
+            <span class="icon is-small is-primary">
+              <b-icon icon="account-box"/>
+            </span>
+            <span>{{profile.nickname}}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
     <div id="profile" class="card">
       <div class="card-content">
         <div class="media">
