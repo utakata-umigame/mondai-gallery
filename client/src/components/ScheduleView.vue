@@ -2,7 +2,7 @@
   <div>
     <div class="panel mb" v-if="sorted.length > 0">
       <div class="panel-heading caption-light":style="{'background-color': color||'#555', 'color': '#fff'}">
-        スケジュール
+        <b-icon icon="calendar-today"/><span>スケジュール</span>
       </div>
       <div class="tile is-ancestor">
         <div class="tile is-parent flex">
