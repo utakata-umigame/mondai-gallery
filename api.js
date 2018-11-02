@@ -229,7 +229,7 @@ module.exports = {
     });
   },
   myList: (req, res) => {
-    db.MondaiList.find({editor: req.user}).toArray((err, docs) => {
+    db.MondaiList.find({"editor.id": req.user.id}).toArray((err, docs) => {
       if (docs) {
         res.json(docs.map(x => {
           return {
