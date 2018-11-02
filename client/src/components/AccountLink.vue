@@ -1,9 +1,6 @@
 <template>
   <div class="panel">
-    <div class="panel-heading caption-light" :style="{'background-color': profile.color||'#555', 'color': '#fff'}">
-      アカウント
-    </div>
-    <a v-for="item in account" :key="item.name" class="panel-block" target="_blank" v-if="profile[item.key]" :href="profileUrl(item.profileUrl, item.key)">{{item.name}}</a>
+    <b-tag class="mr" v-for="item in account" :key="item.name" v-if="profile[item.key]"><a target="_blank" :href="profileUrl(item.profileUrl, item.key)">{{item.name}}</a></b-tag>
   </div>
 </template>
 <script>

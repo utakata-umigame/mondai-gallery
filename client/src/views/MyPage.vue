@@ -1,31 +1,37 @@
 <template>
   <div>
-    <div id="profile" class="card">
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <b-icon size="is-large" :style="{'color': profile.color||'#555'}" icon="account-box"/>
-            </figure>
-          </div>
-          <div class="media-content">
-            <p class="title is-4">{{profile.nickname}}</p>
-            <p class="subtitle is-6">{{profile.username}}</p>
+    <div class="columns">
+      <div class="column is-one-third">
+        <div id="profile" class="card">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <b-icon size="is-large" :style="{'color': profile.color||'#555'}" icon="account-box"/>
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4">{{profile.nickname}}</p>
+                <p class="subtitle is-6">{{profile.username}}</p>
+              </div>
+            </div>
+            <div class="card-text">
+              <account-link :profile="profile"></account-link>
+              <p class="multiline">{{ profile.bio }}</p>
+              <p>登録日時：{{profile.signup_date}}</p>
+            </div>
+            <a class="mr" @click="$router.push('/mypage/edit')">編集</a>
+            <a class="" @click="$router.push('/schedule/edit/' + profile.id)">スケジュール</a>
           </div>
         </div>
-        <div class="card-text">
-          <p class="multiline">{{ profile.bio }}</p>
-          <p>登録日時：{{profile.signup_date}}</p>
-        </div>
-        <a class="mr" @click="$router.push('/mypage/edit')">編集</a>
-        <a class="" @click="$router.push('/schedule/edit/' + profile.id)">スケジュール</a>
       </div>
-    </div>
-    <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
-    <account-link :profile="profile"></account-link>
-    <div class="panel">
-      <p class="panel-heading caption-light" :style="{'background-color': profile.color||'#555', 'color': '#fff'}">作成したリスト</p>
-      <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
+      <div class="column">
+        <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
+        <div class="panel">
+          <p class="panel-heading caption-light" :style="{'background-color': profile.color||'#555', 'color': '#fff'}">作成したリスト</p>
+          <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
+        </div>
+      </div>
     </div>
   </div>
 </template>
