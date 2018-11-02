@@ -88,6 +88,7 @@
               v-model="item.description"
               type="textarea"
               rows="3"
+              maxlength="200"
               placeholder="内容">
             </b-input>
           </b-field>
