@@ -5,6 +5,7 @@
         <div class="level-item">
           <b-icon type="is-info" icon="format-list-bulleted"></b-icon>
           <strong>{{ item.name }}</strong>
+          <b-icon icon="lock" v-if="item.private"></b-icon>
         </div>
       </div>
       <div class="level-right">
@@ -12,7 +13,6 @@
           <span>{{item.editor.nickname}}</span>
         </div>
         <div class="level-item">
-          <b-icon icon="lock" v-if="item.private"></b-icon>
           <b-tag class='is-primary mr' v-if='item.fromMyMondais'>自作問題のみ</b-tag>
           <span>{{item.updateDate}}</span>
         </div>
