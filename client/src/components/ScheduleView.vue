@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div class="panel mb" v-if="schedule.tasks.length > 0">
+    <div class="panel mb" v-if="sorted.length > 0">
       <div class="panel-heading caption-light":style="{'background-color': color||'#555', 'color': '#fff'}">
         スケジュール
       </div>
       <div class="tile is-ancestor">
         <div class="tile is-parent flex">
-          <div class="tile is-4 is-child box notification" v-for="item in schedule.tasks" :class="{'is-white': !item.isDone}">
+          <div class="tile is-4 is-child box notification" v-for="item in sorted" :class="{'is-white': !item.isDone}">
             <p class="title is-4">{{item.title}}</p>
+            <p class="subtitle is-6" v-if="item.editor"><router-link :to="{ name: 'Profile', params: {id: item.editor.id} }">{{item.editor.nickname}}</router-link></p>
             <p class="subtitle grey is-6">{{formatDate(item.endDate)}}</p>
             <b-tag class="mr" v-if="siteName[item.site]">{{siteName[item.site].name}}</b-tag>
             <b-tag v-if="item.type">{{item.type}}</b-tag>
@@ -15,16 +16,6 @@
           </div>
         </div>
       </div>
-      <!--<div v-for="item in schedule.tasks" :class="{'done': item.isDone}" class="panel-block">
-        <div class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <span class="mr">{{formatDate(item.endDate)}}</span>
-              <strong>{{item.title}}</strong>
-            </div>
-          </div>
-        </div>
-      </div>-->
     </div>
   </div>
 </template>
@@ -52,6 +43,11 @@ export default {
   computed: {
     siteName: function () {
       return this.$store.state.site
+    },
+    sorted () {
+      return this.schedule.tasks.sort((x, y) => {
+        return new Date(x.endDate) - new Date(y.endDate)
+      })
     }
   },
   methods: {

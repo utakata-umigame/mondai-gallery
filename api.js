@@ -118,6 +118,22 @@ module.exports = {
      res.json({'error': 'error'});
    });
   },
+  allSchedule: (req, res) => {
+    db.Schedule.find({}).toArray((err, docs) => {
+      if (!docs) {
+        res.json({});
+        return;
+      }
+      let data = docs.reduce((acc, doc) => {
+        let tasks = doc.tasks.map(task => {
+          task.editor = doc.editor
+          return task
+        });
+        return acc.concat(tasks);
+      }, []);
+      res.json(data);
+    });
+  },
   schedule: (req, res) => {
     let id = parseInt(req.params.id);
     db.Schedule.findOne({"editor.id": id} , (err, doc) => {

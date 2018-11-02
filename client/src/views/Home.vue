@@ -12,11 +12,16 @@
         </li>
       </ul>
     </nav>
+    <AllSchedule />
     <all-list/>
   </div>
 </template>
 <script>
+import AllSchedule from '@/components/AllSchedule'
 export default {
+  components: {
+    AllSchedule
+  },
   data () {
     return {
       name: '-',

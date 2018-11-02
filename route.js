@@ -12,6 +12,7 @@ router.get("/mondaiList", apis.allList);
 router.get("/mondaiList/:id", apis.listFromID);
 router.post("/signup", apis.signUp);
 router.get("/userlist/:id", apis.listById);
+router.get("/schedule", apis.allSchedule);
 router.get("/schedule/:id", apis.schedule);
 // Login
 router.post("/login", passport.authenticate('local'), apis.login);
