@@ -164,14 +164,9 @@ export default {
       .then(res => {
         if (res) {
           this.schedule.tasks = res.data.tasks.map(t => {
-            return {
-              'title': t.title,
-              'description': t.description,
-              'site': t.site,
-              'createdDate': new Date(t.createdDate),
-              'endDate': new Date(t.endDate),
-              'isDone': t.isDone
-            }
+            t.createdDate = new Date(t.createdDate)
+            t.endDate = new Date(t.endDate)
+            return t
           })
           this.sort()
         }
