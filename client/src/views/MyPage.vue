@@ -93,7 +93,7 @@ export default {
     }
     let vm = this
     this.$http.get(this.$endPoint('/api/mypage'))
-      .then(function (res) {
+      .then(res => {
         vm.profile = res.data
         vm.$localStorage.set('profile', vm.profile)
         vm.$http.get(vm.$endPoint('/api/mylist'))
