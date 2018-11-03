@@ -36,7 +36,7 @@
             </div>
             <div class="card-text">
               <account-link :profile="profile"></account-link>
-              <p class="multiline section">{{ profile.bio }}</p>
+              <p class="multiline">{{ profile.bio }}</p>
               <p>登録日時：{{profile.signup_date}}</p>
             </div>
           </div>
