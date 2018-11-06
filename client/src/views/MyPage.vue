@@ -20,9 +20,12 @@
               <p class="multiline">{{ profile.bio }}</p>
               <p>登録日時：{{profile.signup_date}}</p>
             </div>
-            <a class="mr" @click="$router.push('/mypage/edit')">編集</a>
-            <a class="" @click="$router.push('/schedule/edit/' + profile.id)">スケジュール</a>
           </div>
+          <footer class="card-footer">
+            <a href="#" class="card-footer-item">Delete</a>
+            <a class="card-footer-item" @click="$router.push('/mypage/edit')">編集</a>
+            <a class="card-footer-item" @click="$router.push('/schedule/edit/' + profile.id)">スケジュール</a>
+          </footer>
         </div>
       </div>
       <div class="column">
