@@ -22,7 +22,6 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a href="#" class="card-footer-item">Delete</a>
             <a class="card-footer-item" @click="$router.push('/mypage/edit')">個人設定</a>
             <a class="card-footer-item" @click="$router.push('/schedule/edit/' + profile.id)">スケジュール</a>
           </footer>
