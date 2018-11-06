@@ -1,6 +1,25 @@
 <template>
   <div>
-    <h2 class="title">プロフィールを編集</h2>
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li>
+          <router-link to="/mondailist">
+            <span class="icon is-small is-primary">
+              <b-icon icon="home"/>
+            </span>
+            <span>ホーム</span>
+          </router-link>
+        </li>
+        <li class="is-active">
+          <a href="#">
+            <span class="icon is-small is-primary">
+              <b-icon icon="account-box"/>
+            </span>
+            <span>プロフィールを編集</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
     <div class="mb">
       <section class="section">
         <p class="subtitle"><b-icon size="is-medium" icon="account-box" :style="{'color': profile.color}"/>{{profile.nickname}}</p>
