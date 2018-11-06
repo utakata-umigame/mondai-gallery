@@ -1,7 +1,26 @@
 <template>
   <div>
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li>
+          <router-link to="/mondailist">
+            <span class="icon is-small is-primary">
+              <b-icon icon="home"/>
+            </span>
+            <span>ホーム</span>
+          </router-link>
+        </li>
+        <li class="is-active">
+          <a href="#">
+            <span class="icon is-small is-primary">
+              <b-icon icon="format-list-bulleted"/>
+            </span>
+            <span>リストを追加</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
     <div>
-      <h2 class="title">リストを追加</h2>
       <b-field label="リスト名">
         <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
         </b-input>
