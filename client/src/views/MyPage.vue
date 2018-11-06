@@ -49,8 +49,8 @@
       <div class="column">
         <div class="panel">
           <div class="panel-heading caption-light" :style="{'background-color': profile.color||'#555'}">
-            <a class="mr"　@click="show='list'" style="color: #fff;"><span>作成したリスト</span></a>
-            <a @click="show='schedule'" style="color: #fff;"><b-icon icon="calendar-today"/><span>スケジュール</span></a>
+            <router-link :to="{ query: { show: 'list' } }" class="mr has-text-white"><span>作成したリスト</span></router-link>
+            <router-link :to="{ query: { show: 'schedule' } }" class="has-text-white"><b-icon icon="calendar-today"/><span>スケジュール</span></router-link>
           </div>
           <list-link v-if="show==='list'" :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
           <ScheduleView v-if="show==='schedule'" :schedule="schedule" :color="profile.color"></ScheduleView>
@@ -86,6 +86,11 @@ export default {
         github: '',
         color: ''
       }
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.show = this.$route.query.show || 'list'
     }
   },
   data () {

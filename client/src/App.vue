@@ -48,6 +48,16 @@
 </template>
 <script>
 export default {
+  localStorage: {
+    user: {
+      type: Object,
+      default: {
+        id: 0,
+        nickname: 'Guest',
+        username: ''
+      }
+    }
+  },
   data () {
     return {
       showNav: false,
@@ -77,6 +87,7 @@ export default {
             vm.$store.commit('setUser', res.data)
           } else {
             vm.$store.commit('setUser', {'nickname': 'Guest'})
+            vm.$localStorage.set('user', {})
           }
         })
         .catch((err) => {

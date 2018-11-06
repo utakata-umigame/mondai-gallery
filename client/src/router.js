@@ -104,10 +104,17 @@ let router = new Router({
   routes: routes
 })
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => !record.meta.isPublic) && !store.state.user.username) {
-    next({ path: '/login' });
+  let user = {}
+  let txt = localStorage.user
+  if (!user) {
+    user = store.state.user
   } else {
-    next();
+    user = JSON.parse(txt)
+  }
+  if (to.matched.some(record => !record.meta.isPublic) && !user.username) {
+    next({ path: '/login' })
+  } else {
+    next()
   }
 })
 export default router
