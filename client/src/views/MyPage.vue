@@ -42,8 +42,7 @@
             </div>
           </div>
           <footer class="card-footer">
-            <a class="card-footer-item" @click="$router.push('/mypage/edit')">個人設定</a>
-            <a class="card-footer-item" @click="$router.push('/schedule/edit/' + profile.id)">スケジュール</a>
+            <a class="card-footer-item" @click="$router.push('/mypage/edit')"><b-icon icon="settings"></b-icon><span>個人設定</span></a>
           </footer>
         </div>
       </div>
@@ -55,6 +54,10 @@
           </div>
           <list-link v-if="show==='list'" :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
           <ScheduleView v-if="show==='schedule'" :schedule="schedule" :color="profile.color"></ScheduleView>
+          <footer class="panel-footer">
+            <router-link v-if="show==='list'" :to="{ name: 'AddList', params: {} }">リストを追加</router-link>
+            <router-link v-if="show==='schedule'" :to="{ name: 'EditSchedule', params: {id: this.profile.id} }">スケジュールを編集</router-link>
+          </footer>
         </div>
       </div>
     </div>
