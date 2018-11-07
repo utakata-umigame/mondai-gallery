@@ -6,7 +6,7 @@
           <div class="tile is-4 is-child box notification" v-for="item in sorted" :class="{'is-white': !item.isDone}">
             <p class="title is-4">{{item.title}}</p>
             <p class="subtitle is-6" v-if="item.editor">
-              <img :src="profile.picUrl" v-if="profile.picUrl" width="32" height="32" alt="No Image">
+              <img :src="item.editor.picUrl" v-if="item.editor.picUrl" width="32" height="32" alt="No Image">
               <b-icon v-else icon="account-box":style="{'color': item.editor.color||'#555'}"></b-icon>
               <router-link :to="{ name: 'Profile', params: {id: item.editor.id} }">{{item.editor.nickname}}</router-link>
             </p>

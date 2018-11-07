@@ -23,7 +23,11 @@
     <div class="card mb">
     <div class="card-content">
       <p class="title">{{mondaiList.name}}</p>
-      <p class="subtitle"><b-icon icon="account-box" :style="{'color': mondaiList.editor.color||'#555'}"/><a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a></p>
+      <p class="subtitle">
+        <img :src="mondaiList.editor.picUrl" v-if="mondaiList.editor.picUrl" width="32" height="32" alt="No Image">
+        <b-icon v-else icon="account-box" :style="{'color': mondaiList.editor.color||'#555'}"/>
+        <a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a>
+      </p>
       <b-taglist>
         <b-tag v-for="item in mondaiList.tags">{{item}}</b-tag>
       </b-taglist>
