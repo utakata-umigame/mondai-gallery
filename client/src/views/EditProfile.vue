@@ -22,7 +22,19 @@
     </nav>
     <div class="mb">
       <section class="section">
-        <p class="subtitle"><b-icon size="is-medium" icon="account-box" :style="{'color': profile.color}"/>{{profile.nickname}}</p>
+        <p class="subtitle">
+          <img :src="profile.picUrl" v-if="profile.picUrl" width="48" height="48" alt="No Image">
+          <b-icon size="is-medium" icon="account-box" :style="{'color': profile.color}" v-else/>
+          {{profile.nickname}}
+        </p>
+        <b-field
+          label="プロフィール画像">
+          <b-input
+            type="text"
+            v-model="profile.picUrl"
+            placeholder="画像のURL">
+          </b-input>
+        </b-field>
         <b-field
           label="テーマカラー(カラーコード)">
           <b-input
@@ -143,7 +155,8 @@ export default{
         latePro: '',
         twitter: '',
         github: '',
-        color: ''
+        color: '',
+        picUrl: ''
       }
     }
   },

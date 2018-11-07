@@ -13,7 +13,13 @@ passport.use(
         var shasum = crypto.pbkdf2Sync(password, process.env.SALT||'yoursalthere', 10000, 64, 'sha512');
         var hash = shasum.toString('hex');
         if (doc.password === hash) {
-          return done(null, {id: doc.id, username: username, nickname: doc.nickname, color: doc.color});
+          return done(null, {
+            id: doc.id,
+            username: username,
+            nickname: doc.nickname,
+            color: doc.color,
+            picUrl: doc.picUrl
+          });
         } else {
           // パスワード不一致
           return done(null, false);

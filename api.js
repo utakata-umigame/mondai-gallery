@@ -29,6 +29,7 @@ module.exports = {
           "twitter": doc.twitter,
           "github": doc.github,
           "color": doc.color,
+          "picUrl": doc.picUrl,
           "signup_date": doc.signup_date
         });
         return;
@@ -220,6 +221,7 @@ module.exports = {
             "twitter": doc.twitter,
             "github": doc.github,
             "color": doc.color,
+            "picUrl": doc.picUrl,
             "signup_date": doc.signup_date
           });
           return;
@@ -265,7 +267,8 @@ module.exports = {
           "latePro": obj.latePro,
           "twitter": obj.twitter,
           "github": obj.github,
-          "color": obj.color
+          "color": obj.color,
+          "picUrl": obj.picUrl
         }
       }, (err, doc) => {});
     res.json({"message": "success"});

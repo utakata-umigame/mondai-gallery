@@ -26,7 +26,8 @@
           <div class="card-content">
             <div class="media">
               <div class="media-left">
-                <figure class="image is-48x48">
+                <img :src="profile.picUrl" v-if="profile.picUrl" width="48" height="48" alt="No Image">
+                <figure class="image is-48x48" v-else>
                   <b-icon size="is-large" :style="{'color': profile.color||'#555'}" icon="account-box"/>
                 </figure>
               </div>
@@ -84,7 +85,8 @@ export default {
         latePro: '',
         twitter: '',
         github: '',
-        color: ''
+        color: '',
+        picUrl: ''
       }
     }
   },
@@ -106,7 +108,8 @@ export default {
         latelate: '',
         latePro: '',
         twitter: '',
-        github: ''
+        github: '',
+        picUrl: ''
       },
       mondaiList: [],
       schedule: {
