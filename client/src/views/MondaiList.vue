@@ -243,7 +243,7 @@ small {
   margin-right: 5px;
 }
 .mondai-enter-active {
-  transition: all 1s;
+  transition: all 1s ease;
   transition-delay: .5s;
 }
 .mondai-enter {
