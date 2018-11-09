@@ -247,7 +247,7 @@ small {
   transition-delay: .5s;
 }
 .mondai-enter {
-  transform: rotateX(180deg);
+  transform: rotateX(90deg);
   opacity: 0;
 }
 </style>
