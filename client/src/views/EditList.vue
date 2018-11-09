@@ -392,7 +392,7 @@ export default {
               'type': 'is-danger'
             })
           } else if (data.message) {
-            vm.$router.push('/mondailist')
+            vm.$router.push('/mypage')
             vm.$store.state.savedLists[vm.mondaiList.id] = null
           }
         })

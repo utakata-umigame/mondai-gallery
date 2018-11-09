@@ -12,14 +12,14 @@
         </li>
       </ul>
     </nav>
-    <div class="panel">
-      <div class="panel-heading caption-light">
-        <router-link :to="{ name: 'Home', query: { show: 'list' } }" class="mr"><span>すべてのリスト</span></router-link>
-        <router-link :to="{ name: 'Home', query: { show: 'schedule' } }"><b-icon icon="calendar-today"/><span>スケジュール</span></router-link>
-      </div>
-      <AllSchedule v-if="show==='schedule'"/>
-      <all-list v-if="show==='list'"/>
-    </div>
+    <b-tabs v-model="activeTab" position="is-centered" class="block">
+      <b-tab-item label="すべてのリスト">
+        <all-list />
+      </b-tab-item>
+      <b-tab-item label="スケジュール" icon="calendar-today">
+        <AllSchedule />
+      </b-tab-item>
+    </b-tabs>
   </div>
 </template>
 <script>
@@ -28,23 +28,17 @@ export default {
   components: {
     AllSchedule
   },
-  watch: {
-    '$route' (to, from) {
-      this.show = this.$route.query.show || 'list'
-    }
-  },
   data () {
     return {
       name: '-',
       genreFilter: 'all',
       siteFilter: 'all',
       mondaiList: [],
-      show: 'list'
+      activeTab: 0
     }
   },
   mounted: function () {
     var vm = this
-    this.show = this.$route.query.show || 'list'
     this.$http.get(this.$endPoint('/api/mondaiList'))
       .then(function (response) {
         vm.mondaiList = response.data.sort((x, y) => {

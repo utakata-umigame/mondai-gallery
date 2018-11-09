@@ -39,7 +39,7 @@ export default {
       this.$http.post(this.$endPoint('/api/login'), this.credential)
         .then(function (res) {
           vm.$localStorage.set('user', res.data.user)
-          vm.$router.push('/mondailist')
+          vm.$router.push('/mypage')
           vm.$store.commit('setUser', res.data.user)
         })
         .catch(function (err) {
