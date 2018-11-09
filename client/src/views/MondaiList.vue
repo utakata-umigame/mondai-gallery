@@ -257,6 +257,7 @@ small {
   transition: all .5s ease;
 }
 .mondai-enter {
+  transform: translateX(10px);
   opacity: 0;
 }
 .mondai-leave-active {
