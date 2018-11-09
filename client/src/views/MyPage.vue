@@ -55,11 +55,11 @@
           <b-tab-item label="スケジュール" icon="calendar-today">
             <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
           </b-tab-item>
-          <footer class="panel-footer">
-            <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">リストを追加</router-link>
-            <router-link v-if="activeTab===1" :to="{ name: 'EditSchedule', params: {id: this.profile.id} }">スケジュールを編集</router-link>
-          </footer>
         </b-tabs>
+        <footer class="panel-footer">
+          <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">リストを追加</router-link>
+          <router-link v-if="activeTab===1" :to="{ name: 'EditSchedule', params: {id: this.profile.id} }">スケジュールを編集</router-link>
+        </footer>
       </div>
     </div>
   </div>
