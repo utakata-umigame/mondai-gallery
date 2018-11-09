@@ -250,6 +250,9 @@ export default {
 small {
   margin-right: 5px;
 }
+.mondai-move:not(.mondai-leave-active) {
+  transition: all .5s ease;
+}
 .mondai-enter-active {
   transition: all .3s ease;
 }
@@ -258,7 +261,8 @@ small {
   opacity: 0;
 }
 .mondai-leave-active {
-  transition: all 1s ease;
+  opacity: 0;
+  position: absolute;
 }
 .mondai-leave-to {
   opacity: 0;
