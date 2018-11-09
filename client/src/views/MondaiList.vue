@@ -145,7 +145,7 @@ export default {
       this.fetchList()
     }
   },
-  mounted: function () {
+  created: function () {
     this.fetchList()
   },
   methods: {
