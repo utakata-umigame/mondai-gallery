@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="panel">
+    <div class="panel-body">
       <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
     </div>
   </div>

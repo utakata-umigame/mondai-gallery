@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h2 class="title"><span>スケジュール</span><b-tag type="is-danger" size="is-medium">DEV</b-tag></h2>
-    <p>※この機能は開発段階です。正常な動作を保証するものではございません。あらかじめご了承ください。</p>
+    <h2 class="title"><span>スケジュール</span><b-tag type="is-info" size="is-medium">BETA</b-tag></h2>
     <div class="buttons has-addons">
       <span class="button mr">{{schedule.tasks.length}}/10</span>
       <button @click="addTask" class="button is-outlined is-primary mb" :disabled="schedule.tasks.length >= 10"><b-icon icon="plus-circle"/><span>追加</span></button>

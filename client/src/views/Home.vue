@@ -12,7 +12,7 @@
         </li>
       </ul>
     </nav>
-    <div>
+    <div class="panel">
       <div class="panel-heading caption-light">
         <router-link :to="{ name: 'Home', query: { show: 'list' } }" class="mr"><span>すべてのリスト</span></router-link>
         <router-link :to="{ name: 'Home', query: { show: 'schedule' } }"><b-icon icon="calendar-today"/><span>スケジュール</span></router-link>
