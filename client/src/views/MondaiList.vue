@@ -78,9 +78,7 @@
             </div>
           </div>
           <transition-group
-            name="mondai"
-            @beforeEnter="beforeEnter"
-            @afterEnter="afterEnter">
+            name="mondai">
             <a class="panel-block" v-for="item in filter(mondaiList.mondai)" v-bind:key="item._id" target='_blank' v-bind:href='url(item.site,item.id)' :data-index="item._id">
                 <mondai-view :item="item" v-if="detail"/>
                 <simple-mondai :item="item" v-else/>
@@ -149,12 +147,6 @@ export default {
     this.fetchList()
   },
   methods: {
-    beforeEnter (el) {
-      el.style.transitionDelay = Math.min(100 * el.dataset.index, 1000) + 'ms'
-    },
-    afterEnter (el) {
-      el.style.transitionDelay = ''
-    },
     url: function (siteName, id) {
       return this.site[siteName].showUrl + id
     },
@@ -254,10 +246,10 @@ small {
   transition: all 1s ease;
 }
 .mondai-enter-active {
-  transition: all .5s ease;
+  transition: all 1s ease;
 }
 .mondai-enter {
-  transform: translateY(10px);
+  transform: rotateX(90deg);
   opacity: 0;
 }
 .mondai-leave-active {
