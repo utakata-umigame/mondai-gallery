@@ -6,114 +6,63 @@
       <span class="button mr">{{schedule.tasks.length}}/10</span>
       <button @click="addTask" class="button is-outlined is-primary mb" :disabled="schedule.tasks.length >= 10"><b-icon icon="plus-circle"/><span>追加</span></button>
     </div>
-    <!--<form @submit.prevent="addTask">
-      <b-field label="イベント">
-        <b-input
-          v-model="newTask.title"
-          placeholder="タイトル"
-          required>
-        </b-input>
-      </b-field>
-      <b-field label="日付">
-          <b-datepicker
-            v-model="newTask.endDate"
-            :min-date="getYesterday()"
-            placeholder="Type or select a date..."
-            icon="calendar-today"
-            required>
-          </b-datepicker>
-      </b-field>
-      <b-field label="サイト">
-        <b-select placeholder="Select a site" v-model="newTask.site">
-          <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
-        </b-select>
-      </b-field>
-      <b-field label="種類">
-        <b-select placeholder="Select a type" v-model="newTask.type">
-          <option value="出題">出題</option>
-          <option value="イベント">イベント</option>
-          <option value="開発">開発</option>
-          <option value="">その他</option>
-        </b-select>
-      </b-field>
-      <b-field label="内容">
-        <b-input
-          v-model="newTask.description"
-          type="textarea"
-          rows="3"
-          placeholder="内容">, 'is-inverted': item.isDone
-        </b-input>
-      </b-field>
-    </form>-->
     <div class="mb">
-    <div class="tile is-ancestor">
-      <div class="tile is-parent flex">
-        <div class="tile is-4 is-child box notification" v-for="item in schedule.tasks" :class="{'is-white': !item.isDone}">
-          <b>イベント</b>
-          <b-field>
-            <b-input
-              v-model="item.title"
-              placeholder="タイトル"
-              maxlength="50"
-              required>
-            </b-input>
-          </b-field>
-          <b>日付</b>
-          <b-field>
-              <b-datepicker
-                v-model="item.endDate"
-                :min-date="getYesterday()"
-                placeholder="Type or select a date..."
-                icon="calendar-today"
+      <div class="tile is-ancestor">
+        <div class="tile is-parent flex">
+          <div class="tile is-4 is-child box notification" v-for="item in schedule.tasks" :class="{'is-white': !item.isDone}">
+            <b>イベント</b>
+            <b-field>
+              <b-input
+                v-model="item.title"
+                placeholder="タイトル"
+                maxlength="50"
                 required>
-              </b-datepicker>
-          </b-field>
-          <b>サイト</b>
-          <b-field>
-            <b-select placeholder="Select a site" v-model="item.site">
-              <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
-            </b-select>
-          </b-field>
-          <b>種類</b>
-          <b-field>
-            <b-select placeholder="Select a type" v-model="item.type">
-              <option value="出題">出題</option>
-              <option value="イベント">イベント</option>
-              <option value="開発">開発</option>
-              <option value="">その他</option>
-            </b-select>
-          </b-field>
-          <b>内容</b>
-          <b-field>
-            <b-input
-              v-model="item.description"
-              type="textarea"
-              rows="3"
-              maxlength="200"
-              placeholder="内容">
-            </b-input>
-          </b-field>
-          <b-field>
-            <b-checkbox v-model="item.isDone">
-              終了済み
-            </b-checkbox>
-          </b-field>
-          <button class="delete is-danger" @click="remove(item)"></button>
+              </b-input>
+            </b-field>
+            <b>日付</b>
+            <b-field>
+                <b-datepicker
+                  v-model="item.endDate"
+                  :min-date="getYesterday()"
+                  placeholder="Type or select a date..."
+                  icon="calendar-today"
+                  required>
+                </b-datepicker>
+            </b-field>
+            <b>サイト</b>
+            <b-field>
+              <b-select placeholder="Select a site" v-model="item.site">
+                <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
+              </b-select>
+            </b-field>
+            <b>種類</b>
+            <b-field>
+              <b-select placeholder="Select a type" v-model="item.type">
+                <option value="出題">出題</option>
+                <option value="イベント">イベント</option>
+                <option value="開発">開発</option>
+                <option value="">その他</option>
+              </b-select>
+            </b-field>
+            <b>内容</b>
+            <b-field>
+              <b-input
+                v-model="item.description"
+                type="textarea"
+                rows="3"
+                maxlength="200"
+                placeholder="内容">
+              </b-input>
+            </b-field>
+            <b-field>
+              <b-checkbox v-model="item.isDone">
+                終了済み
+              </b-checkbox>
+            </b-field>
+            <button class="delete is-danger" @click="remove(item)"></button>
+          </div>
         </div>
       </div>
-    </div>
-      <!--<div v-for="item in schedule.tasks" :class="{'done': item.isDone}" class="panel-block">
-        <b-field>
-          <b-checkbox v-model="item.isDone">
-          </b-checkbox>
-          <span class="mr">{{formatDate(item.endDate)}}</span>
-          <strong>{{item.title}}</strong>
-          <b-tag v-if="siteName[item.site]">{{siteName[item.site].name}}</b-tag>
-          <b-tag v-if="item.type">{{item.type}}</b-tag>
-          <button class="button is-white" @click="remove(item)"><b-icon type="is-danger" icon="minus-circle"/></button>
-          <span class="multiline">{{item.description}}</span>
-        </b-field>
-      </div>-->
     </div>
     <div class="buttons has-addons">
       <span @click="confirm" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存して戻る</span>
