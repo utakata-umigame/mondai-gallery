@@ -90,11 +90,6 @@ export default {
       }
     }
   },
-  watch: {
-    '$route' (to, from) {
-      this.show = this.$route.query.show || 'list'
-    }
-  },
   data () {
     return {
       profile: {
@@ -116,7 +111,7 @@ export default {
         tasks: []
       },
       isEditProfileModalActive: false,
-      show: 'list'
+      activeTab: 0
     }
   },
   mounted: function () {
