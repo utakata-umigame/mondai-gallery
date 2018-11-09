@@ -150,7 +150,7 @@ export default {
   },
   methods: {
     beforeEnter (el) {
-      el.style.transitionDelay = 100 * el.dataset.index + 'ms'
+      el.style.transitionDelay = Math.min(100 * el.dataset.index, 3000) + 'ms'
     },
     afterEnter (el) {
       el.style.transitionDelay = ''
