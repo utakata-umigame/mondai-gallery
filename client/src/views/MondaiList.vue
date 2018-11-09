@@ -251,7 +251,7 @@ small {
   margin-right: 5px;
 }
 .mondai-move:not(.mondai-leave-active) {
-  transition: all .5s ease;
+  transition: all 1s ease;
 }
 .mondai-enter-active {
   transition: all .5s ease;
