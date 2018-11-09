@@ -150,7 +150,7 @@ export default {
   },
   methods: {
     beforeEnter (el) {
-      el.style.transitionDelay = Math.min(100 * el.dataset.index, 3000) + 'ms'
+      el.style.transitionDelay = Math.min(100 * el.dataset.index, 1000) + 'ms'
     },
     afterEnter (el) {
       el.style.transitionDelay = ''
@@ -254,7 +254,7 @@ small {
   transition: all .5s ease;
 }
 .mondai-enter-active {
-  transition: all .3s ease;
+  transition: all .5s ease;
 }
 .mondai-enter {
   opacity: 0;
