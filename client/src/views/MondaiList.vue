@@ -24,8 +24,8 @@
       <div class="column is-one-third">
         <div class="card mb">
           <div class="card-content">
-            <p class="title">{{mondaiList.name}}</p>
-            <p class="subtitle">
+            <p class="title is-4">{{mondaiList.name}}</p>
+            <p class="subtitle is-6">
               <img :src="mondaiList.editor.picUrl" v-if="mondaiList.editor.picUrl" width="32" height="32" alt="No Image">
               <b-icon v-else icon="account-box" :style="{'color': mondaiList.editor.color||'#555'}"/>
               <a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a>
