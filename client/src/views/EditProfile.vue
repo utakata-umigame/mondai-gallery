@@ -20,8 +20,9 @@
         </li>
       </ul>
     </nav>
-    <div class="mb">
-      <section class="section">
+    <b-tabs v-model="activeTab" position="is-centered" class="block">
+      <b-tab-item label="プロフィール情報">
+        <section class="section">
         <p class="subtitle">
           <img :src="profile.picUrl" v-if="profile.picUrl" width="48" height="48" alt="No Image">
           <b-icon size="is-medium" icon="account-box" :style="{'color': profile.color}" v-else/>
@@ -58,66 +59,68 @@
           </b-input>
         </b-field>
       </section>
-      <section class="section">
-        <p class="subtitle">アカウントID</p>
-        <b-field
-          label="ラテシンのID">
-          <b-input
-            type="number"
-            v-model = "profile.latethink"
-            placeholder=".../mondai/profile/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="CindyのID">
-          <b-input
-            type="number"
-            v-model = "profile.cindy"
-            placeholder=".../profile/show/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="R鯖のID">
-          <b-input
-            type="number"
-            v-model = "profile.R"
-            placeholder=".../Mmail/userpage/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="らてらて鯖のID">
-          <b-input
-            type="number"
-            v-model = "profile.latelate"
-            placeholder=".../mondai/profile/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="らてしんPROのID">
-          <b-input
-            type="number"
-            v-model = "profile.latePro"
-            placeholder=".../users/profile/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="TwitterのID">
-          <b-input
-            type="text"
-            v-model = "profile.twitter"
-            placeholder=".../twitter.com/[ID]">
-          </b-input>
-        </b-field>
-        <b-field
-          label="GitHubのID">
-          <b-input
-            type="text"
-            v-model = "profile.github"
-            placeholder=".../github.com/[ID]">
-          </b-input>
-        </b-field>
-      </section>
-    </div>
+      </b-tab-item>
+      <b-tab-item label="アカウント">
+        <section class="section">
+          <b-field
+            label="ラテシンのID">
+            <b-input
+              type="number"
+              v-model = "profile.latethink"
+              placeholder=".../mondai/profile/[ID]">
+            </b-input>
+          </b-field>
+          <b-field
+            label="CindyのID">
+            <b-input
+              type="number"
+              v-model = "profile.cindy"
+              placeholder=".../profile/show/[ID]">
+            </b-input>
+          </b-field>
+          <b-field
+            label="R鯖のID">
+            <b-input
+              type="number"
+              v-model = "profile.R"
+              placeholder=".../Mmail/userpage/[ID]">
+            </b-input>
+          </b-field>
+          <b-field
+            label="らてらて鯖のID">
+            <b-input
+              type="number"
+              v-model = "profile.latelate"
+              placeholder=".../mondai/profile/[ID]">
+            </b-input>
+          </b-field>
+          <b-field
+            label="らてしんPROのID">
+            <b-input
+              type="number"
+              v-model = "profile.latePro"
+              placeholder=".../users/profile/[ID]">
+            </b-input>
+          </b-field>
+          <b-field
+            label="TwitterのID">
+            <b-input
+              type="text"
+              v-model = "profile.twitter"
+              placeholder=".../twitter.com/[ID]">
+            </b-input>
+          </b-field>
+          <b-field
+            label="GitHubのID">
+            <b-input
+              type="text"
+              v-model = "profile.github"
+              placeholder=".../github.com/[ID]">
+            </b-input>
+          </b-field>
+        </section>
+      </b-tab-item>
+    </b-tabs>
     <div class="buttons has-addons">
       <span class="button is-primary is-outlined" @click="submit">保存</span>
       <span class="button is-danger is-outlined" @click="$router.push('/mypage')">キャンセル</router-link></span>
