@@ -110,11 +110,11 @@
               </td>
               <td>
                 <div class="column buttons has-addons">
-                  <button class="button is-outlined is-primary" @click="moveTop(mondai)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveUp(mondai)"><b-icon icon="arrow-up">上へ</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveDown(mondai)"><b-icon icon="arrow-down">下へ</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveBottom(mondai)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
-                  <button class="button is-outlined is-danger" v-on:click="remove(mondai)"><b-icon icon="minus-circle">削除</b-icon></button>
+                  <button class="button is-small is-outlined is-primary" @click="moveTop(mondai)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
+                  <button class="button is-small is-outlined is-primary" @click="moveUp(mondai)"><b-icon icon="arrow-up">上へ</b-icon></button>
+                  <button class="button is-small is-outlined is-primary" @click="moveDown(mondai)"><b-icon icon="arrow-down">下へ</b-icon></button>
+                  <button class="button is-small is-outlined is-primary" @click="moveBottom(mondai)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
+                  <button class="button is-small is-outlined is-danger" v-on:click="remove(mondai)"><b-icon icon="minus-circle">削除</b-icon></button>
                 </div>
               </td>
             </tr>
