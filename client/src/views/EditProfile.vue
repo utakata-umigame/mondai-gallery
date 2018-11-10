@@ -146,6 +146,7 @@ export default{
   },
   data () {
     return {
+      activeTab: 0,
       profile: {
         nickname: '',
         username: '',
