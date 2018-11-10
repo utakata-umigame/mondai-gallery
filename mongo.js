@@ -37,8 +37,7 @@ let callback = function(err, client) {
     function (err, res) {
       if (err) {
         console.log(err)
-      }
-      if (res == 0) {
+      } else if (res === 0) {
         db.Counter.insertOne({id: "list_id", seq: 1});
       }
     });
@@ -48,8 +47,7 @@ let callback = function(err, client) {
     function (err, res) {
       if (err) {
         console.log(err)
-      }
-      if (res == 0) {
+      } else if (res === 0) {
         db.Counter.insertOne({id: "user_id", seq: 1});
       }
     });
@@ -59,8 +57,7 @@ let callback = function(err, client) {
     function (err, res) {
       if (err) {
         console.log(err)
-      }
-      if (res == 0) {
+      } else if (res === 0) {
         db.Counter.insertOne({id: "schedule_id", seq: 1});
       }
     });
