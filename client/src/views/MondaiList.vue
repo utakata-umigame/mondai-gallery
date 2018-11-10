@@ -249,7 +249,7 @@ small {
   transition: all 1s ease;
 }
 .mondai-enter {
-  transform: rotateX(90deg);
+  transform: rotateX(150deg);
   opacity: 0;
 }
 .mondai-leave-active {
