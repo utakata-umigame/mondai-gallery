@@ -20,133 +20,139 @@
         </li>
       </ul>
     </nav>
-    <div class="mb-2">
-      <b-field label="リスト名">
-        <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
-        </b-input>
-      </b-field>
-      <b-field label="リストの説明">
-        <b-input v-model="mondaiList.description" placeholder="説明" type="textarea" maxlength="200">
-        </b-input>
-      </b-field>
-      <b-field label="タグをつける(10個まで)">
-        <b-taginput
-          v-model="mondaiList.tags"
-          ellipsis
-          maxtags="10"
-          icon="label"
-          placeholder="タグを追加">
-        </b-taginput>
-      </b-field>
-      <div class="field">
-        <b-checkbox v-model="mondaiList.fromMyMondais">
-          自作問題のみのリストの場合はチェック
-        </b-checkbox>
-      </div>
-      <div class="field">
-        <b-checkbox v-model="mondaiList.private">
-          非公開にする場合はチェック
-        </b-checkbox>
-      </div>
-    </div>
-    <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <div class="buttons has-addons">
-            <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
-            <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
-            <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
+    <b-tabs v-model="activeTab" position="is-centered" class="block">
+      <b-tab-item label="リスト情報">
+        <div class="mb-2">
+          <b-field label="リスト名">
+            <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
+            </b-input>
+          </b-field>
+          <b-field label="リストの説明">
+            <b-input v-model="mondaiList.description" placeholder="説明" type="textarea" maxlength="200">
+            </b-input>
+          </b-field>
+          <b-field label="タグをつける(10個まで)">
+            <b-taginput
+              v-model="mondaiList.tags"
+              ellipsis
+              maxtags="10"
+              icon="label"
+              placeholder="タグを追加">
+            </b-taginput>
+          </b-field>
+          <div class="field">
+            <b-checkbox v-model="mondaiList.fromMyMondais">
+              自作問題のみのリストの場合はチェック
+            </b-checkbox>
+          </div>
+          <div class="field">
+            <b-checkbox v-model="mondaiList.private">
+              非公開にする場合はチェック
+            </b-checkbox>
           </div>
         </div>
-        <div class="level-item">
-          <b-select v-model="isSwitched">
-            <option value="個別編集">個別編集</option>
-            <option value="一括編集">一括編集</option>
-            <option value="テーブル">テーブル</option>
-          </b-select>
-        </div>
-      </div>
-    </div>
-    <!-- 問題リスト -->
-    <table class="table is-striped is-fullwidth" v-if="isSwitched === 'テーブル'">
-      <thead>
-        <tr>
-          <th>サイト</th>
-          <th>ジャンル</th>
-          <th>ID</th>
-          <th>タイトル</th>
-          <th>作者</th>
-          <th>コメント</th>
-          <th>移動/削除</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="mondai in mondaiList.mondai" :key="mondai.id">
-          <th>
-            <b-select v-model="mondai.site">
-              <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
-            </b-select>
-          </th>
-          <td>
-            <b-select v-model="mondai.genre">
-              <option v-for="item in genre" :value="item.key" :key="item.key">{{item.value}}</option>
-            </b-select>
-          </td>
-          <td>
-            <b-input class="mb" v-model ="mondai.id" type="number" placeholder="ID"/>
-          </td>
-          <td>
-            <b-input v-model ="mondai.title" type="text" placeholder="タイトル" maxlength="100"/>
-          </td>
-          <td>
-            <b-input  v-model ="mondai.author" type="text" placeholder="作者" maxlength="20"/>
-          </td>
-          <td>
-            <b-input v-model ="mondai.description" type="text" maxlength="200" placeholder="コメント"/>
-          </td>
-          <td>
-            <div class="column buttons has-addons">
-              <button class="button is-outlined is-primary" @click="moveTop(mondai)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveUp(mondai)"><b-icon icon="arrow-up">上へ</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveDown(mondai)"><b-icon icon="arrow-down">下へ</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveBottom(mondai)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
-              <button class="button is-outlined is-danger" v-on:click="remove(mondai)"><b-icon icon="minus-circle">削除</b-icon></button>
+      </b-tab-item>
+      <b-tab-item label="問題の追加/編集/削除">
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <div class="buttons has-addons">
+                <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
+                <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
+                <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
+              </div>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="panel" v-else>
-      <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block">
-        <div class="fill" v-if="isSwitched === '一括編集'">
-          <div class="columns">
-            <mondai-editor :mondai="item"></mondai-editor>
-            <div class="column buttons has-addons">
-              <button class="button is-outlined is-primary" @click="moveTop(item)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up">上へ</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down">下へ</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveBottom(item)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
-              <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle">削除</b-icon></button>
+            <div class="level-item">
+              <b-select v-model="isSwitched">
+                <option value="個別編集">個別編集</option>
+                <option value="一括編集">一括編集</option>
+                <option value="テーブル">テーブル</option>
+              </b-select>
             </div>
           </div>
         </div>
-        <div v-else>
-          <mondai-view class="block" v-bind:item="item"></mondai-view>
-          <div class="buttons has-addons">
-            <button class="button is-outlined is-primary" @click="set(item)"><b-icon icon="pencil">編集</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveTop(item)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up">上へ</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down">下へ</b-icon></button>
-              <button class="button is-outlined is-primary" @click="moveBottom(item)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
-            <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle">削除</b-icon></button>
+        <!-- 問題リスト -->
+        <table class="table is-striped is-fullwidth" v-if="isSwitched === 'テーブル'">
+          <thead>
+            <tr>
+              <th>サイト</th>
+              <th>ジャンル</th>
+              <th>ID</th>
+              <th>タイトル</th>
+              <th>作者</th>
+              <th>コメント</th>
+              <th>移動/削除</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="mondai in mondaiList.mondai" :key="mondai.id">
+              <th>
+                <b-select v-model="mondai.site">
+                  <option v-for="item in site" :value="item.key" :key="item.key">{{item.value.name}}</option>
+                </b-select>
+              </th>
+              <td>
+                <b-select v-model="mondai.genre">
+                  <option v-for="item in genre" :value="item.key" :key="item.key">{{item.value}}</option>
+                </b-select>
+              </td>
+              <td>
+                <b-input class="mb" v-model ="mondai.id" type="number" placeholder="ID"/>
+              </td>
+              <td>
+                <b-input v-model ="mondai.title" type="text" placeholder="タイトル" maxlength="100"/>
+              </td>
+              <td>
+                <b-input  v-model ="mondai.author" type="text" placeholder="作者" maxlength="20"/>
+              </td>
+              <td>
+                <b-input v-model ="mondai.description" type="text" maxlength="200" placeholder="コメント"/>
+              </td>
+              <td>
+                <div class="column buttons has-addons">
+                  <button class="button is-outlined is-primary" @click="moveTop(mondai)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveUp(mondai)"><b-icon icon="arrow-up">上へ</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveDown(mondai)"><b-icon icon="arrow-down">下へ</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveBottom(mondai)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
+                  <button class="button is-outlined is-danger" v-on:click="remove(mondai)"><b-icon icon="minus-circle">削除</b-icon></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="panel" v-else>
+          <div v-for="item in mondaiList.mondai" v-bind:key="item._id" class="panel-block">
+            <div class="fill" v-if="isSwitched === '一括編集'">
+              <div class="columns">
+                <mondai-editor :mondai="item"></mondai-editor>
+                <div class="column buttons has-addons">
+                  <button class="button is-outlined is-primary" @click="moveTop(item)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up">上へ</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down">下へ</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveBottom(item)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
+                  <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle">削除</b-icon></button>
+                </div>
+              </div>
+            </div>
+            <div v-else>
+              <mondai-view class="block" v-bind:item="item"></mondai-view>
+              <div class="buttons has-addons">
+                <button class="button is-outlined is-primary" @click="set(item)"><b-icon icon="pencil">編集</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveTop(item)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up">上へ</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down">下へ</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveBottom(item)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
+                <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle">削除</b-icon></button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="mb">
-      <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
-      <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
-    </div>
+        <div class="mb">
+          <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
+          <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
+        </div>
+      </b-tab-item>
+    </b-tabs>
     <div class="">
       <div class="buttons has-addons">
         <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存して戻る</span>
@@ -202,6 +208,7 @@
 export default {
   data () {
     return {
+      activeTab: 0,
       newMondai: {
         'id': 0,
         'title': '',
