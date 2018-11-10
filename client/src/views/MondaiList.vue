@@ -35,6 +35,9 @@
             </b-taglist>
             <p class="multiline card-body">{{mondaiList.description}}</p>
           </div>
+          <footer class="card-footer" v-if="isMine">
+            <a class="card-footer-item" @click="$router.push(editUrl())"><b-icon icon="pencil"></b-icon><span>編集</span></a>
+          </footer>
         </div>
         <!-- 次に見る -->
         <div class="panel" v-if="otherList.length > 0">
@@ -70,9 +73,6 @@
                     <option :value="false">リスト</option>
                     <option :value="true">詳細</option>
                   </b-select>
-                </div>
-                <div class="level-item">
-                  <button class="button is-outlined is-secondary" @click="$router.push(editUrl())" v-if="isMine">編集</button>
                 </div>
               </div>
             </div>
