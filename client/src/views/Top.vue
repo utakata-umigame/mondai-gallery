@@ -20,7 +20,7 @@
           </div>
           <div class="column">
             <b-icon icon="calendar-today" size="is-large"/>
-            <p class="subtitle"><span class="mr">スケジュール</span><b-tag class="is-danger">DEV</b-tag></p>
+            <p class="subtitle"><span class="mr">スケジュール</span><b-tag class="is-info">BETA</b-tag></p>
             <p>出題予定やイベントの締め切り日を管理</p>
           </div>
         </div>
