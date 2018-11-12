@@ -256,7 +256,7 @@ export default {
 small {
   margin-right: 5px;
 }
-.mondai-move:not(.mondai-leave-active) {
+.mondai-move {
   transition: all 1s ease;
 }
 .mondai-enter-active {
