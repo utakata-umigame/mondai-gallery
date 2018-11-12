@@ -90,6 +90,7 @@
   </div>
 </template>
 <script>
+import Vue from 'vue'
 import SimpleMondaiView from '@/components/SimpleMondaiView'
 export default {
   components: {
@@ -183,15 +184,28 @@ export default {
       let id = this.$route.params.id
       let data = this.$store.state.savedLists[id]
       if (data) {
-        this.mondaiList = data.mondaiList
-        this.mondaiList.mondai = this.sort(this.filter(data.mondaiList.mondai))
+        this.mondaiList = {
+          'id': id,
+          'name': data.mondaiList.name,
+          'description': data.mondaiList.description,
+          'editor': data.mondaiList.editor,
+          'mondai': []
+        }
+        Vue.set(this.mondaiList, 'mondai', this.sort(this.filter(data.mondaiList.mondai)))
         this.otherList = data.otherList
         this.isMine = data.isMine
       } else {
         this.$http.get(this.$endPoint('/api/mondaiList/' + id))
           .then( response => {
-            vm.mondaiList = response.data
-            vm.mondaiList.mondai = vm.sort(vm.filter(vm.mondaiList.mondai))
+            let data = response.data
+            this.mondaiList = {
+              'id': id,
+              'name': data.name,
+              'description': data.description,
+              'editor': data.editor,
+              'mondai': []
+            }
+            Vue.set(this.mondaiList, 'mondai', this.sort(this.filter(data.mondai)))
             vm.$http.get(vm.$endPoint('/api/mondaiList'))
               .then( res => {
                 vm.otherList = res.data.filter(x => x.editor.id === vm.mondaiList.editor.id && x.id !== vm.mondaiList.id)
@@ -247,7 +261,7 @@ small {
 }
 .mondai-enter-active {
   transition: all 1s ease;
-  transision-delay: .5s;
+  transition-delay: .3s;
 }
 .mondai-enter {
   transform: rotateX(360deg);
