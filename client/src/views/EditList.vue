@@ -20,7 +20,7 @@
         </li>
       </ul>
     </nav>
-    <b-tabs v-model="activeTab" position="is-centered" class="block">
+    <b-tabs v-model="activeTab" position="is-centered" class="block" expanded>
       <b-tab-item label="リスト情報">
         <div class="mb-2">
           <b-field label="リスト名">

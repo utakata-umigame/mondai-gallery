@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="column">
-        <b-tabs v-model="activeTab" position="is-centered" class="block">
+        <b-tabs v-model="activeTab" position="is-centered" class="block" expanded>
           <b-tab-item label="すべてのリスト">
             <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
           </b-tab-item>
