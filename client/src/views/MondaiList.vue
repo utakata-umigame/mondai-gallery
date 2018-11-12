@@ -197,7 +197,6 @@ export default {
       } else {
         this.$http.get(this.$endPoint('/api/mondaiList/' + id))
           .then( response => {
-            console.log('Fetch list')
             let data = response.data
             this.mondaiList = {
               'id': id,
@@ -206,6 +205,7 @@ export default {
               'editor': data.editor,
               'mondai': this.sort(this.filter(data.mondai))
             }
+            console.log('Fetch list')
             vm.$http.get(vm.$endPoint('/api/mondaiList'))
               .then( res => {
                 vm.otherList = res.data.filter(x => x.editor.id === vm.mondaiList.editor.id && x.id !== vm.mondaiList.id)
