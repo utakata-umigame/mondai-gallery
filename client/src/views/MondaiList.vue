@@ -268,7 +268,7 @@ small {
   opacity: 0;
 }
 .mondai-leave-active {
-  opacity: 0;
+  display: none;
   position: absolute;
 }
 .mondai-leave-to {
