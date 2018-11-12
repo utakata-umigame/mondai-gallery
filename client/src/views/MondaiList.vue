@@ -189,23 +189,23 @@ export default {
           'name': data.mondaiList.name,
           'description': data.mondaiList.description,
           'editor': data.mondaiList.editor,
-          'mondai': []
+          'mondai': this.sort(this.filter(data.mondaiList.mondai))
         }
-        Vue.set(this.mondaiList, 'mondai', this.sort(this.filter(data.mondaiList.mondai)))
+        console.log('Retrieve saved list')
         this.otherList = data.otherList
         this.isMine = data.isMine
       } else {
         this.$http.get(this.$endPoint('/api/mondaiList/' + id))
           .then( response => {
+            console.log('Fetch list')
             let data = response.data
             this.mondaiList = {
               'id': id,
               'name': data.name,
               'description': data.description,
               'editor': data.editor,
-              'mondai': []
+              'mondai': this.sort(this.filter(data.mondai))
             }
-            Vue.set(this.mondaiList, 'mondai', this.sort(this.filter(data.mondai)))
             vm.$http.get(vm.$endPoint('/api/mondaiList'))
               .then( res => {
                 vm.otherList = res.data.filter(x => x.editor.id === vm.mondaiList.editor.id && x.id !== vm.mondaiList.id)
