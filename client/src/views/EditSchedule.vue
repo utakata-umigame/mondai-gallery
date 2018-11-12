@@ -38,6 +38,7 @@
             <b-field>
               <b-select placeholder="Select a type" v-model="item.type">
                 <option value="出題">出題</option>
+                <option value="SP・テストプレイ">SP・テストプレイ</option>
                 <option value="イベント">イベント</option>
                 <option value="開発">開発</option>
                 <option value="">その他</option>
