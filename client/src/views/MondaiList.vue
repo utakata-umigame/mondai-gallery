@@ -247,9 +247,10 @@ small {
 }
 .mondai-enter-active {
   transition: all 1s ease;
+  transision-delay: .5s;
 }
 .mondai-enter {
-  transform: rotateX(150deg);
+  transform: rotateX(360deg);
   opacity: 0;
 }
 .mondai-leave-active {
