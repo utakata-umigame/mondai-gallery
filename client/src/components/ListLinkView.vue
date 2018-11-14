@@ -1,23 +1,31 @@
 <template>
   <router-link class="panel-block" :to="url(item.id)">
-    <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <b-icon type="is-info" icon="format-list-bulleted"></b-icon>
-          <strong>{{ item.name }}</strong>
-          <b-icon icon="lock" v-if="item.private"></b-icon>
+    <b-tooltip
+      class="fill"
+      type="is-info"
+      :label="item.description"
+      position="is-bottom"
+      size="is-large"
+      multilined>
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <b-icon type="is-info" icon="format-list-bulleted"></b-icon>
+            <strong>{{ item.name }}</strong>
+            <b-icon icon="lock" v-if="item.private"></b-icon>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <span>{{item.editor.nickname}}</span>
+          </div>
+          <div class="level-item">
+            <b-tag class='is-primary mr' v-if='item.fromMyMondais'>自作問題のみ</b-tag>
+            <span>{{item.updateDate}}</span>
+          </div>
         </div>
       </div>
-      <div class="level-right">
-        <div class="level-item">
-          <span>{{item.editor.nickname}}</span>
-        </div>
-        <div class="level-item">
-          <b-tag class='is-primary mr' v-if='item.fromMyMondais'>自作問題のみ</b-tag>
-          <span>{{item.updateDate}}</span>
-        </div>
-      </div>
-    </div>
+    </b-tooltip>
   </router-link>
 </template>
 <script>
