@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "gallery-client",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "description": "",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -48,5 +48,5 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "repository": "https://github.com/pb10001/mondai-gallery.git"
+  "repository": "https://github.com/utakata-umigame/mondai-gallery.git"
 }
