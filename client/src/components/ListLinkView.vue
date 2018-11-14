@@ -4,7 +4,7 @@
       class="fill"
       type="is-info"
       :label="item.description"
-      position="is-top"
+      position="is-right"
       size="is-large"
       multilined
       square>
