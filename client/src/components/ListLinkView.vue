@@ -4,9 +4,10 @@
       class="fill"
       type="is-info"
       :label="item.description"
-      position="is-bottom"
+      position="is-top"
       size="is-large"
-      multilined>
+      multilined
+      square>
       <div class="level">
         <div class="level-left">
           <div class="level-item">

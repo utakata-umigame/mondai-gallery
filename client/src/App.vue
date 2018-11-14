@@ -154,4 +154,7 @@ h2.title {
 .navbar {
   border-bottom: 1px solid #eee;
 }
+.pb {
+  padding-bottom: 50px;
+}
 </style>

@@ -50,8 +50,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.panel-body {
-  padding-bottom: 50px;
-}
-</style>
