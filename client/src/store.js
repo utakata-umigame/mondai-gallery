@@ -29,7 +29,7 @@ export default new Vuex.Store({
       { key: 'latethink', name: 'ラテシン', profileUrl: 'http://sui-hei.net/mondai/profile/'},
       { key: 'cindy', name: 'Cindy', profileUrl: 'https://www.cindythink.com/profile/show/'},
       { key: 'R', name: 'R鯖', profileUrl: 'http://openumigame.sakura.ne.jp/openumi/Mmail/userpage/'},
-      { key: 'latelate', name: 'らてらて鯖', profileUrl: 'https://late-late.jp/mondai/profile/'},
+      { key: 'latelate', name: 'らてらて鯖', profileUrl: 'https://late-late.jp/users/profile/'},
       { key: 'latePro', name: 'らてしんPRO', profileUrl: 'https://sui-hei-pro.net/users/profile/'},
       { key: 'twitter', name: 'Twitter', profileUrl: 'https://twitter.com/'},
       { key: 'github', name: 'GitHub', profileUrl: 'https://github.com/'}
