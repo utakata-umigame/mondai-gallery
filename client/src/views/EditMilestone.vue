@@ -96,6 +96,9 @@ export default {
         description: ''
       })
     },
+    remove (item) {
+      this.timeline = this.timeline.filter(x => x !== item)
+    },
     confirm () {
       this.$dialog.confirm({
         message: '元のバージョンは失われます。続行しますか?',

@@ -102,10 +102,7 @@ const routes = [
   {
     path: '/milestone/edit/:id',
     name: 'EditMilestone',
-    component: EditMilestone,
-    meta: {
-      isPublic: true
-    }
+    component: EditMilestone
   }
 ]
 let router = new Router({
