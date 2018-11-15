@@ -14,6 +14,7 @@ export default {
   },
   computed: {
     timeline () {
+      if (this.timelineItems.length === 0) return []
       let years = this.timelineItems.map(x => new Date(x.date).getFullYear())
       let data = this.timelineItems.map(x => {
         return {
