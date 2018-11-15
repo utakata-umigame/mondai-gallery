@@ -1,20 +1,63 @@
 <template>
   <Timeline
-    :timeline-items="timelineItems"
+    :timeline-items="timeline"
     message-when-no-items="まだ登録されていません。"/>
 </template>
 <script>
 import Timeline from 'timeline-vuejs'
 export default {
   props: {
-    timelineItems: []
+    timelineItems: Array
   },
   components: {
     Timeline
   },
+  computed: {
+    timeline () {
+      let years = this.timelineItems.map(x => new Date(x.date).getFullYear())
+      let data = this.timelineItems.map(x => {
+        return {
+          nameMonth: this.formatDate(new Date(x.date)),
+          date: new Date(x.date),
+          title: x.title,
+          description: x.description
+        }
+      })
+      return [{
+        year: {
+          from: Math.min(...years),
+          to: Math.max(...years)
+        },
+        items: this.sort(data)
+      }]
+    },
+    day: () => ({
+      0: '日',
+      1: '月',
+      2: '火',
+      3: '水',
+      4: '木',
+      5: '金',
+      6: '土',
+    })
+  },
+  methods: {
+    sort (data) {
+      return data.sort((x, y) => {
+        return y.date - x.date
+      })
+    },
+    formatDate(date) {
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1
+      let dateNum = date.getDate()
+      let dayNum = date.getDay()
+      return year + '年' + month + '月' + dateNum + '日' + '(' + this.day[dayNum] + ')'
+    }
+  },
   data () {
     return {
-      timelineItems: [
+      /* timelineItems: [
         {
           year: {
             from: '2017',
@@ -55,7 +98,7 @@ export default {
             }
           ]
         },
-      ]
+      ] */
     }
   }
 }

@@ -57,7 +57,7 @@
           </b-tab-item>
           <b-tab-item label="マイルストーン">
             <MilestoneView :timelineItems="timeline" />
-            <router-link :to="{ name: 'EditMilestone', params: {} }">マイルストーンを編集</router-link>
+            <router-link :to="{ name: 'EditMilestone', params: {id: this.profile.id}}">マイルストーンを編集</router-link>
           </b-tab-item>
         </b-tabs>
         <footer class="panel-footer">
@@ -70,9 +70,11 @@
 </template>
 <script>
 import ScheduleView from '@/components/ScheduleView'
+import MilestoneView from '@/components/MilestoneView'
 export default {
   components: {
-    ScheduleView
+    ScheduleView,
+    MilestoneView
   },
   localStorage: {
     profile: {
@@ -145,6 +147,10 @@ export default {
               t.endDate = new Date(t.endDate)
               return t
             })
+          })
+        this.$http.get(this.$endPoint('/api/milestone/' + this.profile.id))
+          .then(doc => {
+            if (doc.data) this.timeline = doc.data.timeline
           })
         this.$localStorage.set('profile', this.profile)
       })

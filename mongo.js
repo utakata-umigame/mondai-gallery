@@ -30,6 +30,7 @@ let callback = function(err, client) {
   db.User = gallery.collection("user");
   db.MondaiList = gallery.collection("mondaiList");
   db.Schedule = gallery.collection("schedule");
+  db.Milestone = gallery.collection("milestone");
   db.Counter = gallery.collection("counter");
   db.Counter.countDocuments(
     {id: "list_id"},

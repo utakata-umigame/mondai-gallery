@@ -1,5 +1,7 @@
 <template>
   <div class="section">
+    <h2 class="title"><span>マイルストーン</span><b-tag type="is-danger" size="is-medium">DEV</b-tag></h2>
+    <p>この機能は開発段階です。</p>
     <button @click="add" class="button is-outlined is-primary mb"><b-icon icon="plus-circle"/><span>追加</span></button>
     <div class="tile is-ancestor">
       <div class="tile is-parent flex">
@@ -69,9 +71,23 @@ export default {
     }
   },
   mounted () {
-
+    this.$http.get(this.$endPoint('/api/milestone/' + this.$route.params.id))
+      .then(doc => {
+        if (doc.data) {
+          this.timeline = doc.data.timeline.map(x => {
+            x.date = new Date(x.date)
+            return x
+          })
+          this.sort()
+        }
+      })
   },
   methods: {
+    sort () {
+      this.timeline.sort((x, y) => {
+        return x - y
+      })
+    },
     add () {
       this.timeline.push({
         title: 'マイルストーン',
@@ -87,6 +103,27 @@ export default {
       })
     },
     submit () {
+      this.$http.put(this.$endPoint('/api/milestone/' + this.$route.params.id), this.timeline)
+        .then(res => {
+          if (!res.data.error) {
+            this.$toast.open({
+              'type': 'is-success',
+              'message': '保存しました。'
+            })
+            this.$router.go(-1)
+          } else {
+            this.$toast.open({
+              'type': 'is-danger',
+              'message':'編集権限がありません。'
+            })
+          }
+        })
+        .catch(err => {
+          this.$toast.open({
+            'type': 'is-danger',
+            'message':'編集権限がありません。'
+          })
+        })
     },
     confirmCancel () {
       this.$dialog.confirm({

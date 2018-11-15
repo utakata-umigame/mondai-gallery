@@ -138,6 +138,10 @@ export default {
           return t
         })
       })
+  this.$http.get(this.$endPoint('/api/milestone/' + id))
+    .then(doc => {
+      if (doc.data) this.timeline = doc.data.timeline
+    })
   },
   methods: {
     url: function (id) {

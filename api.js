@@ -145,6 +145,16 @@ module.exports = {
       }
     })
   },
+  milestone: (req, callback) => {
+    let id = parseInt(req.params.id);
+    db.Milestone.findOne({"editor.id": id} , (err, doc) => {
+      if (doc) {
+        callback(doc);
+      } else {
+        callback({'error': 'error'});
+      }
+    })
+  },
   login: (req, res) => {
     db.User.findOne({username: req.body.username}, (err, doc) => {
       if (doc) res.json({'message': 'Logged in', 'user': doc});
@@ -335,6 +345,65 @@ module.exports = {
         }
       }
     )
+  },
+  editMilestone: (req, res) => {
+    if (req.params.id.toString() !== req.user.id.toString()) {
+      res.status(403).send({
+        "success": "false",
+        "message": 'エラー'
+      })
+      return;
+    }
+    db.Milestone.findOne({"editor.username": req.user.username}, (err, doc) => {
+      if (doc) {
+        if (doc.editor.id !== req.user.id) {
+          res.status(403).send({
+            "success": "false",
+            "message": err
+          })
+          return;
+        }
+        db.Milestone.updateOne(
+          {"editor.username": req.user.username},
+          {
+            $set: {
+              "editor": req.user,
+              "timeline": req.body
+            }
+          }, (err, doc) => {
+            if (doc) {
+              res.status(200).send({
+                "success": "true",
+                "message": "success"
+              })
+            } else {
+              res.status(403).send({
+                "success": "false",
+                "message": err
+              })
+            }
+          })
+      } else {
+        db.Milestone.insertOne(
+          {
+            "editor": req.user,
+            "timeline": req.body
+          }, (err, doc) => {
+            if (doc) {
+              res.status(200).send({
+                "success": true,
+                "message": "success"
+              })
+            } else if (err) {
+              res.status(403).send({
+                "success": false,
+                "message": err
+              })
+            }
+          })
+      }
+    })
+
   },
   editList: (req, res) => {
     let obj = req.body

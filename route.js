@@ -15,6 +15,7 @@ router.post("/signup", apis.signUp);
 router.get("/userlist/:id", (req, res) => apis.listById(req, data => res.json(data)));
 router.get("/schedule", (req, res) => apis.allSchedule(req, data => res.json(data)));
 router.get("/schedule/:id", (req, res) => apis.schedule(req, data => res.json(data)));
+router.get("/milestone/:id", (req, res) => apis.milestone(req, data => res.json(data)));
 // Login
 router.post("/login", passport.authenticate('local'), apis.login);
 
@@ -25,6 +26,7 @@ router.get("/mylist", isAuthenticated, apis.myList);
 router.get("/logout", isAuthenticated, apis.logout);
 router.post("/profile/edit", isAuthenticated, apis.editProfile);
 router.put("/schedule/:id", isAuthenticated, apis.editSchedule);
+router.put("/milestone/:id", isAuthenticated, apis.editMilestone);
 router.put("/mondaiList/:id", isAuthenticated, apis.editList);
 router.post("/add", isAuthenticated, apis.addList);
 
