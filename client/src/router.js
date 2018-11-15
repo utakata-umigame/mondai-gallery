@@ -12,6 +12,7 @@ import Contact from './views/Contact'
 import EditProfile from './views/EditProfile'
 import MondaiList from './views/MondaiList'
 import EditSchedule from './views/EditSchedule'
+import EditMilestone from './views/EditMilestone'
 
 import store from './store'
 
@@ -97,6 +98,14 @@ const routes = [
     path: '/schedule/edit/:id',
     name: 'EditSchedule',
     component: EditSchedule
+  },
+  {
+    path: '/milestone/edit/:id',
+    name: 'EditMilestone',
+    component: EditMilestone,
+    meta: {
+      isPublic: true
+    }
   }
 ]
 let router = new Router({

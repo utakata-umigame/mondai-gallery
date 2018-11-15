@@ -57,7 +57,7 @@ module.exports = {
         }
     });
   },
-  listById: (req, res) => {
+  listById: (req, callback) => {
     // ユーザーIDでフィルター
     db.MondaiList.find({"private": false}).toArray((error, docs) => {
         if (docs) {
@@ -72,14 +72,13 @@ module.exports = {
                 updateDate: x.updateDate
             }
           }).filter(x => x.editor.id.toString() === req.params.id.toString());
-          res.json(list);
-        }
-        else {
-          res.json({'error': 'error'});
+          callback(list);
+        } else {
+          callback({'error': 'error'});
         }
     });
   },
-  listFromID: (req, res) => {
+  listFromID: (req, callback, error) => {
   // リストIDを指定して表示
    db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
      if (doc) {
@@ -88,11 +87,11 @@ module.exports = {
             if (usr) {
              doc.editor.color = usr.color || '#000';
             }
-            res.json(doc);
+            callback(doc);
           })
          return;
        } else if (!req.user) {
-         res.status(403).send({
+         error({
            "success": "false",
            "message": "Not logged in"
          });
@@ -102,27 +101,28 @@ module.exports = {
             if (usr) {
              doc.editor.color = usr.color || '#555';
             }
-            res.json(doc);
+            callback(doc);
           })
          return;
        } else {
-         res.status(403).send({
+         error({
            "success": "false",
            "message": "Private list"
          });
          return;
        }
+     } else {
+       if (err) {
+         console.log(err);
+       }
+       callback({'error': 'error'});
      }
-     if (err) {
-       console.log(err);
-     }
-     res.json({'error': 'error'});
    });
   },
-  allSchedule: (req, res) => {
+  allSchedule: (req, callback) => {
     db.Schedule.find({}).toArray((err, docs) => {
       if (!docs) {
-        res.json({});
+        callback({});
         return;
       }
       let data = docs.reduce((acc, doc) => {
@@ -132,16 +132,16 @@ module.exports = {
         });
         return acc.concat(tasks);
       }, []);
-      res.json(data);
+      callback(data);
     });
   },
-  schedule: (req, res) => {
+  schedule: (req, callback) => {
     let id = parseInt(req.params.id);
     db.Schedule.findOne({"editor.id": id} , (err, doc) => {
       if (doc) {
-        res.json(doc);
+        callback(doc);
       } else {
-        res.json({});
+        callback({});
       }
     })
   },

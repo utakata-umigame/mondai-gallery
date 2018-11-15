@@ -10,11 +10,11 @@ const router = express();
 router.get("/", (req, res) => res.json(apis.root()));
 router.get("/profile/show/:id", (req, res) => apis.profileFromID(req, data => res.json(data)));
 router.get("/mondaiList", (req, res) => apis.allList(req, data => res.json(data)));
-router.get("/mondaiList/:id", apis.listFromID);
+router.get("/mondaiList/:id", (req, res) => apis.listFromID(req, data => res.json(data), err => res.status(403).send(err)));
 router.post("/signup", apis.signUp);
-router.get("/userlist/:id", apis.listById);
-router.get("/schedule", apis.allSchedule);
-router.get("/schedule/:id", apis.schedule);
+router.get("/userlist/:id", (req, res) => apis.listById(req, data => res.json(data)));
+router.get("/schedule", (req, res) => apis.allSchedule(req, data => res.json(data)));
+router.get("/schedule/:id", (req, res) => apis.schedule(req, data => res.json(data)));
 // Login
 router.post("/login", passport.authenticate('local'), apis.login);
 

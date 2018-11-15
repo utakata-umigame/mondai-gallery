@@ -200,7 +200,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .flex {
   flex-wrap: wrap;
 }

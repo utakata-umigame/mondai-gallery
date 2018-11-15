@@ -51,6 +51,9 @@
           <b-tab-item label="スケジュール" icon="calendar-today">
             <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
           </b-tab-item>
+          <b-tab-item label="マイルストーン">
+            <MilestoneView :timelineItems="timeline" />
+          </b-tab-item>
         </b-tabs>
       </div>
     </div>
@@ -58,9 +61,11 @@
 </template>
 <script>
 import ScheduleView from '@/components/ScheduleView'
+import MilestoneView from '@/components/MilestoneView'
 export default {
   components: {
-    ScheduleView
+    ScheduleView,
+    MilestoneView
   },
   data () {
     return {
@@ -80,6 +85,7 @@ export default {
         picUrl: ''
       },
       mondaiList: [],
+      timeline: [],
       schedule: {
         tasks: []
       },

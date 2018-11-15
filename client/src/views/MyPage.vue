@@ -55,6 +55,10 @@
           <b-tab-item label="スケジュール" icon="calendar-today">
             <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
           </b-tab-item>
+          <b-tab-item label="マイルストーン">
+            <MilestoneView :timelineItems="timeline" />
+            <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">マイルストーンを編集</router-link>
+          </b-tab-item>
         </b-tabs>
         <footer class="panel-footer">
           <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">リストを追加</router-link>
@@ -107,6 +111,7 @@ export default {
         picUrl: ''
       },
       mondaiList: [],
+      timeline: [],
       schedule: {
         tasks: []
       },

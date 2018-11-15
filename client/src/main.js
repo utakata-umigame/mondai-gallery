@@ -8,6 +8,7 @@ import axios from 'axios'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import '@mdi/font/css/materialdesignicons.min.css'
+import 'timeline-vuejs/dist/timeline-vuejs.css'
 
 import MondaiView from '@/components/MondaiView'
 import ListLinkView from '@/components/ListLinkView'
