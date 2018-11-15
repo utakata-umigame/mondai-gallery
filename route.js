@@ -5,10 +5,11 @@ const passport = require('./passport');
 const apis = require('./api');
 const router = express();
 
+
 // Public routes
-router.get("/", apis.root);
-router.get("/profile/show/:id", apis.profileFromID);
-router.get("/mondaiList", apis.allList);
+router.get("/", (req, res) => res.json(apis.root()));
+router.get("/profile/show/:id", (req, res) => apis.profileFromID(req, data => res.json(data)));
+router.get("/mondaiList", (req, res) => apis.allList(req, data => res.json(data)));
 router.get("/mondaiList/:id", apis.listFromID);
 router.post("/signup", apis.signUp);
 router.get("/userlist/:id", apis.listById);

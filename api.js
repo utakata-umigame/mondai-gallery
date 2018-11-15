@@ -6,18 +6,18 @@ const db = require('./mongo');
 
 module.exports = {
   root: (req, res) => {
-    res.json({
+    return {
       "name": "test",
       "editor": "test",
       "mondai":[
         {"id":1, "site": "cindy", "title": "", "author": "", "description": "", "genre": "umigame"}
       ]
-    });
+    };
   },
-  profileFromID: (req, res) => {
+  profileFromID: (req, callback) => {
     db.User.findOne({id: parseInt(req.params.id)}, (err, doc) => {
       if (doc) {
-        res.json({
+        callback({
           "id": doc.id,
           "nickname": doc.nickname,
           "bio": doc.bio,
@@ -34,13 +34,13 @@ module.exports = {
         });
         return;
       }
-      res.json({'error':'error'});
+      callback({'error':'error'});
     });
   },
-  allList: (req, res) => {
+  allList: (req, callback) => {
     db.MondaiList.find({"private": false}).toArray((error, docs) => {
         if (docs) {
-          res.json(docs.map(function (x) {
+          callback(docs.map(function (x) {
             return {
               id: x.id,
               name: x.name,
@@ -53,7 +53,7 @@ module.exports = {
           }));
         }
         else {
-          res.json({'error': 'error'});
+          callback({'error': 'error'});
         }
     });
   },
