@@ -85,7 +85,7 @@ export default {
   methods: {
     sort () {
       this.timeline.sort((x, y) => {
-        return x - y
+        return y.date - x.date
       })
     },
     add () {

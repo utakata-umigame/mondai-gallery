@@ -150,7 +150,7 @@ export default {
           })
         this.$http.get(this.$endPoint('/api/milestone/' + this.profile.id))
           .then(doc => {
-            if (doc.data) this.timeline = doc.data.timeline
+            if (doc.data.timeline) this.timeline = doc.data.timeline
           })
         this.$localStorage.set('profile', this.profile)
       })
