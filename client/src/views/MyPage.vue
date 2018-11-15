@@ -57,7 +57,7 @@
           </b-tab-item>
           <b-tab-item label="マイルストーン">
             <MilestoneView :timelineItems="timeline" />
-            <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">マイルストーンを編集</router-link>
+            <router-link :to="{ name: 'EditMilestone', params: {} }">マイルストーンを編集</router-link>
           </b-tab-item>
         </b-tabs>
         <footer class="panel-footer">
