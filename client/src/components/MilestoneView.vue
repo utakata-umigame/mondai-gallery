@@ -25,7 +25,7 @@ export default {
         }
       })
       let sorted = this.sort(data)
-      let set = new Set(years)
+      let set = new Set(years.sort((x, y) => y - x))
       let res = []
       set.forEach(y => {
         console.log(y)
