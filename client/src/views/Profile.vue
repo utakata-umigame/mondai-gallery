@@ -44,14 +44,14 @@
         </div>
       </div>
       <div class="column">
-        <b-tabs v-model="activeTab" position="is-centered" class="block" expanded>
-          <b-tab-item label="すべてのリスト">
+        <b-tabs v-model="activeTab" position="is-centered" class="block">
+          <b-tab-item icon="format-list-bulleted">
             <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
           </b-tab-item>
-          <b-tab-item label="スケジュール" icon="calendar-today">
+          <b-tab-item icon="calendar-today">
             <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
           </b-tab-item>
-          <b-tab-item label="マイルストーン">
+          <b-tab-item icon="flag">
             <MilestoneView :timelineItems="timeline" />
           </b-tab-item>
         </b-tabs>

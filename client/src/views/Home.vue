@@ -12,11 +12,11 @@
         </li>
       </ul>
     </nav>
-    <b-tabs v-model="activeTab" position="is-centered" class="block" expanded>
-      <b-tab-item label="すべてのリスト">
+    <b-tabs v-model="activeTab" position="is-centered" class="block">
+      <b-tab-item icon="format-list-bulleted">
         <all-list />
       </b-tab-item>
-      <b-tab-item label="スケジュール" icon="calendar-today">
+      <b-tab-item icon="calendar-today">
         <AllSchedule />
       </b-tab-item>
     </b-tabs>
