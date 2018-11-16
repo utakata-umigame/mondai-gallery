@@ -34,7 +34,7 @@
       </nav>
     </div>
     <div :class="{'container is-fluid': $route.path !== '/'}">
-      <router-view/>
+      <router-view class="page"/>
     </div>
     <footer class="footer">
       <div class="content has-text-centered">
@@ -115,7 +115,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  background: #fefeff;
+  background: #fefefe;
 }
 h2.title {
   text-align: center;
@@ -124,6 +124,9 @@ h2.title {
   min-height: 80vh;
   padding-bottom: 10px;
   padding-top: 10px;
+}
+.page {
+  height: 100%;
 }
 .fill {
   width: 100%;

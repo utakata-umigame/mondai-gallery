@@ -29,8 +29,8 @@
         </ul>
       </aside>
       <div  class="column is-three-quarter">
-        <div label="プロフィール情報" v-if="activeTab === 0">
-            <section class="section">
+        <div label="プロフィール情報" class="mb" v-if="activeTab === 0">
+            <section>
             <p class="subtitle">
               <img :src="profile.picUrl" v-if="profile.picUrl" width="48" height="48" alt="No Image">
               <b-icon size="is-medium" icon="account-box" :style="{'color': profile.color}" v-else/>
@@ -68,8 +68,8 @@
             </b-field>
           </section>
         </div>
-        <div label="アカウント" v-if="activeTab === 1">
-          <section class="section">
+        <div label="アカウント" class="mb" v-if="activeTab === 1">
+          <section>
             <b-field
               label="ラテシンのID">
               <b-input
@@ -128,11 +128,11 @@
             </b-field>
           </section>
         </div>
+        <div class="buttons has-addons">
+          <span class="button is-primary is-outlined" @click="submit">保存</span>
+          <span class="button is-danger is-outlined" @click="$router.push('/mypage')">キャンセル</router-link></span>
+        </div>
       </div>
-    </div>
-    <div class="buttons has-addons">
-      <span class="button is-primary is-outlined" @click="submit">保存</span>
-      <span class="button is-danger is-outlined" @click="$router.push('/mypage')">キャンセル</router-link></span>
     </div>
   </div>
 </template>
@@ -193,7 +193,4 @@ export default{
 }
 </script>
 <style scoped>
-.mb {
-  margin-bottom: 10px;
-}
 </style>
