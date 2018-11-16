@@ -30,7 +30,7 @@
       </aside>
       <div  class="column is-three-quarter">
         <div label="プロフィール情報" class="mb" v-if="activeTab === 0">
-            <section>
+          <section>
             <p class="subtitle">
               <img :src="profile.picUrl" v-if="profile.picUrl" width="48" height="48" alt="No Image">
               <b-icon size="is-medium" icon="account-box" :style="{'color': profile.color}" v-else/>
@@ -52,12 +52,11 @@
                 placeholder="例)#000">
               </b-input>
             </b-field>
-            <b-field>
-              <b-input
-                type="color"
-                v-model = "profile.color">
-              </b-input>
-            </b-field>
+            <b-input
+              type="color"
+              class="mb"
+              v-model = "profile.color">
+            </b-input>
             <b-field label="自己紹介">
               <b-input
                 type="textarea"
@@ -161,14 +160,14 @@ export default{
         username: '',
         signup_date: '',
         bio: '',
-        latethink: '',
-        cindy: '',
-        R: '',
-        latelate: '',
-        latePro: '',
-        twitter: '',
+        latethink: 0,
+        cindy: 0,
+        R: 0,
+        latelate: 0,
+        latePro: 0,
+        twitter: '-',
         github: '',
-        color: '',
+        color: '#000000',
         picUrl: ''
       }
     }

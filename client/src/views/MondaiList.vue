@@ -44,7 +44,7 @@
           <div class="panel-heading">
             <b-icon icon="arrow-right-drop-circle-outline"></b-icon><span>次に見る</span>
           </div>
-          <list-link :item="item" v-for="item in otherList" v-bind:key="item.id"></list-link>
+          <SimpleListLinkView :item="item" v-for="item in otherList" :key="item.id" />
         </div>
       </div>
       <div class="column">
@@ -92,9 +92,11 @@
 <script>
 import Vue from 'vue'
 import SimpleMondaiView from '@/components/SimpleMondaiView'
+import SimpleListLinkView from '@/components/SimpleListLinkView'
 export default {
   components: {
-    'simple-mondai': SimpleMondaiView
+    'simple-mondai': SimpleMondaiView,
+    SimpleListLinkView
   },
   data () {
     return {
