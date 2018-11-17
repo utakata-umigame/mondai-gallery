@@ -16,9 +16,6 @@ router.get("/userlist/:id", (req, res) => apis.listById(req, data => res.json(da
 router.get("/schedule", (req, res) => apis.allSchedule(req, data => res.json(data)));
 router.get("/schedule/:id", (req, res) => apis.schedule(req, data => res.json(data)));
 router.get("/milestone/:id", (req, res) => apis.milestone(req, data => res.json(data)));
-router.get("/tumblr", tumblr.auth);
-router.get("/auth/callback", tumblr.callback);
-router.post("/post", tumblr.post);
 // Login
 router.post("/login", passport.authenticate('local'), apis.login);
 
@@ -32,6 +29,9 @@ router.put("/schedule/:id", isAuthenticated, apis.editSchedule);
 router.put("/milestone/:id", isAuthenticated, apis.editMilestone);
 router.put("/mondaiList/:id", isAuthenticated, apis.editList);
 router.post("/add", isAuthenticated, apis.addList);
+router.get("/tumblr", isAuthenticated, tumblr.auth);
+router.get("/auth/callback", isAuthenticated,tumblr.callback);
+router.post("/post", isAuthenticated, tumblr.post);
 
 function isAuthenticated (req, res, next) {
   // 認証チェック
