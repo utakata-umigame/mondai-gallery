@@ -20,7 +20,7 @@ const consumer = new oauth.OAuth(
   ck,
   cs,
   "1.0A",
-  'http://' + host + ':' + port + '/api/auth/callback',
+  'https://gallery.utakata-umigame.com/api/auth/callback',
   "HMAC-SHA1"
 );
 
