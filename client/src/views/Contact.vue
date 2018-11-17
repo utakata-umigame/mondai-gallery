@@ -60,7 +60,7 @@ export default {
         cindy: 7,
         R: 13,
         twitter: 'ninjin_umigame',
-        github: 'pb10001'
+        github: 'utakata-umigame'
       }
     }
   }
