@@ -5,6 +5,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    tumblr: {
+      token: '',
+      secret: ''
+    },
     user: {
       id: 0,
       nickname: 'Guest',

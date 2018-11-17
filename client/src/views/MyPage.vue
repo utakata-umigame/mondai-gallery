@@ -66,6 +66,7 @@
         </footer>
       </div>
     </div>
+    <a class="butto is-primary is-outlined" href="/api/tumblr">Tumblr連携</a>
   </div>
 </template>
 <script>

@@ -28,7 +28,6 @@ export default {
       let set = new Set(years.sort((x, y) => y - x))
       let res = []
       set.forEach(y => {
-        console.log(y)
         res.push({
           year: {
             from: y,

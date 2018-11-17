@@ -13,6 +13,7 @@ import EditProfile from './views/EditProfile'
 import MondaiList from './views/MondaiList'
 import EditSchedule from './views/EditSchedule'
 import EditMilestone from './views/EditMilestone'
+import Callback from './views/Callback'
 
 import store from './store'
 
@@ -103,6 +104,11 @@ const routes = [
     path: '/milestone/edit/:id',
     name: 'EditMilestone',
     component: EditMilestone
+  },
+  {
+    path: '/callback',
+    name: 'Callback',
+    component: Callback
   }
 ]
 let router = new Router({
