@@ -66,7 +66,7 @@
         </footer>
       </div>
     </div>
-    <a class="button is-primary is-outlined" v-if="tumblrToken.token">Tumblr投稿</a>
+    <a class="button is-primary is-outlined" v-if="tumblrToken.token"><router-link to="/blog">Tumblr投稿</router-link></a>
     <a class="button is-primary is-outlined" href="/api/tumblr" v-else>Tumblr連携</a>
   </div>
 </template>
