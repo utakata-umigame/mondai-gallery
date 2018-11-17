@@ -55,6 +55,9 @@ export default new Vuex.Store({
     },
     setSavedProfile (state, value) {
       state.savedProfiles[value.id] = value
+    },
+    setTumblrToken (state, value) {
+      state.tumblr = value
     }
   },
   getters: {
@@ -64,6 +67,7 @@ export default new Vuex.Store({
     account (state) { return state.account },
     updateLog (state) { return state.updateLog },
     savedLists(state) { return state.savedLists },
-    savedProfiles(state) { return state.savedProfiles }
+    savedProfiles(state) { return state.savedProfiles },
+    tumblrToken (state) { return state.tumblr }
   }
 })

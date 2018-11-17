@@ -15,11 +15,19 @@ export default {
       content: ''
     }
   },
+  mounted () {
+    if (this.$store.state.tumblrToken.token) return
+    let data = {
+      token: this.$route.query.token,
+      secret: this.$route.query.secret
+    }
+    this.$store.commmit('setTumblrToken', data)
+  },
   methods: {
     post () {
       this.$http.post('/api/post', {
-        token: this.$route.query.token,
-        secret: this.$route.query.secret,
+        token: this.$store.state.tumblrToken.token,
+        secret: this.$store.state.tumblrToken.secret,
         title: this.title,
         content: this.content
       })

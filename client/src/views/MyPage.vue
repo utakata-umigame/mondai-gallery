@@ -66,7 +66,8 @@
         </footer>
       </div>
     </div>
-    <a class="butto is-primary is-outlined" href="/api/tumblr">Tumblr連携</a>
+    <a class="button is-primary is-outlined" v-if="tumblrToken.token">Tumblr投稿</a>
+    <a class="button is-primary is-outlined" href="/api/tumblr" v-else>Tumblr連携</a>
   </div>
 </template>
 <script>
@@ -120,6 +121,11 @@ export default {
       },
       isEditProfileModalActive: false,
       activeTab: 0
+    }
+  },
+  computed: {
+    tumblrToken () {
+      return this.$store.state.tumblrToken
     }
   },
   mounted: function () {

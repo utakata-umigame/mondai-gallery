@@ -109,6 +109,11 @@ const routes = [
     path: '/callback',
     name: 'Callback',
     component: Callback
+  },
+  {
+    path: '/blog',
+    name: 'Tumblr',
+    component: Callback
   }
 ]
 let router = new Router({
