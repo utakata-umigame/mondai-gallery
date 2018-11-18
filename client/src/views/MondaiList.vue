@@ -162,10 +162,10 @@ export default {
       return this.site[siteName].showUrl + id
     },
     editUrl: function () {
-      return '/mondaiList/edit/' + this.mondaiList.id
+      return '/mondaiList/edit/' + this.list.mondaiList.id
     },
     profileUrl: function () {
-      return '/profile/show/' + this.mondaiList.editor.id
+      return '/profile/show/' + this.list.mondaiList.editor.id
     },
     to: function (url) {
       this.$router.push(url)
