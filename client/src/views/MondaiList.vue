@@ -31,7 +31,7 @@
               <a @click="to(profileUrl())">{{list.mondaiList.editor.nickname}}</a>
             </p>
             <b-taglist>
-              <b-tag v-for="item in list.mondaiList.tags">{{item}}</b-tag>
+              <b-tag v-for="item in list.mondaiList.tags" :key="item">{{item}}</b-tag>
             </b-taglist>
             <p class="multiline card-body">{{list.mondaiList.description}}</p>
           </div>

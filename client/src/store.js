@@ -96,6 +96,7 @@ export default new Vuex.Store({
             'name': data.name,
             'description': data.description,
             'editor': data.editor,
+            'tags': data.tags,
             'mondai': data.mondai.sort((x, y) => x._id - y._id)
           }
         })
