@@ -21,7 +21,7 @@ export default {
       token: this.$route.query.token,
       secret: this.$route.query.secret
     }
-    this.$store.commmit('setTumblrToken', data)
+    this.$store.commit('setTumblrToken', data)
   },
   methods: {
     post () {

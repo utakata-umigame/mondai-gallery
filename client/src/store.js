@@ -63,7 +63,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    let payload;
+    let payload {
+      'username': '',
+      'nickname': ''
+    }
     async fetchUser (context) {
       await axios.get(Vue.$endPoint('/api/user'))
         .then(res => {
