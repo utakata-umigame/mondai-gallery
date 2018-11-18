@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import axios from 'axios'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -58,6 +60,19 @@ export default new Vuex.Store({
     },
     setTumblrToken (state, value) {
       state.tumblr = value
+    }
+  },
+  actions: {
+    let payload;
+    async fetchUser (context) {
+      await axios.get(Vue.$endPoint('/api/user'))
+        .then(res => {
+          if (res.data.username) payload = res.data
+          else payload = {
+            'nickname': 'Guest'
+          }
+        })
+      context.commit ('setUser', payload)
     }
   },
   getters: {
