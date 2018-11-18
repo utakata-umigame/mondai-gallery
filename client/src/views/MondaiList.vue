@@ -151,8 +151,11 @@ export default {
     }
   },
   mounted: function () {
-    if (!this.list) this.fetchList()
-    else console.log('retrieve the saved list')
+    if (!this.list) {
+      console.log('Fetch the list from the server')
+      this.fetchList()
+    }
+    else console.log('Retrieve the saved list')
   },
   methods: {
     url: function (siteName, id) {
