@@ -150,7 +150,7 @@ export default {
       this.fetchList()
     }
   },
-  mounted: function () {
+  created: function () {
     if (!this.list) {
       console.log('Fetch the list from the server')
       this.fetchList()
