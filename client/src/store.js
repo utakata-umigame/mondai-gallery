@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    tumblr: {
+    tumblrToken: {
       token: '',
       secret: ''
     },
@@ -59,7 +59,7 @@ export default new Vuex.Store({
       state.savedProfiles[value.id] = value
     },
     setTumblrToken (state, value) {
-      state.tumblr = value
+      state.tumblrToken = value
     }
   },
   actions: {
@@ -86,6 +86,6 @@ export default new Vuex.Store({
     updateLog (state) { return state.updateLog },
     savedLists(state) { return state.savedLists },
     savedProfiles(state) { return state.savedProfiles },
-    tumblrToken (state) { return state.tumblr }
+    tumblrToken (state) { return state.tumblrToken }
   }
 })
