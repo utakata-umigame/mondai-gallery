@@ -15,7 +15,7 @@
             <span class="icon is-small is-primary">
               <b-icon icon="format-list-bulleted"/>
             </span>
-            <span>{{mondaiList.name}}</span>
+            <span>{{list.mondaiList.name}}</span>
           </a>
         </li>
       </ul>
@@ -24,27 +24,27 @@
       <div class="column is-one-third">
         <div class="card mb">
           <div class="card-content">
-            <p class="title is-4">{{mondaiList.name}}</p>
+            <p class="title is-4">{{list.mondaiList.name}}</p>
             <p class="subtitle is-6">
-              <img :src="mondaiList.editor.picUrl" v-if="mondaiList.editor.picUrl" width="32" height="32" alt="No Image">
-              <b-icon v-else icon="account-box" :style="{'color': mondaiList.editor.color||'#555'}"/>
-              <a @click="to(profileUrl())">{{mondaiList.editor.nickname}}</a>
+              <img :src="list.mondaiList.editor.picUrl" v-if="list.mondaiList.editor.picUrl" width="32" height="32" alt="No Image">
+              <b-icon v-else icon="account-box" :style="{'color': list.mondaiList.editor.color||'#555'}"/>
+              <a @click="to(profileUrl())">{{list.mondaiList.editor.nickname}}</a>
             </p>
             <b-taglist>
-              <b-tag v-for="item in mondaiList.tags">{{item}}</b-tag>
+              <b-tag v-for="item in list.mondaiList.tags">{{item}}</b-tag>
             </b-taglist>
-            <p class="multiline card-body">{{mondaiList.description}}</p>
+            <p class="multiline card-body">{{list.mondaiList.description}}</p>
           </div>
-          <footer class="card-footer" v-if="isMine">
+          <footer class="card-footer" v-if="list.isMine">
             <a class="card-footer-item" @click="$router.push(editUrl())"><b-icon icon="pencil"></b-icon><span>編集</span></a>
           </footer>
         </div>
         <!-- 次に見る -->
-        <div class="panel" v-if="otherList.length > 0">
+        <div class="panel" v-if="list.otherList.length > 0">
           <div class="panel-heading">
             <b-icon icon="arrow-right-drop-circle-outline"></b-icon><span>次に見る</span>
           </div>
-          <SimpleListLinkView :item="item" v-for="item in otherList" :key="item.id" />
+          <SimpleListLinkView :item="item" v-for="item in list.otherList" :key="item.id" />
         </div>
       </div>
       <div class="column">
@@ -79,7 +79,7 @@
           </div>
           <transition-group
             name="mondai">
-            <a class="panel-block" v-for="item in filter(mondaiList.mondai)" v-bind:key="item._id" target='_blank' v-bind:href='url(item.site,item.id)' :data-index="item._id">
+            <a class="panel-block" v-for="item in filter(list.mondaiList.mondai)" v-bind:key="item._id" target='_blank' v-bind:href='url(item.site,item.id)' :data-index="item._id">
                 <mondai-view :item="item" v-if="detail"/>
                 <simple-mondai :item="item" v-else/>
             </a>
@@ -139,6 +139,10 @@ export default {
         list.push({key: key, value: this.$store.state.genre[key]})
       }
       return list
+    },
+    list () {
+      let id = this.$route.params.id
+      return this.$store.state.savedLists[id]
     }
   },
   watch: {
@@ -147,7 +151,8 @@ export default {
     }
   },
   mounted: function () {
-    this.fetchList()
+    if (!this.list) this.fetchList()
+    else console.log('retrieve the saved list')
   },
   methods: {
     url: function (siteName, id) {
@@ -182,65 +187,8 @@ export default {
       this.siteFilter = 'all'
     },
     fetchList: function () {
-      let vm = this
       let id = this.$route.params.id
-      let data = this.$store.state.savedLists[id]
-      if (data) {
-        this.mondaiList = {
-          'id': id,
-          'name': data.mondaiList.name,
-          'description': data.mondaiList.description,
-          'editor': data.mondaiList.editor,
-          'mondai': this.sort(this.filter(data.mondaiList.mondai))
-        }
-        console.log('Retrieve saved list')
-        this.otherList = data.otherList
-        this.isMine = data.isMine
-      } else {
-        this.$http.get(this.$endPoint('/api/mondaiList/' + id))
-          .then( response => {
-            let data = response.data
-            this.mondaiList = {
-              'id': id,
-              'name': data.name,
-              'description': data.description,
-              'editor': data.editor,
-              'mondai': this.sort(this.filter(data.mondai))
-            }
-            console.log('Fetch list')
-            vm.$http.get(vm.$endPoint('/api/mondaiList'))
-              .then( res => {
-                vm.otherList = res.data.filter(x => x.editor.id === vm.mondaiList.editor.id && x.id !== vm.mondaiList.id)
-              })
-          })
-          .catch(function (err) {
-            if (err) {
-              vm.$toast.open({
-                'message': err.message,
-                'type': 'is-danger'
-              })
-            }
-          })
-          .then(() => {
-            vm.$http.get(vm.$endPoint('/api/user'))
-              .then( res => {
-                if (res) {
-                  if (res.data) {
-                    if (res.data.username === vm.mondaiList.editor.username) {
-                      vm.isMine = true
-                    }
-                    let data = {
-                      id: vm.mondaiList.id,
-                      mondaiList: vm.mondaiList,
-                      otherList: vm.otherList,
-                      isMine: vm.isMine
-                    }
-                    vm.$store.commit('setSavedList', data)
-                  }
-                }
-              })
-          })
-      }
+      this.$store.dispatch('fetchList', id)
     }
   }
 }

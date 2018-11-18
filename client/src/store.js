@@ -53,7 +53,7 @@ export default new Vuex.Store({
       state.user = value
     },
     setSavedList (state, value) {
-      state.savedLists[value.id] = value
+      Vue.set(state.savedLists, value.id, value)
     },
     setSavedProfile (state, value) {
       state.savedProfiles[value.id] = value
@@ -63,19 +63,66 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    let payload {
-      'username': '',
-      'nickname': ''
-    }
     async fetchUser (context) {
-      await axios.get(Vue.$endPoint('/api/user'))
+      let payload = {
+        'username': '',
+        'nickname': ''
+      }
+      await axios.get(new Vue().$endPoint('/api/user'))
         .then(res => {
           if (res.data.username) payload = res.data
           else payload = {
             'nickname': 'Guest'
           }
         })
+        .catch( error => {
+
+        })
       context.commit ('setUser', payload)
+    },
+    async fetchList (context, id) {
+      let payload = {
+        id: 0,
+        mondaiList: {},
+        otherList: [],
+        isMine: false
+      }
+      await axios.get(new Vue().$endPoint('/api/mondaiList/' + id))
+        .then( response => {
+          let data = response.data
+          payload.id = id
+          payload.mondaiList = {
+            'id': id,
+            'name': data.name,
+            'description': data.description,
+            'editor': data.editor,
+            'mondai': data.mondai.sort((x, y) => x._id - y._id)
+          }
+        })
+        .catch( error => {
+
+        })
+      await axios.get(new Vue().$endPoint('/api/mondaiList'))
+        .then( res => {
+          payload.otherList = res.data.filter(x => x.editor.id === payload.mondaiList.editor.id && x.id !== payload.mondaiList.id)
+        })
+        .catch( error => {
+
+        })
+      await axios.get(new Vue().$endPoint('/api/user'))
+        .then( res => {
+          if (res) {
+            if (res.data) {
+              if (res.data.username === payload.mondaiList.editor.username) {
+                payload.isMine = true
+              }
+            }
+          }
+        })
+        .catch( error => {
+
+        })
+      context.commit('setSavedList', payload)
     }
   },
   getters: {

@@ -80,21 +80,7 @@ export default {
   },
   methods: {
     getUser: function () {
-      let vm = this
-      this.$http.get(this.$endPoint('/api/user'))
-        .then((res) => {
-          if (res.data.username) {
-            vm.$store.commit('setUser', res.data)
-          } else {
-            vm.$store.commit('setUser', {'nickname': 'Guest'})
-            vm.$localStorage.set('user', {})
-          }
-        })
-        .catch((err) => {
-          if (err) {
-            vm.$store.commit('setUser', {'nickname': 'Guest'})
-          }
-        })
+      this.$store.dispatch('fetchUser')
     },
     logout: function () {
       let vm = this
