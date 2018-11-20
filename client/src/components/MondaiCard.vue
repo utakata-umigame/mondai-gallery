@@ -4,7 +4,6 @@
       <p class="card-header-title">{{item.title}}</p>
     </header>
     <div class="card-content">
-        <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
       <p>{{item.author}}</p>
       <b-tag class="is-primary mr">{{site[item.site].name}}</b-tag>
       <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
