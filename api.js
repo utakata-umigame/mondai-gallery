@@ -48,7 +48,8 @@ module.exports = {
               private: x.private,
               editor: x.editor,
               description: x.description,
-              updateDate: x.updateDate
+              updateDate: x.updateDate,
+              tags: x.tags
             };
           }));
         }
