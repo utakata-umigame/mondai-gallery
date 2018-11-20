@@ -47,7 +47,7 @@
           <SimpleListLinkView :item="item" v-for="item in list.otherList" :key="item.id" />
         </div>
       </div>
-      <div class="column">
+      <div class="column is-two-thirds">
         <!-- リスト -->
         <div class="panel">
           <div class="panel-heading">
@@ -78,12 +78,17 @@
             </div>
           </div>
           <transition-group
+            v-if="!detail"
             name="mondai">
             <a class="panel-block" v-for="item in filter(list.mondaiList.mondai)" v-bind:key="item._id" target='_blank' v-bind:href='url(item.site,item.id)' :data-index="item._id">
-                <mondai-view :item="item" v-if="detail"/>
-                <simple-mondai :item="item" v-else/>
+                <simple-mondai :item="item"/>
             </a>
           </transition-group>
+          <div v-else class="columns is-multiline is-gapless">
+            <div class="column is-one-third" v-for="item in filter(list.mondaiList.mondai)" v-bind:key="item._id" target='_blank' :data-index="item._id" >
+              <MondaiCard :item="item"></MondaiCard>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -93,10 +98,13 @@
 import Vue from 'vue'
 import SimpleMondaiView from '@/components/SimpleMondaiView'
 import SimpleListLinkView from '@/components/SimpleListLinkView'
+import MondaiCard from '@/components/MondaiCard'
+
 export default {
   components: {
     'simple-mondai': SimpleMondaiView,
-    SimpleListLinkView
+    SimpleListLinkView,
+    MondaiCard
   },
   data () {
     return {
