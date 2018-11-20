@@ -7,7 +7,7 @@
         <p class="subtitle is-6">{{item.author}}</p>
         <b-tag class="is-primary mr">{{site[item.site].name}}</b-tag>
         <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
-        <p><a target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</a></p>
+        <p class="multiline"><a target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</a></p>
         <p class="multiline">{{item.description}}</p>
     </div>
   </div>

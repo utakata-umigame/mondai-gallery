@@ -147,4 +147,7 @@ h2.title {
 .pb {
   padding-bottom: 50px;
 }
+.scrollX {
+  overflow-x: scroll;
+}
 </style>
