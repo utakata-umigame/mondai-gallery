@@ -59,7 +59,7 @@
               <div class="buttons has-addons">
                 <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
                 <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
-                <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
+                <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;バックアップ</span>
               </div>
             </div>
             <div class="level-item">
