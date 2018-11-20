@@ -4,11 +4,12 @@
       <p class="card-header-title">{{item.title}}</p>
     </header>
     <div class="card-content">
-        <p class="subtitle is-6">{{item.author}}</p>
-        <b-tag class="is-primary mr">{{site[item.site].name}}</b-tag>
         <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
-        <p class="multiline"><a target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</a></p>
-        <p class="multiline">{{item.description}}</p>
+      <p>{{item.author}}</p>
+      <b-tag class="is-primary mr">{{site[item.site].name}}</b-tag>
+      <b-tag class="is-info">{{genre[item.genre]}}</b-tag>
+      <p class="multiline mb">{{item.description}}</p>
+      <p class="multiline"><a target="_blank" v-bind:href="url(item.site, item.id)">{{url(item.site, item.id)}}</a></p>
     </div>
   </div>
 </template>
