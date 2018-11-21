@@ -14,8 +14,7 @@ export default {
   mounted () {
     let counts = new Map()
     this.list.forEach(m => {
-      let val = 0
-      if (counts.get(m.site)) val = counts.get(m.site)
+      let val = counts.get(m.site) || 0
       counts.set(m.site, val+1)
     })
     let sorted = [...counts.entries()].sort((x, y) => y[1] - x[1])

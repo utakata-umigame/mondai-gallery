@@ -14,8 +14,7 @@ export default {
   mounted () {
     let counts = new Map()
     this.list.forEach(m => {
-      let val = 0
-      if (counts.get(m.genre)) val = counts.get(m.genre)
+      let val = counts.get(m.genre) || 0
       counts.set(m.genre, val+1)
     })
     let sorted = [...counts.entries()].sort((x, y) => y[1] - x[1])

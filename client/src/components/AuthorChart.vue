@@ -9,8 +9,7 @@ export default {
   mounted () {
     let counts = new Map()
     this.list.forEach(m => {
-      let val = 0
-      if (counts.get(m.author)) val = counts.get(m.author)
+      let val = counts.get(m.author) || 0
       counts.set(m.author, val+1)
     })
     let sorted = [...counts.entries()].sort((x, y) => y[1] - x[1])
