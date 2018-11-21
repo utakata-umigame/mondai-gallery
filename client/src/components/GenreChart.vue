@@ -7,19 +7,19 @@ export default {
     list: Array
   },
   computed: {
-    site () {
-      return this.$store.state.site
+    genre () {
+      return this.$store.state.genre
     }
   },
   mounted () {
     let counts = new Map()
     this.list.forEach(m => {
       let val = 0
-      if (counts.get(m.site)) val = counts.get(m.site)
-      counts.set(m.site, val+1)
+      if (counts.get(m.genre)) val = counts.get(m.genre)
+      counts.set(m.genre, val+1)
     })
     let sorted = [...counts.entries()].sort((x, y) => y[1] - x[1])
-    let labels = sorted.map(x => this.site[x[0]].name)
+    let labels = sorted.map(x => this.genre[x[0]])
     let data = sorted.map(x => x[1])
     this.renderChart({
       labels: labels,

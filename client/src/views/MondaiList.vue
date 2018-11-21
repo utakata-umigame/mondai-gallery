@@ -39,14 +39,29 @@
             <a class="card-footer-item" @click="$router.push(editUrl())"><b-icon icon="pencil"></b-icon><span>編集</span></a>
           </footer>
         </div>
-        <div class="columns is-mobile"  v-if="list.mondaiList.mondai.length > 0">
-          <div class="column is-6">
-            <SiteChart :list="list.mondaiList.mondai"/>
+        <b-collapse class="card">
+          <header slot="trigger" slot-scope="props" class="card-header">
+            <p class="card-header-title">統計</p>
+            <a class="card-header-icon">
+              <b-icon
+                :icon="props.open ? 'menu-down' : 'menu-up'">
+              </b-icon>
+            </a>
+          </header>
+          <div class="card-content">
+            <div class="columns is-mobile is-multiline"  v-if="list.mondaiList.mondai.length > 0">
+              <div class="column is-6">
+                <SiteChart :list="list.mondaiList.mondai"/>
+              </div>
+              <div class="column is-6">
+                <AuthorChart :list="list.mondaiList.mondai"/>
+              </div>
+              <div class="column is-6">
+                <GenreChart :list="list.mondaiList.mondai"/>
+              </div>
+            </div>
           </div>
-          <div class="column is-6">
-            <AuthorChart :list="list.mondaiList.mondai"/>
-          </div>
-        </div>
+        </b-collapse>
       </div>
       <div class="column is-two-thirds">
         <!-- リスト -->
@@ -110,6 +125,7 @@ import MondaiCard from '@/components/MondaiCard'
 
 import SiteChart from '@/components/SiteChart.vue'
 import AuthorChart from '@/components/AuthorChart.vue'
+import GenreChart from '@/components/GenreChart.vue'
 
 export default {
   components: {
@@ -117,7 +133,8 @@ export default {
     SimpleListLinkView,
     MondaiCard,
     SiteChart,
-    AuthorChart
+    AuthorChart,
+    GenreChart
   },
   data () {
     return {

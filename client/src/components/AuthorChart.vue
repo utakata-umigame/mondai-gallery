@@ -1,8 +1,8 @@
 <script>
-import { Pie } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs'
 
 export default {
-  extends: Pie,
+  extends: Doughnut,
   props: {
     list: Array
   },
@@ -14,7 +14,6 @@ export default {
       counts.set(m.author, val+1)
     })
     let sorted = [...counts.entries()].sort((x, y) => y[1] - x[1])
-    console.log(sorted)
     let labels = sorted.map(x => x[0])
     let data = sorted.map(x => x[1])
     this.renderChart({
