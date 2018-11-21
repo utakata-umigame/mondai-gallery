@@ -39,6 +39,7 @@
             <a class="card-footer-item" @click="$router.push(editUrl())"><b-icon icon="pencil"></b-icon><span>編集</span></a>
           </footer>
         </div>
+        <SiteChart :list="list.mondaiList.mondai"/>
         <!-- 次に見る -->
         <div class="panel" v-if="list.otherList.length > 0">
           <div class="panel-heading">
@@ -100,11 +101,14 @@ import SimpleMondaiView from '@/components/SimpleMondaiView'
 import SimpleListLinkView from '@/components/SimpleListLinkView'
 import MondaiCard from '@/components/MondaiCard'
 
+import SiteChart from '@/components/SiteChart.vue'
+
 export default {
   components: {
     'simple-mondai': SimpleMondaiView,
     SimpleListLinkView,
-    MondaiCard
+    MondaiCard,
+    SiteChart
   },
   data () {
     return {

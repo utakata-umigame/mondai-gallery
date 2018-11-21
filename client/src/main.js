@@ -6,6 +6,7 @@ import store from './store'
 import VueLocalStorage from 'vue-localstorage'
 import axios from 'axios'
 import Buefy from 'buefy'
+
 import 'buefy/dist/buefy.css'
 import '@mdi/font/css/materialdesignicons.min.css'
 import 'timeline-vuejs/dist/timeline-vuejs.css'
