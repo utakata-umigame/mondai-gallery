@@ -3,11 +3,13 @@
     <div class="columns is-multiline">
       <div class="column is-4" v-for="item in mondaiList" v-bind:key="item.id">
         <div class="card">
-          <div class="card-content">
-            <p class="title is-4">
-              <span>{{item.name}}</span>
+          <header class="card-header">
+            <p class="card-header-title">
+              <router-link class="has-text-info" :to="{ name: 'MondaiList', params: {id: item.id} }">{{item.name}}</router-link>
               <b-icon icon="lock" v-if="item.private"></b-icon>
             </p>
+          </header>
+          <div class="card-content">
             <div class="media">
               <div class="media-left">
                 <img :src="item.editor.picUrl" v-if="item.editor.picUrl" width="24" height="24" alt="No Image">
@@ -23,14 +25,9 @@
               <b-tag class='is-primary' v-if='item.fromMyMondais'>自作問題のみ</b-tag>
               <b-tag v-for="tag in item.tags" :key="tag">{{tag}}</b-tag>
             </b-taglist>
-            <div class="content">
-              <p class="multiline">{{item.description}}</p>
-              <p class="grey">{{item.updateDate}}</p>
-            </div>
+            <p class="multiline">{{item.description}}</p>
+            <p class="grey">{{item.updateDate}}</p>
           </div>
-          <footer class="card-footer">
-            <router-link class="card-footer-item" :to="{ name: 'MondaiList', params: {id: item.id} }">詳細</router-link>
-          </footer>
         </div>
       </div>
     </div>
