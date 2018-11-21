@@ -39,13 +39,13 @@
             <a class="card-footer-item" @click="$router.push(editUrl())"><b-icon icon="pencil"></b-icon><span>編集</span></a>
           </footer>
         </div>
-        <SiteChart v-if="list.mondaiList.mondai.length > 0" :list="list.mondaiList.mondai"/>
-        <!-- 次に見る -->
-        <div class="panel" v-if="list.otherList.length > 0">
-          <div class="panel-heading">
-            <b-icon icon="arrow-right-drop-circle-outline"></b-icon><span>次に見る</span>
+        <div class="columns is-mobile"  v-if="list.mondaiList.mondai.length > 0">
+          <div class="column is-6">
+            <SiteChart :list="list.mondaiList.mondai"/>
           </div>
-          <SimpleListLinkView :item="item" v-for="item in list.otherList" :key="item.id" />
+          <div class="column is-6">
+            <AuthorChart :list="list.mondaiList.mondai"/>
+          </div>
         </div>
       </div>
       <div class="column is-two-thirds">
@@ -91,6 +91,13 @@
             </div>
           </div>
         </div>
+        <!-- 次に見る -->
+        <div class="panel" v-if="list.otherList.length > 0">
+          <div class="panel-heading">
+            <b-icon icon="arrow-right-drop-circle-outline"></b-icon><span>次に見る</span>
+          </div>
+          <SimpleListLinkView :item="item" v-for="item in list.otherList" :key="item.id" />
+        </div>
       </div>
     </div>
   </div>
@@ -102,13 +109,15 @@ import SimpleListLinkView from '@/components/SimpleListLinkView'
 import MondaiCard from '@/components/MondaiCard'
 
 import SiteChart from '@/components/SiteChart.vue'
+import AuthorChart from '@/components/AuthorChart.vue'
 
 export default {
   components: {
     'simple-mondai': SimpleMondaiView,
     SimpleListLinkView,
     MondaiCard,
-    SiteChart
+    SiteChart,
+    AuthorChart
   },
   data () {
     return {
