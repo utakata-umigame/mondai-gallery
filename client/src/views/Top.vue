@@ -4,7 +4,7 @@
       <div class="hero-body">
         <div>
           <h1 class="title is-1 revalia">Mondai Gallery</h1>
-          <h2 class="subtitle">水平思考問題集共有サイト</h2>
+          <h2 class="subtitle">水平思考問題プレイヤーのためのプロフィールサイト</h2>
           <router-link class="button is-light is-outlined is-inverted is-medium" to="/login">ログイン</router-link>
           <router-link class="button is-light is-outlined is-inverted is-medium" to="/signup">新規登録</router-link>
         </div>
