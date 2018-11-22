@@ -1,14 +1,21 @@
 <script>
-import { Doughnut } from 'vue-chartjs'
+import { PolarArea } from 'vue-chartjs'
 
 export default {
-  extends: Doughnut,
+  extends: PolarArea,
   props: {
     list: Array
   },
   computed: {
     site () {
       return this.$store.state.site
+    },
+    siteNames () {
+      let list = []
+      for(let key in this.$store.state.site) {
+        list.push(this.$store.state.site[key].name)
+      }
+      return list
     }
   },
   mounted () {
@@ -26,11 +33,12 @@ export default {
         let val = counts.get(m.site) || 0
         counts.set(m.site, val+1)
       })
-      let sorted = [...counts.entries()].sort((x, y) => y[1] - x[1])
-      let labels = sorted.map(x => this.site[x[0]].name)
-      let data = sorted.map(x => x[1])
+      let data = []
+      for (let key in this.site) {
+        data.push(counts.get(key) || 0)
+      }
       this.renderChart({
-        labels: labels,
+        labels: this.siteNames,
         datasets: [
           {
             backgroundColor: [

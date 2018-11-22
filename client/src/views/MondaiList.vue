@@ -56,7 +56,7 @@
               <div class="column is-6">
                 <AuthorChart :list="list.mondaiList.mondai"/>
               </div>
-              <div class="column is-6">
+              <div class="column is-12">
                 <GenreChart :list="list.mondaiList.mondai"/>
               </div>
             </div>

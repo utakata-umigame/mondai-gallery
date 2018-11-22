@@ -1,14 +1,21 @@
 <script>
-import { Doughnut } from 'vue-chartjs'
+import { Radar } from 'vue-chartjs'
 
 export default {
-  extends: Doughnut,
+  extends: Radar,
   props: {
     list: Array
   },
   computed: {
     genre () {
       return this.$store.state.genre
+    },
+    genreNames: function () {
+      let list = []
+      for(let key in this.$store.state.genre) {
+        list.push(this.$store.state.genre[key])
+      }
+      return list
     }
   },
   mounted () {
@@ -26,19 +33,15 @@ export default {
         let val = counts.get(m.genre) || 0
         counts.set(m.genre, val+1)
       })
-      let sorted = [...counts.entries()].sort((x, y) => y[1] - x[1])
-      let labels = sorted.map(x => this.genre[x[0]])
-      let data = sorted.map(x => x[1])
+      let data = []
+      for (let key in this.genre) {
+        data.push(counts.get(key) || 0)
+      }
       this.renderChart({
-        labels: labels,
+        labels: this.genreNames,
         datasets: [
           {
-            backgroundColor: [
-              '#41B883',
-              '#E46651',
-              '#00D8FF',
-              '#DD1B16'
-            ],
+            borderColor: "rgb(255, 99, 132)",
             data: data
           }
         ]
@@ -50,7 +53,7 @@ export default {
           text: 'ジャンル'
         },
         legend: {
-          position: 'bottom'
+          display: false
         }
       })
     }
