@@ -49,6 +49,9 @@ export default {
         title: {
           display: true,
           text: 'サイト'
+        },
+        legend: {
+          position: 'bottom'
         }
       })
     }

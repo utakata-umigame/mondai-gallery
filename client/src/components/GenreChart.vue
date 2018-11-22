@@ -48,6 +48,9 @@ export default {
         title: {
           display: true,
           text: 'ジャンル'
+        },
+        legend: {
+          position: 'bottom'
         }
       })
     }

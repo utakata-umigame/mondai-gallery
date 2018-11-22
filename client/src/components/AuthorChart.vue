@@ -39,6 +39,9 @@ export default {
         title: {
           display: true,
           text: '作者'
+        },
+        legend: {
+          position: 'bottom'
         }
       })
     }
