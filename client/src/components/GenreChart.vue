@@ -42,7 +42,14 @@ export default {
             data: data
           }
         ]
-      }, {responsive: true, maintainAspectRatio: false})
+      }, {
+        responsive: true,
+        maintainAspectRatio: false,
+        title: {
+          display: true,
+          text: 'ジャンル'
+        }
+      })
     }
   }
 }
