@@ -15,9 +15,12 @@ export default {
       })
       let sorted = [...counts.entries()].sort((x, y) => y[1] - x[1])
       let labels = sorted.map(x => x[0])
-      let data = sorted.map(x => x[1])
+      let data = sorted.map(x => x[1]).slice(0,4)
+      let topCount = data.reduce((sum, next) => sum + next, 0)
+      let otherCount = this.list.length - topCount
+      let over4 = labels.length > 4
       this.renderChart({
-        labels: labels,
+        labels: over4 ? [...labels.slice(0,4), 'その他'] : labels.slice(0, 4),
         datasets: [
           {
             backgroundColor: [
@@ -26,7 +29,7 @@ export default {
               '#00D8FF',
               '#DD1B16'
             ],
-            data: data
+            data: over4 ? [...data, otherCount] : data
           }
         ]
       },
