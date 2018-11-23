@@ -20,7 +20,7 @@
         </li>
       </ul>
     </nav>
-    <div class="mb">
+    <div class="p mb has-background-white">
       <p>サイトのレイアウト、機能等について要望がございましたらお気軽にご連絡ください。サービス向上の参考にいたします。</p>
       <div class="columns">
         <section class="section column">
@@ -38,8 +38,8 @@
           <p>GitHubからプルリクエストをお送りください。現状との比較の上、管理人の判断でマージします。</p>
         </section>
       </div>
+      <account-link :profile="profile"></account-link>
     </div>
-    <account-link :profile="profile"></account-link>
     <div class="panel">
       <div class="panel-heading caption-light" :style="{'background-color':'#555', 'color': '#fff'}">更新履歴</div>
       <div class="panel-block" v-for="item in messages" :key="item">{{item}}</div>
@@ -66,3 +66,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+.p {
+  padding: 10px;
+}
+</style>
