@@ -32,12 +32,13 @@ export default {
   },
   computed: {
     allUser () {
-      return this.$store.state.allUser
+      let sorted = this.$store.state.allUser.sort((x, y) => y.id - x.id)
+      return sorted
     }
   },
   mounted () {
     this.$store.dispatch('fetchAllUser')
-  }
+  },
 }
 </script>
 <style scoped>

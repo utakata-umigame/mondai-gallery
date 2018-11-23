@@ -30,7 +30,7 @@ const routes = [
   },
   {
     path: '/mondailist',
-    name: 'Home',
+    name: 'AllList',
     meta: {
       isPublic: true
     },
