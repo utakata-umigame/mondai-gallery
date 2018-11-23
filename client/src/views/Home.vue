@@ -3,7 +3,7 @@
     <nav class="breadcrumb" aria-label="breadcrumbs">
       <ul>
         <li class="is-active">
-          <router-link to="/mondailist">
+          <router-link to="/home">
             <span class="icon is-small is-primary">
               <b-icon icon="home"/>
             </span>
@@ -19,14 +19,19 @@
       <b-tab-item icon="calendar-today">
         <AllSchedule />
       </b-tab-item>
+      <b-tab-item icon="account">
+        <AllUser />
+      </b-tab-item>
     </b-tabs>
   </div>
 </template>
 <script>
 import AllSchedule from '@/components/AllSchedule'
+import AllUser from '@/components/AllUser'
 export default {
   components: {
-    AllSchedule
+    AllSchedule,
+    AllUser
   },
   data () {
     return {

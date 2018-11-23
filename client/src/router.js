@@ -18,7 +18,16 @@ import Callback from './views/Callback'
 import store from './store'
 
 Vue.use(Router)
+
 const routes = [
+  {
+    path: '/home',
+    name: 'Home',
+    meta: {
+      isPublic: true
+    },
+    component: Home
+  },
   {
     path: '/mondailist',
     name: 'Home',

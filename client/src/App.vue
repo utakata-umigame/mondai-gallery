@@ -12,7 +12,7 @@
         </div>
         <div id="navbar1" class="navbar-menu" :class="{'is-active': showNav}">
           <div class="navbar-start">
-            <router-link class="navbar-item"  to="/mondailist"><b-icon icon="home"></b-icon><span>ホーム</span></router-link>
+            <router-link class="navbar-item"  to="/home"><b-icon icon="home"></b-icon><span>ホーム</span></router-link>
             <router-link class="navbar-item" to="/add"><b-icon icon="plus-circle"></b-icon><span>リストを追加</span></router-link>
             <router-link class="navbar-item"  to="/contact"><b-icon icon="contacts"></b-icon><span>お問い合わせ</span></router-link>
           </div>

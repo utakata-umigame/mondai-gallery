@@ -14,6 +14,30 @@ module.exports = {
       ]
     };
   },
+  allUser: (req, callback) => {
+    db.User.find({}).toArray((error, docs) => {
+      if (docs) {
+        callback(docs.map(doc => {
+          return {
+            "id": doc.id,
+            "nickname": doc.nickname,
+            "bio": doc.bio,
+            "latethink": doc.latethink,
+            "cindy": doc.cindy,
+            "R": doc.R,
+            "latelate": doc.latelate,
+            "latePro": doc.latePro,
+            "twitter": doc.twitter,
+            "github": doc.github,
+            "color": doc.color,
+            "picUrl": doc.picUrl,
+            "signup_date": doc.signup_date
+          }
+        }));
+      }
+      else callback({'error': 'error'});
+    });
+  },
   profileFromID: (req, callback) => {
     db.User.findOne({id: parseInt(req.params.id)}, (err, doc) => {
       if (doc) {

@@ -8,6 +8,7 @@ const router = express();
 
 // Public routes
 router.get("/", (req, res) => res.json(apis.root()));
+router.get("/allUser", (req, res) => apis.allUser(req, data => res.json(data)));
 router.get("/profile/show/:id", (req, res) => apis.profileFromID(req, data => res.json(data)));
 router.get("/mondaiList", (req, res) => apis.allList(req, data => res.json(data)));
 router.get("/mondaiList/:id", (req, res) => apis.listFromID(req, data => res.json(data), err => res.status(403).send(err)));

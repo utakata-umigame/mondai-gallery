@@ -16,6 +16,7 @@ export default new Vuex.Store({
       nickname: 'Guest',
       username: ''
     },
+    allUser: [],
     savedLists: {},
     savedProfiles: {},
     genre: {
@@ -49,6 +50,9 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
+    setAllUser (state, value) {
+      state.allUser = value
+    },
     setUser (state, value) {
       state.user = value
     },
@@ -63,6 +67,14 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async fetchAllUser (context) {
+      let users = []
+      await axios.get(new Vue().$endPoint('/api/allUser'))
+        .then(res => {
+          users = res.data
+        })
+      context.commit('setAllUser', users)
+    },
     async fetchUser (context) {
       let payload = {
         'username': '',
@@ -78,7 +90,7 @@ export default new Vuex.Store({
         .catch( error => {
 
         })
-      context.commit ('setUser', payload)
+      context.commit('setUser', payload)
     },
     async fetchList (context, id) {
       let payload = {
@@ -127,6 +139,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    allUser (state) { return state.allUser },
     user (state) { return state.user },
     genre (state) { return state.genre },
     site (state) { return state.site },

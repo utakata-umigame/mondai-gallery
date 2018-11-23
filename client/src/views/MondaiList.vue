@@ -3,7 +3,7 @@
     <nav class="breadcrumb" aria-label="breadcrumbs">
       <ul>
         <li>
-          <router-link to="/mondailist">
+          <router-link to="/home">
             <span class="icon is-small is-primary">
               <b-icon icon="home"/>
             </span>

@@ -5,7 +5,7 @@
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
-              <router-link class="has-text-info" :to="{ name: 'MondaiList', params: {id: item.id} }">{{item.name}}</router-link>
+              <router-link class="has-text-link" :to="{ name: 'MondaiList', params: {id: item.id} }">{{item.name}}</router-link>
               <b-icon icon="lock" v-if="item.private"></b-icon>
             </p>
           </header>
