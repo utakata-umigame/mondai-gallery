@@ -25,7 +25,7 @@
               <b-tag class='is-primary' v-if='item.fromMyMondais'>自作問題のみ</b-tag>
               <b-tag v-for="tag in item.tags" :key="tag">{{tag}}</b-tag>
             </b-taglist>
-            <p class="multiline">{{item.description}}</p>
+            <p class="multiline mb">{{item.description}}</p>
             <p class="grey">{{item.updateDate}}</p>
           </div>
         </div>
@@ -78,3 +78,10 @@ export default {
   }
 }
 </script>
+<style scoped>
+.card {
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+}
+</style>
