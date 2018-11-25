@@ -75,7 +75,8 @@ module.exports = {
               editor: x.editor,
               description: x.description,
               updateDate: x.updateDate,
-              tags: x.tags
+              tags: x.tags,
+              accept: x.accept || []
             };
           }));
         }
@@ -96,7 +97,8 @@ module.exports = {
                 private: x.private,
                 editor: x.editor,
                 description: x.description,
-                updateDate: x.updateDate
+                updateDate: x.updateDate,
+                accept: x.accept || []
             }
           }).filter(x => x.editor.id.toString() === req.params.id.toString());
           callback(list);
@@ -109,10 +111,13 @@ module.exports = {
   // リストIDを指定して表示
    db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
      if (doc) {
+       doc.accept = doc.accept || []
        if (!doc.private) {
+         // 公開リスト
          db.User.findOne({"username": doc.editor.username}, (err, usr) => {
             if (usr) {
              doc.editor.color = usr.color || '#000';
+             doc.editor.picUrl = usr.picUrl;
             }
             callback(doc);
           })
@@ -124,9 +129,23 @@ module.exports = {
          });
          return;
        } else if (doc.editor.username === req.user.username){
+         // 作者本人
+         doc.accept = doc.accept || []
          db.User.findOne({"username": doc.editor.username}, (err, usr) => {
             if (usr) {
              doc.editor.color = usr.color || '#555';
+             doc.editor.picUrl = usr.picUrl;
+            }
+            callback(doc);
+          })
+         return;
+       } else if (doc.accept.includes(req.user.id)) {
+         // 許可されたユーザー
+         doc.accept = doc.accept || []
+         db.User.findOne({"username": doc.editor.username}, (err, usr) => {
+            if (usr) {
+             doc.editor.color = usr.color || '#555';
+             doc.editor.picUrl = usr.picUrl;
             }
             callback(doc);
           })
@@ -460,7 +479,8 @@ module.exports = {
           "private": obj.private,
           "description": obj.description,
           "mondai": obj.mondai,
-          "updateDate": updateDate
+          "updateDate": updateDate,
+          "accept": obj.accept
         }
       }, (err, doc) => {
        if(err) res.status(403).send({

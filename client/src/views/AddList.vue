@@ -20,57 +20,52 @@
         </li>
       </ul>
     </nav>
-    <b-tabs v-model="activeTab" position="is-centered" expanded>
+    <b-tabs class="card" v-model="activeTab" position="is-centered" expanded>
       <b-tab-item label="リスト情報">
         <div>
-      <b-field label="リスト名">
-        <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
-        </b-input>
-      </b-field>
-      <b-field label="リストの説明">
-        <b-input v-model="mondaiList.description" placeholder="説明" type="textarea" maxlength="200">
-        </b-input>
-      </b-field>
-      <b-field label="タグをつける(10個まで)">
-        <b-taginput
-          v-model="mondaiList.tags"
-          ellipsis
-          maxtags="10"
-          icon="label"
-          placeholder="タグを追加">
-        </b-taginput>
-      </b-field>
-      <div class="field">
-        <b-checkbox v-model="mondaiList.fromMyMondais">
-          自作問題のみのリストの場合はチェック
-        </b-checkbox>
-      </div>
-      <div class="field">
-        <b-checkbox v-model="mondaiList.private">
-          非公開にする場合はチェック
-        </b-checkbox>
-      </div>
-    </div>
+          <b-field label="リスト名">
+            <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
+            </b-input>
+          </b-field>
+          <b-field label="リストの説明">
+            <b-input v-model="mondaiList.description" placeholder="説明" type="textarea" maxlength="200">
+            </b-input>
+          </b-field>
+          <b-field label="タグをつける(10個まで)">
+            <b-taginput
+              v-model="mondaiList.tags"
+              ellipsis
+              maxtags="10"
+              icon="label"
+              placeholder="タグを追加">
+            </b-taginput>
+          </b-field>
+          <div class="field">
+            <b-checkbox v-model="mondaiList.fromMyMondais">
+              自作問題のみのリストの場合はチェック
+            </b-checkbox>
+          </div>
+        </div>
       </b-tab-item>
       <b-tab-item label="問題の追加/編集/削除">
         <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <div class="buttons has-addons">
-            <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
-            <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
-            <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
+          <div class="level-left">
+            <div class="level-item">
+              <div class="buttons has-addons">
+                <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
+                <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
+                <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;JSONモード</span>
+              </div>
+            </div>
+            <div class="level-item">
+              <b-select v-model="isSwitched">
+                <option value="個別編集">個別編集</option>
+                <option value="一括編集">一括編集</option>
+                <option value="テーブル">テーブル</option>
+              </b-select>
+            </div>
           </div>
         </div>
-        <div class="level-item">
-          <b-select v-model="isSwitched">
-            <option value="個別編集">個別編集</option>
-            <option value="一括編集">一括編集</option>
-            <option value="テーブル">テーブル</option>
-          </b-select>
-        </div>
-      </div>
-    </div>
         <!-- 問題リスト -->
         <table class="table is-striped is-fullwidth" v-if="isSwitched === 'テーブル'">
           <thead>
@@ -152,6 +147,22 @@
           <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
         </div>
       </b-tab-item>
+      <b-tab-item label="公開設定">
+        <div class="field">
+          <b-checkbox v-model="mondaiList.private">
+            非公開にする場合はチェック
+          </b-checkbox>
+        </div>
+        <div v-if="mondaiList.private">
+          <p>閲覧を許可するユーザーを個別選択</p>
+          <ul class="mb">
+            <li class="panel-block" v-for="user in allUser" :key="user.id" v-if="user.id !== userInfo.id">
+              <b-checkbox v-model="mondaiList.accept" :native-value="user.id">{{user.nickname}}</b-checkbox>
+            </li>
+          </ul>
+          <button class="button is-primary is-outlined" @click="mondaiList.accept=[]">すべてクリア</button>
+        </div>
+      </b-tab-item>
     </b-tabs>
     <div class="">
       <div class="buttons has-addons">
@@ -228,7 +239,8 @@ export default {
         'tags': [],
         'description': '',
         'private': false,
-        'mondai': []
+        'mondai': [],
+        'accept': []
       },
       mondaiJSON: '[]',
       isAddMondaiModalActive: false,
@@ -238,6 +250,9 @@ export default {
     }
   },
   computed: {
+    userInfo () {
+      return this.$store.state.user
+    },
     site: function () {
       let list = []
       for(let key in this.$store.state.site) {
@@ -251,9 +266,14 @@ export default {
         list.push({key: key, value: this.$store.state.genre[key]})
       }
       return list
+    },
+    allUser () {
+      let sorted = this.$store.state.allUser.sort((x, y) => y.id - x.id)
+      return sorted
     }
   },
   mounted: function () {
+    this.$store.dispatch('fetchAllUser')
   },
   methods: {
     url: function (siteName, id) {

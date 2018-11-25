@@ -20,7 +20,7 @@
         </li>
       </ul>
     </nav>
-    <b-tabs v-model="activeTab" position="is-centered" class="block" expanded>
+    <b-tabs v-model="activeTab" position="is-centered" class="block card" expanded>
       <b-tab-item label="リスト情報">
         <div class="mb-2">
           <b-field label="リスト名">
@@ -43,11 +43,6 @@
           <div class="field">
             <b-checkbox v-model="mondaiList.fromMyMondais">
               自作問題のみのリストの場合はチェック
-            </b-checkbox>
-          </div>
-          <div class="field">
-            <b-checkbox v-model="mondaiList.private">
-              非公開にする場合はチェック
             </b-checkbox>
           </div>
         </div>
@@ -152,6 +147,22 @@
           <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
         </div>
       </b-tab-item>
+      <b-tab-item label="公開設定">
+        <div class="field">
+          <b-checkbox v-model="mondaiList.private">
+            非公開にする場合はチェック
+          </b-checkbox>
+        </div>
+        <div v-if="mondaiList.private">
+          <p>閲覧を許可するユーザーを個別選択</p>
+          <ul class="mb">
+            <li class="panel-block" v-for="user in allUser" :key="user.id" v-if="user.id !== mondaiList.editor.id">
+              <b-checkbox v-model="mondaiList.accept" :native-value="user.id">{{user.nickname}}</b-checkbox>
+            </li>
+          </ul>
+          <button class="button is-primary is-outlined" @click="mondaiList.accept=[]">すべてクリア</button>
+        </div>
+      </b-tab-item>
     </b-tabs>
     <div class="">
       <div class="buttons has-addons">
@@ -228,7 +239,8 @@ export default {
         'tags': [],
         'description': '',
         'private': false,
-        'mondai': []
+        'mondai': [],
+        'accept': []
       },
       mondaiJSON: '',
       isAddMondaiModalActive: false,
@@ -251,9 +263,14 @@ export default {
         list.push({key: key, value: this.$store.state.genre[key]})
       }
       return list
+    },
+    allUser () {
+      let sorted = this.$store.state.allUser.sort((x, y) => y.id - x.id)
+      return sorted
     }
   },
   mounted: function () {
+    this.$store.dispatch('fetchAllUser')
     let id = this.$route.params.id
     let vm = this
     this.$http.get(this.$endPoint('/api/mondaiList/' + id))
