@@ -12,7 +12,7 @@
         </li>
       </ul>
     </nav>
-    <b-tabs v-model="activeTab" position="is-centered" class="block">
+    <b-tabs v-model="activeTab" position="is-centered" @change="changed">
       <b-tab-item icon="format-list-bulleted">
         <all-list />
       </b-tab-item>
@@ -43,6 +43,7 @@ export default {
     }
   },
   mounted: function () {
+    this.activeTab = this.$route.query.tab || 0
     var vm = this
     this.$http.get(this.$endPoint('/api/mondaiList'))
       .then(function (response) {
@@ -61,6 +62,9 @@ export default {
     },
     to: function (id) {
       this.$router.push(this.url(id))
+    },
+    changed (index) {
+      this.$router.push('/home?tab=' + index)
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <nav class="breadcrumb" aria-label="breadcrumbs">
       <ul>
         <li>
@@ -20,7 +20,7 @@
         </li>
       </ul>
     </nav>
-    <div class="p mb has-background-white">
+    <div class="card section mb">
       <p>サイトのレイアウト、機能等について要望がございましたらお気軽にご連絡ください。サービス向上の参考にいたします。</p>
       <div class="columns">
         <section class="section column">
@@ -41,7 +41,7 @@
       <account-link :profile="profile"></account-link>
     </div>
     <div class="panel">
-      <div class="panel-heading caption-light" :style="{'background-color':'#555', 'color': '#fff'}">更新履歴</div>
+      <div class="panel-heading caption-light">更新履歴</div>
       <div class="panel-block" v-for="item in messages" :key="item">{{item}}</div>
     </div>
   </div>
@@ -69,5 +69,8 @@ export default {
 <style scoped>
 .p {
   padding: 10px;
+}
+.container {
+  background: #ffffff;
 }
 </style>
