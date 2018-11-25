@@ -53,15 +53,16 @@
         </div>
       </div>
       <div class="column">
-        <b-tabs v-model="activeTab" position="is-centered" class="block">
+        <b-tabs v-model="activeTab" position="is-centered">
           <b-tab-item icon="format-list-bulleted">
             <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
           </b-tab-item>
           <b-tab-item icon="calendar-today">
             <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
           </b-tab-item>
-          <b-tab-item icon="flag">
-            <MilestoneView :timelineItems="timeline" />
+          <b-tab-item icon="flag" class="card section">
+            <MilestoneView
+              :timelineItems="timeline" />
           </b-tab-item>
         </b-tabs>
       </div>

@@ -55,14 +55,14 @@
           <b-tab-item icon="calendar-today">
             <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
           </b-tab-item>
-          <b-tab-item icon="flag">
+          <b-tab-item icon="flag" class="card section">
             <MilestoneView :timelineItems="timeline" />
-            <router-link :to="{ name: 'EditMilestone', params: {id: this.profile.id}}">マイルストーンを編集</router-link>
           </b-tab-item>
         </b-tabs>
         <footer class="panel-footer">
           <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">リストを追加</router-link>
           <router-link v-if="activeTab===1" :to="{ name: 'EditSchedule', params: {id: this.profile.id} }">スケジュールを編集</router-link>
+          <router-link v-if="activeTab===2" :to="{ name: 'EditMilestone', params: {id: this.profile.id}}">マイルストーンを編集</router-link>
         </footer>
       </div>
     </div>
