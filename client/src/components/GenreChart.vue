@@ -54,6 +54,11 @@ export default {
         },
         legend: {
           display: false
+        },
+        scale: {
+          ticks: {
+            min: 0
+          }
         }
       })
     }
