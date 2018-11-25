@@ -54,7 +54,9 @@ module.exports = {
           "github": doc.github,
           "color": doc.color,
           "picUrl": doc.picUrl,
-          "signup_date": doc.signup_date
+          "signup_date": doc.signup_date,
+          "update": doc.update,
+          "updateDate": doc.updateDate
         });
         return;
       }
@@ -180,6 +182,16 @@ module.exports = {
       }
     })
   },
+  hook: (req, callback) => {
+    if (req.head_commit.message) {
+      db.User.updateOne({'id': 1}, {$set: {'update': req.head_commit.message, 'updateDate': req.head_commit.timestamp}}, (err, doc) => {
+        if (doc) callback({'success': true});
+        else callback({'error': 'error'});
+      })
+    } else {
+      callback({'error': 'error'});
+    }
+  },
   login: (req, res) => {
     db.User.findOne({username: req.body.username}, (err, doc) => {
       if (doc) res.json({'message': 'Logged in', 'user': doc});
@@ -224,8 +236,7 @@ module.exports = {
       });
     } else {
       res.json({'error': 'Invalid username'});
-    }
-  },
+    }  },
   /* Functions below require authentication */
   user: (req, res) => {
     if (req.user)

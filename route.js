@@ -17,6 +17,7 @@ router.get("/userlist/:id", (req, res) => apis.listById(req, data => res.json(da
 router.get("/schedule", (req, res) => apis.allSchedule(req, data => res.json(data)));
 router.get("/schedule/:id", (req, res) => apis.schedule(req, data => res.json(data)));
 router.get("/milestone/:id", (req, res) => apis.milestone(req, data => res.json(data)));
+router.post("/update", (req, res) => apis.hook(req, data => res.json(data)));
 // Login
 router.post("/login", passport.authenticate('local'), apis.login);
 
