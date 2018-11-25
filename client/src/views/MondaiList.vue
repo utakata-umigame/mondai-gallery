@@ -23,6 +23,11 @@
     <div class="columns">
       <div class="column is-one-third">
         <div class="card mb">
+          <div class="card-image">
+            <figure class="image is-16by9">
+              <img :src="picture[list.mondaiList.picture] || picture['puzzle']" alt="Placeholder image">
+            </figure>
+          </div>
           <div class="card-content">
             <p class="title is-4">{{list.mondaiList.name}}</p>
             <p class="subtitle is-6">
@@ -158,6 +163,9 @@ export default {
     }
   },
   computed: {
+    picture () {
+      return this.$store.state.picture
+    },
     site: function () {
       return this.$store.state.site
     },

@@ -3,13 +3,14 @@
     <div class="columns is-multiline">
       <div class="column is-4" v-for="item in mondaiList" v-bind:key="item.id">
         <div class="card">
-          <header class="card-header">
-            <p class="card-header-title">
-              <router-link class="has-text-link" :to="{ name: 'MondaiList', params: {id: item.id} }">{{item.name}}</router-link>
-              <b-icon icon="lock" v-if="item.private"></b-icon>
-            </p>
-          </header>
+          <div class="card-image">
+            <figure class="image is-16by9">
+              <img :src="picture[item.picture] || picture['puzzle']" alt="Placeholder image">
+            </figure>
+          </div>
           <div class="card-content">
+            <router-link class="has-text-link title is-5" :to="{ name: 'MondaiList', params: {id: item.id} }">{{item.name}}</router-link>
+            <b-icon icon="lock" v-if="item.private"></b-icon>
             <div class="media">
               <div class="media-left">
                 <img :src="item.editor.picUrl" v-if="item.editor.picUrl" width="24" height="24" alt="No Image">
@@ -47,6 +48,11 @@ export default {
       genreFilter: 'all',
       siteFilter: 'all',
       mondaiList: []
+    }
+  },
+  computed: {
+    picture () {
+      return this.$store.state.picture
     }
   },
   mounted: function () {

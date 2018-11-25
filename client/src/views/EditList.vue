@@ -27,6 +27,14 @@
             <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
             </b-input>
           </b-field>
+          <img width="320" :src="picture[mondaiList.picture]">
+          <b-field label="画像">
+            <b-select v-model="mondaiList.picture">
+              <option value="puzzle">パズル(デフォルト)</option>
+              <option value="umigame">ウミガメ</option>
+              <option value="yesno">Yes/No</option>
+            </b-select>
+          </b-field>
           <b-field label="リストの説明">
             <b-input v-model="mondaiList.description" placeholder="説明" type="textarea" maxlength="200">
             </b-input>
@@ -238,6 +246,7 @@ export default {
         },
         'tags': [],
         'description': '',
+        'picture': 'puzzle',
         'private': false,
         'mondai': [],
         'accept': []
@@ -250,6 +259,9 @@ export default {
     }
   },
   computed: {
+    picture () {
+      return this.$store.state.picture
+    },
     site: function () {
       let list = []
       for(let key in this.$store.state.site) {

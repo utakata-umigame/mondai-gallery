@@ -76,6 +76,7 @@ module.exports = {
               description: x.description,
               updateDate: x.updateDate,
               tags: x.tags,
+              picture: x.picture,
               accept: x.accept || []
             };
           }));
@@ -98,6 +99,7 @@ module.exports = {
                 editor: x.editor,
                 description: x.description,
                 updateDate: x.updateDate,
+                picture: x.picture,
                 accept: x.accept || []
             }
           }).filter(x => x.editor.id.toString() === req.params.id.toString());
@@ -480,7 +482,8 @@ module.exports = {
           "description": obj.description,
           "mondai": obj.mondai,
           "updateDate": updateDate,
-          "accept": obj.accept
+          "accept": obj.accept,
+          "picture": obj.picture
         }
       }, (err, doc) => {
        if(err) res.status(403).send({

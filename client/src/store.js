@@ -41,6 +41,11 @@ export default new Vuex.Store({
       { key: 'twitter', name: 'Twitter', profileUrl: 'https://twitter.com/'},
       { key: 'github', name: 'GitHub', profileUrl: 'https://github.com/'}
     ],
+    picture: {
+      'umigame': 'https://res.cloudinary.com/hlcdk0lhr/image/upload/b_auto,c_pad,h_900,w_1600/v1543142406/app/umigame.jpg',
+      'yesno': 'https://res.cloudinary.com/hlcdk0lhr/image/upload/b_auto,c_pad,h_900,w_1600/v1543142403/app/yesno.jpg',
+      'puzzle': 'https://res.cloudinary.com/hlcdk0lhr/image/upload/b_auto,c_pad,h_900,w_1600/v1543142404/app/puzzle.jpg',
+    },
     updateLog: [
       "11/ 7 プロフィール画像を設定できるようになりました。設定するには画像のURLを指定してください。アップローダについては別途ご相談ください",
       "11/ 6 ログインが必要なページに非ログイン状態でアクセスする場合、ログインページにリダイレクトする機能を実装しました。",
@@ -109,6 +114,8 @@ export default new Vuex.Store({
             'description': data.description,
             'editor': data.editor,
             'tags': data.tags,
+            'picture': data.picture,
+            'accept': data.accept,
             'mondai': data.mondai.sort((x, y) => x._id - y._id)
           }
         })
@@ -147,6 +154,7 @@ export default new Vuex.Store({
     updateLog (state) { return state.updateLog },
     savedLists(state) { return state.savedLists },
     savedProfiles(state) { return state.savedProfiles },
-    tumblrToken (state) { return state.tumblrToken }
+    tumblrToken (state) { return state.tumblrToken },
+    picture (state) { return state.picture }
   }
 })
