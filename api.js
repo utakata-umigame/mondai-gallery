@@ -183,6 +183,7 @@ module.exports = {
     })
   },
   hook: (req, callback) => {
+    console.log(req.body);
     if (req.body.head_commit.message) {
       db.User.updateOne({'id': 1}, {$set: {'update': req.body.head_commit.message, 'updateDate': req.body.head_commit.timestamp}}, (err, doc) => {
         if (doc) callback({'success': true});
