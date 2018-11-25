@@ -44,7 +44,7 @@
         </div>
         <div class="card" v-if="profile.update">
           <header class="card-header">
-            <p class="card-header-title">最終更新日</p>
+            <p class="card-header-title">最新の更新</p>
           </header>
           <div class="card-content">
             <p>{{profile.update}}</p>
