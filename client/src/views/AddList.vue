@@ -401,7 +401,7 @@ export default {
             })
             vm.$router.push('/login')
           } else if (data.message) {
-            vm.$router.push('/mondailist')
+            vm.$router.push('/home')
           }
         })
         .catch(function (err) {
