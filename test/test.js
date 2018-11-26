@@ -18,7 +18,7 @@ describe('/api/profile/show/1', () => {
           assert.equal('error', data.error);
           done();
         });
-    }, 3000);
+    }, 5000);
   });
 });
 
