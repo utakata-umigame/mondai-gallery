@@ -16,9 +16,9 @@ describe('/api/profile/show/1', () => {
         {params: {id: 1}},
         data => {
           assert.equal('error', data.error);
-          done()
+          done();
         });
-    }, 2000);
+    }, 3000);
   });
 });
 
