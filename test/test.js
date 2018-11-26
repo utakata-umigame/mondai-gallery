@@ -15,10 +15,10 @@ describe('/api/profile/show/1', () => {
       api.profileFromID(
         {params: {id: 1}},
         data => {
-          assert.equal('undefined', data.error);
+          assert.equal('error', data.error);
           done();
         });
-    }, 5000);
+    }, 2000);
   });
 });
 
