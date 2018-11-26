@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node-dev server.js",
-    "dbtest": "mocha --timeout 10000 --exit",
+    "test": "mocha --timeout 10000 --exit",
     "postinstall": "cd client && npm install && npm run build",
     "build": "cd client && npm run build"
   },
