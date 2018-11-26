@@ -1,5 +1,5 @@
 # mondai-gallery
-
+[![Build Status](https://travis-ci.org/utakata-umigame/mondai-gallery.svg?branch=master)](https://travis-ci.org/utakata-umigame/mondai-gallery)
 ## 一般
 ### 用意するもの
 - git
