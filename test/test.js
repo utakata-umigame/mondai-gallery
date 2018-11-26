@@ -15,7 +15,7 @@ describe('/api/profile/show/1', () => {
       api.profileFromID(
         {params: {id: 1}},
         data => {
-          assert.equal('error', data.error);
+          assert.equal('undefined', data.error);
           done();
         });
     }, 5000);
