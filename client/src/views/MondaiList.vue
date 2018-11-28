@@ -54,11 +54,19 @@
             <p class="multiline card-body">{{list.mondaiList.description}}</p>
             <button v-if="!isRead()" class="button is-primary is-outlined" @click="read">
               <span>読んだ！</span>
-              <b v-if="list.mondaiList.read.length">{{list.mondaiList.read.length}}</b>
+              <b-tag
+                v-if="list.mondaiList.read.length"
+                type="is-danger"
+                class="is-rounded"
+              >{{list.mondaiList.read.length}}</b-tag>
             </button>
             <button v-else class="button is-primary" @click="unread">
               <span>読んだ！済</span>
-              <b v-if="list.mondaiList.read.length">{{list.mondaiList.read.length}}</b>
+              <b-tag
+                v-if="list.mondaiList.read.length"
+                type="is-danger"
+                class="is-rounded"
+              >{{list.mondaiList.read.length}}</b-tag>
             </button>
           </div>
           <footer class="card-footer" v-if="list.isMine">

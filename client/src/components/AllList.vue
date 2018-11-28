@@ -42,6 +42,12 @@
             </b-taglist>
             <p class="multiline mb">{{item.description}}</p>
             <p class="grey">{{item.updateDate}}</p>
+            <div class>
+              <b-tag v-if="item.read.length" class="is-rounded is-outlined">
+                {{item.read.length}}
+                <span>読んだ！</span>
+              </b-tag>
+            </div>
           </div>
         </div>
       </div>
