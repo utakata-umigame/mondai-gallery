@@ -53,14 +53,20 @@
             </b-taglist>
             <p class="multiline card-body">{{list.mondaiList.description}}</p>
             <div v-if="!isRead()" class="buttons has-addons">
-              <span class="button is-light is-small" @click="read">読んだ！</span>
+              <span class="button is-light is-small" @click="read">
+                <b-icon size="is-small" icon="check"/>
+                <span>読んだ！</span>
+              </span>
               <span
                 v-if="list.mondaiList.read.length"
                 class="button is-info is-small"
               >{{list.mondaiList.read.length}}</span>
             </div>
             <div v-else class="buttons has-addons">
-              <span class="button is-primary is-small" @click="unread">読んだ！済</span>
+              <span class="button is-primary is-small" @click="unread">
+                <b-icon size="is-small" icon="check"/>
+                <span>読んだ！済</span>
+              </span>
               <span
                 v-if="list.mondaiList.read.length"
                 class="button is-info is-small"
