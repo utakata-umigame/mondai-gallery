@@ -9,13 +9,26 @@
             </figure>
           </div>
           <div class="card-content">
-            <router-link class="has-text-link title is-5" :to="{ name: 'MondaiList', params: {id: item.id} }">{{item.name}}</router-link>
+            <router-link
+              class="has-text-link title is-5"
+              :to="{ name: 'MondaiList', params: {id: item.id} }"
+            >{{item.name}}</router-link>
             <b-icon icon="lock" v-if="item.private"></b-icon>
             <div class="media">
               <div class="media-left">
-                <img :src="item.editor.picUrl" v-if="item.editor.picUrl" width="24" height="24" alt="No Image">
+                <img
+                  :src="item.editor.picUrl"
+                  v-if="item.editor.picUrl"
+                  width="24"
+                  height="24"
+                  alt="No Image"
+                >
                 <figure class="image is-24x24" v-else>
-                  <b-icon size="is-medium" :style="{'color': item.editor.color||'#555'}" icon="account-box"/>
+                  <b-icon
+                    size="is-medium"
+                    :style="{'color': item.editor.color||'#555'}"
+                    icon="account-box"
+                  />
                 </figure>
               </div>
               <div class="media-content">
@@ -23,7 +36,8 @@
               </div>
             </div>
             <b-taglist>
-              <b-tag class='is-primary' v-if='item.fromMyMondais'>自作問題のみ</b-tag>
+              <b-tag class="is-primary" v-if="item.fromMyMondais">自作問題のみ</b-tag>
+              <b-tag class="is-primary" v-if="item.read.includes(user.id)">読んだ！済</b-tag>
               <b-tag v-for="tag in item.tags" :key="tag">{{tag}}</b-tag>
             </b-taglist>
             <p class="multiline mb">{{item.description}}</p>
@@ -42,51 +56,55 @@ export default {
       default: []
     }
   },
-  data () {
+  data() {
     return {
-      name: '-',
-      genreFilter: 'all',
-      siteFilter: 'all',
+      name: "-",
+      genreFilter: "all",
+      siteFilter: "all",
       mondaiList: []
-    }
+    };
   },
   computed: {
-    picture () {
-      return this.$store.state.picture
+    picture() {
+      return this.$store.state.picture;
+    },
+    user() {
+      return this.$store.state.user;
     }
   },
-  mounted: function () {
-    let mondaiList = this.$localStorage.get('mondaiList') || []
+  mounted: function() {
+    let mondaiList = this.$localStorage.get("mondaiList") || [];
     if (mondaiList.length > 0) {
-      this.mondaiList = mondaiList
+      this.mondaiList = mondaiList;
     }
-    let vm = this
-    this.$http.get(this.$endPoint('/api/mondaiList'))
-      .then(function (response) {
+    let vm = this;
+    this.$http
+      .get(this.$endPoint("/api/mondaiList"))
+      .then(function(response) {
         let sorted = response.data.sort((x, y) => {
           // Descending sort
-          return y.id - x.id
-        })
-        vm.mondaiList = sorted
-        vm.$localStorage.set('mondaiList', vm.mondaiList)
+          return y.id - x.id;
+        });
+        vm.mondaiList = sorted;
+        vm.$localStorage.set("mondaiList", vm.mondaiList);
       })
-      .catch(function (error) {
-        console.log(error)
-      })
+      .catch(function(error) {
+        console.log(error);
+      });
   },
   methods: {
-    url: function (id) {
-      return '/mondaiList/show/' + id
+    url: function(id) {
+      return "/mondaiList/show/" + id;
     },
-    to: function (id) {
-      this.$router.push(this.url(id))
+    to: function(id) {
+      this.$router.push(this.url(id));
     }
   }
-}
+};
 </script>
 <style scoped>
 .card {
-  display:flex;
+  display: flex;
   flex-direction: column;
   height: 100%;
 }
