@@ -272,6 +272,7 @@ export default {
       this.$store.dispatch("fetchList", id);
     },
     read() {
+      if (!this.list.mondaiList) return;
       this.$http
         .post(this.$endPoint("/api/read/" + this.$route.params.id), {
           id: this.$route.params.id,

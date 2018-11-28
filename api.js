@@ -549,7 +549,10 @@ module.exports = {
   },
   sendRead: (req, res) => {
     db.MondaiList.updateOne(
-      { id: req.body.id, 'editor.username': req.body.editor.username },
+      {
+        id: parseInt(req.body.id),
+        'editor.username': req.body.editor.username
+      },
       { $addToSet: { read: req.user.id } },
       (err, doc) => {
         if (err || !doc) {
@@ -565,7 +568,10 @@ module.exports = {
   },
   removeRead: (req, res) => {
     db.MondaiList.updateOne(
-      { id: req.body.id, 'editor.username': req.body.editor.username },
+      {
+        id: parseInt(req.body.id),
+        'editor.username': req.body.editor.username
+      },
       { $pull: { read: req.user.id } },
       (err, doc) => {
         if (err || !doc)
