@@ -21,12 +21,18 @@
           </div>
           <div class="column">
             <b-icon icon="calendar-today" type="is-primary" size="is-large"/>
-            <p class="subtitle"><span class="mr">スケジュール</span><b-tag class="is-info">BETA</b-tag></p>
+            <p class="subtitle">
+              <span class="mr">スケジュール</span>
+              <b-tag class="is-info">BETA</b-tag>
+            </p>
             <p>出題予定やイベントの締め切り日を管理</p>
           </div>
           <div class="column">
             <b-icon icon="flag" type="is-primary" size="is-large"/>
-            <p class="subtitle"><span class="mr">マイルストーン</span><b-tag class="is-danger">DEV</b-tag></p>
+            <p class="subtitle">
+              <span class="mr">マイルストーン</span>
+              <b-tag class="is-danger">DEV</b-tag>
+            </p>
             <p>活動の年表を作成</p>
           </div>
         </div>
@@ -37,11 +43,11 @@
 <script>
 export default {
   computed: {
-    messages: function () {
-      return this.$store.state.updateLog
+    messages: function() {
+      return this.$store.state.updateLog;
     }
   }
-}
+};
 </script>
 <style scoped>
 * {
