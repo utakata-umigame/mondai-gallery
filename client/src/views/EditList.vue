@@ -24,8 +24,7 @@
       <b-tab-item label="リスト情報">
         <div class="mb-2">
           <b-field label="リスト名">
-            <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30">
-            </b-input>
+            <b-input v-model="mondaiList.name" type="text" placeholder="リスト名" maxlength="30"></b-input>
           </b-field>
           <img width="320" :src="picture[mondaiList.picture]">
           <b-field label="画像">
@@ -36,8 +35,12 @@
             </b-select>
           </b-field>
           <b-field label="リストの説明">
-            <b-input v-model="mondaiList.description" placeholder="説明" type="textarea" maxlength="200">
-            </b-input>
+            <b-input
+              v-model="mondaiList.description"
+              placeholder="説明"
+              type="textarea"
+              maxlength="200"
+            ></b-input>
           </b-field>
           <b-field label="タグをつける(10個まで)">
             <b-taginput
@@ -45,13 +48,11 @@
               ellipsis
               maxtags="10"
               icon="label"
-              placeholder="タグを追加">
-            </b-taginput>
+              placeholder="タグを追加"
+            ></b-taginput>
           </b-field>
           <div class="field">
-            <b-checkbox v-model="mondaiList.fromMyMondais">
-              自作問題のみのリストの場合はチェック
-            </b-checkbox>
+            <b-checkbox v-model="mondaiList.fromMyMondais">自作問題のみのリストの場合はチェック</b-checkbox>
           </div>
         </div>
       </b-tab-item>
@@ -60,9 +61,19 @@
           <div class="level-left">
             <div class="level-item">
               <div class="buttons has-addons">
-                <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
-                <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
-                <span class="button is-outlined is-primary" @click="activateJSONModal"><b-icon icon="json"></b-icon>&ensp;バックアップ</span>
+                <span
+                  class="button is-primary is-outlined"
+                  @click="isAddMondaiModalActive = true"
+                  v-if="isSwitched === '個別編集'"
+                >
+                  <b-icon icon="plus-circle"></b-icon>&ensp;問題を追加
+                </span>
+                <span class="button is-primary is-outlined" @click="addEmpty()" v-else>
+                  <b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加
+                </span>
+                <span class="button is-outlined is-primary" @click="activateJSONModal">
+                  <b-icon icon="json"></b-icon>&ensp;バックアップ
+                </span>
               </div>
             </div>
             <div class="level-item">
@@ -100,24 +111,42 @@
                 </b-select>
               </td>
               <td>
-                <b-input class="mb" v-model ="mondai.id" type="number" placeholder="ID"/>
+                <b-input class="mb" v-model="mondai.id" type="number" placeholder="ID"/>
               </td>
               <td>
-                <b-input v-model ="mondai.title" type="text" placeholder="タイトル" maxlength="100"/>
+                <b-input v-model="mondai.title" type="text" placeholder="タイトル" maxlength="100"/>
               </td>
               <td>
-                <b-input  v-model ="mondai.author" type="text" placeholder="作者" maxlength="20"/>
+                <b-input v-model="mondai.author" type="text" placeholder="作者" maxlength="20"/>
               </td>
               <td>
-                <b-input v-model ="mondai.description" type="text" maxlength="200" placeholder="コメント"/>
+                <b-input
+                  v-model="mondai.description"
+                  type="text"
+                  maxlength="200"
+                  placeholder="コメント"
+                />
               </td>
               <td>
                 <div class="column buttons has-addons">
-                  <button class="button is-small is-outlined is-primary" @click="moveTop(mondai)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
-                  <button class="button is-small is-outlined is-primary" @click="moveUp(mondai)"><b-icon icon="arrow-up">上へ</b-icon></button>
-                  <button class="button is-small is-outlined is-primary" @click="moveDown(mondai)"><b-icon icon="arrow-down">下へ</b-icon></button>
-                  <button class="button is-small is-outlined is-primary" @click="moveBottom(mondai)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
-                  <button class="button is-small is-outlined is-danger" v-on:click="remove(mondai)"><b-icon icon="minus-circle">削除</b-icon></button>
+                  <button class="button is-small is-outlined is-primary" @click="moveTop(mondai)">
+                    <b-icon icon="arrow-collapse-up">一番上へ</b-icon>
+                  </button>
+                  <button class="button is-small is-outlined is-primary" @click="moveUp(mondai)">
+                    <b-icon icon="arrow-up">上へ</b-icon>
+                  </button>
+                  <button class="button is-small is-outlined is-primary" @click="moveDown(mondai)">
+                    <b-icon icon="arrow-down">下へ</b-icon>
+                  </button>
+                  <button
+                    class="button is-small is-outlined is-primary"
+                    @click="moveBottom(mondai)"
+                  >
+                    <b-icon icon="arrow-collapse-down">一番下へ</b-icon>
+                  </button>
+                  <button class="button is-small is-outlined is-danger" v-on:click="remove(mondai)">
+                    <b-icon icon="minus-circle">削除</b-icon>
+                  </button>
                 </div>
               </td>
             </tr>
@@ -129,42 +158,75 @@
               <div class="columns">
                 <mondai-editor :mondai="item"></mondai-editor>
                 <div class="column buttons has-addons">
-                  <button class="button is-outlined is-primary" @click="moveTop(item)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up">上へ</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down">下へ</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveBottom(item)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
-                  <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle">削除</b-icon></button>
+                  <button class="button is-outlined is-primary" @click="moveTop(item)">
+                    <b-icon icon="arrow-collapse-up">一番上へ</b-icon>
+                  </button>
+                  <button class="button is-outlined is-primary" @click="moveUp(item)">
+                    <b-icon icon="arrow-up">上へ</b-icon>
+                  </button>
+                  <button class="button is-outlined is-primary" @click="moveDown(item)">
+                    <b-icon icon="arrow-down">下へ</b-icon>
+                  </button>
+                  <button class="button is-outlined is-primary" @click="moveBottom(item)">
+                    <b-icon icon="arrow-collapse-down">一番下へ</b-icon>
+                  </button>
+                  <button class="button is-outlined is-danger" v-on:click="remove(item)">
+                    <b-icon icon="minus-circle">削除</b-icon>
+                  </button>
                 </div>
               </div>
             </div>
             <div v-else>
               <mondai-view class="block" v-bind:item="item"></mondai-view>
               <div class="buttons has-addons">
-                <button class="button is-outlined is-primary" @click="set(item)"><b-icon icon="pencil">編集</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveTop(item)"><b-icon icon="arrow-collapse-up">一番上へ</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveUp(item)"><b-icon icon="arrow-up">上へ</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveDown(item)"><b-icon icon="arrow-down">下へ</b-icon></button>
-                  <button class="button is-outlined is-primary" @click="moveBottom(item)"><b-icon icon="arrow-collapse-down">一番下へ</b-icon></button>
-                <button class="button is-outlined is-danger" v-on:click="remove(item)"><b-icon icon="minus-circle">削除</b-icon></button>
+                <button class="button is-outlined is-primary" @click="set(item)">
+                  <b-icon icon="pencil">編集</b-icon>
+                </button>
+                <button class="button is-outlined is-primary" @click="moveTop(item)">
+                  <b-icon icon="arrow-collapse-up">一番上へ</b-icon>
+                </button>
+                <button class="button is-outlined is-primary" @click="moveUp(item)">
+                  <b-icon icon="arrow-up">上へ</b-icon>
+                </button>
+                <button class="button is-outlined is-primary" @click="moveDown(item)">
+                  <b-icon icon="arrow-down">下へ</b-icon>
+                </button>
+                <button class="button is-outlined is-primary" @click="moveBottom(item)">
+                  <b-icon icon="arrow-collapse-down">一番下へ</b-icon>
+                </button>
+                <button class="button is-outlined is-danger" v-on:click="remove(item)">
+                  <b-icon icon="minus-circle">削除</b-icon>
+                </button>
               </div>
             </div>
           </div>
         </div>
         <div class="mb">
-          <span class="button is-primary is-outlined" @click="isAddMondaiModalActive = true" v-if="isSwitched === '個別編集'"><b-icon icon="plus-circle"></b-icon>&ensp;問題を追加</span>
-          <span class="button is-primary is-outlined" @click="addEmpty()" v-else><b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加</span>
+          <span
+            class="button is-primary is-outlined"
+            @click="isAddMondaiModalActive = true"
+            v-if="isSwitched === '個別編集'"
+          >
+            <b-icon icon="plus-circle"></b-icon>&ensp;問題を追加
+          </span>
+          <span class="button is-primary is-outlined" @click="addEmpty()" v-else>
+            <b-icon icon="plus-circle"></b-icon>&ensp;空の問題を追加
+          </span>
         </div>
       </b-tab-item>
       <b-tab-item label="公開設定">
         <div class="field">
-          <b-checkbox v-model="mondaiList.private">
-            非公開にする場合はチェック
-          </b-checkbox>
+          <b-checkbox v-model="mondaiList.private">非公開にする場合はチェック</b-checkbox>
         </div>
         <div v-if="mondaiList.private">
           <p>閲覧を許可するユーザーを個別選択</p>
           <ul class="mb">
-            <li class="panel-block" v-for="user in allUser" :key="user.id" v-if="user.id !== mondaiList.editor.id">
+            <li
+              class="panel-block"
+              v-for="user in allUser"
+              :key="user.id"
+              v-if="user.id !== mondaiList.editor.id"
+            >
               <b-checkbox v-model="mondaiList.accept" :native-value="user.id">{{user.nickname}}</b-checkbox>
             </li>
           </ul>
@@ -172,11 +234,17 @@
         </div>
       </b-tab-item>
     </b-tabs>
-    <div class="">
+    <div class>
       <div class="buttons has-addons">
-        <span @click="confirm()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;保存して戻る</span>
-        <span @click="tmpSave()" class="button is-success is-outlined"><b-icon icon="content-save"></b-icon>&ensp;一時保存</span>
-        <span @click="confirmCancel()" class="button is-danger is-outlined"><b-icon icon="close-circle"></b-icon>&ensp;キャンセル</span>
+        <span @click="confirm()" class="button is-success is-outlined">
+          <b-icon icon="content-save"></b-icon>&ensp;保存して戻る
+        </span>
+        <span @click="tmpSave()" class="button is-success is-outlined">
+          <b-icon icon="content-save"></b-icon>&ensp;一時保存
+        </span>
+        <span @click="confirmCancel()" class="button is-danger is-outlined">
+          <b-icon icon="close-circle"></b-icon>&ensp;キャンセル
+        </span>
       </div>
     </div>
     <!--モーダルダイアログ-->
@@ -211,8 +279,8 @@
               v-model="mondaiJSON"
               class="form-control"
               placeholder="JSON"
-              :rows="6">
-            </b-input>
+              :rows="6"
+            ></b-input>
           </b-field>
         </section>
         <footer class="modal-card-foot">
@@ -225,270 +293,282 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       activeTab: 0,
       newMondai: {
-        'id': 0,
-        'title': '',
-        'author': '',
-        'site': 'latethink',
-        'description': '',
-        'genre': 'umigame'
+        id: 0,
+        title: "",
+        author: "",
+        site: "latethink",
+        description: "",
+        genre: "umigame"
       },
       tmpMondai: {},
       mondaiList: {
-        'name': '',
-        'fromMyMondais': false,
-        'editor': {
-          'nickname': '',
-          'username': ''
+        name: "",
+        fromMyMondais: false,
+        editor: {
+          nickname: "",
+          username: ""
         },
-        'tags': [],
-        'description': '',
-        'picture': 'puzzle',
-        'private': false,
-        'mondai': [],
-        'accept': []
+        tags: [],
+        description: "",
+        picture: "puzzle",
+        private: false,
+        mondai: [],
+        accept: []
       },
-      mondaiJSON: '',
+      mondaiJSON: "",
       isAddMondaiModalActive: false,
       isEditMondaiModalActive: false,
       isJSONModalActive: false,
-      isSwitched: '個別編集'
-    }
+      isSwitched: "個別編集"
+    };
   },
   computed: {
-    picture () {
-      return this.$store.state.picture
+    picture() {
+      return this.$store.state.picture;
     },
-    site: function () {
-      let list = []
-      for(let key in this.$store.state.site) {
-        list.push({key: key, value: this.$store.state.site[key]})
+    site: function() {
+      let list = [];
+      for (let key in this.$store.state.site) {
+        list.push({ key: key, value: this.$store.state.site[key] });
       }
-      return list
+      return list;
     },
-    genre: function () {
-      let list = []
-      for(let key in this.$store.state.genre) {
-        list.push({key: key, value: this.$store.state.genre[key]})
+    genre: function() {
+      let list = [];
+      for (let key in this.$store.state.genre) {
+        list.push({ key: key, value: this.$store.state.genre[key] });
       }
-      return list
+      return list;
     },
-    allUser () {
-      let sorted = this.$store.state.allUser.sort((x, y) => y.id - x.id)
-      return sorted
+    allUser() {
+      let sorted = this.$store.state.allUser.sort((x, y) => y.id - x.id);
+      return sorted;
     }
   },
-  mounted: function () {
-    this.$store.dispatch('fetchAllUser')
-    let id = this.$route.params.id
-    let vm = this
-    this.$http.get(this.$endPoint('/api/mondaiList/' + id))
-      .then(function (response) {
-        vm.mondaiList = response.data
-        vm.sort()
-      })
+  mounted: function() {
+    this.$store.dispatch("fetchAllUser");
+    let id = this.$route.params.id;
+    let vm = this;
+    this.$http
+      .get(this.$endPoint("/api/mondaiList/" + id))
+      .then(function(response) {
+        vm.mondaiList = response.data;
+        vm.sort();
+      });
   },
   methods: {
-    url: function (siteName, id) {
-      return this.site[siteName].showUrl + id
+    url: function(siteName, id) {
+      return this.site[siteName].showUrl + id;
     },
-    isValidUrl: function (siteName) {
-      if (this.$store.state.site[siteName]) return true
-      else return false
+    isValidUrl: function(siteName) {
+      if (this.$store.state.site[siteName]) return true;
+      else return false;
     },
-    sort: function () {
-      this.mondaiList.mondai.sort((x, y) => x._id - y._id)
+    sort: function() {
+      this.mondaiList.mondai.sort((x, y) => x._id - y._id);
     },
-    moveTop: function (item) {
-      item._id = -1
-      this.sort()
-      for (let i = 0; i < this.mondaiList.mondai.length; i++){
-        this.mondaiList.mondai[i]._id = i + 1
+    moveTop: function(item) {
+      item._id = -1;
+      this.sort();
+      for (let i = 0; i < this.mondaiList.mondai.length; i++) {
+        this.mondaiList.mondai[i]._id = i + 1;
       }
     },
-    moveBottom: function (item) {
-      item._id = 9999
-      this.sort()
-      for (let i = 0; i < this.mondaiList.mondai.length; i++){
-        this.mondaiList.mondai[i]._id = i + 1
+    moveBottom: function(item) {
+      item._id = 9999;
+      this.sort();
+      for (let i = 0; i < this.mondaiList.mondai.length; i++) {
+        this.mondaiList.mondai[i]._id = i + 1;
       }
     },
-    moveUp: function (item) {
-      for (let i = 0; i < this.mondaiList.mondai.length -1; i++){
-        if (this.mondaiList.mondai[i+1] === item) {
-          let tmp = this.mondaiList.mondai[i]._id
-          this.mondaiList.mondai[i]._id = item._id
-          item._id = tmp
+    moveUp: function(item) {
+      for (let i = 0; i < this.mondaiList.mondai.length - 1; i++) {
+        if (this.mondaiList.mondai[i + 1] === item) {
+          let tmp = this.mondaiList.mondai[i]._id;
+          this.mondaiList.mondai[i]._id = item._id;
+          item._id = tmp;
         }
       }
-      this.sort()
+      this.sort();
     },
-    moveDown: function (item) {
-      for (let i = 1; i <= this.mondaiList.mondai.length; i++){
-        if (this.mondaiList.mondai[i-1] === item) {
-          let tmp = this.mondaiList.mondai[i]._id
-          this.mondaiList.mondai[i]._id = item._id
-          item._id = tmp
+    moveDown: function(item) {
+      for (let i = 1; i <= this.mondaiList.mondai.length; i++) {
+        if (this.mondaiList.mondai[i - 1] === item) {
+          let tmp = this.mondaiList.mondai[i]._id;
+          this.mondaiList.mondai[i]._id = item._id;
+          item._id = tmp;
         }
       }
-      this.sort()
+      this.sort();
     },
-    remove: function (item) {
-      this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== item)
+    remove: function(item) {
+      this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== item);
     },
-    addEmpty: function () {
-      let id = 0
-      let end = false
+    addEmpty: function() {
+      let id = 0;
+      let end = false;
       while (!end) {
-        end = true
-        id++
+        end = true;
+        id++;
         for (var key in this.mondaiList.mondai) {
-          var item = this.mondaiList.mondai[key]
+          var item = this.mondaiList.mondai[key];
           if (item._id) {
             if (item._id === id) {
-              end = false
+              end = false;
             }
           }
         }
       }
       this.mondaiList.mondai.push({
-        'id': 0,
-        'title': '',
-        'author': '',
-        'site': 'latethink',
-        'description': '',
-        'genre': 'umigame',
-        '_id': id
-      })
-      this.sort()
+        id: 0,
+        title: "",
+        author: "",
+        site: "latethink",
+        description: "",
+        genre: "umigame",
+        _id: id
+      });
+      this.sort();
     },
-    addMondai: function () {
-      let id = 0
-      let end = false
+    addMondai: function() {
+      let id = 0;
+      let end = false;
       while (!end) {
-        end = true
-        id++
+        end = true;
+        id++;
         for (var key in this.mondaiList.mondai) {
-          var item = this.mondaiList.mondai[key]
+          var item = this.mondaiList.mondai[key];
           if (item._id) {
             if (item._id === id) {
-              end = false
+              end = false;
             }
           }
         }
       }
-      this.newMondai._id = id
-      let obj = Object.assign({}, this.newMondai)
-      this.mondaiList.mondai.push(obj)
-      this.sort()
+      this.newMondai._id = id;
+      let obj = Object.assign({}, this.newMondai);
+      this.mondaiList.mondai.push(obj);
+      this.sort();
     },
-    confirm: function () {
+    confirm: function() {
       this.$dialog.confirm({
-        message: '元のバージョンは失われます。続行しますか?',
+        message: "元のバージョンは失われます。続行しますか?",
         onConfirm: this.submit
-      })
+      });
     },
-    tmpSave: function () {
-      let vm = this
-      this.$http.put(this.$endPoint('/api/mondaiList/' + this.mondaiList.id), this.mondaiList)
-        .then(function (response) {
-          let data = response.data
+    tmpSave: function() {
+      let vm = this;
+      this.$http
+        .put(
+          this.$endPoint("/api/mondaiList/" + this.mondaiList.id),
+          this.mondaiList
+        )
+        .then(function(response) {
+          let data = response.data;
           if (data.error) {
             vm.$toast.open({
-              'message': '編集権限がありません。',
-              'type': 'is-danger'
-            })
+              message: "編集権限がありません。",
+              type: "is-danger"
+            });
           } else if (data.message) {
             vm.$toast.open({
-              'message': '保存しました',
-              'type': 'is-success'
-            })
+              message: "保存しました",
+              type: "is-success"
+            });
           }
         })
-        .catch(function (error) {
-          if (!error) return
+        .catch(function(error) {
+          if (!error) return;
           vm.$toast.open({
-            'message': 'ログインしてください。',
-            'type': 'is-danger'
-          })
-          vm.$router.push('/login')
-        })
+            message: "ログインしてください。",
+            type: "is-danger"
+          });
+          vm.$router.push("/login");
+        });
     },
-    submit: function () {
-      let vm = this
-      this.$http.put(this.$endPoint('/api/mondaiList/' + this.mondaiList.id), this.mondaiList)
-        .then(function (response) {
-          let data = response.data
+    submit: function() {
+      let vm = this;
+      this.$http
+        .put(
+          this.$endPoint("/api/mondaiList/" + this.mondaiList.id),
+          this.mondaiList
+        )
+        .then(function(response) {
+          let data = response.data;
           if (data.error) {
             vm.$toast.open({
-              'message': '編集権限がありません。',
-              'type': 'is-danger'
-            })
+              message: "編集権限がありません。",
+              type: "is-danger"
+            });
           } else if (data.message) {
-            vm.$router.push('/mypage')
-            vm.$store.state.savedLists[vm.mondaiList.id] = null
+            vm.$router.push("/mypage");
+            vm.$store.state.savedLists[vm.mondaiList.id] = null;
           }
         })
-        .catch(function (error) {
-          if (!error) return
+        .catch(function(error) {
+          if (!error) return;
           vm.$toast.open({
-            'message': 'ログインしてください。',
-            'type': 'is-danger'
-          })
-          vm.$router.push('/login')
-        })
+            message: "ログインしてください。",
+            type: "is-danger"
+          });
+          vm.$router.push("/login");
+        });
     },
-    confirmCancel: function () {
+    confirmCancel: function() {
       this.$dialog.confirm({
-        message: '未保存の編集は失われます。続行しますか?',
+        message: "未保存の編集は失われます。続行しますか?",
         onConfirm: this.cancel
-      })
+      });
     },
-    cancel: function () {
-      this.$router.go(-1)
+    cancel: function() {
+      this.$router.go(-1);
     },
     // eslint-disable-next-line
-    handleOk: function (evt) {
-      this.addMondai()
+    handleOk: function(evt) {
+      this.addMondai();
       this.newMondai = {
-        'id': 0,
-        'title': '',
-        'author': '',
-        'site': 'latethink',
-        'description': '',
-        'genre': 'umigame'
-      }
-      this.isAddMondaiModalActive = false
+        id: 0,
+        title: "",
+        author: "",
+        site: "latethink",
+        description: "",
+        genre: "umigame"
+      };
+      this.isAddMondaiModalActive = false;
     },
     // eslint-disable-next-line
-    handleEditOk: function (evt) {
-      this.mondaiList.mondai = this.mondaiList.mondai.filter(x => x !== this.tmpMondai)
-      this.mondaiList.mondai.push(this.newMondai)
-      this.isEditMondaiModalActive = false
-      this.sort()
+    handleEditOk: function(evt) {
+      this.mondaiList.mondai = this.mondaiList.mondai.filter(
+        x => x !== this.tmpMondai
+      );
+      this.mondaiList.mondai.push(this.newMondai);
+      this.isEditMondaiModalActive = false;
+      this.sort();
     },
-    activateJSONModal: function () {
+    activateJSONModal: function() {
       try {
-        let res = JSON.stringify(this.mondaiList.mondai)
-        this.mondaiJSON = res
+        let res = JSON.stringify(this.mondaiList.mondai);
+        this.mondaiJSON = res;
       } catch (err) {
         if (err) {
           this.$toast.open({
-            message: 'エラー',
-            type: 'is-danger'
-          })
+            message: "エラー",
+            type: "is-danger"
+          });
         }
       }
-      this.isJSONModalActive = true
+      this.isJSONModalActive = true;
     },
     // eslint-disable-next-line
-    handleStringEditOk: function (evt) {
+    handleStringEditOk: function(evt) {
       try {
-        let obj = JSON.parse(this.mondaiJSON)
-        this.mondaiList.mondai = obj.filter(x => this.isValidUrl(x.site))
+        let obj = JSON.parse(this.mondaiJSON);
+        this.mondaiList.mondai = obj
+          .filter(x => this.isValidUrl(x.site))
           .map(x => {
             return {
               id: x.id,
@@ -498,23 +578,23 @@ export default {
               description: x.description,
               genre: x.genre,
               _id: x._id
-            }
-          })
+            };
+          });
       } catch (err) {
         if (err) {
           this.$toast.open({
-            message: 'エラー',
-            type: 'is-danger'
-          })
+            message: "エラー",
+            type: "is-danger"
+          });
         }
       }
-      this.isJSONModalActive = false
+      this.isJSONModalActive = false;
     },
-    set: function (item) {
-      this.newMondai = Object.assign({}, item)
-      this.tmpMondai = item
-      this.isEditMondaiModalActive = true
+    set: function(item) {
+      this.newMondai = Object.assign({}, item);
+      this.tmpMondai = item;
+      this.isEditMondaiModalActive = true;
     }
   }
-}
+};
 </script>

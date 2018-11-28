@@ -22,11 +22,17 @@
               <b-icon icon="plus-circle"></b-icon>
               <span>リスト</span>
             </router-link>
-            <router-link class="navbar-item" :to="{name: 'EditSchedule', params: {id: user.id}}">
+            <router-link
+              class="navbar-item"
+              :to="{name: 'EditSchedule', params: {id: user.id || 0}}"
+            >
               <b-icon icon="pencil"></b-icon>
               <span>スケジュール</span>
             </router-link>
-            <router-link class="navbar-item" :to="{name: 'EditMilestone', params: {id: user.id}}">
+            <router-link
+              class="navbar-item"
+              :to="{name: 'EditMilestone', params: {id: user.id || 0}}"
+            >
               <b-icon icon="pencil"></b-icon>
               <span>マイルストーン</span>
             </router-link>
