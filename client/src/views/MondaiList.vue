@@ -52,22 +52,21 @@
               <b-tag v-for="item in list.mondaiList.tags" :key="item">{{item}}</b-tag>
             </b-taglist>
             <p class="multiline card-body">{{list.mondaiList.description}}</p>
-            <button v-if="!isRead()" class="button is-primary is-outlined" @click="read">
-              <span>読んだ！</span>
-              <b-tag
+            <div v-if="!isRead()" class="buttons has-addons">
+              <span class="button is-light is-small" @click="read">読んだ！</span>
+              <span
                 v-if="list.mondaiList.read.length"
-                type="is-danger"
-                class="is-rounded"
-              >{{list.mondaiList.read.length}}</b-tag>
-            </button>
-            <button v-else class="button is-primary" @click="unread">
               <span>読んだ！済</span>
-              <b-tag
+                class="button is-info is-small"
+              >{{list.mondaiList.read.length}}</span>
+            </div>
+            <div v-else class="buttons has-addons">
+              <span class="button is-primary is-small" @click="unread">読んだ！済</span>
+              <span
                 v-if="list.mondaiList.read.length"
-                type="is-danger"
-                class="is-rounded"
-              >{{list.mondaiList.read.length}}</b-tag>
-            </button>
+                class="button is-info is-small"
+              >{{list.mondaiList.read.length}}</span>
+            </div>
           </div>
           <footer class="card-footer" v-if="list.isMine">
             <a class="card-footer-item" @click="$router.push(editUrl())">
