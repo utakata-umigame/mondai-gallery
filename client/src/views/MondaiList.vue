@@ -56,7 +56,6 @@
               <span class="button is-light is-small" @click="read">読んだ！</span>
               <span
                 v-if="list.mondaiList.read.length"
-              <span>読んだ！済</span>
                 class="button is-info is-small"
               >{{list.mondaiList.read.length}}</span>
             </div>
