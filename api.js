@@ -302,6 +302,7 @@ module.exports = {
     db.MondaiList.find({ private: true }).toArray((err, docs) => {
       if (err || !docs) res.json({ error: 'error' });
       let list = docs
+        .filter(doc => doc.accept)
         .filter(doc => doc.accept.includes(req.user.id))
         .map(x => {
           return {
