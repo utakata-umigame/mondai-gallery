@@ -300,7 +300,7 @@ module.exports = {
   acceptedList: (req, res) => {
     // acceptにリクエストしたユーザーのidが入っている
     db.MondaiList.find({ private: true }).toArray((err, docs) => {
-      if (err) res.json({ error: 'error' });
+      if (err || !docs) res.json({ error: 'error' });
       let list = docs
         .filter(doc => doc.accept.includes(req.user.id))
         .map(x => {
