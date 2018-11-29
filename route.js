@@ -36,6 +36,7 @@ router.post('/update', (req, res) => apis.hook(req, data => res.json(data)));
 router.post('/login', passport.authenticate('local'), apis.login);
 
 // Routes that require authentication
+router.get('/acceptedList', isAuthenticated, apis.acceptedList);
 router.get('/user', isAuthenticated, apis.user);
 router.get('/mypage', isAuthenticated, apis.myPage);
 router.get('/mylist', isAuthenticated, apis.myList);

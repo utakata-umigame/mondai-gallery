@@ -297,6 +297,29 @@ module.exports = {
     }
   },
   /* Functions below require authentication */
+  acceptedList: (req, res) => {
+    // acceptにリクエストしたユーザーのidが入っている
+    db.MondaiList.find({ private: true }).toArray((err, docs) => {
+      if (err) res.json({ error: 'error' });
+      let list = docs
+        .filter(doc => doc.accept.includes(req.user.id))
+        .map(x => {
+          return {
+            id: x.id,
+            name: x.name,
+            fromMyMondais: x.fromMyMondais,
+            private: x.private,
+            editor: x.editor,
+            description: x.description,
+            updateDate: x.updateDate,
+            picture: x.picture,
+            accept: x.accept || [],
+            read: x.read || []
+          };
+        });
+      res.json(list);
+    });
+  },
   user: (req, res) => {
     if (req.user) res.json(req.user);
     else
