@@ -1,23 +1,23 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Top from './views/Top'
-import AddList from './views/AddList'
-import Home from './views/Home'
-import SignUp from './views/SignUp'
-import LogIn from './views/LogIn'
-import EditList from './views/EditList'
-import MyPage from './views/MyPage'
-import Profile from './views/Profile'
-import Contact from './views/Contact'
-import EditProfile from './views/EditProfile'
-import MondaiList from './views/MondaiList'
-import EditSchedule from './views/EditSchedule'
-import EditMilestone from './views/EditMilestone'
-import Callback from './views/Callback'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Top from './views/Top';
+import AddList from './views/AddList';
+import Home from './views/Home';
+import SignUp from './views/SignUp';
+import LogIn from './views/LogIn';
+import EditList from './views/EditList';
+import MyPage from './views/MyPage';
+import Profile from './views/Profile';
+import Contact from './views/Contact';
+import EditProfile from './views/EditProfile';
+import MondaiList from './views/MondaiList';
+import EditSchedule from './views/EditSchedule';
+import EditMilestone from './views/EditMilestone';
+import Callback from './views/Callback';
 
-import store from './store'
+import store from './store';
 
-Vue.use(Router)
+Vue.use(Router);
 
 const routes = [
   {
@@ -124,23 +124,23 @@ const routes = [
     name: 'Tumblr',
     component: Callback
   }
-]
+];
 let router = new Router({
   mode: 'history',
   routes: routes
-})
+});
 router.beforeEach((to, from, next) => {
-  let user = {}
-  let txt = localStorage.user
+  let user = {};
+  let txt = localStorage.user;
   if (!user) {
-    user = store.state.user
+    user = store.state.user;
   } else {
-    user = JSON.parse(txt)
+    user = JSON.parse(txt);
   }
   if (to.matched.some(record => !record.meta.isPublic) && !user.username) {
-    next({ path: '/login' })
+    next({ path: '/login' });
   } else {
-    next()
+    next();
   }
-})
-export default router
+});
+export default router;
