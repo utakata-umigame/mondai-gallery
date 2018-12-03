@@ -32,7 +32,7 @@
               <option value="puzzle">パズル(デフォルト)</option>
               <option value="umigame">ウミガメ</option>
               <option value="yesno">Yes/No</option>
-              <option value="question">>謎</option>
+              <option value="question">謎</option>
             </b-select>
           </b-field>
           <b-field label="リストの説明">
