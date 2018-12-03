@@ -103,7 +103,7 @@
         </b-collapse>
       </div>
       <div class="column is-two-thirds">
-        <b-collapse class="card mb">
+        <b-collapse class="card mb" :open="false">
           <div slot="trigger" slot-scope="props" class="card-header">
             <p class="card-header-title">フィルター</p>
             <a class="card-header-icon">
