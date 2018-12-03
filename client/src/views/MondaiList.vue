@@ -103,43 +103,59 @@
         </b-collapse>
       </div>
       <div class="column is-two-thirds">
-        <!-- リスト -->
-        <div class="panel">
-          <div class="panel-heading">
-            <div class="level">
-              <div class="level-left">
-                <div class="level-item">
-                  <b-select placeholder="Select a name" v-model="siteFilter">
-                    <option
-                      v-for="item in siteList"
-                      :value="item.key"
-                      :key="item.key"
-                    >{{item.value.name}}</option>
-                  </b-select>
+        <b-collapse class="card mb">
+          <div slot="trigger" slot-scope="props" class="card-header">
+            <p class="card-header-title">フィルター</p>
+            <a class="card-header-icon">
+              <b-icon :icon="props.open ? 'menu-down' : 'menu-up'"></b-icon>
+            </a>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              <div class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    <b-field label="サイト">
+                      <b-select placeholder="Select a name" v-model="siteFilter">
+                        <option
+                          v-for="item in siteList"
+                          :value="item.key"
+                          :key="item.key"
+                        >{{item.value.name}}</option>
+                      </b-select>
+                    </b-field>
+                  </div>
+                  <div class="level-item">
+                    <b-field label="ジャンル">
+                      <b-select placeholder="Select a genre" v-model="genreFilter">
+                        <option
+                          v-for="item in genreList"
+                          :value="item.key"
+                          :key="item.key"
+                        >{{item.value}}</option>
+                      </b-select>
+                    </b-field>
+                  </div>
                 </div>
-                <div class="level-item">
-                  <b-select placeholder="Select a genre" v-model="genreFilter">
-                    <option
-                      v-for="item in genreList"
-                      :value="item.key"
-                      :key="item.key"
-                    >{{item.value}}</option>
-                  </b-select>
-                </div>
-                <div class="level-item">
+              </div>
+              <div class="level">
+                <div class="level-left">
                   <a class="button is-outlined is-danger" v-on:click="clearFilter()">クリア</a>
                 </div>
               </div>
-              <div class="level-right">
-                <div class="level-item">
+              <div class="level">
+                <b-field label="表示">
                   <b-select v-model="detail">
                     <option :value="false">リスト</option>
                     <option :value="true">詳細</option>
                   </b-select>
-                </div>
+                </b-field>
               </div>
             </div>
           </div>
+        </b-collapse>
+        <!-- リスト -->
+        <div class="panel">
           <transition-group v-if="!detail" name="mondai">
             <a
               class="panel-block"
