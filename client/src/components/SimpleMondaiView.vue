@@ -1,8 +1,9 @@
 <template>
-  <div class="level" v-else>
+  <div class="level">
     <div class="level-left">
       <div class="level-item">
-      <strong>{{ item.title }}</strong>
+        <b-icon type="is-primary" icon="puzzle" class="mr"></b-icon>
+        <strong>{{ item.title }}</strong>
       </div>
     </div>
     <div class="level-right">
@@ -23,28 +24,28 @@ export default {
     }
   },
   computed: {
-    site: function () {
-      return this.$store.state.site
+    site: function() {
+      return this.$store.state.site;
     },
-    siteList: function () {
-      let list = [{key: 'all', value: {'name': 'すべて'}}]
+    siteList: function() {
+      let list = [{ key: "all", value: { name: "すべて" } }];
       for (let key in this.$store.state.site) {
-        list.push({key: key, value: this.$store.state.site[key]})
+        list.push({ key: key, value: this.$store.state.site[key] });
       }
-      return list
+      return list;
     },
-    genre: function () {
-      return this.$store.state.genre
+    genre: function() {
+      return this.$store.state.genre;
     },
-    genreList: function () {
-      let list = [{key: 'all', value: 'すべて'}]
+    genreList: function() {
+      let list = [{ key: "all", value: "すべて" }];
       for (let key in this.$store.state.genre) {
-        list.push({key: key, value: this.$store.state.genre[key]})
+        list.push({ key: key, value: this.$store.state.genre[key] });
       }
-      return list
+      return list;
     }
   }
-}
+};
 </script>
 <style scoped>
 .tag {
