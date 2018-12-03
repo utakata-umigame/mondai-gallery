@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 volumes:
   mongodb-volume:
     driver: 'local'
@@ -11,7 +11,7 @@ services:
     restart: always
     build: .
     ports:
-      - "49160:3000"
+      - '3000:3000'
     links:
       - mongo
   mongo:
@@ -20,4 +20,4 @@ services:
     volumes:
       - mongodb-volume:/data/db
     ports:
-      - "27017:27017"
+      - '27017:27017'

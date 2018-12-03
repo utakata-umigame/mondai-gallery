@@ -82,7 +82,9 @@ export default new Vuex.Store({
       yesno:
         'https://res.cloudinary.com/hlcdk0lhr/image/upload/b_auto,c_pad,h_900,w_1600/v1543142403/app/yesno.jpg',
       puzzle:
-        'https://res.cloudinary.com/hlcdk0lhr/image/upload/b_auto,c_pad,h_900,w_1600/v1543142404/app/puzzle.jpg'
+        'https://res.cloudinary.com/hlcdk0lhr/image/upload/b_auto,c_pad,h_900,w_1600/v1543142404/app/puzzle.jpg',
+      question:
+        'https://res.cloudinary.com/hlcdk0lhr/image/upload/b_auto,c_pad,h_900,w_1600/v1543836738/app/question.jpg'
     },
     updateLog: [
       '11/ 7 プロフィール画像を設定できるようになりました。設定するには画像のURLを指定してください。アップローダについては別途ご相談ください',
