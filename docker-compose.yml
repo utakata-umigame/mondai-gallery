@@ -14,6 +14,8 @@ services:
       - '3000:3000'
     links:
       - mongo
+    volumes:
+      - .:/app
   mongo:
     container_name: mongo
     image: mongo
@@ -21,3 +23,13 @@ services:
       - mongodb-volume:/data/db
     ports:
       - '27017:27017'
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./client:/app/client
+    stdin_open: true
+    tty: true
