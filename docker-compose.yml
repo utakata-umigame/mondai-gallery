@@ -5,13 +5,12 @@ volumes:
 services:
   app:
     container_name: app
-    image: pb10005/mondai-gallery
     environment:
       - MONGODB_URI=mongodb://mongo:27017
     restart: always
     build: .
     ports:
-      - '3000:3000'
+      - 3000:3000
     links:
       - mongo
     volumes:
