@@ -161,6 +161,9 @@ h2.title {
   white-space: pre-wrap;
   word-break: break-all;
 }
+.p10 {
+  padding: 10px;
+}
 .mr {
   margin-right: 5px;
 }
