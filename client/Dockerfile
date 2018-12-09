@@ -6,7 +6,7 @@ RUN apk update && \
     apk add git && \
     npm install -g npm && \
     npm install -g @vue/cli && \
-    npm install
+    npm install && \
+    npm run build
 
-CMD ["/bin/sh"]
 EXPOSE 8080
