@@ -12,17 +12,21 @@
         </li>
       </ul>
     </nav>
-    <b-tabs v-model="activeTab" position="is-centered" @change="changed">
-      <b-tab-item icon="format-list-bulleted">
-        <all-list />
-      </b-tab-item>
-      <b-tab-item icon="calendar-today">
+    <div class="columns">
+      <div class="column is-8">
+        <b-tabs v-model="activeTab" position="is-centered" @change="changed">
+          <b-tab-item icon="format-list-bulleted">
+            <all-list />
+          </b-tab-item>
+          <b-tab-item icon="account">
+            <AllUser />
+          </b-tab-item>
+        </b-tabs>
+      </div>
+      <div class="column is-4">
         <AllSchedule />
-      </b-tab-item>
-      <b-tab-item icon="account">
-        <AllUser />
-      </b-tab-item>
-    </b-tabs>
+      </div>
+    </div>
   </div>
 </template>
 <script>

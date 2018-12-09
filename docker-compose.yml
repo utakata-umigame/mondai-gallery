@@ -28,8 +28,9 @@ services:
     build: ./client
     ports:
       - 8080:8080
+      - 9000:8000
     volumes:
       - ./client:/app/client
     stdin_open: true
     tty: true
-    command: npm run serve
+    command: vue ui
