@@ -2,7 +2,7 @@
   <div class="panel-body" v-if="sorted.length > 0">
     <div class="tile is-ancestor">
       <div class="tile is-parent flex">
-        <div class="tile is-child is-4 box notification" v-for="item in sorted" :class="{'is-white': !item.isDone}">
+        <div class="tile is-child is-6 box notification" v-for="item in sorted" :class="{'is-white': !item.isDone}">
           <p class="title is-4">{{item.title}}</p>
           <p class="subtitle is-6" v-if="item.editor">
             <img :src="item.editor.picUrl" v-if="item.editor.picUrl" width="32" height="32" alt="No Image">
