@@ -30,7 +30,7 @@
                   <b-tag class="is-primary" v-if="item.read.includes(user.id)">読んだ！済</b-tag>
                   <b-tag v-for="tag in item.tags" :key="tag">{{tag}}</b-tag>
                 </b-taglist>
-                {{item.description}}
+                {{item.description | truncate}}
                 <div class>
                   <b-tag v-if="item.read.length" class="is-rounded is-outlined">
                     {{item.read.length}}
@@ -68,7 +68,7 @@
                   <b-tag class="is-primary" v-if="item.read.includes(user.id)">読んだ！済</b-tag>
                   <b-tag v-for="tag in item.tags" :key="tag">{{tag}}</b-tag>
                 </b-taglist>
-                {{item.description}}
+                {{item.description | truncate}}
                 <div class>
                   <b-tag v-if="item.read.length" class="is-rounded is-outlined">
                     {{item.read.length}}

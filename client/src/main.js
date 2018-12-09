@@ -27,6 +27,15 @@ Vue.prototype.$endPoint = function (uri) {
   if (process.env.NODE_ENV === 'development') return 'http://localhost:3000' + uri
   else return uri
 }
+Vue.filter('truncate', function(value) {
+  let len = 50
+  if(value.length <= len) {
+    return value
+  }
+  else {
+    return value.substring(0, len) + '...'
+  }
+})
 
 Vue.component('mondai-view', MondaiView)
 Vue.component('list-link', ListLinkView)
