@@ -7,7 +7,7 @@
             <span class="icon is-small is-primary">
               <b-icon icon="home"/>
             </span>
-            <span>ホーム</span>
+            <span>ホームaa</span>
           </router-link>
         </li>
       </ul>

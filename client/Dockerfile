@@ -9,4 +9,4 @@ RUN apk update && \
     npm install && \
     npm run build
 
-EXPOSE 8080
+EXPOSE 8080 8000

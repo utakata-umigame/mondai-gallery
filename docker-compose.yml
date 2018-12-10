@@ -31,6 +31,9 @@ services:
       - 9000:8000
     volumes:
       - ./client:/app/client
+    restart: always
     stdin_open: true
     tty: true
-    command: vue ui
+    environment:
+      - NODE_ENV=development
+    command: npm run serve
