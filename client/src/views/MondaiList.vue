@@ -180,6 +180,19 @@
             </div>
           </div>
         </div>
+        <a 
+          v-if="list.mondaiList.addible"
+          class="button is-info mb"
+          @click="isAddMondaiModalActive = true">問題を追加</a>
+        <b-modal id="myModal" :active.sync="isAddMondaiModalActive" has-modal-card>
+          <div class="modal-card">
+            <div class="modal-card-body">
+              <mondai-dialog :mondai="newMondai"></mondai-dialog>
+              <button class="button" type="button" @click="isAddMondaiModalActive = false">キャンセル</button>
+              <button class="button is-primary" @click="handleOk">追加</button>
+            </div>
+          </div>
+        </b-modal>
         <!-- 次に見る -->
         <div class="panel" v-if="list.otherList.length > 0">
           <div class="panel-heading">
@@ -218,7 +231,17 @@ export default {
       siteFilter: "all",
       detail: false,
       isMine: false,
-      otherList: []
+      otherList: [],
+      isAddMondaiModalActive: false,
+      newMondai: {
+        id: 0,
+        title: "",
+        author: "",
+        site: "latethink",
+        description: "",
+        genre: "umigame",
+        _id: -1
+      }
     };
   },
   computed: {
@@ -358,6 +381,24 @@ export default {
       if (this.list.mondaiList)
         return this.list.mondaiList.read.includes(this.$store.state.user.id);
       else return false;
+    },
+    handleOk(evt) {
+      let obj = Object.assign({}, this.newMondai);
+      this.$http
+        .post(this.$endPoint("/api/mondaiList/" + this.$route.params.id + "/addmondai"), obj)
+        .then(data => {
+            this.fetchList();
+            this.$toast.open({
+              type: "is-success",
+              message: "問題を追加しました。"
+            });
+        })
+        .catch(err => {
+          this.$toast.open({
+            type: "is-danger",
+            message: "ログインが必要です。"
+          });
+        });
     }
   }
 };

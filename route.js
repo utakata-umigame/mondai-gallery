@@ -51,6 +51,7 @@ router.get('/auth/callback', isAuthenticated, tumblr.callback);
 router.post('/post', isAuthenticated, tumblr.post);
 router.post('/read/:id', isAuthenticated, apis.sendRead);
 router.post('/unread/:id', isAuthenticated, apis.removeRead);
+router.post('/mondaiList/:id/addmondai', isAuthenticated, apis.addMondai);
 
 function isAuthenticated(req, res, next) {
   // 認証チェック

@@ -234,6 +234,11 @@
           <button class="button is-primary is-outlined" @click="mondaiList.accept=[]">すべてクリア</button>
         </div>
       </b-tab-item>
+      <b-tab-item label="編集設定">
+        <div class="field">
+          <b-checkbox v-model="mondaiList.addible">他のユーザーによる問題の追加を許可する場合はチェック</b-checkbox>
+        </div>
+      </b-tab-item>
     </b-tabs>
     <div class>
       <div class="buttons has-addons">
@@ -317,6 +322,7 @@ export default {
         description: "",
         picture: "puzzle",
         private: false,
+        addible: false,
         mondai: [],
         accept: []
       },

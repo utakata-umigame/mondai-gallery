@@ -81,6 +81,7 @@ module.exports = {
               name: x.name,
               fromMyMondais: x.fromMyMondais,
               private: x.private,
+              addible: x.addible,
               editor: x.editor,
               description: x.description,
               updateDate: x.updateDate,
@@ -107,6 +108,7 @@ module.exports = {
               name: x.name,
               fromMyMondais: x.fromMyMondais,
               private: x.private,
+              addible: x.addible,
               editor: x.editor,
               description: x.description,
               updateDate: x.updateDate,
@@ -149,12 +151,12 @@ module.exports = {
           doc.accept = doc.accept || [];
           doc.read = doc.read || [];
           db.User.findOne({ username: doc.editor.username }, (err, usr) => {
-            if (usr) {
-              doc.editor.color = usr.color || '#555';
-              doc.editor.picUrl = usr.picUrl;
-            }
-            callback(doc);
-          });
+              if (usr) {
+                doc.editor.color = usr.color || '#555';
+                doc.editor.picUrl = usr.picUrl;
+              }
+              callback(doc);
+            });
           return;
         } else if (doc.accept.includes(req.user.id)) {
           // 許可されたユーザー
@@ -310,6 +312,7 @@ module.exports = {
             name: x.name,
             fromMyMondais: x.fromMyMondais,
             private: x.private,
+            addible: x.addible,
             editor: x.editor,
             description: x.description,
             updateDate: x.updateDate,
@@ -369,6 +372,7 @@ module.exports = {
               name: x.name,
               fromMyMondais: x.fromMyMondais,
               private: x.private,
+              addible: x.addible,
               editor: x.editor,
               description: x.description,
               updateDate: x.updateDate
@@ -552,6 +556,7 @@ module.exports = {
           fromMyMondais: obj.fromMyMondais,
           tags: obj.tags,
           private: obj.private,
+          addible: obj.addible,
           description: obj.description,
           mondai: obj.mondai,
           updateDate: updateDate,
@@ -626,6 +631,51 @@ module.exports = {
       }
     );
     res.json({ message: 'Success' });
+  },
+  addMondai: (req, res) => {
+    db.MondaiList.findOne({id: parseInt(req.params.id)}, (err, doc) => {
+      if (doc) {
+        if (doc.addible) {
+          let list = Object.assign([], doc.mondai);
+          list.push(req.body);
+          let updateDate = moment()
+            .utcOffset('+09:00')
+            .format('YYYY/MM/DD HH:mm');
+          db.MondaiList.updateOne(
+            {
+              id: parseInt(req.params.id)
+            },
+            {
+              $set: {
+                mondai: list,
+                updateDate: updateDate
+              }
+            },
+            (error, document) => {
+              if (error) {
+                res.status(403).send({
+                  success: 'false',
+                  message: 'Cannot edit'
+                });
+              } else {
+                res.json({ message: 'success' });
+              }
+            }
+          );
+        } else {
+          res.status(403).send({
+            success: 'false',
+            message: 'Cannot edit'
+          });
+        }
+      } else {
+        res.status(403).send({
+          success: 'false',
+          message: 'Cannot edit'
+        });
+      }
+    })
+
   },
   logout: function(req, res) {
     req.logout();

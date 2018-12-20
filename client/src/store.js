@@ -156,6 +156,7 @@ export default new Vuex.Store({
             tags: data.tags,
             picture: data.picture,
             accept: data.accept,
+            addible: data.addible,
             read: data.read,
             mondai: data.mondai.sort((x, y) => x._id - y._id)
           };
