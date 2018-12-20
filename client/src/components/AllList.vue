@@ -28,6 +28,7 @@
                 <b-taglist>
                   <b-tag class="is-primary" v-if="item.fromMyMondais">自作問題のみ</b-tag>
                   <b-tag class="is-primary" v-if="item.read.includes(user.id)">読んだ！済</b-tag>
+                  <b-tag class="is-info" v-if="item.addible">共同編集</b-tag>
                   <b-tag v-for="tag in item.tags" :key="tag">{{tag}}</b-tag>
                 </b-taglist>
                 {{item.description | truncate}}
