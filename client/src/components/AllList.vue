@@ -17,13 +17,13 @@
           <div class="media-content">
             <div class="content">
               <div>
-                <strong class="mr">
+                <strong class="">
                   <router-link
                     class="has-text-link title is-5"
                     :to="{ name: 'MondaiList', params: {id: item.id} }"
                   >{{item.name}}</router-link>
-                </strong>
-                <small>{{item.editor.nickname}}</small>
+                </strong><br>
+                <small class="">{{item.editor.nickname}}</small>
                 <br>
                 <b-taglist>
                   <b-tag class="is-primary" v-if="item.fromMyMondais">自作問題のみ</b-tag>
@@ -59,7 +59,7 @@
                     class="has-text-link title is-5"
                     :to="{ name: 'MondaiList', params: {id: item.id} }"
                   >{{item.name}}</router-link>
-                </strong>
+                </strong><br>
                 <small>{{item.editor.nickname}}</small>
                 <b-icon icon="lock" v-if="item.private"></b-icon>
                 <br>
