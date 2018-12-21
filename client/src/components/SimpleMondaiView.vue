@@ -1,17 +1,15 @@
 <template>
-  <div class="scrollX">
-    <div class="level is-mobile">
-      <div class="level-left">
-        <div class="level-item">
-          <b-icon type="is-primary" icon="puzzle" class="mr"></b-icon>
-          <strong>{{ item.title }}</strong>
-        </div>
+  <div class="level is-mobile scrollX">
+    <div class="level-left">
+      <div class="level-item">
+        <b-icon type="is-primary" icon="puzzle" class="mr"></b-icon>
+        <strong>{{ item.title }}</strong>
       </div>
-      <div class="level-right">
-        <span class="level-item">{{item.author}}</span>
-        <b-tag class="is-primary level-item">{{site[item.site].name}}</b-tag>
-        <b-tag class="is-info level-item">{{genre[item.genre]}}</b-tag>
-      </div>
+    </div>
+    <div class="level-right">
+      <span class="level-item">{{item.author}}</span>
+      <b-tag class="is-primary level-item">{{site[item.site].name}}</b-tag>
+      <b-tag class="is-info level-item">{{genre[item.genre]}}</b-tag>
     </div>
   </div>
 </template>
@@ -54,6 +52,7 @@ export default {
   min-width: 100px;
 }
 .scrollX {
-  overflow-x: scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 </style>
