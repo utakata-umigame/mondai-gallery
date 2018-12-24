@@ -126,7 +126,7 @@
               <b-tag class="is-info" v-if="item.addible">共同編集</b-tag>
               <b-tag v-for="tag in item.tags" :key="tag">{{tag}}</b-tag>
             </b-taglist>
-            <p class="multiline mb">{{item.description}}</p>
+            <p class="multiline mb">{{item.description | truncate}}</p>
             <p class="grey">{{item.updateDate}}</p>
             <div class>
               <b-tag v-if="item.read.length" class="is-rounded is-outlined">
@@ -178,7 +178,7 @@
               <b-tag class="is-info" v-if="item.addible">共同編集</b-tag>
               <b-tag v-for="tag in item.tags" :key="tag">{{tag}}</b-tag>
             </b-taglist>
-            <p class="multiline mb">{{item.description}}</p>
+            <p class="multiline mb">{{item.description | truncate}}</p>
             <p class="grey">{{item.updateDate}}</p>
             <div class>
               <b-tag v-if="item.read.length" class="is-rounded is-outlined">
