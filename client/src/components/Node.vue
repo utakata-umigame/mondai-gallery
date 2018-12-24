@@ -4,7 +4,7 @@
             <rect
                 :x="x + 100"
                 :y="y"
-                width="50"
+                width="60"
                 height="30"
                 rx="5"
                 ry="3"
@@ -15,26 +15,26 @@
         <g v-if="selected">
             <rect
                 :x="x + 100"
-                :y="y + 30"
-                width="50"
+                :y="y + 32"
+                width="60"
                 height="30"
                 rx="5"
                 ry="3"
                 fill="#00b894">
             </rect>
-            <text :x="x+105" :y="y+50" font-size="20" class="button" fill="white" @click="toggleSelect">リンク</text>
+            <text :x="x+105" :y="y+52" font-size="20" class="button" fill="white" stroke="none" @click="toggleSelect">リンク</text>
         </g>
         <g v-if="createLinkMode">
             <rect
                 :x="x + 100"
-                :y="y + 30"
-                width="50"
+                :y="y + 32"
+                width="60"
                 height="30"
                 rx="5"
                 ry="3"
                 fill="red">
             </rect>
-            <text :x="x+105" :y="y+50" font-size="20" class="button" fill="white" @click="commitDest">選択</text>
+            <text :x="x+105" :y="y+52" font-size="20" class="button" fill="white" stroke="none" @click="commitDest">選択</text>
         </g>
         <rect
             :x="x"
