@@ -13,7 +13,7 @@
                 :key="item.id"
                 stroke-width="3"
                 stroke="#ffeaa7" />-->
-            <path :d="`M${item.point1.x} ${item.point1.y} Q ${(item.point1.x + item.point2.x) * 0.5} ${(item.point1.y + item.point2.y) * 0.5 + (item.point1.y - item.point2.y < 0 ? 1 : -1) * 100} ${item.point2.x} ${item.point2.y}`" stroke="#ffeaa7" stroke-width="3" fill="none"
+            <path :d="`M${item.point1.x} ${item.point1.y} Q ${(item.point1.x + item.point2.x) * 0.5 + (item.point1.x - item.point2.x < 0 ? 1 : -1) * 50} ${(item.point1.y + item.point2.y) * 0.5 + (item.point1.y - item.point2.y < 0 ? 1 : -1) * 50} ${item.point2.x} ${item.point2.y}`" stroke="#ffeaa7" stroke-width="3" fill="none"
                 v-for="item in links" 
                 :key="item.id"/>
             <Node
