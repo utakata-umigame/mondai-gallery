@@ -38,8 +38,17 @@ const graph = {
         }
       })
     },
+    removeNode(state, obj) {
+      state.nodes = state.nodes.filter(x => x.id !== obj.id)
+      state.links = state.links.filter(x => {
+        return x.source !== obj.id && x.destination !== obj.id
+      })
+    },
     select(state, obj) {
       state.selected = obj.id
+    },
+    resetSelection(state) {
+      state.selected = -1
     },
     toggleSelect(state) {
       state.createLinkMode ^= true

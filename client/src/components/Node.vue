@@ -2,39 +2,49 @@
     <svg>
         <g v-if="selected">
             <rect
-                :x="x + 100"
-                :y="y"
+                :x="x"
+                :y="y + 62"
                 width="60"
                 height="30"
                 rx="5"
                 ry="3"
                 fill="#00b894">
             </rect>
-            <text :x="x+105" :y="y+20" font-size="20" class="button" fill="white">編集</text>
+            <text :x="x+5" :y="y+82" font-size="20" class="button" fill="white">編集</text>
         </g>
         <g v-if="selected">
             <rect
-                :x="x + 100"
-                :y="y + 32"
+                :x="x"
+                :y="y - 32"
                 width="60"
                 height="30"
                 rx="5"
                 ry="3"
                 fill="#00b894">
             </rect>
-            <text :x="x+105" :y="y+52" font-size="20" class="button" fill="white" stroke="none" @click="toggleSelect">リンク</text>
-        </g>
-        <g v-if="createLinkMode && !selected">
+            <text :x="x+5" :y="y-13" font-size="20" class="button" fill="white" stroke="none" @click="toggleSelect">リンク</text>
             <rect
-                :x="x + 100"
-                :y="y + 32"
+                :x="x + 60"
+                :y="y + 62"
                 width="60"
                 height="30"
                 rx="5"
                 ry="3"
                 fill="red">
             </rect>
-            <text :x="x+105" :y="y+52" font-size="20" class="button" fill="white" stroke="none" @click="commitDest">選択</text>
+            <text :x="x+65" :y="y+82" font-size="20" class="button" fill="white" stroke="none" @click="remove">削除</text>
+        </g>
+        <g v-if="createLinkMode && !selected">
+            <rect
+                :x="x"
+                :y="y - 32"
+                width="60"
+                height="30"
+                rx="5"
+                ry="3"
+                fill="red">
+            </rect>
+            <text :x="x+5" :y="y-13" font-size="20" class="button" fill="white" stroke="none" @click="commitDest">選択</text>
         </g>
         <rect
             :x="x"
@@ -113,6 +123,9 @@ export default {
         },
         commitDest(e) {
             this.$store.commit('graph/commitDest', {id: this.id})
+        },
+        remove(e) {
+            this.$store.commit('graph/removeNode', {id: this.id})
         }
     }
 }
