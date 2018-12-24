@@ -25,15 +25,15 @@ export default {
     },
     computed: {
         nodes() {
-            return this.$store.state.nodes
+            return this.$store.state.graph.nodes
         },
         links() {
-            return this.$store.state.links
+            return this.$store.state.graph.links
         }
     },
     methods: {
         add(item) {
-            this.$store.commit('add')
+            this.$store.commit('graph/add')
         }
     }
 }

@@ -75,15 +75,15 @@ export default {
     },
     computed: {
         selected() {
-            return this.id === this.$store.state.selected
+            return this.id === this.$store.state.graph.selected
         },
         createLinkMode() {
-            return this.$store.state.createLinkMode
+            return this.$store.state.graph.createLinkMode
         }
     },
     methods: {
         mousedown(e) {
-            this.$store.commit('select', {id: this.id})
+            this.$store.commit('graph/select', {id: this.id})
             this.cursorOffset.x = e.pageX;
             this.cursorOffset.y = e.pageY;
             this.startPosition = {x: this.x, y: this.y}
@@ -95,7 +95,7 @@ export default {
             if(this.startPosition){
                 this.x = this.startPosition.x + (e.pageX - this.cursorOffset.x);
                 this.y = this.startPosition.y + (e.pageY - this.cursorOffset.y);
-                this.$store.commit('updateLocation', {
+                this.$store.commit('graph/updateLocation', {
                     id: this.id, 
                     x: this.x,
                     y: this.y
@@ -109,10 +109,10 @@ export default {
             document.removeEventListener("mouseup", this.mouseup)
         },
         toggleSelect(e) {
-            this.$store.commit('toggleSelect')
+            this.$store.commit('graph/toggleSelect')
         },
         commitDest(e) {
-            this.$store.commit('commitDest', {id: this.id})
+            this.$store.commit('graph/commitDest', {id: this.id})
         }
     }
 }

@@ -40,6 +40,9 @@
               <b-icon icon="contacts"></b-icon>
               <span>お問い合わせ</span>
             </router-link>
+            <router-link class="navbar-item" to="/graph">
+              <span>グラフ</span>
+            </router-link>
           </div>
           <div class="navbar-end">
             <div class="navbar-item has-dropdown is-hoverable">

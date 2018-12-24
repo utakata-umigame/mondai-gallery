@@ -8,11 +8,71 @@ Vue.use(Vuex);
 const graph = {
   namespaced: true,
   state: {
-
+    nodeId: 0,
+    linkId: 100000,
+    nodes: [],
+    links: [],
+    selected: -1,
+    createLinkMode: false
+  },
+  mutations: {
+    updateLocation(state, obj) {
+      let item = state.nodes.find(x => x.id === obj.id)
+      item.x = obj.x
+      item.y = obj.y
+      state.links.filter(x => x.source === obj.id).forEach(item => {
+        item.point1.x = obj.x + 50
+        item.point1.y = obj.y + 30
+      })
+      state.links.filter(x => x.destination === obj.id).forEach(item => {
+        item.point2.x = obj.x + 50
+        item.point2.y = obj.y + 30
+      })
+    },
+    add(state) {
+      state.nodes.push({
+        id: state.nodeId++,
+        point: {
+            x: 10,
+            y: 10 + Math.random() * 100
+        }
+      })
+    },
+    select(state, obj) {
+      state.selected = obj.id
+    },
+    toggleSelect(state) {
+      state.createLinkMode ^= true
+    },
+    commitDest(state, obj) {
+      let src = state.nodes.find(x => x.id === state.selected)
+      let dest = state.nodes.find(x => x.id === obj.id)
+      state.links.push({
+        id: state.linkId++,
+        source: state.selected,
+        destination: obj.id,
+        point1: {
+          x: src.x + 50,
+          y: src.y + 30
+        },
+        point2: {
+          x: dest.x + 50,
+          y: dest.y + 30
+        }
+      })
+      state.createLinkMode = false
+    }
+  },
+  getters: {
+    nodes(state) {return state.nodes},
+    links(state) {return state.links}
   }
 }
 
 export default new Vuex.Store({
+  modules: {
+    graph
+  },
   state: {
     tumblrToken: {
       token: '',
@@ -99,13 +159,7 @@ export default new Vuex.Store({
       '11/ 1 開発中のスケジュール機能を使用可能です。機能を拡充して11/10にはベータ版になる予定です。',
       '10/30 テーマカラーを設定できるようになりました。',
       '10/30 リストに独自のタグを付けられるようになりました。'
-    ],
-    nodeId: 0,
-    linkId: 100000,
-    nodes: [],
-    links: [],
-    selected: -1,
-    createLinkMode: false
+    ]
   },
   mutations: {
     setAllUser(state, value) {
@@ -122,52 +176,6 @@ export default new Vuex.Store({
     },
     setTumblrToken(state, value) {
       state.tumblrToken = value;
-    },
-    updateLocation(state, obj) {
-      let item = state.nodes.find(x => x.id === obj.id)
-      item.x = obj.x
-      item.y = obj.y
-      state.links.filter(x => x.source === obj.id).forEach(item => {
-        item.point1.x = obj.x + 50
-        item.point1.y = obj.y + 30
-      })
-      state.links.filter(x => x.destination === obj.id).forEach(item => {
-        item.point2.x = obj.x + 50
-        item.point2.y = obj.y + 30
-      })
-    },
-    add(state) {
-      state.nodes.push({
-        id: state.nodeId++,
-        point: {
-            x: 10,
-            y: 10 + Math.random() * 100
-        }
-      })
-    },
-    select(state, obj) {
-      state.selected = obj.id
-    },
-    toggleSelect(state) {
-      state.createLinkMode ^= true
-    },
-    commitDest(state, obj) {
-      let src = state.nodes.find(x => x.id === state.selected)
-      let dest = state.nodes.find(x => x.id === obj.id)
-      state.links.push({
-        id: state.linkId++,
-        source: state.selected,
-        destination: obj.id,
-        point1: {
-          x: src.x + 50,
-          y: src.y + 30
-        },
-        point2: {
-          x: dest.x + 50,
-          y: dest.y + 30
-        }
-      })
-      state.createLinkMode = false
     }
   },
   actions: {
@@ -276,8 +284,6 @@ export default new Vuex.Store({
     },
     picture(state) {
       return state.picture;
-    },
-    nodes(state) {return state.nodes},
-    links(state) {return state.links}
+    }
   }
 });
