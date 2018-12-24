@@ -14,6 +14,7 @@ import MondaiList from './views/MondaiList';
 import EditSchedule from './views/EditSchedule';
 import EditMilestone from './views/EditMilestone';
 import Callback from './views/Callback';
+import Graph from './views/Graph';
 
 import store from './store';
 
@@ -123,6 +124,11 @@ const routes = [
     path: '/blog',
     name: 'Tumblr',
     component: Callback
+  },
+  {
+    path: '/graph',
+    name: 'graph',
+    component: Graph
   }
 ];
 let router = new Router({
