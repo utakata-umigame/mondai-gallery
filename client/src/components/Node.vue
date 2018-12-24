@@ -24,7 +24,7 @@
             </rect>
             <text :x="x+105" :y="y+52" font-size="20" class="button" fill="white" stroke="none" @click="toggleSelect">リンク</text>
         </g>
-        <g v-if="createLinkMode">
+        <g v-if="createLinkMode && !selected">
             <rect
                 :x="x + 100"
                 :y="y + 32"
