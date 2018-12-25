@@ -49,6 +49,9 @@ const graph = {
         return x.source !== obj.id && x.destination !== obj.id
       })
     },
+    removeLink(state, id) {
+      state.links = state.links.filter(x => x.id !== id)
+    },
     select(state, obj) {
       state.selected = obj.id
     },

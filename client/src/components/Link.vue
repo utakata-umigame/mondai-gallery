@@ -17,9 +17,21 @@
                 fill="white"
                 stroke="#ff7675"
                 stroke-width="3"
+                @click="selected ^= true"
                 @mousedown="mousedown"
                 @mousemove="mousemove"
                 @mouseup="mouseup"/>
+        </g>
+        <g>
+            <text
+                :x="point.x-15"
+                :y="point.y + 25"
+                fill="#ff7675"
+                @click="remove"
+                v-if="selected"
+                class="button">
+                削除
+            </text>
         </g>
     </svg>
 </template>
@@ -46,6 +58,7 @@ export default {
     },
     data() {
         return {
+            selected: false,
             startPosition: null,
             cursorOffset: {
                 x: 0,
@@ -89,6 +102,9 @@ export default {
             //イベントの後始末
             document.removeEventListener("mousemove", this.mousemove)
             document.removeEventListener("mouseup", this.mouseup)
+        },
+        remove(e) {
+            this.$store.commit('graph/removeLink', this.id)
         }
     }
 }
