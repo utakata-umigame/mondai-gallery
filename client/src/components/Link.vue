@@ -25,7 +25,7 @@
         <g>
             <text
                 :x="point.x-15"
-                :y="point.y + 25"
+                :y="point.y + 30"
                 fill="#ff7675"
                 @click="remove"
                 v-if="selected"
