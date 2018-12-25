@@ -39,7 +39,7 @@
 <script>
 export default {
     props: {
-            selected: Boolean,
+        selected: Boolean,
         link: {
             id: Number,
             source: Number,
