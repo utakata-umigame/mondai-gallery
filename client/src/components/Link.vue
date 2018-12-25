@@ -91,7 +91,7 @@ export default {
             if(this.startPosition){
                 this.point.x = this.startPosition.x + (e.pageX - this.cursorOffset.x);
                 this.point.y = this.startPosition.y + (e.pageY - this.cursorOffset.y);
-                this.$store.commit('graph/updateLinkLocation', {
+                this.$emit('updateLocation', {
                     id: this.id, 
                     x: this.point.x,
                     y: this.point.y
@@ -105,7 +105,7 @@ export default {
             document.removeEventListener("mouseup", this.mouseup)
         },
         remove(e) {
-            this.$store.commit('graph/removeLink', this.id)
+            this.$emit('remove', this.id)
         }
     }
 }

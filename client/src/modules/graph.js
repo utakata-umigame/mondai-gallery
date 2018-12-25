@@ -38,17 +38,17 @@ const graph = {
           }
         })
       },
-      removeNode(state, obj) {
-        state.nodes = state.nodes.filter(x => x.id !== obj.id)
+      removeNode(state, id) {
+        state.nodes = state.nodes.filter(x => x.id !== id)
         state.links = state.links.filter(x => {
-          return x.source !== obj.id && x.destination !== obj.id
+          return x.source !== id && x.destination !== id
         })
       },
       removeLink(state, id) {
         state.links = state.links.filter(x => x.id !== id)
       },
-      select(state, obj) {
-        state.selected = obj.id
+      select(state, id) {
+        state.selected = id
       },
       resetSelection(state) {
         state.selected = -1
@@ -56,13 +56,13 @@ const graph = {
       toggleSelect(state) {
         state.createLinkMode ^= true
       },
-      commitDest(state, obj) {
+      commitDest(state, id) {
         let src = state.nodes.find(x => x.id === state.selected)
-        let dest = state.nodes.find(x => x.id === obj.id)
+        let dest = state.nodes.find(x => x.id === id)
         state.links.push({
           id: state.linkId++,
           source: state.selected,
-          destination: obj.id,
+          destination: id,
           point1: {
             x: src.point.x + 50,
             y: src.point.y + 30

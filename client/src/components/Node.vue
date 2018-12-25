@@ -43,8 +43,7 @@ export default {
                 y: 0
             },
             x: this.point.x,
-            y: this.point.y,
-            hover: false 
+            y: this.point.y
         }
     },
     computed: {
@@ -57,7 +56,8 @@ export default {
     },
     methods: {
         mousedown(e) {
-            this.$store.commit('graph/select', {id: this.id})
+            this.$emit("select", this.id)
+
             this.cursorOffset.x = e.pageX;
             this.cursorOffset.y = e.pageY;
             this.startPosition = {x: this.x, y: this.y}
@@ -69,7 +69,7 @@ export default {
             if(this.startPosition){
                 this.x = this.startPosition.x + (e.pageX - this.cursorOffset.x);
                 this.y = this.startPosition.y + (e.pageY - this.cursorOffset.y);
-                this.$store.commit('graph/updateLocation', {
+                this.$emit('updateLocation', {
                     id: this.id, 
                     x: this.x,
                     y: this.y
@@ -83,13 +83,13 @@ export default {
             document.removeEventListener("mouseup", this.mouseup)
         },
         toggleSelect(e) {
-            this.$store.commit('graph/toggleSelect')
+            this.$emit('toggleSelect')
         },
         commitDest(e) {
-            this.$store.commit('graph/commitDest', {id: this.id})
+            this.$emit('commitDest', this.id)
         },
         remove(e) {
-            this.$store.commit('graph/removeNode', {id: this.id})
+            this.$emit('remove', this.id)
         }
     }
 }
