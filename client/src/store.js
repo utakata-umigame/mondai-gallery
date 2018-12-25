@@ -29,6 +29,11 @@ const graph = {
         item.point2.y = obj.y + 30
       })
     },
+    updateLinkLocation(state, obj) {
+      let item = state.links.find(x => x.id === obj.id)
+      item.point.x = obj.x
+      item.point.y = obj.y
+    },
     add(state) {
       state.nodes.push({
         id: state.nodeId++,
@@ -67,6 +72,10 @@ const graph = {
         point2: {
           x: dest.x + 50,
           y: dest.y + 30
+        },
+        point: {
+          x: (src.x + dest.x) * 0.5,
+          y: (src.y + dest.y) * 0.5
         }
       })
       state.createLinkMode = false
