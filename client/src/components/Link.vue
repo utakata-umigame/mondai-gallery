@@ -73,11 +73,6 @@ export default {
             point: this.link.point
         }
     },
-    computed: {
-        links() {
-            return this.$store.state.graph.links
-        }
-    },
     methods: {
         mousedown(e) {
             this.cursorOffset.x = e.pageX;

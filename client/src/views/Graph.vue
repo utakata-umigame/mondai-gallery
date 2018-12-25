@@ -2,15 +2,14 @@
     <div>
         <div class="scrollX">
             <GraphField
+                :width="2000"
+                :height="1000"
                 :nodes="nodes" 
                 :links="links"
                 @addNode="add"
-                @resetSelection="reset"
                 @updateLinkLocation="updateLinkLocation"
                 @removeLink="removeLink"
-                @selectNode="selectNode"
                 @updateNodeLocation="updateNodeLocation"
-                @toggleNodeSelect="toggleNodeSelect"
                 @commitDest="commitDest"
                 @removeNode="removeNode"/>
         </div>
@@ -38,9 +37,6 @@ export default {
         add(item) {
             this.$store.commit('graph/add')
         },
-        reset(item) {
-            this.$store.commit('graph/resetSelection', item)
-        },
         updateLinkLocation(obj) {
             this.$store.commit('graph/updateLinkLocation', {
                 id: obj.id, 
@@ -57,12 +53,6 @@ export default {
                 x: obj.x,
                 y: obj.y
             })
-        },
-        selectNode(id) {
-            this.$store.commit('graph/select', id)
-        },
-        toggleNodeSelect() {
-            this.$store.commit('graph/toggleSelect')
         },
         commitDest(id) {
             this.$store.commit('graph/commitDest', id)

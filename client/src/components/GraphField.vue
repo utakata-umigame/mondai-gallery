@@ -1,10 +1,9 @@
 <template>
     <div>
         <button class="button" @click="add">追加</button>
-        <button class="button" @click="reset">選択解除</button>
         <div class="scrollX">
-        <svg width="2000" height="1000" xmlns="http://www.w3.org/2000/svg">
-            <rect x="0" y="0" width="2000" height="1000" fill="white"/>
+        <svg :width="width" :height="height" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="2000" height="1000" fill="white" @click="reset"/>
             <Link
                 :link="item"
                 v-for="item in links"
@@ -14,12 +13,13 @@
             <Node
                 :id ="item.id"
                 :point = "item.point"
-                :selected = "item.selected"
+                :selected = "item.id === selected"
                 v-for="item in nodes"
                 :key="item.id"
+                :createLinkMode="createLinkMode"
                 @select="selectNode"
                 @updateLocation="updateNodeLocation"
-                @toggleSelect="toggleNodeSelect"
+                @toggleSelect="toggleSrcSelect"
                 @commitDest="commitDest"
                 @remove="removeNode"/>
         </svg>
@@ -31,6 +31,8 @@ import Node from '@/components/Node'
 import Link from '@/components/Link'
 export default {
     props: {
+        width: Number,
+        height: Number,
         nodes: Array,
         links: Array
     },
@@ -38,12 +40,19 @@ export default {
         Node,
         Link
     },
+    data() {
+        return {
+            selected: -1,
+            createLinkMode: false,
+        }
+    },
     methods: {
         add(item) {
             this.$emit('addNode')
         },
         reset(item) {
-            this.$emit('resetSelection', item)
+            if(!this.createLinkMode)
+                this.selected = -1
         },
         updateLinkLocation(obj) {
             this.$emit('updateLinkLocation', obj)
@@ -55,13 +64,18 @@ export default {
             this.$emit('updateNodeLocation', obj)
         },
         selectNode(id) {
-            this.$emit('selectNode', id)
+            this.selected = id
         },
-        toggleNodeSelect() {
-            this.$emit('toggleNodeSelect')
+        toggleSrcSelect() {
+            this.createLinkMode = !this.createLinkMode
         },
         commitDest(id) {
-            this.$emit('commitDest', id)
+            this.$emit('commitDest', {
+                src: this.selected,
+                dest: id
+            })
+            this.createLinkMode = false
+            this.selected = -1
         },
         removeNode(id) {
             this.$emit('removeNode', id)

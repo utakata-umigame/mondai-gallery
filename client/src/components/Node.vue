@@ -33,7 +33,9 @@ export default {
                 x: 0,
                 y: 0
             }
-        }
+        },
+        createLinkMode: Boolean,
+        selected: Boolean
     },
     data() {
         return {
@@ -44,14 +46,6 @@ export default {
             },
             x: this.point.x,
             y: this.point.y
-        }
-    },
-    computed: {
-        selected() {
-            return this.id === this.$store.state.graph.selected
-        },
-        createLinkMode() {
-            return this.$store.state.graph.createLinkMode
         }
     },
     methods: {

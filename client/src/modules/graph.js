@@ -6,9 +6,7 @@ const graph = {
       nodeId: 0,
       linkId: 100000,
       nodes: [],
-      links: [],
-      selected: -1,
-      createLinkMode: false
+      links: []
     },
     mutations: {
       updateLocation(state, obj) {
@@ -47,22 +45,13 @@ const graph = {
       removeLink(state, id) {
         state.links = state.links.filter(x => x.id !== id)
       },
-      select(state, id) {
-        state.selected = id
-      },
-      resetSelection(state) {
-        state.selected = -1
-      },
-      toggleSelect(state) {
-        state.createLinkMode ^= true
-      },
-      commitDest(state, id) {
-        let src = state.nodes.find(x => x.id === state.selected)
-        let dest = state.nodes.find(x => x.id === id)
+      commitDest(state, obj) {
+        let src = state.nodes.find(x => x.id === obj.src)
+        let dest = state.nodes.find(x => x.id === obj.dest)
         state.links.push({
           id: state.linkId++,
-          source: state.selected,
-          destination: id,
+          source: obj.src,
+          destination: obj.dest,
           point1: {
             x: src.point.x + 50,
             y: src.point.y + 30
@@ -76,7 +65,6 @@ const graph = {
             y: (src.point.y + dest.point.y) * 0.5
           }
         })
-        state.createLinkMode = false
       }
     },
     getters: {
