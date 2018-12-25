@@ -17,6 +17,7 @@
                 fill="white"
                 stroke="#ff7675"
                 stroke-width="3"
+                class="button"
                 @click="selected ^= true"
                 @mousedown="mousedown"
                 @mousemove="mousemove"
