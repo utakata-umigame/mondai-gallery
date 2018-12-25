@@ -13,7 +13,7 @@
             <Node
                 :id ="item.id"
                 :point = "item.point"
-                :selected = "item.id === selected"
+                :selected = "item.id === selectedNode"
                 v-for="item in nodes"
                 :key="item.id"
                 :createLinkMode="createLinkMode"
@@ -42,7 +42,7 @@ export default {
     },
     data() {
         return {
-            selected: -1,
+            selectedNode: -1,
             createLinkMode: false,
         }
     },
@@ -52,7 +52,7 @@ export default {
         },
         reset(item) {
             if(!this.createLinkMode)
-                this.selected = -1
+                this.selectedNode = -1
         },
         updateLinkLocation(obj) {
             this.$emit('updateLinkLocation', obj)
@@ -64,18 +64,18 @@ export default {
             this.$emit('updateNodeLocation', obj)
         },
         selectNode(id) {
-            this.selected = id
+            this.selectedNode = id
         },
         toggleSrcSelect() {
             this.createLinkMode = !this.createLinkMode
         },
         commitDest(id) {
             this.$emit('commitDest', {
-                src: this.selected,
+                src: this.selectedNode,
                 dest: id
             })
             this.createLinkMode = false
-            this.selected = -1
+            this.selectedNode = -1
         },
         removeNode(id) {
             this.$emit('removeNode', id)

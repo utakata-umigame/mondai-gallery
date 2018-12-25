@@ -7,10 +7,10 @@
                 :nodes="nodes" 
                 :links="links"
                 @addNode="add"
-                @updateLinkLocation="updateLinkLocation"
+                @commitDest="commitDest"
                 @removeLink="removeLink"
                 @updateNodeLocation="updateNodeLocation"
-                @commitDest="commitDest"
+                @updateLinkLocation="updateLinkLocation"
                 @removeNode="removeNode"/>
         </div>
     </div>
