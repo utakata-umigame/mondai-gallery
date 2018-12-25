@@ -18,8 +18,8 @@ const graph = {
   mutations: {
     updateLocation(state, obj) {
       let item = state.nodes.find(x => x.id === obj.id)
-      item.x = obj.x
-      item.y = obj.y
+      item.point.x = obj.x
+      item.point.y = obj.y
       state.links.filter(x => x.source === obj.id).forEach(item => {
         item.point1.x = obj.x + 50
         item.point1.y = obj.y + 30
@@ -69,16 +69,16 @@ const graph = {
         source: state.selected,
         destination: obj.id,
         point1: {
-          x: src.x + 50,
-          y: src.y + 30
+          x: src.point.x + 50,
+          y: src.point.y + 30
         },
         point2: {
-          x: dest.x + 50,
-          y: dest.y + 30
+          x: dest.point.x + 50,
+          y: dest.point.y + 30
         },
         point: {
-          x: (src.x + dest.x) * 0.5,
-          y: (src.y + dest.y) * 0.5
+          x: (src.point.x + dest.point.x) * 0.5,
+          y: (src.point.y + dest.point.y) * 0.5
         }
       })
       state.createLinkMode = false
