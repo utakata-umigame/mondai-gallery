@@ -18,7 +18,7 @@
                 stroke="#ff7675"
                 stroke-width="3"
                 class="button"
-                @click="selected ^= true"
+                @click="select"
                 @mousedown="mousedown"
                 @mousemove="mousemove"
                 @mouseup="mouseup"/>
@@ -39,6 +39,7 @@
 <script>
 export default {
     props: {
+            selected: Boolean,
         link: {
             id: Number,
             source: Number,
@@ -59,7 +60,6 @@ export default {
     },
     data() {
         return {
-            selected: false,
             startPosition: null,
             cursorOffset: {
                 x: 0,
@@ -101,6 +101,9 @@ export default {
         },
         remove(e) {
             this.$emit('remove', this.id)
+        },
+        select() {
+            this.$emit('select', this.id)
         }
     }
 }

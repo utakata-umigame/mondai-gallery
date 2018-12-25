@@ -7,7 +7,9 @@
             <Link
                 :link="item"
                 v-for="item in links"
+                :selected="item.id === selectedLink"
                 :key="item.id"
+                @select="selectLink"
                 @updateLocation="updateLinkLocation"
                 @remove="removeLink"/>
             <Node
@@ -43,6 +45,7 @@ export default {
     data() {
         return {
             selectedNode: -1,
+            selectedLink: -1,
             createLinkMode: false,
         }
     },
@@ -51,8 +54,10 @@ export default {
             this.$emit('addNode')
         },
         reset(item) {
-            if(!this.createLinkMode)
+            if(!this.createLinkMode) {
                 this.selectedNode = -1
+                this.selectedLink = -1
+            }
         },
         updateLinkLocation(obj) {
             this.$emit('updateLinkLocation', obj)
@@ -65,6 +70,9 @@ export default {
         },
         selectNode(id) {
             this.selectedNode = id
+        },
+        selectLink(id) {
+            this.selectedLink = id
         },
         toggleSrcSelect() {
             this.createLinkMode = !this.createLinkMode
