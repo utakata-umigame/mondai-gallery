@@ -6,7 +6,7 @@
                 :height="1000"
                 :nodes="nodes" 
                 :links="links"
-                @addNode="add"
+                @addNode="addNode"
                 @commitDest="commitDest"
                 @removeLink="removeLink"
                 @updateNodeLocation="updateNodeLocation"
@@ -16,6 +16,7 @@
     </div>
 </template>
 <script>
+import { mapMutations } from 'vuex'
 import GraphField from '@/components/GraphField'
 import Node from '@/components/Node'
 import Link from '@/components/Link'
@@ -34,32 +35,14 @@ export default {
         }
     },
     methods: {
-        add(item) {
-            this.$store.commit('graph/add')
-        },
-        updateLinkLocation(obj) {
-            this.$store.commit('graph/updateLinkLocation', {
-                id: obj.id, 
-                x: obj.x,
-                y: obj.y
-            })
-        },
-        removeLink(id) {
-            this.$store.commit('graph/removeLink', id)
-        },
-        updateNodeLocation(obj) {
-            this.$store.commit('graph/updateLocation', {
-                id: obj.id, 
-                x: obj.x,
-                y: obj.y
-            })
-        },
-        commitDest(id) {
-            this.$store.commit('graph/commitDest', id)
-        },
-        removeNode(id) {
-            this.$store.commit('graph/removeNode', id)
-        }
+        ...mapMutations({
+            addNode: 'graph/add',
+            updateLinkLocation: 'graph/updateLinkLocation',
+            removeLink: 'graph/removeLink',
+            updateNodeLocation: 'graph/updateLocation',
+            commitDest: 'graph/commitDest',
+            removeNode: 'graph/removeNode'
+        })
     }
 }
 </script>
