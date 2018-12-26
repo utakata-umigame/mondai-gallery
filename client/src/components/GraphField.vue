@@ -71,6 +71,7 @@ export default {
             })
         },
         addNode() {
+            if(!this.editable) return
             this.nodeList.push({
                 id: Math.floor(Math.random() * 1000000).toString(),
                 content: {

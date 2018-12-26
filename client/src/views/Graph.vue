@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="editable=true" class="button">編集モード</button>
+        <button v-if="!editable" @click="editable=true" class="button">編集モード</button>
         <GraphField
             :width="2000"
             :height="1000"
