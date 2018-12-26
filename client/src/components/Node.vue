@@ -47,6 +47,7 @@ export default {
                 urls: Array
             }
         },
+        editable: Boolean,
         createLinkMode: Boolean,
         selected: Boolean
     },
@@ -67,6 +68,7 @@ export default {
     },
     methods: {
         mousedown(e) {
+            if (!this.editable) return;
             this.$emit("select", this.id)
 
             this.cursorOffset.x = e.pageX;

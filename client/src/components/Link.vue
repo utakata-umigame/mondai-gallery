@@ -1,11 +1,11 @@
 <template>
     <svg>
-        <g>
-            <path
-                :d="`M${source.point.x + source.width / 2} ${source.point.y + source.height / 2} Q ${point.x} ${point.y} ${destination.point.x + destination.width / 2} ${destination.point.y + destination.height / 2}`"
-                stroke="#ffeaa7"
-                stroke-width="5"
-                fill="none"/>
+        <path
+            :d="`M${source.point.x + source.width / 2} ${source.point.y + source.height / 2} Q ${point.x} ${point.y} ${destination.point.x + destination.width / 2} ${destination.point.y + destination.height / 2}`"
+            stroke="#ffeaa7"
+            stroke-width="5"
+            fill="none"/>
+        <g v-if="editable">
             <line :x1="source.point.x + source.width / 2" :y1="source.point.y + source.height / 2" :x2="point.x" :y2="point.y" stroke="lightgray"/>
             <line :x1="point.x" :y1="point.y" :x2="destination.point.x + destination.width / 2" :y2="destination.point.y + destination.height / 2" stroke="lightgray"/>
             <ellipse
@@ -40,6 +40,7 @@
 export default {
     props: {
         selected: Boolean,
+        editable: Boolean,
         source: {
             id: Number,
             x: Number,

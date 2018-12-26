@@ -3,29 +3,50 @@
         <div class="scrollX">
         <svg :width="width" :height="height" xmlns="http://www.w3.org/2000/svg">
             <rect x="0" y="0" width="2000" height="1000" fill="white" @click="reset"/>
-            <text :x="10" :y="25" font-size="20" class="button" fill="#00b894" @click="add">追加</text>
             <Link
+                v-if="editable"
                 :link="item"
                 v-for="item in links"
                 :selected="item.id === selectedLink"
                 :key="item.id"
                 :source="findNode(item.source)"
                 :destination="findNode(item.destination)"
+                :editable="editable"
                 @select="selectLink"
                 @updateLocation="updateLinkLocation"
                 @remove="removeLink"/>
+            <Link
+                v-else
+                :link="item"
+                v-for="item in links"
+                :selected="false"
+                :key="item.id"
+                :source="findNode(item.source)"
+                :destination="findNode(item.destination)"
+                :editable="editable"/>
             <Node
+                v-if="editable"
                 class="grab"
                 :node="item"
                 :selected = "item.id === selectedNode"
                 v-for="item in nodes"
                 :key="item.id"
                 :createLinkMode="createLinkMode"
+                :editable="editable"
                 @select="selectNode"
                 @updateLocation="updateNodeLocation"
                 @toggleSelect="toggleSrcSelect"
                 @commitDest="commitDest"
                 @remove="removeNode"/>
+            <Node
+                v-else
+                class="grab"
+                :node="item"
+                :selected = "false"
+                v-for="item in nodes"
+                :key="item.id"
+                :createLinkMode="createLinkMode"
+                :editable="editable"/>
         </svg>
         </div>
     </div>
@@ -38,7 +59,8 @@ export default {
         width: Number,
         height: Number,
         nodes: Array,
-        links: Array
+        links: Array,
+        editable: Boolean
     },
     components: {
         Node,
@@ -52,9 +74,6 @@ export default {
         }
     },
     methods: {
-        add(item) {
-            this.$emit('addNode')
-        },
         reset(item) {
             if(!this.createLinkMode) {
                 this.selectedNode = -1
