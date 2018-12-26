@@ -1,14 +1,9 @@
 <template>
     <div>
-        <div v-if="editable">
-            <input v-model="name" placeholder="name"/>
-            <input v-model="url" placeholder="url"/>
-            <button @click="addNode" class="button">追加</button>
-        </div>
         <div class="scrollX">
         <svg :width="width" :height="height" xmlns="http://www.w3.org/2000/svg">
             <rect x="0" y="0" width="2000" height="1000" fill="white" @click="reset"/>
-            <text v-if="editable" :x="10" :y="25" font-size="20" class="button" fill="#00b894" @click="confirmChange">変更を確定</text>
+            <text v-if="editable" :x="10" :y="65" font-size="20" class="button" fill="#00b894" @click="confirmChange">変更を確定</text>
             <Link
                 :link="item"
                 v-for="item in linkList"
@@ -34,6 +29,14 @@
                 @toggleSelect="toggleSrcSelect"
                 @commitDest="commitDest"
                 @remove="removeNode"/>
+            <foreignObject v-if="editable" x=5 y=10 width=500 height=40>
+                <div>
+                    <input v-model="name" placeholder="name"/>
+                    <input v-model="url" placeholder="url"/>
+                    <input v-model="color" placeholder="color"/>
+                    <button @click="addNode" class="button">追加</button>
+                </div>
+            </foreignObject>
         </svg>
         </div>
     </div>
@@ -58,6 +61,7 @@ export default {
         return {
             name: '',
             url: '',
+            color: '',
             nodeList: this.nodes,
             linkList: this.links,
             selectedNode: -1,
@@ -82,6 +86,7 @@ export default {
                 id: this.generateID(),
                 content: {
                     text: this.name,
+                    color: this.color,
                     url: this.url
                 },
                 width: 200,

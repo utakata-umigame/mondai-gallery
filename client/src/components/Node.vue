@@ -18,7 +18,7 @@
                 :height="height"
                 rx="10"
                 ry="6"
-                fill="#dfe6e9"
+                :fill="content.color || '#dfe6e9'"
                 @mousedown="mousedown"
                 @mousemove="mousemove"
                 @mouseup="mouseup"/>
