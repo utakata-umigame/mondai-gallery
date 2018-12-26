@@ -39,7 +39,7 @@ export default {
             addNode: 'graph/add',
             updateLinkLocation: 'graph/updateLinkLocation',
             removeLink: 'graph/removeLink',
-            updateNodeLocation: 'graph/updateLocation',
+            updateNodeLocation: 'graph/updateNodeLocation',
             commitDest: 'graph/commitDest',
             removeNode: 'graph/removeNode'
         })

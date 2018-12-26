@@ -1,20 +1,22 @@
 <template>
     <div>
-        <button class="button" @click="add">追加</button>
         <div class="scrollX">
         <svg :width="width" :height="height" xmlns="http://www.w3.org/2000/svg">
             <rect x="0" y="0" width="2000" height="1000" fill="white" @click="reset"/>
+            <text :x="10" :y="25" font-size="20" class="button" fill="#00b894" @click="add">追加</text>
             <Link
                 :link="item"
                 v-for="item in links"
                 :selected="item.id === selectedLink"
                 :key="item.id"
+                :source="findNode(item.source)"
+                :destination="findNode(item.destination)"
                 @select="selectLink"
                 @updateLocation="updateLinkLocation"
                 @remove="removeLink"/>
             <Node
-                :id ="item.id"
-                :point = "item.point"
+                class="grab"
+                :node="item"
                 :selected = "item.id === selectedNode"
                 v-for="item in nodes"
                 :key="item.id"
@@ -46,7 +48,7 @@ export default {
         return {
             selectedNode: -1,
             selectedLink: -1,
-            createLinkMode: false,
+            createLinkMode: false
         }
     },
     methods: {
@@ -61,6 +63,9 @@ export default {
         },
         updateLinkLocation(obj) {
             this.$emit('updateLinkLocation', obj)
+        },
+        findNode(id) {
+            return this.nodes.find(x => x.id === id)
         },
         removeLink(id) {
             this.$emit('removeLink', id)
@@ -92,5 +97,10 @@ export default {
 }
 </script>
 <style scoped>
-
+.button {
+    cursor: pointer;
+}
+.grab {
+    cursor: grab;
+}
 </style>

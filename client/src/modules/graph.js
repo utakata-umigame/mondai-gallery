@@ -9,18 +9,10 @@ const graph = {
       links: []
     },
     mutations: {
-      updateLocation(state, obj) {
+      updateNodeLocation(state, obj) {
         let item = state.nodes.find(x => x.id === obj.id)
         item.point.x = obj.x
         item.point.y = obj.y
-        state.links.filter(x => x.source === obj.id).forEach(item => {
-          item.point1.x = obj.x + 50
-          item.point1.y = obj.y + 30
-        })
-        state.links.filter(x => x.destination === obj.id).forEach(item => {
-          item.point2.x = obj.x + 50
-          item.point2.y = obj.y + 30
-        })
       },
       updateLinkLocation(state, obj) {
         let item = state.links.find(x => x.id === obj.id)
@@ -30,9 +22,15 @@ const graph = {
       add(state) {
         state.nodes.push({
           id: state.nodeId++,
+          content: {
+            text: 'github',
+            url: 'https://github.com/'
+          },
+          width: 200,
+          height: 60,
           point: {
               x: 10,
-              y: 10 + Math.random() * 100
+              y: 100 + Math.random() * 100
           }
         })
       },
@@ -52,14 +50,6 @@ const graph = {
           id: state.linkId++,
           source: obj.src,
           destination: obj.dest,
-          point1: {
-            x: src.point.x + 50,
-            y: src.point.y + 30
-          },
-          point2: {
-            x: dest.point.x + 50,
-            y: dest.point.y + 30
-          },
           point: {
             x: (src.point.x + dest.point.x) * 0.5,
             y: (src.point.y + dest.point.y) * 0.5

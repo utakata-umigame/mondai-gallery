@@ -2,12 +2,12 @@
     <svg>
         <g>
             <path
-                :d="`M${point1.x} ${point1.y} Q ${point.x} ${point.y} ${point2.x} ${point2.y}`"
+                :d="`M${source.point.x + source.width / 2} ${source.point.y + source.height / 2} Q ${point.x} ${point.y} ${destination.point.x + destination.width / 2} ${destination.point.y + destination.height / 2}`"
                 stroke="#ffeaa7"
                 stroke-width="5"
                 fill="none"/>
-            <line :x1="point1.x" :y1="point1.y" :x2="point.x" :y2="point.y" stroke="lightgray"/>
-            <line :x1="point.x" :y1="point.y" :x2="point2.x" :y2="point2.y" stroke="lightgray"/>
+            <line :x1="source.point.x + source.width / 2" :y1="source.point.y + source.height / 2" :x2="point.x" :y2="point.y" stroke="lightgray"/>
+            <line :x1="point.x" :y1="point.y" :x2="destination.point.x + destination.width / 2" :y2="destination.point.y + destination.height / 2" stroke="lightgray"/>
             <ellipse
                 :id ="id"
                 :cx = "point.x"
@@ -25,7 +25,7 @@
         </g>
         <g>
             <text
-                :x="point.x-15"
+                :x="point.x - 15"
                 :y="point.y + 30"
                 fill="#ff7675"
                 @click="remove"
@@ -40,18 +40,18 @@
 export default {
     props: {
         selected: Boolean,
+        source: {
+            id: Number,
+            x: Number,
+            y: Number
+        },
+        destination: {
+            id: Number, 
+            x: Number,
+            y: Number
+        },
         link: {
             id: Number,
-            source: Number,
-            destination: Number, 
-            point1: {
-                x: Number,
-                y: Number
-            },
-            point2: {
-                x: Number,
-                y: Number
-            },
             point: {
                 x: Number,
                 y: Number
@@ -66,8 +66,8 @@ export default {
                 y: 0
             },
             id: this.link.id,
-            source: this.link.source,
-            destination: this.link.destination,
+            // source: this.link.source,
+            // destination: this.link.destination,
             point1: this.link.point1,
             point2: this.link.point2,
             point: this.link.point

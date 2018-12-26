@@ -1,37 +1,50 @@
 <template>
     <svg>
         <g v-if="selected">
-            <text :x="x+5" :y="y+82" font-size="20" class="button" fill="#00b894">編集</text>
+            <text :x="x+5" :y="y+ height + 22" font-size="20" class="button" fill="#00b894">編集</text>
         </g>
         <g v-if="selected">
             <text :x="x+5" :y="y-13" font-size="20" class="button" fill="#00b894" stroke="none" @click="toggleSelect">リンク</text>
-            <text :x="x+65" :y="y+82" font-size="20" class="button" fill="red" @click="remove">削除</text>
+            <text :x="x+65" :y="y+ height + 22" font-size="20" class="button" fill="red" @click="remove">削除</text>
         </g>
         <g v-if="createLinkMode && !selected">
             <text :x="x+5" :y="y-13" font-size="20" class="button" fill="red" @click="commitDest">選択</text>
         </g>
-        <rect
-            :x="x"
-            :y="y"
-            width ="100"
-            height="60"
-            rx="10"
-            ry="6"
-            fill="#dfe6e9"
-            @mousedown="mousedown"
-            @mousemove="mousemove"
-            @mouseup="mouseup"/>
+        <g>
+            <rect
+                :x="x"
+                :y="y"
+                :width ="width"
+                :height="height"
+                rx="10"
+                ry="6"
+                fill="#dfe6e9"
+                @mousedown="mousedown"
+                @mousemove="mousemove"
+                @mouseup="mouseup"/>
+            <a target="_blank" :href="content.url">
+                <text :x="x+5" :y="y+height/2" fill="#2d3436">{{content.text}}</text>
+            </a>
+        </g>
     </svg>
 </template>
 <script>
 export default {
     props: {
-        id: Number,
-        point: {
-            type: Object,
-            default: {
-                x: 0,
-                y: 0
+        node: {
+            width: Number,
+            height: Number,
+            id: Number,
+            point: {
+                type: Object,
+                default: {
+                    x: 0,
+                    y: 0
+                }
+            },
+            content: {
+                text: String,
+                urls: Array
             }
         },
         createLinkMode: Boolean,
@@ -44,8 +57,12 @@ export default {
                 x: 0,
                 y: 0
             },
-            x: this.point.x,
-            y: this.point.y
+            id: this.node.id,
+            x: this.node.point.x,
+            y: this.node.point.y,
+            width: this.node.width,
+            height: this.node.height,
+            content: this.node.content
         }
     },
     methods: {
