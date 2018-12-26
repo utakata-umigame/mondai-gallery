@@ -6,6 +6,7 @@
             :height="1000"
             :nodes="nodes" 
             :links="links"
+            linkColor="#ffeaa7"
             :editable="editable"
             @changed="changed">
         </GraphField>

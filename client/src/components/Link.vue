@@ -2,7 +2,7 @@
     <svg>
         <path
             :d="`M${source.point.x + source.width / 2} ${source.point.y + source.height / 2} Q ${point.x} ${point.y} ${destination.point.x + destination.width / 2} ${destination.point.y + destination.height / 2}`"
-            stroke="#ffeaa7"
+            :stroke="color"
             stroke-width="5"
             fill="none"/>
         <g v-if="editable">
@@ -41,6 +41,7 @@ export default {
     props: {
         selected: Boolean,
         editable: Boolean,
+        color: String,
         source: {
             id: Number,
             x: Number,

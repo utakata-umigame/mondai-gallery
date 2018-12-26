@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div v-if="editable">
             <input v-model="name" placeholder="name"/>
             <input v-model="url" placeholder="url"/>
             <button @click="addNode" class="button">追加</button>
@@ -14,6 +14,7 @@
                 v-for="item in linkList"
                 :selected="item.id === selectedLink"
                 :key="item.id"
+                :color="linkColor"
                 :source="findNode(item.source)"
                 :destination="findNode(item.destination)"
                 :editable="editable"
@@ -46,7 +47,8 @@ export default {
         height: Number,
         nodes: Array,
         links: Array,
-        editable: Boolean
+        editable: Boolean,
+        linkColor: String
     },
     components: {
         Node,
