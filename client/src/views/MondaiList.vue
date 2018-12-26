@@ -51,7 +51,6 @@
             <b-taglist>
               <b-tag v-for="item in list.mondaiList.tags" :key="item">{{item}}</b-tag>
             </b-taglist>
-            <p class="multiline card-body">{{list.mondaiList.description}}</p>
             <div v-if="!isRead()" class="buttons has-addons">
               <span class="button is-light is-small" @click="read">
                 <b-icon size="is-small" icon="check"/>
@@ -103,6 +102,14 @@
         </b-collapse>
       </div>
       <div class="column is-two-thirds">
+        <div class="card mb">
+          <div class="card-header">
+            <p class="card-header-title">概要</p>
+          </div>
+          <div class="card-content">
+            <p class="multiline">{{list.mondaiList.description}}</p>
+          </div>
+        </div>
         <b-collapse class="card mb" :open="false">
           <div slot="trigger" slot-scope="props" class="card-header">
             <p class="card-header-title">フィルター</p>
