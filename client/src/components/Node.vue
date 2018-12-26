@@ -34,7 +34,7 @@ export default {
         node: {
             width: Number,
             height: Number,
-            id: Number,
+            id: String,
             point: {
                 type: Object,
                 default: {

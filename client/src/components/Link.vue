@@ -52,7 +52,7 @@ export default {
             y: Number
         },
         link: {
-            id: Number,
+            id: String,
             point: {
                 x: Number,
                 y: Number
