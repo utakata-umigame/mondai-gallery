@@ -66,6 +66,10 @@ export default {
         }
     },
     methods: {
+        generateID() {
+            return new Date().getTime().toString(16)
+                + Math.floor(Math.random() * 1000000).toString(16)
+        },
         confirmChange() {
             this.$emit('changed', {
                 nodes: this.nodeList,
@@ -75,7 +79,7 @@ export default {
         addNode() {
             if(!this.editable) return
             this.nodeList.push({
-                id: Math.floor(Math.random() * 1000000).toString(),
+                id: this.generateID(),
                 content: {
                     text: this.name,
                     url: this.url
@@ -86,21 +90,6 @@ export default {
                     x: 10,
                     y: 100 + Math.random() * 100
                 }
-            })
-        },
-        add() {
-            this.nodeList.push({
-            id: Math.floor(Math.random() * 1000000).toString(),
-            content: {
-                text: 'github',
-                url: 'https://github.com/'
-            },
-            width: 200,
-            height: 60,
-            point: {
-                x: 10,
-                y: 100 + Math.random() * 100
-            }
             })
         },
         reset(item) {
@@ -138,7 +127,7 @@ export default {
         let src = this.nodeList.find(x => x.id === this.selectedNode)
         let dest = this.nodeList.find(x => x.id === id)
         this.linkList.push({
-          id: Math.floor(1000001 + Math.random() * 1000000).toString(),
+          id: this.generateID(),
           source: this.selectedNode,
           destination: id,
           point: {
