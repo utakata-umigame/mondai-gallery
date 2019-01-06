@@ -2,14 +2,10 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import axios from 'axios';
-import graph from './modules/graph';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: {
-    graph
-  },
   state: {
     tumblrToken: {
       token: '',
@@ -137,7 +133,6 @@ export default new Vuex.Store({
               nickname: 'Guest'
             };
         })
-        .catch(error => {});
       context.commit('setUser', payload);
     },
     async fetchList(context, id) {
@@ -165,7 +160,6 @@ export default new Vuex.Store({
             mondai: data.mondai.sort((x, y) => x._id - y._id)
           };
         })
-        .catch(error => {});
       await axios
         .get(new Vue().$endPoint('/api/mondaiList'))
         .then(res => {
@@ -175,7 +169,6 @@ export default new Vuex.Store({
               x.id !== payload.mondaiList.id
           );
         })
-        .catch(error => {});
       await axios
         .get(new Vue().$endPoint('/api/user'))
         .then(res => {
@@ -187,7 +180,6 @@ export default new Vuex.Store({
             }
           }
         })
-        .catch(error => {});
       context.commit('setSavedList', payload);
     }
   },

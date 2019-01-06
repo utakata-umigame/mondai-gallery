@@ -150,7 +150,7 @@ export default {
             });
           }
         })
-        .then(function(res) {
+        .then(function() {
           vm.$router.push("/mypage");
         });
     },

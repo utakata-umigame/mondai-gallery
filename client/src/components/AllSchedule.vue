@@ -43,7 +43,7 @@ export default {
           return t
         })
       })
-      .then(_ => {
+      .then(() => {
         this.filtered = Object.assign({}, this.schedule)
       })
   },

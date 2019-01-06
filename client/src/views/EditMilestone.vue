@@ -121,7 +121,7 @@ export default {
             })
           }
         })
-        .catch(err => {
+        .catch(() => {
           this.$toast.open({
             'type': 'is-danger',
             'message':'編集権限がありません。'

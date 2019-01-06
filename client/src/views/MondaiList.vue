@@ -213,7 +213,6 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
 import SimpleMondaiView from "@/components/SimpleMondaiView";
 import SimpleListLinkView from "@/components/SimpleListLinkView";
 import MondaiCard from "@/components/MondaiCard";
@@ -281,7 +280,7 @@ export default {
     }
   },
   watch: {
-    $route(to, from) {
+    $route() {
       this.fetchList();
     }
   },
@@ -350,7 +349,7 @@ export default {
             });
           }
         })
-        .catch(err => {
+        .catch(() => {
           this.$toast.open({
             type: "is-danger",
             message: "ログインが必要です。"
@@ -377,7 +376,7 @@ export default {
             });
           }
         })
-        .catch(err => {
+        .catch(() => {
           this.$toast.open({
             type: "is-danger",
             message: "ログインが必要です。"
@@ -389,18 +388,18 @@ export default {
         return this.list.mondaiList.read.includes(this.$store.state.user.id);
       else return false;
     },
-    handleOk(evt) {
+    handleOk() {
       let obj = Object.assign({}, this.newMondai);
       this.$http
         .post(this.$endPoint("/api/mondaiList/" + this.$route.params.id + "/addmondai"), obj)
-        .then(data => {
+        .then(() => {
             this.fetchList();
             this.$toast.open({
               type: "is-success",
               message: "問題を追加しました。"
             });
         })
-        .catch(err => {
+        .catch(() => {
           this.$toast.open({
             type: "is-danger",
             message: "ログインが必要です。"

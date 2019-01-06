@@ -56,9 +56,6 @@ export default {
           return y.id - x.id
         })
       })
-      .catch(function (error) {
-        console.log(error)
-      })
   },
   methods: {
     url: function (id) {

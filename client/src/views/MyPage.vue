@@ -133,7 +133,6 @@ export default {
     if (data) {
       this.profile = data
     }
-    let vm = this
     this.$http.get(this.$endPoint('/api/mypage'))
       .then(res => {
         this.profile = res.data
@@ -161,15 +160,12 @@ export default {
           })
         this.$localStorage.set('profile', this.profile)
       })
-      .catch(function (error) {
-        console.log(error)
-      })
   },
   methods: {
     url: function (id) {
       return '/mondaiList/show/' + id
     },
-    handleOk: function (evt) {
+    handleOk() {
       this.$http.post(this.$endPoint('/api/profile/edit'), this.profile)
       this.isEditProfileModalActive = false
     }

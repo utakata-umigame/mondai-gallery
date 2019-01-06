@@ -234,9 +234,6 @@ export default {
         vm.mondaiList = sorted;
         vm.$localStorage.set("mondaiList", vm.mondaiList);
       })
-      .catch(function(error) {
-        console.log(error);
-      });
     this.$http
       .get(this.$endPoint("/api/acceptedList"))
       .then(function(response) {
@@ -246,9 +243,6 @@ export default {
         });
         vm.acceptedList = sorted;
       })
-      .catch(function(error) {
-        console.log(error);
-      });
   },
   methods: {
     url: function(id) {

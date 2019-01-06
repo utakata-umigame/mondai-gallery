@@ -41,7 +41,6 @@ export default {
         })
         .catch(function (err) {
           if (err) {
-            console.log(err)
             vm.$toast.open({
               message: 'サーバーのエラーです。',
               type: 'is-danger'
