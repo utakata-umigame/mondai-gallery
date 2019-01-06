@@ -29,7 +29,7 @@
       :height="1000"
       :nodes="nodes"
       :links="links"
-      linkColor="#ffeaa7"
+      background="#fafafa"
       :editable="editable"
       :labels="{
         edit: 'Edit',
