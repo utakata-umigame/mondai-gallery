@@ -1,6 +1,8 @@
 <template>
   <Timeline
     :timeline-items="timeline"
+    :unique-year="true"
+    order="desc"
     message-when-no-items="まだ登録されていません。"/>
 </template>
 <script>
@@ -15,7 +17,14 @@ export default {
   computed: {
     timeline () {
       if (this.timelineItems.length === 0) return []
-      let years = this.timelineItems.map(x => new Date(x.date).getFullYear())
+      const res = this.timelineItems.map((item) => {
+        return {
+          from: new Date(item.date),
+          title: item.title,
+          description: item.description
+        }
+      })
+      /*let years = this.timelineItems.map(x => new Date(x.date).getFullYear())
       let data = this.timelineItems.map(x => {
         return {
           nameMonth: this.formatDate(new Date(x.date)),
@@ -35,7 +44,7 @@ export default {
           },
           items: sorted.filter(x => x.date.getFullYear() === y)
         })
-      })
+      })*/
       return res
     },
     day: () => ({
