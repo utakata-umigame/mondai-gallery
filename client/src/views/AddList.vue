@@ -35,14 +35,6 @@
               <option value="question">謎</option>
             </b-select>
           </b-field>
-          <b-field label="リストの説明">
-            <b-input
-              v-model="mondaiList.description"
-              placeholder="説明"
-              type="textarea"
-              maxlength="200"
-            ></b-input>
-          </b-field>
           <b-field label="タグをつける(10個まで)">
             <b-taginput
               v-model="mondaiList.tags"
@@ -55,6 +47,23 @@
           <div class="field">
             <b-checkbox v-model="mondaiList.fromMyMondais">自作問題のみのリストの場合はチェック</b-checkbox>
           </div>
+        </div>
+      </b-tab-item>
+      <b-tab-item label="本文">
+        <div class="columns">
+          <div class="column">
+            <b>プレビュー</b>
+            <div id="markdown" v-html="renderMarkdown(mondaiList.description)"></div>
+          </div>
+          <b-field label="本文(Markdown)" class="column">
+            <b-input
+              v-model="mondaiList.description"
+              placeholder="Content"
+              type="textarea"
+              :rows="10"
+              maxlength="2000"
+            ></b-input>
+          </b-field>
         </div>
       </b-tab-item>
       <b-tab-item label="問題の追加/編集/削除">
@@ -295,7 +304,9 @@
   </div>
 </template>
 <script>
+import markdown from "@/markdown.js";
 export default {
+  mixins: [markdown],
   data() {
     return {
       activeTab: 0,
@@ -562,3 +573,6 @@ export default {
   }
 };
 </script>
+<style scoped>
+</style>
+

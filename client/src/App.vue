@@ -146,6 +146,25 @@ export default {
   color: #2c3e50;
   background: #fefefe;
 }
+div > #markdown > h1 {
+  font-size: 2rem;
+}
+div > #markdown > h2 {
+  font-size: 1.8rem;
+}
+div > #markdown > h3 {
+  font-size: 1.6rem;
+}
+div > #markdown > ul {
+  margin: 1em 0;
+  padding-left: 40px;
+  list-style-type: disc;
+}
+#markdown > ol {
+  margin: 1em 0;
+  padding-left: 40px;
+  list-style-type: decimal;
+}
 h2.title {
   text-align: center;
 }

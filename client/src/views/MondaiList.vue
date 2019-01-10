@@ -106,6 +106,7 @@
           <div class="card-header">
             <p class="card-header-title">概要</p>
           </div>
+          <div v-html="renderMarkdown(list.mondaiList.description)"></div>
           <div class="card-content">
             <p class="multiline">{{list.mondaiList.description}}</p>
           </div>
@@ -221,7 +222,9 @@ import SiteChart from "@/components/SiteChart.vue";
 import AuthorChart from "@/components/AuthorChart.vue";
 import GenreChart from "@/components/GenreChart.vue";
 
+import marked from "@/markdown.js"
 export default {
+  mixins: [marked],
   components: {
     "simple-mondai": SimpleMondaiView,
     SimpleListLinkView,
