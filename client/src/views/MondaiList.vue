@@ -20,65 +20,72 @@
         </li>
       </ul>
     </nav>
+      <div class="section has-background-white mb">
+        <div class="media">
+          <figure class="media-left">
+            <p class="image is-128x128">
+              <img :src="picture[list.mondaiList.picture] || picture['puzzle']" alt="Placeholder image">
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <div>
+                <p class="title is-3">{{list.mondaiList.name}}</p>
+                <p class="subtitle is-4">
+                  <img
+                    :src="list.mondaiList.editor.picUrl"
+                    v-if="list.mondaiList.editor.picUrl"
+                    width="32"
+                    height="32"
+                    alt="No Image"
+                  >
+                  <b-icon
+                    v-else
+                    icon="account-box"
+                    :style="{'color': list.mondaiList.editor.color||'#555'}"
+                  />
+                  <a @click="to(profileUrl())">{{list.mondaiList.editor.nickname}}</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <b-taglist>
+            <b-tag class="is-primary" v-if="list.mondaiList.fromMyMondais">自作問題</b-tag>
+            <b-tag v-for="tag in list.mondaiList.tags" :key="tag">{{tag}}</b-tag>
+          </b-taglist>
+          <div v-if="!isRead()" class="buttons has-addons">
+            <span class="button is-light is-small" @click="read">
+              <b-icon size="is-small" icon="check"/>
+              <span>読んだ！</span>
+            </span>
+            <span
+              v-if="list.mondaiList.read.length"
+              class="button is-info is-small"
+            >{{list.mondaiList.read.length}}</span>
+          </div>
+          <div v-else class="buttons has-addons">
+            <span class="button is-primary is-small" @click="unread">
+              <b-icon size="is-small" icon="check"/>
+              <span>読んだ！済</span>
+            </span>
+            <span
+              v-if="list.mondaiList.read.length"
+              class="button is-info is-small"
+            >{{list.mondaiList.read.length}}</span>
+          </div>
+        </div>
+        <div id="markdown" class="content" v-html="renderMarkdown(list.mondaiList.description)"></div>
+        <footer class="card-footer" v-if="list.isMine">
+          <a class="card-footer-item" @click="$router.push(editUrl())">
+            <b-icon icon="pencil"></b-icon>
+            <span>編集</span>
+          </a>
+        </footer>
+      </div>
     <div class="columns">
       <div class="column is-one-third">
-        <div class="card mb">
-          <div class="card-image">
-            <figure class="image is-16by9">
-              <img
-                :src="picture[list.mondaiList.picture] || picture['puzzle']"
-                alt="Placeholder image"
-              >
-            </figure>
-          </div>
-          <div class="card-content">
-            <p class="title is-4">{{list.mondaiList.name}}</p>
-            <p class="subtitle is-6">
-              <img
-                :src="list.mondaiList.editor.picUrl"
-                v-if="list.mondaiList.editor.picUrl"
-                width="32"
-                height="32"
-                alt="No Image"
-              >
-              <b-icon
-                v-else
-                icon="account-box"
-                :style="{'color': list.mondaiList.editor.color||'#555'}"
-              />
-              <a @click="to(profileUrl())">{{list.mondaiList.editor.nickname}}</a>
-            </p>
-            <b-taglist>
-              <b-tag v-for="item in list.mondaiList.tags" :key="item">{{item}}</b-tag>
-            </b-taglist>
-            <div v-if="!isRead()" class="buttons has-addons">
-              <span class="button is-light is-small" @click="read">
-                <b-icon size="is-small" icon="check"/>
-                <span>読んだ！</span>
-              </span>
-              <span
-                v-if="list.mondaiList.read.length"
-                class="button is-info is-small"
-              >{{list.mondaiList.read.length}}</span>
-            </div>
-            <div v-else class="buttons has-addons">
-              <span class="button is-primary is-small" @click="unread">
-                <b-icon size="is-small" icon="check"/>
-                <span>読んだ！済</span>
-              </span>
-              <span
-                v-if="list.mondaiList.read.length"
-                class="button is-info is-small"
-              >{{list.mondaiList.read.length}}</span>
-            </div>
-          </div>
-          <footer class="card-footer" v-if="list.isMine">
-            <a class="card-footer-item" @click="$router.push(editUrl())">
-              <b-icon icon="pencil"></b-icon>
-              <span>編集</span>
-            </a>
-          </footer>
-        </div>
         <b-collapse class="card">
           <header slot="trigger" slot-scope="props" class="card-header">
             <p class="card-header-title">統計</p>
@@ -102,9 +109,6 @@
         </b-collapse>
       </div>
       <div class="column is-two-thirds">
-        <div class="card mb">
-          <div class="card-content" v-html="renderMarkdown(list.mondaiList.description)"></div>
-        </div>
         <b-collapse class="card mb" :open="false">
           <div slot="trigger" slot-scope="props" class="card-header">
             <p class="card-header-title">フィルター</p>
