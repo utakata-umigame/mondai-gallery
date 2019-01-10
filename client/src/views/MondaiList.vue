@@ -103,9 +103,6 @@
       </div>
       <div class="column is-two-thirds">
         <div class="card mb">
-          <div class="card-header">
-            <p class="card-header-title">概要</p>
-          </div>
           <div class="card-content" v-html="renderMarkdown(list.mondaiList.description)"></div>
         </div>
         <b-collapse class="card mb" :open="false">
