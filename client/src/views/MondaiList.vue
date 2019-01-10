@@ -106,10 +106,7 @@
           <div class="card-header">
             <p class="card-header-title">概要</p>
           </div>
-          <div v-html="renderMarkdown(list.mondaiList.description)"></div>
-          <div class="card-content">
-            <p class="multiline">{{list.mondaiList.description}}</p>
-          </div>
+          <div class="card-content" v-html="renderMarkdown(list.mondaiList.description)"></div>
         </div>
         <b-collapse class="card mb" :open="false">
           <div slot="trigger" slot-scope="props" class="card-header">
