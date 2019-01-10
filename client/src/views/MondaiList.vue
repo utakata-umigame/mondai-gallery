@@ -77,8 +77,8 @@
           </div>
         </div>
         <div id="markdown" class="content" v-html="renderMarkdown(list.mondaiList.description)"></div>
-        <footer class="card-footer" v-if="list.isMine">
-          <a class="card-footer-item" @click="$router.push(editUrl())">
+        <footer v-if="list.isMine">
+          <a class="" @click="$router.push(editUrl())">
             <b-icon icon="pencil"></b-icon>
             <span>編集</span>
           </a>
