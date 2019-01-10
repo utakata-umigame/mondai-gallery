@@ -3,7 +3,7 @@
     <b-tooltip
       class="fill"
       type="is-info"
-      :label="item.description"
+      :label="item.description | truncate"
       position="is-top"
       size="is-large"
       multilined
