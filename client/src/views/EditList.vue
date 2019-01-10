@@ -53,7 +53,7 @@
         <div class="columns">
           <div class="column">
             <b>プレビュー</b>
-            <div id="markdown" v-html="renderMarkdown(mondaiList.description)"></div>
+            <div id="markdown" class="content" v-html="renderMarkdown(mondaiList.description)"></div>
           </div>
           <b-field label="本文(Markdown)" class="column">
             <b-input
