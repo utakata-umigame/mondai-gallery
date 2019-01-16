@@ -42,7 +42,7 @@
             </div>
           </div>
         </div>
-        <div class="card" v-if="profile.update">
+        <!--<div class="card" v-if="profile.update">
           <header class="card-header">
             <p class="card-header-title">最新の更新</p>
           </header>
@@ -50,7 +50,7 @@
             <p>{{profile.update}}</p>
             <p>{{profile.updateDate}}</p>
           </div>
-        </div>
+        </div>-->
         <div class="">
           <b-tabs v-model="activeTab" position="is-centered">
             <b-tab-item icon="format-list-bulleted">
