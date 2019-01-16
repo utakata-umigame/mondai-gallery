@@ -20,10 +20,10 @@
         </li>
       </ul>
     </nav>
-    <div class="columns">
-      <div class="column is-one-third">
-        <div id="profile" class="card">
-          <div class="card-content">
+    <div class="">
+      <div class="has-background-white">
+        <div id="profile" class="">
+          <div class="section">
             <div class="media">
               <div class="media-left">
                 <img :src="profile.picUrl" v-if="profile.picUrl" width="48" height="48" alt="No Image">
@@ -32,12 +32,12 @@
                 </figure>
               </div>
               <div class="media-content">
-                <p class="title is-4">{{profile.nickname}}</p>
+                <p class="title">{{profile.nickname}}</p>
               </div>
             </div>
             <div class="card-text">
               <account-link :profile="profile"></account-link>
-              <p class="multiline mb">{{ profile.bio }}</p>
+              <div class="content mb" v-html="renderMarkdown(profile.bio)"></div>
               <p>登録日時：{{profile.signup_date}}</p>
             </div>
           </div>
@@ -51,20 +51,20 @@
             <p>{{profile.updateDate}}</p>
           </div>
         </div>
-      </div>
-      <div class="column">
-        <b-tabs v-model="activeTab" position="is-centered">
-          <b-tab-item icon="format-list-bulleted">
-            <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
-          </b-tab-item>
-          <b-tab-item icon="calendar-today">
-            <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
-          </b-tab-item>
-          <b-tab-item icon="flag" class="card section">
-            <MilestoneView
-              :timelineItems="timeline" />
-          </b-tab-item>
-        </b-tabs>
+        <div class="">
+          <b-tabs v-model="activeTab" position="is-centered">
+            <b-tab-item icon="format-list-bulleted">
+              <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
+            </b-tab-item>
+            <b-tab-item icon="calendar-today">
+              <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
+            </b-tab-item>
+            <b-tab-item icon="flag" class="section">
+              <MilestoneView
+                :timelineItems="timeline" />
+            </b-tab-item>
+          </b-tabs>
+        </div>
       </div>
     </div>
   </div>
@@ -72,7 +72,9 @@
 <script>
 import ScheduleView from '@/components/ScheduleView'
 import MilestoneView from '@/components/MilestoneView'
+import marked from "@/markdown.js"
 export default {
+  mixins: [marked],
   components: {
     ScheduleView,
     MilestoneView

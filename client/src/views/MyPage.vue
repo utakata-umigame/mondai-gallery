@@ -20,9 +20,9 @@
         </li>
       </ul>
     </nav>
-    <div class="columns">
-      <div class="column is-one-third">
-        <div id="profile" class="card">
+    <div class="">
+      <div class="has-background-white">
+        <div id="profile" class="">
           <div class="card-content">
             <div class="media">
               <div class="media-left">
@@ -32,38 +32,36 @@
                 </figure>
               </div>
               <div class="media-content">
-                <p class="title is-4">{{profile.nickname}}</p>
-                <p class="subtitle is-6">{{profile.username}}</p>
+                <p class="title">{{profile.nickname}}</p>
+                <p class="subtitle">{{profile.username}}</p>
               </div>
             </div>
             <div class="card-text">
               <account-link :profile="profile"></account-link>
-              <p class="multiline mb">{{ profile.bio }}</p>
+              <div class="content mb" v-html="renderMarkdown(profile.bio)"></div>
               <p>登録日時：{{profile.signup_date}}</p>
             </div>
           </div>
-          <footer class="card-footer">
-            <a class="card-footer-item" @click="$router.push('/mypage/edit')"><b-icon icon="settings"></b-icon><span>個人設定</span></a>
+          <a class="" @click="$router.push('/mypage/edit')"><b-icon icon="settings"></b-icon><span>個人設定</span></a>
+        </div>
+        <div class="">
+          <b-tabs v-model="activeTab" position="is-centered">
+            <b-tab-item icon="format-list-bulleted">
+              <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
+            </b-tab-item>
+            <b-tab-item icon="calendar-today">
+              <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
+            </b-tab-item>
+            <b-tab-item icon="flag" class="section">
+              <MilestoneView :timelineItems="timeline" />
+            </b-tab-item>
+          </b-tabs>
+          <footer class="panel-footer">
+            <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">リストを追加</router-link>
+            <router-link v-if="activeTab===1" :to="{ name: 'EditSchedule', params: {id: this.profile.id} }">スケジュールを編集</router-link>
+            <router-link v-if="activeTab===2" :to="{ name: 'EditMilestone', params: {id: this.profile.id}}">マイルストーンを編集</router-link>
           </footer>
         </div>
-      </div>
-      <div class="column">
-        <b-tabs v-model="activeTab" position="is-centered" class="block">
-          <b-tab-item icon="format-list-bulleted">
-            <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
-          </b-tab-item>
-          <b-tab-item icon="calendar-today">
-            <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
-          </b-tab-item>
-          <b-tab-item icon="flag" class="card section">
-            <MilestoneView :timelineItems="timeline" />
-          </b-tab-item>
-        </b-tabs>
-        <footer class="panel-footer">
-          <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">リストを追加</router-link>
-          <router-link v-if="activeTab===1" :to="{ name: 'EditSchedule', params: {id: this.profile.id} }">スケジュールを編集</router-link>
-          <router-link v-if="activeTab===2" :to="{ name: 'EditMilestone', params: {id: this.profile.id}}">マイルストーンを編集</router-link>
-        </footer>
       </div>
     </div>
     <a class="button is-primary is-outlined" v-if="tumblrToken.token"><router-link to="/blog">Tumblr投稿</router-link></a>
@@ -73,7 +71,9 @@
 <script>
 import ScheduleView from '@/components/ScheduleView'
 import MilestoneView from '@/components/MilestoneView'
+import marked from '@/markdown.js'
 export default {
+  mixins: [marked],
   components: {
     ScheduleView,
     MilestoneView

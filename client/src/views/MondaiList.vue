@@ -22,16 +22,11 @@
     </nav>
       <div class="section has-background-white mb">
         <div class="media">
-          <figure class="media-left">
-            <p class="image is-128x128">
-              <img :src="picture[list.mondaiList.picture] || picture['puzzle']" alt="Placeholder image">
-            </p>
-          </figure>
           <div class="media-content">
             <div class="content">
               <div>
                 <p class="title is-3">{{list.mondaiList.name}}</p>
-                <p class="subtitle is-4">
+                <p class="subtitle is-4 mb">
                   <img
                     :src="list.mondaiList.editor.picUrl"
                     v-if="list.mondaiList.editor.picUrl"

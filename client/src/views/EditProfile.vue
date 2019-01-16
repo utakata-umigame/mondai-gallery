@@ -54,7 +54,7 @@
             </b-field>
             <b-input type="color" class="mb" v-model="profile.color"></b-input>
             <b-field label="自己紹介">
-              <b-input type="textarea" v-model.trim="profile.bio" placeholder="自己紹介" :rows="6"></b-input>
+              <b-input type="textarea" v-model.trim="profile.bio" placeholder="自己紹介" :rows="6" :maxlength="2000"></b-input>
             </b-field>
           </section>
         </div>

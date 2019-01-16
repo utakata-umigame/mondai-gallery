@@ -8,8 +8,8 @@
     </div>
     <div class="level-right">
       <span class="level-item">{{item.author}}</span>
-      <b-tag class="is-primary level-item">{{site[item.site].name}}</b-tag>
-      <b-tag class="is-info level-item">{{genre[item.genre]}}</b-tag>
+      <!--<b-tag class="is-primary level-item">{{site[item.site].name}}</b-tag>
+      <b-tag class="is-info level-item">{{genre[item.genre]}}</b-tag>-->
     </div>
   </div>
 </template>
