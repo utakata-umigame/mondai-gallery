@@ -15,6 +15,9 @@ export default {
   data() {
     return {
       graph: {
+        width: 1000,
+        height: 1000,
+        background: "#ffffff",
         nodes: [],
         links: []
       }
