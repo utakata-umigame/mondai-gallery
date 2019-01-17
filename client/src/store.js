@@ -51,7 +51,7 @@ export default new Vuex.Store({
       {
         key: 'latethink',
         name: 'ラテシン',
-        profileUrl: 'http://sui-hei.net/mondai/profile/'
+        profileUrl: 'http://sui-hei.net/users/profile/'
       },
       {
         key: 'cindy',
