@@ -13,8 +13,8 @@
       </ul>
     </nav>
     <div class="columns">
-      <div class="column is-8">
-        <b-tabs v-model="activeTab" position="is-centered" @change="changed">
+      <div class="column is-8 has-background-white">
+        <b-tabs v-model="activeTab" position="is-centered" @change="changed" expanded>
           <b-tab-item icon="format-list-bulleted">
             <all-list />
           </b-tab-item>
