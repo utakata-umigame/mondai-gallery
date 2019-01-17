@@ -37,8 +37,8 @@
               </div>
             </div>
             <account-link :profile="profile"></account-link>
+            <a class="" @click="$router.push('/mypage/edit')"><b-icon icon="settings"></b-icon><span>個人設定</span></a>
           </section>
-          <a class="" @click="$router.push('/mypage/edit')"><b-icon icon="settings"></b-icon><span>個人設定</span></a>
         </div>
         <div class="">
           <b-tabs v-model="activeTab" position="is-centered">
@@ -50,19 +50,17 @@
             </b-tab-item>
             <b-tab-item icon="format-list-bulleted">
               <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
+              <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">リストを追加</router-link>
             </b-tab-item>
             <b-tab-item icon="calendar-today">
               <ScheduleView :schedule="schedule" :color="profile.color"></ScheduleView>
+              <router-link v-if="activeTab===1" :to="{ name: 'EditSchedule', params: {id: this.profile.id} }">スケジュールを編集</router-link>
             </b-tab-item>
             <b-tab-item icon="flag" class="section">
               <MilestoneView :timelineItems="timeline" />
+              <router-link v-if="activeTab===2" :to="{ name: 'EditMilestone', params: {id: this.profile.id}}">マイルストーンを編集</router-link>
             </b-tab-item>
           </b-tabs>
-          <footer class="panel-footer">
-            <router-link v-if="activeTab===0" :to="{ name: 'AddList', params: {} }">リストを追加</router-link>
-            <router-link v-if="activeTab===1" :to="{ name: 'EditSchedule', params: {id: this.profile.id} }">スケジュールを編集</router-link>
-            <router-link v-if="activeTab===2" :to="{ name: 'EditMilestone', params: {id: this.profile.id}}">マイルストーンを編集</router-link>
-          </footer>
         </div>
       </div>
     </div>
