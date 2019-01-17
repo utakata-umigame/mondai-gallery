@@ -23,7 +23,7 @@
     <div class="">
       <div class="has-background-white">
         <div id="profile" class="">
-          <div class="section">
+          <section class="section">
             <div class="media">
               <div class="media-left">
                 <img :src="profile.picUrl" v-if="profile.picUrl" width="48" height="48" alt="No Image">
@@ -35,12 +35,8 @@
                 <p class="title">{{profile.nickname}}</p>
               </div>
             </div>
-            <div class="card-text">
-              <account-link :profile="profile"></account-link>
-              <div class="content mb" v-html="renderMarkdown(profile.bio)"></div>
-              <p>登録日時：{{profile.signup_date}}</p>
-            </div>
-          </div>
+            <account-link :profile="profile"></account-link>
+          </section>
         </div>
         <!--<div class="card" v-if="profile.update">
           <header class="card-header">
@@ -53,6 +49,12 @@
         </div>-->
         <div class="">
           <b-tabs v-model="activeTab" position="is-centered">
+            <b-tab-item icon="account-card-details">
+              <div class="section">
+                <div class="content mb" v-html="renderMarkdown(profile.bio)"></div>
+                <p>登録日時：{{profile.signup_date}}</p>
+              </div>
+            </b-tab-item>
             <b-tab-item icon="format-list-bulleted">
               <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
             </b-tab-item>
