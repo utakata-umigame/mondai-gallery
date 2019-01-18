@@ -1,26 +1,24 @@
 <template>
   <div>
-    <section class="hero is-primary is-large">
-      <div class="hero-body">
-        <div>
-          <h1 class="title is-1 revalia">Mondai Gallery</h1>
-          <h2 class="subtitle">水平思考問題プレイヤーのためのプロフィールサイト</h2>
-          <router-link class="button is-primary is-outlined is-inverted is-medium" to="/home">ホームへ</router-link>
-          <router-link class="button is-primary is-outlined is-inverted is-medium" to="/login">ログイン</router-link>
-          <router-link class="button is-primary is-outlined is-inverted is-medium" to="/signup">新規登録</router-link>
+    <section id="hero" class="hero is-primary is-large">
+      <div id="hero-content" class="hero-body">
+        <div class="column is-8">
+            <h1 class="title is-1 revalia">Mondai Gallery</h1>
+            <h1 class="subtitle">水平思考問題プレイヤーのためのプロフィールサイト</h1>
+            <router-link class="button is-info is-inverted is-medium mb" to="/signup">新規登録</router-link>
         </div>
       </div>
     </section>
-    <section class="hero is-medium is-white is-bold">
+    <section id="hero-reverse" class="hero is-large is-primary">
       <div class="hero-body">
         <div class="columns">
           <div class="column">
-            <b-icon icon="format-list-bulleted" type="is-primary" size="is-large"/>
+            <b-icon icon="format-list-bulleted" size="is-large"/>
             <p class="subtitle">問題リスト</p>
             <p>サイト横断型の問題リンク集を作成可能</p>
           </div>
           <div class="column">
-            <b-icon icon="calendar-today" type="is-primary" size="is-large"/>
+            <b-icon icon="calendar-today" size="is-large"/>
             <p class="subtitle">
               <span class="mr">スケジュール</span>
               <b-tag class="is-info">BETA</b-tag>
@@ -28,7 +26,7 @@
             <p>出題予定やイベントの締め切り日を管理</p>
           </div>
           <div class="column">
-            <b-icon icon="flag" type="is-primary" size="is-large"/>
+            <b-icon icon="flag" size="is-large"/>
             <p class="subtitle">
               <span class="mr">マイルストーン</span>
               <b-tag class="is-danger">DEV</b-tag>
@@ -54,6 +52,34 @@ export default {
   text-align: center;
 }
 .button {
-  margin: auto 5px;
+  margin: 5px;
+  padding: 20px;
+}
+#hero {
+  position: relative;
+  height: 100%;
+}
+#hero:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  content: "";
+  background: #0984e3;
+  width: 100vw;
+  height: 100%;
+  transform-origin: left top;
+  transform: skewY(3deg);
+  z-index: 101;
+}
+.hero-body {
+  z-index: 200;
+}
+.blur {
+  transition: filter .3s ease;
+  filter: blur(3px);
+}
+.blur:hover {
+  z-index: 200;
+  filter: blur(0);
 }
 </style>

@@ -3,7 +3,7 @@
     <div id="heading">
       <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <router-link class="navbar-item revalia" to="/">
+          <router-link class="navbar-item revalia" to="/home">
             <span>Mondai Gallery</span>
           </router-link>
           <div class="navbar-burger burger" @click="showNav = !showNav" data-target="navbar1">
@@ -14,10 +14,6 @@
         </div>
         <div id="navbar1" class="navbar-menu" :class="{'is-active': showNav}">
           <div class="navbar-start">
-            <router-link class="navbar-item" to="/home">
-              <b-icon icon="home"></b-icon>
-              <span>ホーム</span>
-            </router-link>
             <router-link class="navbar-item" to="/add">
               <b-icon icon="plus-circle"></b-icon>
               <span>リスト</span>
