@@ -1,25 +1,5 @@
 <template>
   <div>
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-      <ul>
-        <li>
-          <router-link to="/home">
-            <span class="icon is-small is-primary">
-              <b-icon icon="home"/>
-            </span>
-            <span>ホーム</span>
-          </router-link>
-        </li>
-        <li class="is-active">
-          <a href="#">
-            <span class="icon is-small is-primary">
-              <b-icon icon="settings"></b-icon>
-            </span>
-            <span>個人設定</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
     <div class="columns">
       <aside class="menu column is-one-quarter">
         <p class="menu-label">Settings</p>
