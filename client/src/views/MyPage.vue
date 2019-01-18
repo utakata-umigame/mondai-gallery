@@ -1,25 +1,5 @@
 <template>
   <div>
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-      <ul>
-        <li>
-          <router-link to="/home">
-            <span class="icon is-small is-primary">
-              <b-icon icon="home"/>
-            </span>
-            <span>ホーム</span>
-          </router-link>
-        </li>
-        <li class="is-active">
-          <a href="#">
-            <span class="icon is-small is-primary">
-              <b-icon icon="home-account"/>
-            </span>
-            <span>マイページ</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
     <div class="">
       <div class="has-background-white">
         <div id="profile" class="">
