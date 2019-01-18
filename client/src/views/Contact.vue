@@ -1,26 +1,6 @@
 <template>
   <div class="">
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-      <ul>
-        <li>
-          <router-link to="/home">
-            <span class="icon is-small is-primary">
-              <b-icon icon="home"/>
-            </span>
-            <span>ホーム</span>
-          </router-link>
-        </li>
-        <li class="is-active">
-          <a href="#">
-            <span class="icon is-small is-primary">
-              <b-icon icon="contacts"/>
-            </span>
-            <span>お問い合わせ</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="card section mb">
+    <div class="has-background-white section mb">
       <p>サイトのレイアウト、機能等について要望がございましたらお気軽にご連絡ください。サービス向上の参考にいたします。</p>
       <div class="columns">
         <section class="section column">
