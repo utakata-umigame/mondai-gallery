@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-tabs v-model="activeTab" position="is-centered" class="has-background-white" expanded>
+  <div class="has-background-white">
+    <b-tabs v-model="activeTab" position="is-centered" expanded>
       <b-tab-item label="リスト情報">
         <div class="mb-2">
           <b-field label="リスト名">
