@@ -63,6 +63,7 @@ export default {
   position: relative;
   height: 100%;
   background-image: url(../assets/bg.svg);
+  background-size: 30em;
 }
 #hero:before {
   position: absolute;
