@@ -69,7 +69,7 @@ export default {
     margin-bottom: 300px;
 }
 .header {
-    margin: 50px auto;
+    padding: 50px 0;
     text-align: center;
 }
 .foot {
@@ -82,14 +82,12 @@ export default {
     color: #333;
 }
 .first-item {
-    border-top: 1px solid #dddddd;
 }
 .list-item {
     color: #333;
     display: block;
     box-sizing: border-box;
-    padding: 15px;
-    border-bottom: 1px solid #dddddd;
+    padding: 10px;
 }
 .list-item:hover {
     background: #eeeeee;
