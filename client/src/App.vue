@@ -1,6 +1,7 @@
 <template>
   <div id="app" class="has-background-light">
-    <div id="heading">
+    <SideMenu :user="user" class="side" />
+    <!--<div id="heading">
       <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <router-link class="navbar-item" to="/home">
@@ -55,8 +56,8 @@
           </div>
         </div>
       </nav>
-    </div>
-    <div :class="{'container is-fluid': $route.path !== '/'}">
+    </div>-->
+    <div class="main">
       <router-view class="page"/>
     </div>
     <footer class="footer">
@@ -73,7 +74,11 @@
   </div>
 </template>
 <script>
+import SideMenu from "@/components/SideMenu";
 export default {
+  components: {
+    SideMenu
+  },
   localStorage: {
     user: {
       type: Object,
@@ -127,6 +132,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   background: #fefefe;
+}
+.main {
+  margin-left: 300px;
 }
 .title {
   font-family: "M Plus 1p", sans-serif;
@@ -198,5 +206,19 @@ h2.title {
 }
 .scrollX {
   overflow-x: scroll;
+}
+.footer {
+  margin-left: 300px;
+}
+@media screen and (max-width: 900px) {
+    .side {
+        display: none;
+    }
+    .main {
+      margin-left: 0;
+    }
+    .footer {
+      margin-left: 0;
+    }
 }
 </style>
