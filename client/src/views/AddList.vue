@@ -1,5 +1,5 @@
 <template>
-  <div class="has-background-white">
+  <div class="section has-background-white">
     <b-tabs v-model="activeTab" position="is-centered" expanded>
       <b-tab-item label="リスト情報">
         <div>

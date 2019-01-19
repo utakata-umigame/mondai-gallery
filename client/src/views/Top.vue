@@ -2,9 +2,9 @@
   <div>
     <section id="hero" class="hero is-primary is-large">
       <div id="hero-content" class="hero-body">
-        <div class="column is-8">
-            <h1 class="title is-1 revalia">Mondai Gallery</h1>
-            <h1 class="subtitle">水平思考問題プレイヤーのためのプロフィールサイト</h1>
+        <div class="">
+            <h1 class="title is-1 raleway">MONDAI GALLERY</h1><br>
+            <h1 class="is-size-4">水平思考問題プレイヤーのためのプロフィールサイト</h1>
             <router-link class="button is-info is-inverted is-medium mb" to="/signup">新規登録</router-link>
         </div>
       </div>
@@ -50,6 +50,9 @@ export default {
 <style scoped>
 * {
   text-align: center;
+}
+.title {
+  font-weight:lighter;
 }
 .button {
   margin: 5px;

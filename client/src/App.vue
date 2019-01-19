@@ -3,7 +3,7 @@
     <div id="heading">
       <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <router-link class="navbar-item revalia" to="/home">
+          <router-link class="navbar-item" to="/home">
             <span>Mondai Gallery</span>
           </router-link>
           <div class="navbar-burger burger" @click="showNav = !showNav" data-target="navbar1">
@@ -120,13 +120,19 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Kosugi+Maru|Revalia|Sawarabi+Gothic");
+@import url("https://fonts.googleapis.com/css?family=Revalia|Sawarabi+Gothic|Noto+Sans+JP:100|M+PLUS+1p:500|Raleway+Dots");
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans JP", "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   background: #fefefe;
+}
+.title {
+  font-family: "M Plus 1p", sans-serif;
+}
+.subtitle {
+  font-family: "M Plus 1p", sans-serif;
 }
 div > #markdown > h1 {
   font-size: 2rem;
@@ -177,9 +183,8 @@ h2.title {
 .revalia {
   font-family: "Revalia", cursive;
 }
-.sawarabi-gothic {
-  font-family: "Sawarabi Gothic", sans-serif;
-  font-weight: lighter;
+.raleway {
+  font-family: "Raleway Dots", cursive;
 }
 .caption-light {
   font-family: "Kosugi Maru", sans-serif;
