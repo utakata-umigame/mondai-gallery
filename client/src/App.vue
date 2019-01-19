@@ -169,6 +169,7 @@ h2.title {
   padding: 15px 10px;
   width: 50px;
   height: 50px;
+  cursor: pointer;
 }
 .side {
   left: -300px;
