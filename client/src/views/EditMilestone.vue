@@ -1,5 +1,5 @@
 <template>
-  <div class="section">
+  <div class="section has-background-white">
     <h2 class="title"><span>マイルストーン</span><b-tag type="is-danger" size="is-medium">DEV</b-tag></h2>
     <p>この機能は開発段階です。</p>
     <button @click="add" class="button is-outlined is-primary mb"><b-icon icon="plus-circle"/><span>追加</span></button>
