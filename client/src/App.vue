@@ -175,22 +175,20 @@ h2.title {
   left: -300px;
 }
 .side.open {
-  transition: transform .6s;
+  transition: transform .5s ease;
   transform: translateX(300px);
 }
 .side.closed {
-  transition: transform .6s;
+  transition: transform .5s ease;
   transform: translateX(0);
 }
 .toggler.open {
-  transition-delay: .1s;
   transition: transform .5s;
-  transform: translateX(250px);
+  transform: translateX(300px) ease;
 }
 .toggler.closed {
-  transition-delay: .1s;
   transition: transform .5s;
-  transform: translateX(0);
+  transform: translateX(0) ease;
 }
 .toggler span{
   display: block;
