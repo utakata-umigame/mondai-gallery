@@ -1,83 +1,27 @@
 <template>
   <div id="app" class="has-background-light">
-    <div class="toggler" @click="showNav = !showNav" :class="{'closed': !showNav, 'open': showNav}">
+    <div class="toggler has-background-primary" @click="showNav = !showNav" :class="{'closed': !showNav, 'open': showNav}">
       <span></span>
       <span></span>
       <span></span>
     </div>
     <transition name="slide">
-      <SideMenu :user="user" class="side" @logout="logout" v-if="showNav" />
+      <SideMenu :user="user" class="side" @logout="logout" :class="{'open': showNav, 'closed': !showNav}"/>
     </transition>
-    <!--<div id="heading">
-      <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <router-link class="navbar-item" to="/home">
-            <span>Mondai Gallery</span>
-          </router-link>
-          <div class="navbar-burger burger" @click="showNav = !showNav" data-target="navbar1">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-        <div id="navbar1" class="navbar-menu" :class="{'is-active': showNav}">
-          <div class="navbar-start">
-            <router-link class="navbar-item" to="/add">
-              <b-icon icon="plus-circle"></b-icon>
-              <span>リスト</span>
-            </router-link>
-            <router-link class="navbar-item" to="/contact">
-              <b-icon icon="contacts"></b-icon>
-              <span>お問い合わせ</span>
-            </router-link>
-            <router-link class="navbar-item" to="/graph">
-              <span>グラフ</span>
-            </router-link>
-          </div>
-          <div class="navbar-end">
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">ようこそ、{{user.nickname}}さん</a>
-              <div class="navbar-dropdown">
-                <router-link class="navbar-item" to="/mypage" v-if="user.username">
-                  <b-icon icon="account"></b-icon>
-                  <span>マイページ</span>
-                </router-link>
-                <router-link class="navbar-item" to="/mypage/edit" v-if="user.username">
-                  <b-icon icon="settings"></b-icon>
-                  <span>個人設定</span>
-                </router-link>
-                <a class="navbar-item" @click="logout()" v-if="user.username">
-                  <b-icon icon="logout"></b-icon>
-                  <span>ログアウト</span>
-                </a>
-                <router-link class="navbar-item" to="/login" v-else>
-                  <b-icon icon="login"></b-icon>
-                  <span>ログイン</span>
-                </router-link>
-                <router-link class="navbar-item" to="/signup">
-                  <b-icon icon="account-plus"></b-icon>
-                  <span>新規登録</span>
-                </router-link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>-->
     <div class="main">
       <router-view class="page"/>
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            <strong>Mondai Gallery</strong> by
+            <router-link to="/contact">人参</router-link>. The source code is licensed under
+            <a
+              href="http://opensource.org/licenses/mit-license.php"
+            >MIT</a>.
+          </p>
+        </div>
+      </footer>
     </div>
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          <strong>Mondai Gallery</strong> by
-          <router-link to="/contact">人参</router-link>. The source code is licensed under
-          <a
-            href="http://opensource.org/licenses/mit-license.php"
-          >MIT</a>.
-        </p>
-      </div>
-    </footer>
   </div>
 </template>
 <script>
@@ -139,6 +83,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   background: #fefefe;
+}
+.main {
+  margin-left: 50px;
 }
 .title {
   font-family: "M Plus 1p", sans-serif;
@@ -217,15 +164,27 @@ h2.title {
   left: 0;
   z-index: 9999;
   padding: 15px 10px;
-  background: #333;
   width: 50px;
   height: 50px;
 }
-.open {
+.side {
+  left: -300px;
+}
+.side.open {
+  transition: transform .6s;
+  transform: translateX(300px);
+}
+.side.closed {
+  transition: transform .6s;
+  transform: translateX(0);
+}
+.toggler.open {
+  transition-delay: .1s;
   transition: transform .5s;
   transform: translateX(250px);
 }
-.closed {
+.toggler.closed {
+  transition-delay: .1s;
   transition: transform .5s;
   transform: translateX(0);
 }
@@ -235,12 +194,15 @@ h2.title {
   height: 3px;
   background:#fff;
 }
-.slide-enter-active, .slide-leave-active {
-  transition: transform .6s;
-}
-.slide-enter, .slide-leave-to {
-  transform: translateX(-300px);
-}
-@media screen and (max-width: 900px) {
+@media screen and (min-width: 900px) {
+  .main {
+    margin-left: 300px;
+  }
+  .toggler {
+    display: none;
+  }
+  .closed {
+    left: 0;
+  }
 }
 </style>
