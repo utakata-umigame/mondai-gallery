@@ -158,6 +158,9 @@ h2.title {
 .scrollX {
   overflow-x: scroll;
 }
+.modal.is-active {
+  z-index: 200;
+}
 .toggler {
   position: fixed;
   top: 0;
