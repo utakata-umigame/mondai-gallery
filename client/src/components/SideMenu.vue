@@ -91,4 +91,7 @@ export default {
     padding: 15px;
     border-bottom: 1px solid #dddddd;
 }
+.list-item:hover {
+    background: #eeeeee;
+}
 </style>
