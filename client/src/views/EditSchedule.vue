@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="has-background-white">
     <h2 class="title"><span>スケジュール</span><b-tag type="is-info" size="is-medium">BETA</b-tag></h2>
     <div class="buttons has-addons">
       <span class="button mr">{{schedule.tasks.length}}/10</span>
