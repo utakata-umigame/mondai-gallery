@@ -1,6 +1,13 @@
 <template>
   <div id="app" class="has-background-light">
-    <SideMenu :user="user" class="side" @logout="logout" />
+    <div class="toggler" @click="showNav = !showNav" :class="{'closed': !showNav, 'open': showNav}">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <transition name="slide">
+      <SideMenu :user="user" class="side" @logout="logout" v-if="showNav" />
+    </transition>
     <!--<div id="heading">
       <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
@@ -133,9 +140,6 @@ export default {
   color: #2c3e50;
   background: #fefefe;
 }
-.main {
-  margin-left: 300px;
-}
 .title {
   font-family: "M Plus 1p", sans-serif;
 }
@@ -207,18 +211,36 @@ h2.title {
 .scrollX {
   overflow-x: scroll;
 }
-.footer {
-  margin-left: 300px;
+.toggler {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 15px 10px;
+  background: #333;
+  width: 50px;
+  height: 50px;
+}
+.open {
+  transition: transform .5s;
+  transform: translateX(250px);
+}
+.closed {
+  transition: transform .5s;
+  transform: translateX(0);
+}
+.toggler span{
+  display: block;
+  margin-bottom: 5px;
+  height: 3px;
+  background:#fff;
+}
+.slide-enter-active, .slide-leave-active {
+  transition: transform .6s;
+}
+.slide-enter, .slide-leave-to {
+  transform: translateX(-300px);
 }
 @media screen and (max-width: 900px) {
-    .side {
-        display: none;
-    }
-    .main {
-      margin-left: 0;
-    }
-    .footer {
-      margin-left: 0;
-    }
 }
 </style>

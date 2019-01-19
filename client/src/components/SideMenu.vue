@@ -58,7 +58,7 @@ export default {
 </script>
 <style scoped>
 #side-menu {
-    z-index: 9999;
+    z-index: 9998;
     position: fixed;
     height: 100vh;
     width: 300px;
