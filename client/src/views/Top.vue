@@ -35,6 +35,7 @@
           </div>
         </div>
       </div>
+      <a target="_blank" href="https://www.flaticon.com/packs/strategy-and-managemet-2">designed by Freepik from Flaticon</a>
     </section>
   </div>
 </template>
@@ -61,6 +62,7 @@ export default {
 #hero {
   position: relative;
   height: 100%;
+  background-image: url(../assets/bg.svg);
 }
 #hero:before {
   position: absolute;
@@ -71,7 +73,8 @@ export default {
   width: 100vw;
   height: 100%;
   transform-origin: left top;
-  transform: skewY(3deg);
+  /*transform: skewY(3deg);*/
+  opacity: 0.8;
   z-index: 101;
 }
 .hero-body {
