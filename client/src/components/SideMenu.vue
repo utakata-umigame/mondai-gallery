@@ -48,6 +48,11 @@ export default {
         user: {
             username: String
         }
+    },
+    methods: {
+        logout() {
+            this.$emit("logout");
+        }
     }
 }
 </script>

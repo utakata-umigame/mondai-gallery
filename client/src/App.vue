@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="has-background-light">
-    <SideMenu :user="user" class="side" />
+    <SideMenu :user="user" class="side" @logout="logout" />
     <!--<div id="heading">
       <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
