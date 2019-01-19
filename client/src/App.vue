@@ -183,12 +183,12 @@ h2.title {
   transform: translateX(0);
 }
 .toggler.open {
-  transition: transform .5s;
-  transform: translateX(300px) ease;
+  transition: transform .5s ease;
+  transform: translateX(300px);
 }
 .toggler.closed {
-  transition: transform .5s;
-  transform: translateX(0) ease;
+  transition: transform .5s ease;
+  transform: translateX(0);
 }
 .toggler span{
   display: block;
