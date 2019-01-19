@@ -75,11 +75,11 @@ export default {
   height: 100%;
   transform-origin: left top;
   /*transform: skewY(3deg);*/
-  opacity: 0.8;
+  opacity: 0.9;
   z-index: 101;
 }
 .hero-body {
-  z-index: 200;
+  z-index: 102;
 }
 .blur {
   transition: filter .3s ease;
