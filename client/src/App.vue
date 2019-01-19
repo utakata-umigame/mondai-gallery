@@ -120,7 +120,7 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Revalia|Sawarabi+Gothic|Noto+Sans+JP:100|M+PLUS+1p:500|Raleway+Dots");
+@import url("https://fonts.googleapis.com/css?family=Revalia|Sawarabi+Gothic|Noto+Sans+JP:300|M+PLUS+1p:500|Raleway+Dots");
 #app {
   font-family: "Noto Sans JP", "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
