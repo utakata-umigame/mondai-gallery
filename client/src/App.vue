@@ -162,7 +162,7 @@ h2.title {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 151;
   padding: 15px 10px;
   width: 50px;
   height: 50px;
