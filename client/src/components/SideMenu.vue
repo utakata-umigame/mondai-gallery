@@ -1,8 +1,8 @@
 <template>
     <div id="side-menu" class="has-background-light">
-        <div class="header revalia">
+        <div class="header revalia has-background-dark">
           <router-link class="no-deco" to="/home">
-            <span class="is-size-4">Mondai Gallery</span>
+            <span class="is-size-4 has-text-white">Mondai Gallery</span>
           </router-link>
         </div>
         <div class="items">
