@@ -218,6 +218,7 @@ h2.title {
   #side-menu {
     position: fixed;
     width: 100vw;
+    top: 0;
     right: 0;
     left: -100vw;
   }
