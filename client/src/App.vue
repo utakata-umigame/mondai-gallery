@@ -77,6 +77,9 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Revalia|Sawarabi+Gothic|Noto+Sans+JP:300|M+PLUS+1p:500|Raleway+Dots");
+html {
+  background-color: whitesmoke !important;
+}
 #app {
   font-family: "Noto Sans JP", "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -205,6 +208,40 @@ h2.title {
   }
   .closed {
     left: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .main {
+    margin-top: 50px;
+    margin-left: 0;
+  }
+  #side-menu {
+    position: fixed;
+    width: 100vw;
+    right: 0;
+    left: -100vw;
+  }
+  #side-menu.open {
+    width: 100vw;
+    transition: transform .5s ease;
+    transform: translateX(100vw);
+  }
+  #side-menu.closed {
+    width: 100vw;
+    transition: transform .5s ease;
+    transform: translateX(0);
+  }
+  .toggler {
+    position: fixed;
+    left: 0;
+  }
+  .toggler.open {
+    transition: none;
+    transform: none;
+  }
+  .toggler.closed {
+    transition: none;
+    transform: none;
   }
 }
 </style>
