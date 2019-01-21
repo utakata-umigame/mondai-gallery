@@ -29,7 +29,8 @@ Vue.prototype.$endPoint = function (uri) {
 }
 Vue.filter('truncate', function(value) {
   let len = 50
-  if(value.length <= len) {
+  if (!value) return ''
+  if (value.length <= len) {
     return value
   }
   else {
