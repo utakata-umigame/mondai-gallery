@@ -55,6 +55,7 @@ export default {
   watch: {
     $route() {
       this.getUser();
+      this.showNav = false;
     }
   },
   mounted: function() {
