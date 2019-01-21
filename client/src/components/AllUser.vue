@@ -15,7 +15,7 @@
           <div class="card-content">
             <div class="card-text">
               <account-link :profile="profile"></account-link>
-              <p class="multiline mb">{{ profile.bio }}</p>
+              <p class="multiline mb">{{ profile.bio | truncate }}</p>
               <p>登録日時：{{profile.signup_date}}</p>
             </div>
           </div>
