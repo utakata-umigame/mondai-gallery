@@ -66,17 +66,17 @@ export default {
     overflow-y: auto;
 }
 .items {
-    margin-bottom: 300px;
+    border-bottom: 1px solid #dddddd;
+    padding: 10px;
 }
 .header {
     padding: 50px 0;
     text-align: center;
 }
 .foot {
-    position: inherit;
-    bottom: 0;
     box-sizing: border-box;
     width: 300px;
+    padding: 10px;
 }
 .no-deco {
     color: #333;
