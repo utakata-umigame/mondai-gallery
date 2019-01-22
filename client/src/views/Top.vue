@@ -53,6 +53,7 @@ export default {
   text-align: center;
 }
 .title {
+  font-weight: lighter;
   font-size: 5rem;
 }
 .button {
