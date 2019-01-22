@@ -53,13 +53,7 @@ export default {
   text-align: center;
 }
 .title {
-  font-weight:lighter;
   font-size: 5rem;
-}
-@media screen and (max-width: 480px){
-  .title {
-    font-size: 2rem;
-  }
 }
 .button {
   margin: 5px;
