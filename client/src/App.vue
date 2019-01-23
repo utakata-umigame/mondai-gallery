@@ -5,6 +5,8 @@
       <span></span>
       <span></span>
     </div>
+    <header id="heading">
+    </header>
     <transition name="slide">
       <SideMenu :user="user" class="side" @logout="logout" :class="{'open': showNav, 'closed': !showNav}"/>
     </transition>
@@ -200,6 +202,10 @@ h2.title {
   height: 3px;
   background:#fff;
 }
+#heading {
+  display: none;
+  height: 0;
+}
 @media screen and (min-width: 900px) {
   .main {
     margin-left: 300px;
@@ -244,6 +250,16 @@ h2.title {
   .toggler.closed {
     transition: none;
     transform: none;
+  }
+  #heading {
+    display: block;
+    background: #0984e3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 50px;
+    z-index: 120;
   }
 }
 </style>

@@ -4,21 +4,21 @@
       <div id="hero-content" class="hero-body">
         <div class="">
             <h1 class="title is-1 raleway">MONDAI GALLERY</h1><br>
-            <h1 class="is-size-4">水平思考問題プレイヤーのためのプロフィールサイト</h1>
-            <router-link class="button is-info is-inverted is-medium mb" to="/signup">新規登録</router-link>
+            <!--<h1 class="is-size-4">水平思考問題プレイヤーのためのプロフィールサイト</h1>-->
+            <router-link class="button is-link is-outlined is-inverted is-medium mb" to="/signup">新規登録</router-link>
         </div>
       </div>
     </section>
-    <section id="hero-reverse" class="hero is-large is-primary">
+    <section id="hero-reverse" class="hero is-large is-white">
       <div class="hero-body">
         <div class="columns">
           <div class="column">
-            <b-icon icon="format-list-bulleted" size="is-large"/>
+            <b-icon icon="format-list-bulleted" type="is-primary" size="is-large"/>
             <p class="subtitle">問題リスト</p>
             <p>サイト横断型の問題リンク集を作成可能</p>
           </div>
           <div class="column">
-            <b-icon icon="calendar-today" size="is-large"/>
+            <b-icon icon="calendar-today" type="is-primary" size="is-large"/>
             <p class="subtitle">
               <span class="mr">スケジュール</span>
               <b-tag class="is-info">BETA</b-tag>
@@ -26,7 +26,7 @@
             <p>出題予定やイベントの締め切り日を管理</p>
           </div>
           <div class="column">
-            <b-icon icon="flag" size="is-large"/>
+            <b-icon icon="flag" type="is-primary" size="is-large"/>
             <p class="subtitle">
               <span class="mr">マイルストーン</span>
               <b-tag class="is-danger">DEV</b-tag>
@@ -55,6 +55,9 @@ export default {
 .title {
   font-weight: lighter;
   font-size: 5rem;
+}
+@media screen and (max-width: 480px) {
+  font-size: 3rem;
 }
 .button {
   margin: 5px;
