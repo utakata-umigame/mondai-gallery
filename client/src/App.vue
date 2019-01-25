@@ -10,7 +10,7 @@
     <transition name="slide">
       <SideMenu :user="user" class="side" @logout="logout" :class="{'open': showNav, 'closed': !showNav}"/>
     </transition>
-    <div class="main">
+    <div class="main" :class="{'open': showNav, 'closed': !showNav}">
       <router-view class="page"/>
       <footer class="footer">
         <div class="content has-text-centered">
@@ -89,9 +89,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   background: #fefefe;
-}
-.main {
-  margin-left: 50px;
 }
 .title {
   font-family: "M Plus 1p", sans-serif;
@@ -188,27 +185,53 @@ h2.title {
   transition: transform .5s ease;
   transform: translateX(0);
 }
-.toggler.open {
+/*.toggler.open {
   transition: transform .5s ease;
   transform: translateX(300px);
 }
 .toggler.closed {
   transition: transform .5s ease;
   transform: translateX(0);
-}
+}*/
 .toggler span{
   display: block;
   margin-bottom: 5px;
   height: 3px;
   background:#fff;
 }
+.main {
+    margin-top: 50px;
+    margin-left: 0;
+}
+.main.open {
+  transition: transform .5s ease;
+  transform: translateX(300px);
+}
+.main.closed {
+  transition: transform .5s ease;
+  transform: translateX(0);
+}
 #heading {
   display: none;
   height: 0;
 }
+#heading {
+  display: block;
+  background: #0984e3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 50px;
+  z-index: 120;
+}
 @media screen and (min-width: 900px) {
   .main {
     margin-left: 300px;
+    margin-top: 0;
+  }
+  .main.open {
+    margin-left: 0;
   }
   .toggler {
     display: none;
@@ -216,16 +239,14 @@ h2.title {
   .closed {
     left: 0;
   }
+  #heading {
+    display: none;
+  }
 }
 @media screen and (max-width: 480px) {
-  .main {
-    margin-top: 50px;
-    margin-left: 0;
-  }
   #side-menu {
     position: fixed;
     width: 100vw;
-    top: 0;
     right: 0;
     left: -100vw;
   }

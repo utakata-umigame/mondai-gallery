@@ -1,6 +1,6 @@
 <template>
     <div id="side-menu" class="has-background-light">
-        <div class="header revalia has-background-dark">
+        <div class="header revalia has-background-info">
           <router-link class="no-deco" to="/home">
             <span class="is-size-4 has-text-white">Mondai Gallery</span>
           </router-link>
