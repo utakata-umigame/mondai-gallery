@@ -358,7 +358,8 @@ module.exports = {
             github: doc.github,
             color: doc.color,
             picUrl: doc.picUrl,
-            signup_date: doc.signup_date
+            signup_date: doc.signup_date,
+            graph: doc.graph
           });
           return;
         }
@@ -407,7 +408,7 @@ module.exports = {
           github: obj.github,
           color: obj.color,
           picUrl: obj.picUrl,
-          graph: obj.grpah
+          graph: JSON.stringify(obj.grpah)
         }
       },
       (err, doc) => {}
