@@ -29,8 +29,8 @@
               </div>
               <diagram
                 v-if="profile.graph.nodes.length > 0"
-                :width="1000"
-                :height="800"
+                :width="profile.graph.width || 1000"
+                :height="profile.graph.height || 800"
                 background="#ffffff"
                 :editable="false"
                 :nodes="profile.graph.nodes"

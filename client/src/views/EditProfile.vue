@@ -110,10 +110,14 @@
             </section>
           </b-tab-item>
           <b-tab-item icon="network">
+            <b-field label="サイズ">
+              <b-input type="number" placeholder="幅" v-model="profile.graph.width"></b-input>
+              <b-input type="number" placeholder="高さ" v-model="profile.graph.height"></b-input>
+            </b-field>
             <button @click="addNode" class="button">追加</button>
             <Diagram 
-              :width="2000"
-              :height="1000"
+              :width="profile.graph.width || 1000"
+              :height="profile.graph.height || 800"
               scale="1"
               background="#fafafa"
               :nodes="profile.graph.nodes"
@@ -205,6 +209,8 @@ export default {
         color: "#000000",
         picUrl: "",
         graph: {
+          width: 1000,
+          height: 800,
           nodes: [],
           links: []
         }
