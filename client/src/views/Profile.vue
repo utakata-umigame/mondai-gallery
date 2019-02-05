@@ -108,7 +108,6 @@ export default {
       this.$http.get(this.$endPoint('/api/profile/show/' + id))
         .then(res => {
           if (res) {
-            console.log(JSON.stringify(res.data));
             vm.profile = res.data
             vm.$store.commit('setSavedProfile', vm.profile)
           }
