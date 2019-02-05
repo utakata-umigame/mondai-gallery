@@ -152,6 +152,12 @@ export default {
       .get(this.$endPoint("/api/mypage"))
       .then(function(res) {
         if(res.data.error) return
+        if(!res.data.graph) {
+          res.data.graph = {
+            nodes: [],
+            links: []
+          }
+        }
         vm.profile = res.data;
       })
       .catch(function(error) {
