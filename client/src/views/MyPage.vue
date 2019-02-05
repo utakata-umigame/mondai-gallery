@@ -127,6 +127,12 @@ export default {
   mounted: function () {
     let data = this.$localStorage.get('profile')
     if (data) {
+      if(!data.graph) {
+        data.graph = {
+          nodes: [],
+          links: []
+        }
+      }
       this.profile = data
     }
     this.$http.get(this.$endPoint('/api/mypage'))
