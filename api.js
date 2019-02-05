@@ -65,7 +65,10 @@ module.exports = {
           signup_date: doc.signup_date,
           update: doc.update,
           updateDate: doc.updateDate,
-          graph: doc.graph
+          graph: doc.graph || {
+            nodes: [],
+            links: []
+          }
         });
         return;
       }

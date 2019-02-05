@@ -142,7 +142,6 @@
 </template>
 <script>
 import { Diagram, DiagramEditor } from "diagram-vue";
-import "diagram-vue/dist/diagram.css"
 export default {
   components: {
     Diagram

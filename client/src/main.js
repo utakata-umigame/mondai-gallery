@@ -19,6 +19,9 @@ import AccountLink from '@/components/AccountLink'
 import AllList from '@/components/AllList'
 import './registerServiceWorker'
 
+import { Diagram } from "diagram-vue"
+import "diagram-vue/dist/diagram.css"
+
 Vue.use(VueLocalStorage)
 Vue.use(Buefy)
 Vue.prototype.$http = axios
@@ -38,6 +41,7 @@ Vue.filter('truncate', function(value) {
   }
 })
 
+Vue.component("diagram", Diagram)
 Vue.component('mondai-view', MondaiView)
 Vue.component('list-link', ListLinkView)
 Vue.component('mondai-dialog', MondaiDialog)
