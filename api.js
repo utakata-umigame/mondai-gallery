@@ -64,7 +64,8 @@ module.exports = {
           picUrl: doc.picUrl,
           signup_date: doc.signup_date,
           update: doc.update,
-          updateDate: doc.updateDate
+          updateDate: doc.updateDate,
+          graph: doc.graph
         });
         return;
       }
@@ -402,7 +403,8 @@ module.exports = {
           twitter: obj.twitter,
           github: obj.github,
           color: obj.color,
-          picUrl: obj.picUrl
+          picUrl: obj.picUrl,
+          graph: obj.grpah
         }
       },
       (err, doc) => {}

@@ -76,7 +76,11 @@ export default {
         twitter: '',
         github: '',
         color: '',
-        picUrl: ''
+        picUrl: '',
+        graph: {
+          nodes: [],
+          links: []
+        }
       },
       mondaiList: [],
       timeline: [],

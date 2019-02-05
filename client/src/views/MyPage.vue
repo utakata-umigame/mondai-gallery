@@ -74,7 +74,11 @@ export default {
         twitter: '',
         github: '',
         color: '',
-        picUrl: ''
+        picUrl: '',
+        graph: {
+          nodes: [],
+          links: []
+        }
       }
     }
   },
@@ -92,7 +96,11 @@ export default {
         latePro: '',
         twitter: '',
         github: '',
-        picUrl: ''
+        picUrl: '',
+        graph: {
+          nodes: [],
+          links: []
+        }
       },
       mondaiList: [],
       timeline: [],
