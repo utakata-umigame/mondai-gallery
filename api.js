@@ -408,7 +408,7 @@ module.exports = {
           github: obj.github,
           color: obj.color,
           picUrl: obj.picUrl,
-          graph: JSON.stringify(obj.grpah)
+          graph: obj.graph
         }
       },
       (err, doc) => {}
