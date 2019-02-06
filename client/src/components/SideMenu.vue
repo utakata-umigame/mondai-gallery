@@ -14,9 +14,6 @@
                 <b-icon icon="contacts"></b-icon>
                 <span>お問い合わせ</span>
             </router-link>
-            <router-link class="list-item" to="/graph">
-                <span>グラフ</span>
-            </router-link>
         </div>
         <footer class="foot">
             <router-link class="list-item first-item" to="/mypage" v-if="user.username">

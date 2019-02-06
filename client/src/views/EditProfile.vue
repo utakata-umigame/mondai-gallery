@@ -115,24 +115,26 @@
               <b-input type="number" placeholder="高さ" v-model="profile.graph.height"></b-input>
             </b-field>
             <button @click="addNode" class="button">追加</button>
-            <Diagram 
-              :width="profile.graph.width || 1000"
-              :height="profile.graph.height || 800"
-              scale="1"
-              background="#fafafa"
-              :nodes="profile.graph.nodes"
-              :links="profile.graph.links"
-              :editable="true"
-              :labels="{
-                  edit: '編集',
-                  remove: '削除',
-                  link: 'リンク',
-                  select: '選択'
-              }"
-              @editNode="editNode"
-              @editLink="editLink"
-              @nodeChanged="nodeChanged"
-              @linkChanged="linkChanged" />
+            <div class="scrollX">
+              <Diagram 
+                :width="profile.graph.width || 1000"
+                :height="profile.graph.height || 800"
+                scale="1"
+                background="#fafafa"
+                :nodes="profile.graph.nodes"
+                :links="profile.graph.links"
+                :editable="true"
+                :labels="{
+                    edit: '編集',
+                    remove: '削除',
+                    link: 'リンク',
+                    select: '選択'
+                }"
+                @editNode="editNode"
+                @editLink="editLink"
+                @nodeChanged="nodeChanged"
+                @linkChanged="linkChanged" />
+              </div>
           </b-tab-item>
         </b-tabs>
       <div class="">
@@ -145,7 +147,7 @@
   </div>
 </template>
 <script>
-import { Diagram, DiagramEditor } from "diagram-vue";
+import { Diagram } from "diagram-vue";
 export default {
   components: {
     Diagram

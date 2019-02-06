@@ -27,14 +27,16 @@
                 <div class="content mb" v-html="renderMarkdown(profile.bio)"></div>
                 <p>登録日時：{{profile.signup_date}}</p>
               </div>
-              <diagram
-                v-if="profile.graph.nodes.length > 0"
-                :width="profile.graph.width || 1000"
-                :height="profile.graph.height || 800"
-                background="#ffffff"
-                :editable="false"
-                :nodes="profile.graph.nodes"
-                :links="profile.graph.links" />
+              <div class="scrollX">
+                <diagram
+                  v-if="profile.graph.nodes.length > 0"
+                  :width="profile.graph.width || 1000"
+                  :height="profile.graph.height || 800"
+                  background="#ffffff"
+                  :editable="false"
+                  :nodes="profile.graph.nodes"
+                  :links="profile.graph.links" />
+              </div>
             </b-tab-item>
             <b-tab-item icon="format-list-bulleted">
               <list-link :item="item" v-for="item in mondaiList" v-bind:key="item.id"></list-link>
