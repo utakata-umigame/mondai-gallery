@@ -45,6 +45,10 @@ export default new Vuex.Store({
       latePro: {
         name: 'らてしんPRO',
         showUrl: 'https://sui-hei-pro.net/mondai/show/'
+      },
+      debono: {
+        name: 'DEBONO',
+        showUrl: 'https://de-bono.net/mondai/show/'
       }
     },
     account: [
