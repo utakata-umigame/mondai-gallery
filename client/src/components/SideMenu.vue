@@ -6,7 +6,11 @@
           </router-link>
         </div>
         <div class="items">
-            <router-link class="list-item first-item" to="/add">
+            <router-link class="list-item first-item" to="/home">
+                <b-icon icon="home"></b-icon>
+                <span>ホーム</span>
+            </router-link>
+            <router-link class="list-item" to="/add">
                 <b-icon icon="plus-circle"></b-icon>
                 <span>リスト</span>
             </router-link>
